@@ -5,7 +5,6 @@ import json, os, re, sys, urllib.error, urllib.parse, urllib.request
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any
 
 REPO=os.getenv('UPSTREAM_REPO','vllm-project/vllm-ascend')
 ROOT='https://api.github.com'; DATA=Path('data')
@@ -22,7 +21,10 @@ PATTERNS=[
  ('RUNNER',re.compile(r'runner|self[- ]hosted|machine|pod|k8s|kubernetes|docker|container|environment|device|npu',re.I)),
  ('TEST',re.compile(r'test|pytest|unittest|accuracy|acceptance|performance|perf|benchmark|bench|eval',re.I)),
 ]
-NON_CI=re.compile(r'(bot[_ -]|stale|label(er)?|merge[_ -]?conflict|issue[_ -]?(manage|triage)|handle /|command|auto[_ -]?merge|assign(er)?|welcome)',re.I)
+# Repository housekeeping/robot workflows are not CI test signals.
+NON_CI=re.compile(
+ r'(bot[_ -]|stale|label(er)?|merge[_ -]?conflict|issue[_ -]?(manage|triage)|handle /|command|'
+ r'auto[_ -]?merge|assign(er)?|welcome|pr[_ -]?close|cancel[_ -]?(runs?|jobs?)|cancel (runs?|jobs?))',re.I)
 
 def is_ci_text(text): return not bool(NON_CI.search(text or ''))
 def is_ci_run(r): return is_ci_text((r.get('path') or '')+' '+(r.get('name') or ''))
@@ -103,25 +105,23 @@ def rkey(r): return 'workflow::'+(r.get('path') or r.get('name') or 'unknown')
 def jkey(w,n): return f'job::{w}::{n}'
 
 def migrate(tests,state):
-    old_version=int(tests.get('schema_version') or 0)
+    old=int(tests.get('schema_version') or 0)
     state.setdefault('seen_run_ids',{}); state.setdefault('seen_job_ids',{})
-    if old_version < 2:
+    if old < 2:
         new={}
         for x in tests.get('tests',{}).values():
             w=x.get('workflow') or 'Unnamed workflow'; n=x.get('name') or 'Unnamed job'; k=jkey(w,n)
             y=new.setdefault(k,{'kind':'job','workflow':w,'name':n,'probabilistic':False,'observations':[]})
             y['observations']+=x.get('observations',[])
         tests['tests']=new
-    if old_version < 3:
+    if old < 3:
         for x in tests.get('tests',{}).values():
-            x['probabilistic']=False
-            x.pop('first_detected_at',None); x.pop('probability_reason',None)
-        tests['schema_version']=3; state['schema_version']=3
-    if old_version < 4:
+            x['probabilistic']=False; x.pop('first_detected_at',None); x.pop('probability_reason',None)
+    if old < 5:
         tests['tests']={k:x for k,x in tests.get('tests',{}).items() if is_ci_text(k+' '+(x.get('workflow') or '')+' '+(x.get('name') or ''))}
-        tests['schema_version']=4; state['schema_version']=4
+        tests['schema_version']=5; state['schema_version']=5
         return True
-    return old_version < 3
+    return False
 
 def ensure(tests,k,kind,w,n):
     return tests.setdefault('tests',{}).setdefault(k,{'kind':kind,'workflow':w,'name':n,'probabilistic':False,'observations':[]})
@@ -159,8 +159,8 @@ def prune(state,n):
         state[f]={k:v for k,v in state.get(f,{}).items() if (dt(v) or n)>=cutoff}
 
 def main():
-    n=now(); history=load(HISTORY,{'schema_version':4,'hours':[]}); tests=load(TESTS,{'schema_version':4,'tests':{}}); state=load(STATE,{'schema_version':4,'seen_run_ids':{},'seen_job_ids':{}})
-    legacy=migrate(tests,state); bootstrap=legacy or int(history.get('schema_version') or 0)<4 or not history.get('hours'); hours=BOOT if bootstrap else LOOKBACK
+    n=now(); history=load(HISTORY,{'schema_version':5,'hours':[]}); tests=load(TESTS,{'schema_version':5,'tests':{}}); state=load(STATE,{'schema_version':5,'seen_run_ids':{},'seen_job_ids':{}})
+    legacy=migrate(tests,state); bootstrap=legacy or int(history.get('schema_version') or 0)<5 or not history.get('hours'); hours=BOOT if bootstrap else LOOKBACK
     end=n.replace(minute=0,second=0,microsecond=0); start=end-timedelta(hours=hours); buckets={}; cur=start
     while cur<end: buckets[ih(cur)]=bucket(cur); cur+=timedelta(hours=1)
     g=GH(); errors=[]
@@ -222,9 +222,9 @@ def main():
         if b['runs'] or b['active_runs'] or k not in old or not errors: old[k]=b
     cutoff=n-timedelta(days=RETENTION); rows=[v for k,v in sorted(old.items()) if (dt(k) or n)>=cutoff]
     prune(state,n)
-    history.update({'schema_version':4,'updated_at':it(n),'upstream_repo':REPO,'policy':{'any_failed_workflow_or_job_is_unavailable':True,'probabilistic_check_presence_is_unavailable':True,'degraded_counts_as_unavailable':True,'unknown_excluded_from_availability':True},'collector':{'authenticated':g.auth,'auth_fallbacks':g.fallbacks,'api_requests':g.requests,'request_budget':g.budget,'run_listing_complete':complete,'event_coverage':cov,'detail_runs':len(cache),'errors':errors[-10:]},'hours':rows})
-    tests.update({'schema_version':4,'updated_at':it(n),'upstream_repo':REPO,'tests':dict(sorted(tests.get('tests',{}).items(),key=lambda kv:(not bool(kv[1].get('probabilistic')),0 if kv[1].get('kind')=='workflow' else 1,kv[0].lower())))})
-    state.update({'schema_version':4,'updated_at':it(n)}); save(HISTORY,history); save(TESTS,tests); save(STATE,state)
+    history.update({'schema_version':5,'updated_at':it(n),'upstream_repo':REPO,'policy':{'any_failed_workflow_or_job_is_unavailable':True,'probabilistic_check_presence_is_unavailable':True,'degraded_counts_as_unavailable':True,'unknown_excluded_from_availability':True},'collector':{'authenticated':g.auth,'auth_fallbacks':g.fallbacks,'api_requests':g.requests,'request_budget':g.budget,'run_listing_complete':complete,'event_coverage':cov,'detail_runs':len(cache),'errors':errors[-10:]},'hours':rows})
+    tests.update({'schema_version':5,'updated_at':it(n),'upstream_repo':REPO,'tests':dict(sorted(tests.get('tests',{}).items(),key=lambda kv:(not bool(kv[1].get('probabilistic')),0 if kv[1].get('kind')=='workflow' else 1,kv[0].lower())))})
+    state.update({'schema_version':5,'updated_at':it(n)}); save(HISTORY,history); save(TESTS,tests); save(STATE,state)
     counts=Counter(x['status'] for x in buckets.values()); print(f'runs={len(runs)} detail_runs={len(cache)} requests={g.requests}/{g.budget} auth={g.auth} complete={complete} buckets={dict(counts)} unstable_workflows={len(unstable_work)} unstable_jobs={len(unstable_jobs)}')
     for e in errors: print('warning:',e,file=sys.stderr)
 
