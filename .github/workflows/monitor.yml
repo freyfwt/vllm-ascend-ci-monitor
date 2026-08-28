@@ -1,0 +1,76 @@
+name: Monitor vLLM-Ascend CI
+
+on:
+  schedule:
+    # Avoid the top-of-hour GitHub Actions scheduling rush.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/collect.py"
+      - "index.html"
+      - "README.md"
+      - ".github/workflows/monitor.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: vllm-ascend-ci-monitor
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout monitor repository
+        uses: actions/checkout@v4
+
+      - name: Collect public vLLM-Ascend CI data
+        env:
+          # Optional. The monitor works without this secret using the public
+          # unauthenticated API with a conservative request budget.
+          UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
+        run: python3 scripts/collect.py
+
+      - name: Persist monitoring data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/history.json data/tests.json data/state.json
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "data: update hourly CI observation"
+            git push
+          fi
+
+      - name: Build static site artifact
+        run: |
+          rm -rf _site
+          mkdir -p _site/data
+          cp index.html _site/index.html
+          cp data/history.json data/tests.json _site/data/
+          touch _site/.nojekyll
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site"
+
+  deploy:
+    needs: collect
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
