@@ -1,0 +1,29 @@
+name: Apply availability calendar UI
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/apply-calendar-ui.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch existing dashboard
+        run: python3 scripts/patch_calendar_ui.py
+      - name: Commit UI and clean one-time patcher
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm scripts/patch_calendar_ui.py .github/workflows/apply-calendar-ui.yml
+          git add index.html calendar.js
+          git commit -m "feat: add availability calendar tab"
+          git fetch origin main
+          git rebase origin/main
+          git push
