@@ -1,15 +1,15 @@
 name: Monitor vLLM-Ascend CI
 
-# Policy v9 final: code/test regressions are valid CI verdicts; infrastructure/reliability failures drive availability.
+# Policy v9: code/test regressions are valid CI verdicts; infrastructure/reliability failures drive availability.
 on:
   schedule:
-    # Avoid the top-of-hour GitHub Actions scheduling rush.
     - cron: "17 * * * *"
   workflow_dispatch:
   push:
     branches: ["main"]
     paths:
       - "scripts/collect.py"
+      - "scripts/rebuild_daily.py"
       - "README.md"
       - ".github/workflows/monitor.yml"
 
@@ -29,23 +29,22 @@ jobs:
 
       - name: Collect public vLLM-Ascend CI data
         env:
-          # GITHUB_TOKEN is attempted for the public upstream API. If GitHub
-          # rejects cross-repository authenticated reads, the collector
-          # automatically falls back to anonymous public access.
           GITHUB_TOKEN: ${{ github.token }}
-          # Optional higher-capacity token. Not required for normal operation.
           UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
         run: python3 scripts/collect.py
+
+      - name: Rebuild persistent daily availability
+        run: python3 scripts/rebuild_daily.py
 
       - name: Persist monitoring data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/history.json data/tests.json data/state.json
+          git add data/
           if git diff --cached --quiet; then
             echo "No data changes."
           else
-            git commit -m "data: update hourly CI observation"
+            git commit -m "data: update hourly and daily CI availability"
             git fetch origin main
             git rebase origin/main
             git push
