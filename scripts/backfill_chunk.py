@@ -102,6 +102,7 @@ def main() -> int:
             conclusion = (job.get("conclusion") or "").lower()
             name = job.get("name") or "Unnamed job"
             key = job_key(workflow, name)
+            occurrences[key].append(hour_key)
             sha = run.get("head_sha")
             if conclusion in SUCCESS and sha:
                 outcomes[(key, sha)].add("success")
@@ -109,7 +110,6 @@ def main() -> int:
                 outcomes[(key, sha)].add("failure")
             policy_prob = is_policy_prob(workflow, name)
             if policy_prob or key in known_unstable:
-                occurrences[key].append(hour_key)
                 if not any(item.get("key") == key for item in row["probabilistic"]):
                     row["probabilistic"].append({
                         "key": key, "kind": "job", "workflow": workflow, "job": name,
