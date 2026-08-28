@@ -1,0 +1,87 @@
+name: Apply blocker analysis tab
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/apply-blocker-tab.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Patch dashboard and README
+        shell: python
+        run: |
+          from pathlib import Path
+
+          def repl(s, old, new, label):
+              if new in s:
+                  return s
+              if old not in s:
+                  raise SystemExit(f"missing patch anchor: {label}")
+              return s.replace(old, new, 1)
+
+          p = Path("index.html")
+          s = p.read_text()
+          s = repl(s,
+              '<button class="tab" data-tab="calendar" id="calendarTab">可用性日历</button><button class="tab" data-tab="policy" data-i18n="tabPolicy"></button>',
+              '<button class="tab" data-tab="calendar" id="calendarTab">可用性日历</button><button class="tab" data-tab="blockers" id="blockerTab">阻塞分析</button><button class="tab" data-tab="policy" data-i18n="tabPolicy"></button>',
+              "nav")
+          s = repl(s,
+              '<section id="calendarPanel" class="panel"><div id="calendarRoot"></div></section>',
+              '<section id="calendarPanel" class="panel"><div id="calendarRoot"></div></section>\n<section id="blockerPanel" class="panel"><div id="blockerRoot"></div></section>',
+              "panel")
+          s = repl(s,
+              "activeTab=location.hash==='#policy'?'policy':(location.hash==='#calendar'||location.hash.startsWith('#day='))?'calendar':'overview'",
+              "activeTab=location.hash==='#policy'?'policy':(location.hash==='#calendar'||location.hash.startsWith('#day='))?'calendar':(location.hash==='#blockers'||location.hash.startsWith('#blocker='))?'blockers':'overview'",
+              "active tab")
+          s = repl(s,
+              "$('calendarPanel').classList.toggle('active',name==='calendar');const day=location.hash.startsWith('#day=');const hash=name==='policy'?'#policy':name==='calendar'?(day?location.hash:'#calendar'):'#overview';history.replaceState(null,'',hash)",
+              "$('calendarPanel').classList.toggle('active',name==='calendar');$('blockerPanel').classList.toggle('active',name==='blockers');const day=location.hash.startsWith('#day='),blocker=location.hash.startsWith('#blocker=');const hash=name==='policy'?'#policy':name==='calendar'?(day?location.hash:'#calendar'):name==='blockers'?(blocker?location.hash:'#blockers'):'#overview';history.replaceState(null,'',hash)",
+              "setTab")
+          s = repl(s,
+              "setTab(h==='#policy'?'policy':(h==='#calendar'||h.startsWith('#day='))?'calendar':'overview')",
+              "setTab(h==='#policy'?'policy':(h==='#calendar'||h.startsWith('#day='))?'calendar':(h==='#blockers'||h.startsWith('#blocker='))?'blockers':'overview')",
+              "hashchange")
+          s = repl(s,
+              '<script src="calendar.js"></script>',
+              '<script src="calendar.js"></script>\n<script src="blockers.js"></script>',
+              "script")
+          p.write_text(s)
+
+          r = Path("README.md")
+          t = r.read_text()
+          zh = '- 阻塞分析 / Blocker Analysis：提取 main 分支持续存在的问题，展示关键错误日志、严格 PR 归因、作者/合入者、处理建议和连续 PASS 恢复状态。'
+          if zh not in t:
+              t = t.replace('- 判定标准 / Policy：以表格列出当前所有判定规则。', '- 判定标准 / Policy：以表格列出当前所有判定规则。\n' + zh)
+          en = 'It also has a Blocker Analysis tab for persistent main-branch failures. Issues close only after three consecutive related passes. PR attribution is shown only for high-confidence test regressions: the previous three main executions passed, the signature first appears on one merge commit, and it reproduces afterward.'
+          if en not in t:
+              t = t.replace('The site has an Overview tab and a dedicated Policy tab containing the current decision matrix.', 'The site has an Overview tab and a dedicated Policy tab containing the current decision matrix.\n\n' + en)
+          r.write_text(t)
+
+      - name: Validate integration
+        run: |
+          node --check blockers.js
+          grep -q 'data-tab="blockers"' index.html
+          grep -q 'blockerPanel' index.html
+          grep -q 'blockers.js' index.html
+
+      - name: Commit and self-remove
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html README.md
+          git rm .github/workflows/apply-blocker-tab.yml
+          git commit -m "feat: add blocker analysis tab"
+          git fetch origin main
+          git rebase origin/main
+          git push
