@@ -2,20 +2,20 @@
   "schema_version": 1,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-08-28T07:50:48Z",
+  "updated_at": "2026-08-28T11:32:44Z",
   "latest_hour": {
-    "hour": "2026-08-28T06:00:00Z",
+    "hour": "2026-08-28T10:00:00Z",
     "status": "down",
     "coverage": "complete",
-    "runs": 47,
-    "jobs": 62,
-    "workflow_failures": 24,
+    "runs": 25,
+    "jobs": 240,
+    "workflow_failures": 9,
     "infra_failures": 0,
-    "code_failures": 2,
-    "ignored_nonverdicts": 0,
-    "unresolved_failures": 24,
-    "probabilistic_jobs": 6,
-    "active_runs": 4,
+    "code_failures": 4,
+    "ignored_nonverdicts": 46,
+    "unresolved_failures": 10,
+    "probabilistic_jobs": 24,
+    "active_runs": 10,
     "reasons": {},
     "failures": [],
     "probabilistic": [
@@ -24,61 +24,37 @@
         "kind": "job",
         "workflow": "E2E",
         "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
-        "pass_rate_30d": 0.6667,
+        "pass_rate_30d": 0.8,
         "reason": "same_commit_mixed_outcomes"
       },
       {
-        "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only (main, pr-accuracy-group-1, linux-aarch64-a2b3-1, gemma-3-4b-i... / ${{ inputs.model_list }} accuracy test",
+        "key": "job::E2E::run-selected-tests (v0.27.1) / a3-2 card-(part 1-2)",
         "kind": "job",
-        "workflow": "Nightly-A2",
-        "job": "single-node-accuracy-tests-pr-only (main, pr-accuracy-group-1, linux-aarch64-a2b3-1, gemma-3-4b-i... / ${{ inputs.model_list }} accuracy test",
-        "pass_rate_30d": null,
-        "reason": "policy_probability_sensitive"
+        "workflow": "E2E",
+        "job": "run-selected-tests (v0.27.1) / a3-2 card-(part 1-2)",
+        "pass_rate_30d": 0.8125,
+        "reason": "same_commit_mixed_outcomes"
       },
       {
-        "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / ${{ inputs.model_list }} accuracy test",
+        "key": "job::E2E::ci-gate",
         "kind": "job",
-        "workflow": "Nightly-A2",
-        "job": "single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / ${{ inputs.model_list }} accuracy test",
-        "pass_rate_30d": null,
-        "reason": "policy_probability_sensitive"
-      },
-      {
-        "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / ${{ inputs.model_list }} accuracy test",
-        "kind": "job",
-        "workflow": "Nightly-A2",
-        "job": "single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / ${{ inputs.model_list }} accuracy test",
-        "pass_rate_30d": null,
-        "reason": "policy_probability_sensitive"
-      },
-      {
-        "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8... / ${{ inputs.model_list }} accuracy test",
-        "kind": "job",
-        "workflow": "Nightly-A2",
-        "job": "single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8... / ${{ inputs.model_list }} accuracy test",
-        "pass_rate_30d": null,
-        "reason": "policy_probability_sensitive"
-      },
-      {
-        "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only (main, pr-accuracy-group-2, linux-aarch64-a2b3-4, Qwen2.5-Math... / ${{ inputs.model_list }} accuracy test",
-        "kind": "job",
-        "workflow": "Nightly-A2",
-        "job": "single-node-accuracy-tests-pr-only (main, pr-accuracy-group-2, linux-aarch64-a2b3-4, Qwen2.5-Math... / ${{ inputs.model_list }} accuracy test",
-        "pass_rate_30d": null,
-        "reason": "policy_probability_sensitive"
+        "workflow": "E2E",
+        "job": "ci-gate",
+        "pass_rate_30d": 0.2042,
+        "reason": "same_commit_mixed_outcomes"
       }
     ]
   },
   "days_tracked": 28,
   "overall": {
-    "availability": 0.206897,
-    "observed_hours": 203,
+    "availability": 0.203883,
+    "observed_hours": 206,
     "healthy_hours": 42,
-    "down_hours": 161,
-    "unknown_hours": 452,
+    "down_hours": 164,
+    "unknown_hours": 453,
     "infra_failures": 0,
-    "code_failures": 664,
-    "unresolved_failures": 4726,
-    "probabilistic_jobs": 478
+    "code_failures": 725,
+    "unresolved_failures": 4808,
+    "probabilistic_jobs": 620
   }
 }
