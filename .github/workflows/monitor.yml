@@ -10,6 +10,7 @@ on:
     paths:
       - "scripts/collect.py"
       - "scripts/rebuild_daily.py"
+      - "scripts/analyze_blockers.py"
       - "README.md"
       - ".github/workflows/monitor.yml"
 
@@ -36,6 +37,13 @@ jobs:
       - name: Rebuild persistent daily availability
         run: python3 scripts/rebuild_daily.py
 
+      - name: Analyze current main-branch blockers
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
+          AUTH_REQUEST_BUDGET: "2600"
+        run: python3 scripts/analyze_blockers.py
+
       - name: Persist monitoring data
         run: |
           git config user.name "github-actions[bot]"
@@ -44,7 +52,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No data changes."
           else
-            git commit -m "data: update hourly and daily CI availability"
+            git commit -m "data: update hourly CI availability and blockers"
             git fetch origin main
             git rebase origin/main
             git push
