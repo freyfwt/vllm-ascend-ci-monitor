@@ -1,0 +1,58 @@
+name: Analyze CI Blockers
+
+on:
+  schedule:
+    - cron: "37 * * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/analyze_blockers.py"
+      - "blockers.js"
+      - ".github/workflows/blockers.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vllm-ascend-ci-blockers
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout monitor repository
+        uses: actions/checkout@v4
+
+      - name: Analyze current main-branch blockers
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
+          AUTH_REQUEST_BUDGET: "2600"
+          BLOCKER_EVIDENCE_CAP: "64"
+        run: python3 scripts/analyze_blockers.py
+
+      - name: Persist blocker state safely
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/blockers.json data/blocker_state.json
+          if git diff --cached --quiet; then
+            echo "No blocker changes."
+            exit 0
+          fi
+          git commit -m "data: update main-branch blockers"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git reset --hard HEAD~1
+            git pull --rebase origin main
+            python3 scripts/analyze_blockers.py
+            git add data/blockers.json data/blocker_state.json
+            git commit -m "data: update main-branch blockers"
+          done
+          exit 1
