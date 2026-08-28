@@ -1,6 +1,6 @@
 {
   "schema_version": 9,
-  "updated_at": "2026-08-28T04:20:34Z",
+  "updated_at": "2026-08-28T04:57:16Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "hours": [
     {
@@ -383,6 +383,11 @@
       "coverage": "complete",
       "runs": 22,
       "jobs": 307,
+      "workflow_failures": 12,
+      "infra_failures": 0,
+      "code_failures": 11,
+      "ignored_nonverdicts": 9,
+      "unresolved_failures": 16,
       "probabilistic_jobs": 16,
       "active_runs": 1,
       "reasons": {},
@@ -393,24 +398,24 @@
           "kind": "job",
           "workflow": "E2E",
           "job": "ci-gate",
-          "pass_rate_30d": 0.2089,
+          "pass_rate_30d": 0.2025,
           "reason": "same_commit_mixed_outcomes"
         }
-      ],
-      "workflow_failures": 0,
-      "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 51
+      ]
     },
     {
       "hour": "2026-08-28T02:00:00Z",
       "status": "down",
       "coverage": "complete",
       "runs": 61,
-      "jobs": 837,
-      "probabilistic_jobs": 54,
-      "active_runs": 4,
+      "jobs": 844,
+      "workflow_failures": 31,
+      "infra_failures": 0,
+      "code_failures": 36,
+      "ignored_nonverdicts": 52,
+      "unresolved_failures": 38,
+      "probabilistic_jobs": 53,
+      "active_runs": 3,
       "reasons": {},
       "failures": [],
       "probabilistic": [
@@ -419,15 +424,7 @@
           "kind": "job",
           "workflow": "E2E",
           "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
-          "pass_rate_30d": 0.5714,
-          "reason": "same_commit_mixed_outcomes"
-        },
-        {
-          "key": "job::E2E::ci-gate",
-          "kind": "job",
-          "workflow": "E2E",
-          "job": "ci-gate",
-          "pass_rate_30d": 0.2089,
+          "pass_rate_30d": 0.5625,
           "reason": "same_commit_mixed_outcomes"
         },
         {
@@ -453,32 +450,72 @@
           "job": "single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
           "pass_rate_30d": 1.0,
           "reason": "policy_probability_sensitive"
-        }
-      ],
-      "workflow_failures": 0,
-      "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 169
-    },
-    {
-      "hour": "2026-08-28T03:00:00Z",
-      "status": "down",
-      "coverage": "complete",
-      "runs": 92,
-      "jobs": 876,
-      "probabilistic_jobs": 71,
-      "active_runs": 8,
-      "reasons": {},
-      "failures": [],
-      "probabilistic": [
+        },
         {
           "key": "job::E2E::ci-gate",
           "kind": "job",
           "workflow": "E2E",
           "job": "ci-gate",
-          "pass_rate_30d": 0.2089,
+          "pass_rate_30d": 0.2025,
           "reason": "same_commit_mixed_outcomes"
+        }
+      ]
+    },
+    {
+      "hour": "2026-08-28T03:00:00Z",
+      "status": "down",
+      "coverage": "complete",
+      "runs": 91,
+      "jobs": 885,
+      "workflow_failures": 35,
+      "infra_failures": 0,
+      "code_failures": 32,
+      "ignored_nonverdicts": 124,
+      "unresolved_failures": 55,
+      "probabilistic_jobs": 72,
+      "active_runs": 5,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": [
+        {
+          "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "pass_rate_30d": 0.5625,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2025,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.6-35B-A3B-w8a8-A3-accuracy, linux-aarch64-a3-2, Qwen3.6-35B-A3B-w8a8-A3-... / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.6-35B-A3B-w8a8-A3-accuracy, linux-aarch64-a3-2, Qwen3.6-35B-A3B-w8a8-A3-... / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.5-122B-A10B-w4a8-A3-accuracy, linux-aarch64-a3-16, Qwen3.5-122B-A10B-w4a... / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.5-122B-A10B-w4a8-A3-accuracy, linux-aarch64-a3-16, Qwen3.5-122B-A10B-w4a... / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
         },
         {
           "key": "job::Nightly-A2::single-node-accuracy-tests",
@@ -495,37 +532,8 @@
           "job": "single-node-accuracy-tests-pr-only",
           "pass_rate_30d": 1.0,
           "reason": "policy_probability_sensitive"
-        },
-        {
-          "key": "job::Weekly-A3::single-node (main, Qwen3.6-35B-A3B-w8a8-A3-accuracy, linux-aarch64-a3-2, Qwen3.6-35B-A3B-w8a8-A3-... / inputs.name || inputs.config_file_path || inputs.tests",
-          "kind": "job",
-          "workflow": "Weekly-A3",
-          "job": "single-node (main, Qwen3.6-35B-A3B-w8a8-A3-accuracy, linux-aarch64-a3-2, Qwen3.6-35B-A3B-w8a8-A3-... / inputs.name || inputs.config_file_path || inputs.tests",
-          "pass_rate_30d": 1.0,
-          "reason": "policy_probability_sensitive"
-        },
-        {
-          "key": "job::Weekly-A3::single-node (main, Qwen3.5-122B-A10B-w4a8-A3-accuracy, linux-aarch64-a3-16, Qwen3.5-122B-A10B-w4a... / inputs.name || inputs.config_file_path || inputs.tests",
-          "kind": "job",
-          "workflow": "Weekly-A3",
-          "job": "single-node (main, Qwen3.5-122B-A10B-w4a8-A3-accuracy, linux-aarch64-a3-16, Qwen3.5-122B-A10B-w4a... / inputs.name || inputs.config_file_path || inputs.tests",
-          "pass_rate_30d": 1.0,
-          "reason": "policy_probability_sensitive"
-        },
-        {
-          "key": "job::Weekly-A3::single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
-          "kind": "job",
-          "workflow": "Weekly-A3",
-          "job": "single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
-          "pass_rate_30d": 1.0,
-          "reason": "policy_probability_sensitive"
         }
-      ],
-      "workflow_failures": 0,
-      "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 275
+      ]
     }
   ],
   "policy": {
@@ -538,19 +546,19 @@
   "collector": {
     "authenticated": true,
     "auth_fallbacks": 0,
-    "api_requests": 210,
+    "api_requests": 327,
     "request_budget": 1200,
     "run_listing_complete": true,
     "event_coverage": {
       "pull_request": {
-        "expected": 209,
-        "fetched": 209,
+        "expected": 219,
+        "fetched": 219,
         "complete": true,
         "slices": 1
       },
       "pull_request_target": {
-        "expected": 329,
-        "fetched": 329,
+        "expected": 345,
+        "fetched": 345,
         "complete": true,
         "slices": 1
       },
@@ -567,14 +575,14 @@
         "slices": 1
       },
       "workflow_dispatch": {
-        "expected": 15,
-        "fetched": 15,
+        "expected": 16,
+        "fetched": 16,
         "complete": true,
         "slices": 1
       },
       "repository_dispatch": {
-        "expected": 33,
-        "fetched": 33,
+        "expected": 38,
+        "fetched": 38,
         "complete": true,
         "slices": 1
       },
@@ -597,7 +605,7 @@
         "slices": 1
       }
     },
-    "detail_runs": 196,
+    "detail_runs": 204,
     "errors": []
   }
 }
