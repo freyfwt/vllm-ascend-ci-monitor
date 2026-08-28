@@ -9,14 +9,11 @@ on:
     branches: ["main"]
     paths:
       - "scripts/collect.py"
-      - "index.html"
       - "README.md"
       - ".github/workflows/monitor.yml"
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: vllm-ascend-ci-monitor
@@ -50,30 +47,3 @@ jobs:
             git commit -m "data: update hourly CI observation"
             git push
           fi
-
-      - name: Build static site artifact
-        run: |
-          rm -rf _site
-          mkdir -p _site/data
-          cp index.html _site/index.html
-          cp data/history.json data/tests.json _site/data/
-          touch _site/.nojekyll
-
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "_site"
-
-  deploy:
-    needs: collect
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
