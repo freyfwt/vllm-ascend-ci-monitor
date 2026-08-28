@@ -9,10 +9,12 @@ on:
     paths:
       - "index.html"
       - "calendar.js"
+      - "blockers.js"
       - "data/history.json"
       - "data/tests.json"
       - "data/calendar.json"
       - "data/summary.json"
+      - "data/blockers.json"
       - "data/days/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -43,9 +45,10 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/data/days
-          cp index.html calendar.js _site/
+          cp index.html calendar.js blockers.js _site/
           cp data/history.json data/tests.json _site/data/
           cp data/calendar.json data/summary.json _site/data/ 2>/dev/null || true
+          cp data/blockers.json _site/data/ 2>/dev/null || true
           cp data/days/*.json _site/data/days/ 2>/dev/null || true
           touch _site/.nojekyll
 
