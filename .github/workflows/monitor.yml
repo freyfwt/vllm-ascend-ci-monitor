@@ -20,7 +20,7 @@ permissions:
 
 concurrency:
   group: vllm-ascend-ci-monitor
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   collect:
@@ -31,8 +31,11 @@ jobs:
 
       - name: Collect public vLLM-Ascend CI data
         env:
-          # Optional. The monitor works without this secret using the public
-          # unauthenticated API with a conservative request budget.
+          # GITHUB_TOKEN is attempted for the public upstream API. If GitHub
+          # rejects cross-repository authenticated reads, the collector
+          # automatically falls back to anonymous public access.
+          GITHUB_TOKEN: ${{ github.token }}
+          # Optional higher-capacity token. Not required for normal operation.
           UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
         run: python3 scripts/collect.py
 
