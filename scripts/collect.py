@@ -1,597 +1,215 @@
 #!/usr/bin/env python3
-"""Hourly passive monitor for public vLLM-Ascend GitHub Actions CI.
-
-No upstream repository permissions are required. The script reads public workflow
-runs/jobs, classifies failures heuristically, detects observed unstable jobs, and
-stores compact JSON data for the static dashboard.
-"""
-
 from __future__ import annotations
 
-import json
-import os
-import re
-import sys
-import time
-import urllib.error
-import urllib.parse
-import urllib.request
+import json, os, re, sys, urllib.error, urllib.parse, urllib.request
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
-UPSTREAM_REPO = os.getenv("UPSTREAM_REPO", "vllm-project/vllm-ascend")
-API_ROOT = "https://api.github.com"
-DATA_DIR = Path(os.getenv("DATA_DIR", "data"))
-HISTORY_PATH = DATA_DIR / "history.json"
-TESTS_PATH = DATA_DIR / "tests.json"
-STATE_PATH = DATA_DIR / "state.json"
+REPO=os.getenv('UPSTREAM_REPO','vllm-project/vllm-ascend')
+ROOT='https://api.github.com'; DATA=Path('data')
+HISTORY=DATA/'history.json'; TESTS=DATA/'tests.json'; STATE=DATA/'state.json'
+RETENTION=int(os.getenv('RETENTION_DAYS','90')); OBS=int(os.getenv('OBSERVATION_DAYS','30'))
+BOOT=int(os.getenv('BOOTSTRAP_HOURS','24')); LOOKBACK=int(os.getenv('NORMAL_LOOKBACK_HOURS','3'))
+DETAIL_HOURS=int(os.getenv('DETAIL_LOOKBACK_HOURS','6')); TIMEOUT=int(os.getenv('REQUEST_TIMEOUT','20'))
+ANON_BUDGET=int(os.getenv('ANON_REQUEST_BUDGET','54')); AUTH_BUDGET=int(os.getenv('AUTH_REQUEST_BUDGET','1200'))
+EVENTS=('pull_request','pull_request_target','push','schedule','workflow_dispatch','repository_dispatch','workflow_call','workflow_run','merge_group')
+GOOD={'success','neutral','skipped'}
+PATTERNS=[
+ ('DOWNLOAD',re.compile(r'install|download|dependenc|pip|apt|yum|wget|curl|checkout|pull image|docker pull|setup python|cache',re.I)),
+ ('NETWORK',re.compile(r'network|dns|connection|timeout|timed out|resolve|proxy|socket|http\s*[45]\d\d',re.I)),
+ ('RUNNER',re.compile(r'runner|self[- ]hosted|machine|pod|k8s|kubernetes|docker|container|environment|device|npu',re.I)),
+ ('TEST',re.compile(r'test|pytest|unittest|accuracy|acceptance|performance|perf|benchmark|bench|eval',re.I)),
+]
 
-RETENTION_DAYS = int(os.getenv("RETENTION_DAYS", "90"))
-OBSERVATION_DAYS = int(os.getenv("OBSERVATION_DAYS", "30"))
-BOOTSTRAP_HOURS = int(os.getenv("BOOTSTRAP_HOURS", "24"))
-NORMAL_LOOKBACK_HOURS = int(os.getenv("NORMAL_LOOKBACK_HOURS", "3"))
-MAX_RUN_PAGES = int(os.getenv("MAX_RUN_PAGES", "5"))
-MAX_API_REQUESTS = int(os.getenv("MAX_API_REQUESTS", "52"))
-REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "20"))
+def now(): return datetime.now(timezone.utc)
+def dt(s):
+    if not s: return None
+    try: return datetime.fromisoformat(s.replace('Z','+00:00'))
+    except ValueError: return None
+def ih(x): return x.astimezone(timezone.utc).replace(minute=0,second=0,microsecond=0).isoformat().replace('+00:00','Z')
+def it(x): return x.astimezone(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
+def load(p,d):
+    try: return json.loads(p.read_text()) if p.exists() else d
+    except (OSError,json.JSONDecodeError): return d
+def save(p,v):
+    p.parent.mkdir(parents=True,exist_ok=True); q=p.with_suffix(p.suffix+'.tmp'); q.write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n'); q.replace(p)
+def bad(c): return bool(c) and c not in GOOD
+def outcome(c): return 'success' if c in GOOD else ('failure' if c else None)
 
-GOOD_CONCLUSIONS = {"success", "neutral", "skipped"}
-BAD_CONCLUSIONS = {
-    "failure",
-    "cancelled",
-    "timed_out",
-    "action_required",
-    "stale",
-    "startup_failure",
-}
-NETWORK_PATTERNS = re.compile(
-    r"(network|dns|connection|timeout|timed out|resolve|proxy|socket|http\s*[45]\d\d)",
-    re.I,
-)
-DOWNLOAD_PATTERNS = re.compile(
-    r"(install|download|dependency|dependencies|pip|apt|yum|wget|curl|checkout|"
-    r"pull image|docker pull|setup python|setup node|setup go|cache)",
-    re.I,
-)
-RUNNER_PATTERNS = re.compile(
-    r"(runner|self[- ]hosted|machine|pod|k8s|kubernetes|docker|container|environment|device|npu)",
-    re.I,
-)
-
-IGNORED_EVENTS = {
-    "issue_comment", "issues", "discussion", "discussion_comment",
-    "pull_request_review", "pull_request_review_comment", "fork", "watch",
-    "create", "delete", "release",
-}
-
-TEST_PATTERNS = re.compile(
-    r"(test|pytest|unittest|accuracy|acceptance|performance|perf|benchmark|bench|eval|evaluation)",
-    re.I,
-)
-
-def utcnow() -> datetime:
-    return datetime.now(timezone.utc)
-
-def parse_dt(value: str | None) -> datetime | None:
-    if not value:
-        return None
-    value = value.replace("Z", "+00:00")
-    try:
-        return datetime.fromisoformat(value)
-    except ValueError:
-        return None
-
-def iso_hour(dt: datetime) -> str:
-    dt = dt.astimezone(timezone.utc).replace(minute=0, second=0, microsecond=0)
-    return dt.isoformat().replace("+00:00", "Z")
-
-def iso_ts(dt: datetime) -> str:
-    return dt.astimezone(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-
-def load_json(path: Path, default: Any) -> Any:
-    if not path.exists():
-        return default
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, OSError):
-        return default
-
-def save_json(path: Path, value: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    tmp.replace(path)
-
-class GitHubClient:
-    def __init__(self) -> None:
-        # Prefer an explicit upstream PAT if the user adds one later. Otherwise use
-        # anonymous public access with a conservative request budget.
-        self.token = os.getenv("UPSTREAM_GITHUB_TOKEN") or ""
-        self.requests = 0
-        self.auth_fallbacks = 0
-
-    def _request(self, url: str, use_auth: bool = True) -> bytes:
-        headers = {
-            "Accept": "application/vnd.github+json",
-            "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "vllm-ascend-ci-monitor/1.0",
-        }
-        if use_auth and self.token:
-            headers["Authorization"] = f"Bearer {self.token}"
-        req = urllib.request.Request(url, headers=headers)
-        self.requests += 1
+class GH:
+    def __init__(self):
+        self.token=os.getenv('UPSTREAM_GITHUB_TOKEN') or os.getenv('GITHUB_TOKEN') or ''
+        self.rejected=False; self.requests=0; self.fallbacks=0
+    @property
+    def auth(self): return bool(self.token) and not self.rejected
+    @property
+    def budget(self): return AUTH_BUDGET if self.auth else ANON_BUDGET
+    def ok(self,reserve=0): return self.requests < self.budget-reserve
+    def request(self,url,use_auth=True):
+        h={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'vllm-ascend-ci-monitor/2'}
+        if use_auth and self.auth: h['Authorization']='Bearer '+self.token
+        self.requests+=1
         try:
-            with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
-                return resp.read()
-        except urllib.error.HTTPError as exc:
-            # A repository-scoped token may not be accepted for a different public
-            # repository. Anonymous access still works for public Actions data.
-            if use_auth and self.token and exc.code in (401, 403, 404):
-                self.auth_fallbacks += 1
-                return self._request(url, use_auth=False)
+            with urllib.request.urlopen(urllib.request.Request(url,headers=h),timeout=TIMEOUT) as r: return r.read()
+        except urllib.error.HTTPError as e:
+            if use_auth and self.auth and e.code in (401,403,404):
+                self.rejected=True; self.fallbacks+=1; return self.request(url,False)
             raise
+    def get(self,path,params=None):
+        q='?'+urllib.parse.urlencode(params) if params else ''
+        return json.loads(self.request(ROOT+path+q).decode())
 
-    def json(self, path: str, params: dict[str, Any] | None = None) -> Any:
-        query = ""
-        if params:
-            query = "?" + urllib.parse.urlencode(params)
-        data = self._request(f"{API_ROOT}{path}{query}")
-        return json.loads(data.decode("utf-8"))
+def list_runs(g,start,end):
+    span=f'{it(start)}..{it(end)}'; out={}; coverage={}; complete=True
+    for event in EVENTS:
+        expected=None; got=0; done=False
+        for page in range(1,21):
+            if not g.ok(8): break
+            p=g.get(f'/repos/{REPO}/actions/runs',{'event':event,'created':span,'per_page':100,'page':page})
+            if expected is None: expected=int(p.get('total_count') or 0)
+            rows=p.get('workflow_runs',[]); got+=len(rows)
+            for r in rows:
+                if r.get('id'): out[int(r['id'])]=r
+            if not rows or got>=expected: done=True; break
+        if expected==0: done=True
+        coverage[event]={'expected':expected,'fetched':got,'complete':done}
+        complete &= done
+    return list(out.values()),complete,coverage
 
-def list_recent_runs(
-    client: GitHubClient,
-    cutoff: datetime,
-    end: datetime,
-) -> tuple[list[dict[str, Any]], bool]:
-    runs: list[dict[str, Any]] = []
-    total_expected: int | None = None
-    created_range = f"{iso_ts(cutoff)}..{iso_ts(end)}"
-    for page in range(1, MAX_RUN_PAGES + 1):
-        if client.requests >= MAX_API_REQUESTS:
-            break
-        payload = client.json(
-            f"/repos/{UPSTREAM_REPO}/actions/runs",
-            {"per_page": 100, "page": page, "created": created_range},
-        )
-        if total_expected is None:
-            total_expected = int(payload.get("total_count") or 0)
-        page_runs = payload.get("workflow_runs", [])
-        if not page_runs:
-            break
-        runs.extend(page_runs)
-        if total_expected is not None and len(runs) >= total_expected:
-            break
-    dedup = {int(r["id"]): r for r in runs if r.get("id") is not None}
-    complete = total_expected is not None and len(dedup) >= total_expected
-    return list(dedup.values()), complete
+def list_jobs(g,rid):
+    out=[]
+    for page in range(1,20):
+        if not g.ok(): break
+        p=g.get(f'/repos/{REPO}/actions/runs/{rid}/jobs',{'filter':'latest','per_page':100,'page':page})
+        rows=p.get('jobs',[]); out+=rows
+        if not rows or len(out)>=int(p.get('total_count') or len(out)): break
+    return out
 
-def is_candidate_ci_run(run: dict[str, Any]) -> bool:
-    event = (run.get("event") or "").lower()
-    if event in IGNORED_EVENTS:
-        return False
-    # A fully skipped workflow did not execute a CI signal and is not worth one
-    # of the limited anonymous job-list API requests.
-    if run.get("status") == "completed" and run.get("conclusion") == "skipped":
-        return False
+def step_failures(j): return [s.get('name') or '' for s in j.get('steps',[]) if bad(s.get('conclusion'))]
+def reason(j):
+    c=(j.get('conclusion') or '').lower()
+    if c=='timed_out': return 'TIMEOUT'
+    if c=='cancelled': return 'CANCELLED'
+    text=' | '.join([j.get('name') or '',*step_failures(j)])
+    for name,p in PATTERNS:
+        if p.search(text): return name
+    return 'UNKNOWN'
+def rkey(r): return 'workflow::'+(r.get('path') or r.get('name') or 'unknown')
+def jkey(w,n): return f'job::{w}::{n}'
+
+def migrate(tests,state):
+    legacy=int(tests.get('schema_version') or 0)<2
+    state.setdefault('seen_run_ids',{}); state.setdefault('seen_job_ids',{})
+    if not legacy: return False
+    new={}
+    for x in tests.get('tests',{}).values():
+        w=x.get('workflow') or 'Unnamed workflow'; n=x.get('name') or 'Unnamed job'; k=jkey(w,n)
+        y=new.setdefault(k,{'kind':'job','workflow':w,'name':n,'probabilistic':False,'observations':[]})
+        y['observations']+=x.get('observations',[])
+    tests['tests']=new; tests['schema_version']=2; state['schema_version']=2
     return True
 
-def list_jobs(client: GitHubClient, run_id: int) -> list[dict[str, Any]]:
-    jobs: list[dict[str, Any]] = []
-    page = 1
-    total = None
-    while client.requests < MAX_API_REQUESTS:
-        payload = client.json(
-            f"/repos/{UPSTREAM_REPO}/actions/runs/{run_id}/jobs",
-            {"per_page": 100, "page": page, "filter": "latest"},
-        )
-        page_jobs = payload.get("jobs", [])
-        jobs.extend(page_jobs)
-        total = int(payload.get("total_count") or len(jobs))
-        if len(jobs) >= total or not page_jobs:
-            break
-        page += 1
-    return jobs
+def ensure(tests,k,kind,w,n):
+    return tests.setdefault('tests',{}).setdefault(k,{'kind':kind,'workflow':w,'name':n,'probabilistic':False,'observations':[]})
+def observe_run(tests,state,r):
+    rid=str(r.get('id')); seen=state['seen_run_ids']; o=outcome(r.get('conclusion'))
+    if not rid or rid=='None' or rid in seen or not o: return
+    w=r.get('name') or 'Unnamed workflow'; x=ensure(tests,rkey(r),'workflow',w,'(workflow aggregate)'); at=r.get('updated_at') or r.get('created_at') or it(now())
+    x['observations'].append({'run_id':rid,'at':at,'outcome':o,'conclusion':r.get('conclusion'),'head_sha':r.get('head_sha')}); seen[rid]=at
+def observe_job(tests,state,w,j,sha):
+    jid=str(j.get('id')); seen=state['seen_job_ids']; o=outcome(j.get('conclusion'))
+    if not jid or jid=='None' or jid in seen or not o: return
+    n=j.get('name') or 'Unnamed job'; x=ensure(tests,jkey(w,n),'job',w,n); at=j.get('completed_at') or j.get('started_at') or it(now())
+    x['observations'].append({'job_id':jid,'at':at,'outcome':o,'conclusion':j.get('conclusion'),'head_sha':sha}); seen[jid]=at
 
-def conclusion_is_bad(conclusion: str | None) -> bool:
-    if conclusion is None:
-        return False
-    if conclusion in GOOD_CONCLUSIONS:
-        return False
-    return True
-
-def failed_step_names(job: dict[str, Any]) -> list[str]:
-    names = []
-    for step in job.get("steps") or []:
-        if conclusion_is_bad(step.get("conclusion")):
-            names.append(step.get("name") or "")
-    return [name for name in names if name]
-
-def classify_job(job: dict[str, Any]) -> str:
-    conclusion = (job.get("conclusion") or "").lower()
-    if conclusion == "timed_out":
-        return "TIMEOUT"
-    if conclusion == "cancelled":
-        return "CANCELLED"
-
-    text = " | ".join([job.get("name") or "", *failed_step_names(job)])
-    # Step names are the only log-like signal that is cheap enough for hourly,
-    # anonymous monitoring. Prefer explicit dependency/setup indications.
-    if DOWNLOAD_PATTERNS.search(text):
-        return "DOWNLOAD"
-    if NETWORK_PATTERNS.search(text):
-        return "NETWORK"
-    if RUNNER_PATTERNS.search(text):
-        return "RUNNER"
-    if TEST_PATTERNS.search(text):
-        return "TEST"
-    return "UNKNOWN"
-
-def job_key(workflow: str, job_name: str) -> str:
-    return f"{workflow} :: {job_name}"
-
-def recompute_test(test: dict[str, Any], now: datetime) -> None:
-    cutoff = now - timedelta(days=OBSERVATION_DAYS)
-    obs = [
-        o for o in test.get("observations", [])
-        if (parse_dt(o.get("at")) or datetime.min.replace(tzinfo=timezone.utc)) >= cutoff
-    ]
-    obs.sort(key=lambda x: x.get("at", ""))
-    # Keep a hard cap too; matrix jobs can be very busy.
-    obs = obs[-120:]
-    test["observations"] = obs
-
-    successes = sum(1 for o in obs if o.get("outcome") == "success")
-    failures = sum(1 for o in obs if o.get("outcome") == "failure")
-    total = successes + failures
-    transitions = 0
-    seq = [o.get("outcome") for o in obs if o.get("outcome") in {"success", "failure"}]
-    for a, b in zip(seq, seq[1:]):
-        if a != b:
-            transitions += 1
-
-    sha_outcomes: dict[str, set[str]] = defaultdict(set)
+def recompute(x,n):
+    cutoff=n-timedelta(days=OBS); obs=[o for o in x.get('observations',[]) if (dt(o.get('at')) or n)>=cutoff][-240:]; obs.sort(key=lambda o:o.get('at','')); x['observations']=obs
+    seq=[o['outcome'] for o in obs if o.get('outcome') in ('success','failure')]; succ=seq.count('success'); fail=seq.count('failure')
+    bysha=defaultdict(set)
     for o in obs:
-        sha = o.get("head_sha")
-        outcome = o.get("outcome")
-        if sha and outcome in {"success", "failure"}:
-            sha_outcomes[sha].add(outcome)
-    same_sha_mixed = any(len(outcomes) > 1 for outcomes in sha_outcomes.values())
+        if o.get('head_sha') and o.get('outcome') in ('success','failure'): bysha[o['head_sha']].add(o['outcome'])
+    detected=any(len(v)>1 for v in bysha.values()); old=bool(x.get('probabilistic'))
+    if detected and not old: x['first_detected_at']=it(n); x['probability_reason']='same_commit_mixed_outcomes'
+    x['probabilistic']=old or detected; x['samples_30d']=len(seq); x['successes_30d']=succ; x['failures_30d']=fail; x['pass_rate_30d']=round(succ/len(seq),4) if seq else None
 
-    previously_unstable = bool(test.get("probabilistic"))
-    detected = same_sha_mixed or (
-        total >= 5
-        and successes > 0
-        and failures > 0
-        and transitions >= 2
-    )
+def bucket(h): return {'hour':ih(h),'status':'unknown','coverage':'complete','runs':0,'jobs':0,'failed_runs':0,'failed_jobs':0,'probabilistic_workflows':0,'probabilistic_jobs':0,'active_runs':0,'reasons':{},'failures':[],'probabilistic':[]}
+def add_prob(b,k,x):
+    if any(z.get('key')==k for z in b['probabilistic']): return
+    b['probabilistic'].append({'key':k,'kind':x.get('kind'),'workflow':x.get('workflow'),'job':x.get('name'),'pass_rate_30d':x.get('pass_rate_30d'),'reason':x.get('probability_reason')})
+def prune(state,n):
+    cutoff=n-timedelta(days=OBS+2)
+    for f in ('seen_run_ids','seen_job_ids'):
+        state[f]={k:v for k,v in state.get(f,{}).items() if (dt(v) or n)>=cutoff}
 
-    if detected and not previously_unstable:
-        test["first_detected_at"] = iso_ts(now)
-        if same_sha_mixed:
-            test["probability_reason"] = "same_commit_mixed_outcomes"
-        else:
-            test["probability_reason"] = "repeated_pass_fail_transitions"
+def main():
+    n=now(); history=load(HISTORY,{'schema_version':2,'hours':[]}); tests=load(TESTS,{'schema_version':2,'tests':{}}); state=load(STATE,{'schema_version':2,'seen_run_ids':{},'seen_job_ids':{}})
+    legacy=migrate(tests,state); bootstrap=legacy or int(history.get('schema_version') or 0)<2 or not history.get('hours'); hours=BOOT if bootstrap else LOOKBACK
+    end=n.replace(minute=0,second=0,microsecond=0); start=end-timedelta(hours=hours); buckets={}; cur=start
+    while cur<end: buckets[ih(cur)]=bucket(cur); cur+=timedelta(hours=1)
+    g=GH(); errors=[]
+    try: runs,complete,cov=list_runs(g,start-timedelta(hours=2),n)
+    except Exception as e: runs=[]; complete=False; cov={}; errors.append(f'runs: {type(e).__name__}: {e}')
+    runs.sort(key=lambda r:r.get('updated_at') or r.get('created_at') or '',reverse=True)
+    for r in runs: observe_run(tests,state,r)
+    for x in tests.get('tests',{}).values(): recompute(x,n)
+    unstable_work={k for k,x in tests.get('tests',{}).items() if x.get('kind')=='workflow' and x.get('probabilistic')}
+    byid={}
+    for r in runs:
+        rid=int(r.get('id') or 0)
+        if not rid: continue
+        byid[rid]=r; created=dt(r.get('created_at')); updated=dt(r.get('updated_at'))
+        if r.get('status')=='completed':
+            b=buckets.get(ih(updated or created)) if (updated or created) else None
+            if not b: continue
+            b['runs']+=1
+            if bad(r.get('conclusion')):
+                b['failed_runs']+=1; b['reasons']['WORKFLOW_FAILURE']=b['reasons'].get('WORKFLOW_FAILURE',0)+1
+                if len(b['failures'])<20: b['failures'].append({'workflow':r.get('name') or 'Unnamed workflow','job':'(workflow aggregate)','conclusion':r.get('conclusion') or 'unknown','reason':'WORKFLOW_FAILURE','failed_steps':[],'url':r.get('html_url')})
+            k=rkey(r)
+            if k in unstable_work: b['probabilistic_workflows']+=1; add_prob(b,k,tests['tests'][k])
+        elif created:
+            cur=max(created.replace(minute=0,second=0,microsecond=0),start)
+            while cur<end:
+                if ih(cur) in buckets: buckets[ih(cur)]['active_runs']+=1
+                cur+=timedelta(hours=1)
+    detail_cut=n-timedelta(hours=DETAIL_HOURS); candidates=[r for r in runs if r.get('status')=='completed' and (dt(r.get('updated_at')) or n)>=detail_cut]
+    candidates.sort(key=lambda r:(0 if bad(r.get('conclusion')) else 1,-(dt(r.get('updated_at')) or n).timestamp())); max_detail=220 if g.auth else 24; cache={}
+    for r in candidates[:max_detail]:
+        if not g.ok(): break
+        rid=int(r.get('id') or 0)
+        try: jobs=list_jobs(g,rid); cache[rid]=jobs
+        except Exception as e: errors.append(f'jobs:{rid}: {type(e).__name__}: {e}'); continue
+        w=r.get('name') or 'Unnamed workflow'
+        for j in jobs: observe_job(tests,state,w,j,r.get('head_sha'))
+    for x in tests.get('tests',{}).values(): recompute(x,n)
+    unstable_jobs={k for k,x in tests.get('tests',{}).items() if x.get('kind')=='job' and x.get('probabilistic')}
+    for rid,jobs in cache.items():
+        r=byid.get(rid,{}); w=r.get('name') or 'Unnamed workflow'; rb=buckets.get(ih(dt(r.get('updated_at')))) if dt(r.get('updated_at')) else None
+        for j in jobs:
+            event=dt(j.get('completed_at')) or dt(j.get('started_at')); b=buckets.get(ih(event)) if event else rb
+            if not b: continue
+            b['jobs']+=1; c=j.get('conclusion'); k=jkey(w,j.get('name') or 'Unnamed job')
+            if bad(c):
+                why=reason(j); b['failed_jobs']+=1; b['reasons'][why]=b['reasons'].get(why,0)+1
+                if len(b['failures'])<20: b['failures'].append({'workflow':w,'job':j.get('name') or 'Unnamed job','conclusion':c or 'unknown','reason':why,'failed_steps':step_failures(j)[:4],'url':j.get('html_url') or r.get('html_url')})
+            if k in unstable_jobs: b['probabilistic_jobs']+=1; add_prob(b,k,tests['tests'][k])
+    for b in buckets.values():
+        if not complete: b['coverage']='partial'
+        if b['failed_runs'] or b['failed_jobs'] or b['probabilistic_workflows'] or b['probabilistic_jobs']: b['status']='down'
+        elif b['coverage']=='partial' and (b['runs'] or b['active_runs']): b['status']='unknown'
+        elif b['active_runs']: b['status']='degraded'
+        elif b['runs']: b['status']='healthy'
+    old={x.get('hour'):x for x in history.get('hours',[]) if x.get('hour')}
+    for k,b in buckets.items():
+        if b['runs'] or b['active_runs'] or k not in old or not errors: old[k]=b
+    cutoff=n-timedelta(days=RETENTION); rows=[v for k,v in sorted(old.items()) if (dt(k) or n)>=cutoff]
+    prune(state,n)
+    history.update({'schema_version':2,'updated_at':it(n),'upstream_repo':REPO,'policy':{'any_failed_workflow_or_job_is_unavailable':True,'probabilistic_check_presence_is_unavailable':True,'degraded_counts_as_unavailable':True,'unknown_excluded_from_availability':True},'collector':{'authenticated':g.auth,'auth_fallbacks':g.fallbacks,'api_requests':g.requests,'request_budget':g.budget,'run_listing_complete':complete,'event_coverage':cov,'detail_runs':len(cache),'errors':errors[-10:]},'hours':rows})
+    tests.update({'schema_version':2,'updated_at':it(n),'upstream_repo':REPO,'tests':dict(sorted(tests.get('tests',{}).items(),key=lambda kv:(not bool(kv[1].get('probabilistic')),0 if kv[1].get('kind')=='workflow' else 1,kv[0].lower())))})
+    state.update({'schema_version':2,'updated_at':it(n)}); save(HISTORY,history); save(TESTS,tests); save(STATE,state)
+    counts=Counter(x['status'] for x in buckets.values()); print(f'runs={len(runs)} detail_runs={len(cache)} requests={g.requests}/{g.budget} auth={g.auth} complete={complete} buckets={dict(counts)} unstable_workflows={len(unstable_work)} unstable_jobs={len(unstable_jobs)}')
+    for e in errors: print('warning:',e,file=sys.stderr)
 
-    # Sticky by design: once public history demonstrates probabilistic/unstable
-    # behaviour, future appearances are considered unavailable as requested.
-    test["probabilistic"] = previously_unstable or detected
-    test["samples_30d"] = total
-    test["successes_30d"] = successes
-    test["failures_30d"] = failures
-    test["pass_rate_30d"] = round(successes / total, 4) if total else None
-    test["transitions_30d"] = transitions
-
-def add_observation(
-    tests: dict[str, Any],
-    state: dict[str, Any],
-    workflow: str,
-    job: dict[str, Any],
-    head_sha: str | None,
-    now: datetime,
-) -> None:
-    job_id = str(job.get("id"))
-    if not job_id or job_id == "None":
-        return
-    seen = state.setdefault("seen_job_ids", {})
-    if job_id in seen:
-        return
-
-    conclusion = job.get("conclusion")
-    if conclusion in GOOD_CONCLUSIONS:
-        outcome = "success"
-    elif conclusion:
-        outcome = "failure"
-    else:
-        return
-
-    key = job_key(workflow, job.get("name") or "Unnamed job")
-    test = tests.setdefault("tests", {}).setdefault(
-        key,
-        {
-            "workflow": workflow,
-            "name": job.get("name") or "Unnamed job",
-            "probabilistic": False,
-            "observations": [],
-        },
-    )
-    at = job.get("completed_at") or job.get("started_at") or iso_ts(now)
-    test.setdefault("observations", []).append(
-        {
-            "job_id": job_id,
-            "at": at,
-            "outcome": outcome,
-            "conclusion": conclusion,
-            "head_sha": head_sha,
-        }
-    )
-    seen[job_id] = at
-
-def prune_state(state: dict[str, Any], now: datetime) -> None:
-    cutoff = now - timedelta(days=OBSERVATION_DAYS + 2)
-    seen = state.get("seen_job_ids", {})
-    state["seen_job_ids"] = {
-        jid: at
-        for jid, at in seen.items()
-        if (parse_dt(at) or now) >= cutoff
-    }
-
-def make_bucket(hour: datetime) -> dict[str, Any]:
-    return {
-        "hour": iso_hour(hour),
-        "status": "unknown",
-        "coverage": "complete",
-        "runs": 0,
-        "jobs": 0,
-        "failed_jobs": 0,
-        "probabilistic_jobs": 0,
-        "active_runs": 0,
-        "reasons": {},
-        "failures": [],
-        "probabilistic": [],
-    }
-
-def bucket_for(dt: datetime, buckets: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
-    return buckets.get(iso_hour(dt))
-
-def main() -> int:
-    now = utcnow()
-    history = load_json(
-        HISTORY_PATH,
-        {"schema_version": 1, "updated_at": None, "hours": []},
-    )
-    tests = load_json(
-        TESTS_PATH,
-        {"schema_version": 1, "updated_at": None, "tests": {}},
-    )
-    state = load_json(
-        STATE_PATH,
-        {"schema_version": 1, "seen_job_ids": {}},
-    )
-
-    first_run = not history.get("hours")
-    lookback_hours = BOOTSTRAP_HOURS if first_run else NORMAL_LOOKBACK_HOURS
-
-    # Only report completed clock hours. This makes every data point comparable.
-    end_hour = now.replace(minute=0, second=0, microsecond=0)
-    start_hour = end_hour - timedelta(hours=lookback_hours)
-    buckets: dict[str, dict[str, Any]] = {}
-    cursor = start_hour
-    while cursor < end_hour:
-        buckets[iso_hour(cursor)] = make_bucket(cursor)
-        cursor += timedelta(hours=1)
-
-    client = GitHubClient()
-    errors: list[str] = []
-    try:
-        runs, reached_cutoff = list_recent_runs(client, start_hour - timedelta(hours=2), now)
-    except Exception as exc:
-        runs = []
-        reached_cutoff = False
-        errors.append(f"workflow_runs: {type(exc).__name__}: {exc}")
-
-    # Newest first gives the most useful coverage when anonymous API budget is tight.
-    runs.sort(key=lambda r: r.get("updated_at") or r.get("created_at") or "", reverse=True)
-
-    job_requests = 0
-    covered_run_ids: set[int] = set()
-    run_ids_seen_in_bucket: dict[str, set[int]] = defaultdict(set)
-    jobs_cache: dict[int, tuple[dict[str, Any], list[dict[str, Any]]]] = {}
-
-    for run in runs:
-        run_id = int(run.get("id") or 0)
-        created = parse_dt(run.get("created_at"))
-        updated = parse_dt(run.get("updated_at"))
-        run_time = updated or created
-        if not run_time:
-            continue
-        if not is_candidate_ci_run(run):
-            continue
-
-        # A still-running workflow that has occupied an earlier hour is visible as
-        # degraded evidence. Completed jobs are bucketed more precisely later.
-        if run.get("status") != "completed" and created:
-            cursor = max(created.replace(minute=0, second=0, microsecond=0), start_hour)
-            while cursor < min(end_hour, now):
-                b = bucket_for(cursor, buckets)
-                if b:
-                    b["active_runs"] += 1
-                    run_ids_seen_in_bucket[b["hour"]].add(run_id)
-                cursor += timedelta(hours=1)
-
-        if run_time < start_hour - timedelta(hours=2):
-            continue
-        if client.requests >= MAX_API_REQUESTS:
-            # Mark the update hour as evidence of partial coverage.
-            b = bucket_for(run_time, buckets)
-            if b:
-                run_ids_seen_in_bucket[b["hour"]].add(run_id)
-            continue
-
-        try:
-            before = client.requests
-            jobs = list_jobs(client, run_id)
-            job_requests += client.requests - before
-            covered_run_ids.add(run_id)
-            jobs_cache[run_id] = (run, jobs)
-        except Exception as exc:
-            errors.append(f"jobs:{run_id}: {type(exc).__name__}: {exc}")
-            b = bucket_for(run_time, buckets)
-            if b:
-                run_ids_seen_in_bucket[b["hour"]].add(run_id)
-            continue
-
-        workflow = run.get("name") or run.get("display_title") or "Unnamed workflow"
-        head_sha = run.get("head_sha")
-        for job in jobs:
-            add_observation(tests, state, workflow, job, head_sha, now)
-
-    # Recompute instability before applying it to hourly status.
-    for test in tests.get("tests", {}).values():
-        recompute_test(test, now)
-
-    probabilistic_keys = {
-        key
-        for key, test in tests.get("tests", {}).items()
-        if test.get("probabilistic")
-    }
-
-    for run_id, (run, jobs) in jobs_cache.items():
-        workflow = run.get("name") or run.get("display_title") or "Unnamed workflow"
-        run_url = run.get("html_url")
-        for job in jobs:
-            event_dt = parse_dt(job.get("completed_at")) or parse_dt(job.get("started_at"))
-            if not event_dt:
-                continue
-            b = bucket_for(event_dt, buckets)
-            if not b:
-                continue
-
-            run_ids_seen_in_bucket[b["hour"]].add(run_id)
-            b["jobs"] += 1
-            conclusion = job.get("conclusion")
-            key = job_key(workflow, job.get("name") or "Unnamed job")
-
-            if conclusion_is_bad(conclusion):
-                reason = classify_job(job)
-                b["failed_jobs"] += 1
-                b["reasons"][reason] = int(b["reasons"].get(reason, 0)) + 1
-                if len(b["failures"]) < 20:
-                    b["failures"].append(
-                        {
-                            "workflow": workflow,
-                            "job": job.get("name") or "Unnamed job",
-                            "conclusion": conclusion or "unknown",
-                            "reason": reason,
-                            "failed_steps": failed_step_names(job)[:4],
-                            "url": job.get("html_url") or run_url,
-                        }
-                    )
-
-            if key in probabilistic_keys:
-                b["probabilistic_jobs"] += 1
-                if key not in b["probabilistic"]:
-                    test = tests["tests"][key]
-                    b["probabilistic"].append(
-                        {
-                            "key": key,
-                            "workflow": workflow,
-                            "job": job.get("name") or "Unnamed job",
-                            "pass_rate_30d": test.get("pass_rate_30d"),
-                            "reason": test.get("probability_reason"),
-                        }
-                    )
-
-    for hour_key, b in buckets.items():
-        b["runs"] = len(run_ids_seen_in_bucket.get(hour_key, set()))
-        uncovered = run_ids_seen_in_bucket.get(hour_key, set()) - covered_run_ids
-        if uncovered or not reached_cutoff:
-            b["coverage"] = "partial"
-
-        if b["failed_jobs"] > 0 or b["probabilistic_jobs"] > 0:
-            b["status"] = "down"
-        elif b["coverage"] == "partial" and (b["jobs"] > 0 or b["runs"] > 0):
-            # Never claim healthy when the public API budget prevented full inspection.
-            b["status"] = "unknown"
-        elif b["jobs"] > 0:
-            b["status"] = "healthy"
-        elif b["active_runs"] > 0:
-            b["status"] = "degraded"
-        else:
-            b["status"] = "unknown"
-
-    # Merge recent buckets into history. Do not destroy previously useful evidence
-    # when a transient API error returns no data at all.
-    existing = {item.get("hour"): item for item in history.get("hours", []) if item.get("hour")}
-    for hour_key, b in buckets.items():
-        has_evidence = bool(b["jobs"] or b["runs"] or b["active_runs"])
-        if has_evidence or hour_key not in existing or not errors:
-            existing[hour_key] = b
-
-    retention_cutoff = now - timedelta(days=RETENTION_DAYS)
-    merged = [
-        item for _, item in sorted(existing.items())
-        if (parse_dt(item.get("hour")) or now) >= retention_cutoff
-    ]
-
-    prune_state(state, now)
-    history.update(
-        {
-            "schema_version": 1,
-            "updated_at": iso_ts(now),
-            "upstream_repo": UPSTREAM_REPO,
-            "policy": {
-                "any_failed_job_is_unavailable": True,
-                "probabilistic_job_presence_is_unavailable": True,
-                "unknown_excluded_from_availability": True,
-            },
-            "collector": {
-                "api_requests": client.requests,
-                "job_requests": job_requests,
-                "auth_fallbacks": client.auth_fallbacks,
-                "run_pages_complete": reached_cutoff,
-                "errors": errors[-10:],
-            },
-            "hours": merged,
-        }
-    )
-    tests.update(
-        {
-            "schema_version": 1,
-            "updated_at": iso_ts(now),
-            "upstream_repo": UPSTREAM_REPO,
-            "tests": dict(
-                sorted(
-                    tests.get("tests", {}).items(),
-                    key=lambda kv: (
-                        not bool(kv[1].get("probabilistic")),
-                        kv[0].lower(),
-                    ),
-                )
-            ),
-        }
-    )
-    state["updated_at"] = iso_ts(now)
-
-    save_json(HISTORY_PATH, history)
-    save_json(TESTS_PATH, tests)
-    save_json(STATE_PATH, state)
-
-    counts = Counter(item["status"] for item in buckets.values())
-    print(
-        "Collected "
-        f"{len(runs)} runs, {sum(len(v[1]) for v in jobs_cache.values())} jobs, "
-        f"{client.requests} API requests; buckets={dict(counts)}; "
-        f"probabilistic_jobs={len(probabilistic_keys)}"
-    )
-    if errors:
-        print("Collector warnings:", file=sys.stderr)
-        for err in errors[-10:]:
-            print(f"- {err}", file=sys.stderr)
-    return 0
-
-if __name__ == "__main__":
-    try:
-        raise SystemExit(main())
-    except KeyboardInterrupt:
-        raise
+if __name__=='__main__': main()
