@@ -1,0 +1,29 @@
+name: Fix public CI log access
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/fix-log-access.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch collector
+        run: |
+          python3 .update/fix_log_auth.py
+          python3 -m py_compile scripts/collect.py
+      - name: Commit and clean updater
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/collect.py
+          git rm .update/fix_log_auth.py .github/workflows/fix-log-access.yml
+          git commit -m "fix: keep metadata auth while reading public job logs"
+          git push
