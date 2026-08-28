@@ -28,12 +28,14 @@ PROB_POLICY=re.compile(
  r'(performance|\bperf\b|benchmark|accuracy|acceptance|pass.?rate|precision|evaluation|\beval\b|'
  r'性能|精度|采信)',re.I)
 ARTIFACT_ONLY=re.compile(r'\bartifact(s)?\b',re.I)
+POLICY_HELPER=re.compile(r'(^|[/ :(\-_])(generate|prepare|setup|matrix|merge|upload|download|collect)(\b|[/ :)\-_])',re.I)
 
 def is_ci_text(text): return not bool(NON_CI.search(text or ''))
 def is_ci_run(r): return is_ci_text((r.get('path') or '')+' '+(r.get('name') or ''))
 def is_policy_prob(workflow,name):
     text=(workflow or '')+' '+(name or '')
-    return bool(PROB_POLICY.search(text)) and not bool(ARTIFACT_ONLY.search(name or ''))
+    return (bool(PROB_POLICY.search(text)) and not bool(ARTIFACT_ONLY.search(name or ''))
+            and not bool(POLICY_HELPER.search(name or '')))
 def now(): return datetime.now(timezone.utc)
 def dt(s):
     if not s: return None
@@ -140,12 +142,11 @@ def migrate(tests,state):
             x['probabilistic']=False; x.pop('first_detected_at',None); x.pop('probability_reason',None)
     if old < 5:
         tests['tests']={k:x for k,x in tests.get('tests',{}).items() if is_ci_text(k+' '+(x.get('workflow') or '')+' '+(x.get('name') or ''))}
-    if old < 7:
-        # Undo only policy-based false positives such as "Merge benchmark artifacts".
+    if old < 8:
         for x in tests.get('tests',{}).values():
             if x.get('probability_reason')=='policy_probability_sensitive' and not is_policy_prob(x.get('workflow'),x.get('name')):
                 x['probabilistic']=False; x.pop('first_detected_at',None); x.pop('probability_reason',None)
-        tests['schema_version']=7; state['schema_version']=7
+        tests['schema_version']=8; state['schema_version']=8
         return True
     return False
 
@@ -190,8 +191,8 @@ def prune(state,n):
         state[f]={k:v for k,v in state.get(f,{}).items() if (dt(v) or n)>=cutoff}
 
 def main():
-    n=now(); history=load(HISTORY,{'schema_version':7,'hours':[]}); tests=load(TESTS,{'schema_version':7,'tests':{}}); state=load(STATE,{'schema_version':7,'seen_run_ids':{},'seen_job_ids':{}})
-    legacy=migrate(tests,state); bootstrap=legacy or int(history.get('schema_version') or 0)<7 or not history.get('hours'); hours=BOOT if bootstrap else LOOKBACK
+    n=now(); history=load(HISTORY,{'schema_version':8,'hours':[]}); tests=load(TESTS,{'schema_version':8,'tests':{}}); state=load(STATE,{'schema_version':8,'seen_run_ids':{},'seen_job_ids':{}})
+    legacy=migrate(tests,state); bootstrap=legacy or int(history.get('schema_version') or 0)<8 or not history.get('hours'); hours=BOOT if bootstrap else LOOKBACK
     end=n.replace(minute=0,second=0,microsecond=0); start=end-timedelta(hours=hours); buckets={}; cur=start
     while cur<end: buckets[ih(cur)]=bucket(cur); cur+=timedelta(hours=1)
     g=GH(); errors=[]
@@ -250,9 +251,9 @@ def main():
         if b['runs'] or b['active_runs'] or k not in old or not errors: old[k]=b
     cutoff=n-timedelta(days=RETENTION); rows=[v for k,v in sorted(old.items()) if (dt(k) or n)>=cutoff]
     prune(state,n)
-    history.update({'schema_version':7,'updated_at':it(n),'upstream_repo':REPO,'policy':{'any_failed_workflow_or_job_is_unavailable':True,'probability_sensitive_job_presence_is_unavailable':True,'degraded_counts_as_unavailable':True,'unknown_excluded_from_availability':True},'collector':{'authenticated':g.auth,'auth_fallbacks':g.fallbacks,'api_requests':g.requests,'request_budget':g.budget,'run_listing_complete':complete,'event_coverage':cov,'detail_runs':len(cache),'errors':errors[-10:]},'hours':rows})
-    tests.update({'schema_version':7,'updated_at':it(n),'upstream_repo':REPO,'tests':dict(sorted(tests.get('tests',{}).items(),key=lambda kv:(not bool(kv[1].get('probabilistic')),0 if kv[1].get('kind')=='workflow' else 1,kv[0].lower())))})
-    state.update({'schema_version':7,'updated_at':it(n)}); save(HISTORY,history); save(TESTS,tests); save(STATE,state)
+    history.update({'schema_version':8,'updated_at':it(n),'upstream_repo':REPO,'policy':{'any_failed_workflow_or_job_is_unavailable':True,'probability_sensitive_job_presence_is_unavailable':True,'degraded_counts_as_unavailable':True,'unknown_excluded_from_availability':True},'collector':{'authenticated':g.auth,'auth_fallbacks':g.fallbacks,'api_requests':g.requests,'request_budget':g.budget,'run_listing_complete':complete,'event_coverage':cov,'detail_runs':len(cache),'errors':errors[-10:]},'hours':rows})
+    tests.update({'schema_version':8,'updated_at':it(n),'upstream_repo':REPO,'tests':dict(sorted(tests.get('tests',{}).items(),key=lambda kv:(not bool(kv[1].get('probabilistic')),0 if kv[1].get('kind')=='workflow' else 1,kv[0].lower())))})
+    state.update({'schema_version':8,'updated_at':it(n)}); save(HISTORY,history); save(TESTS,tests); save(STATE,state)
     counts=Counter(x['status'] for x in buckets.values()); print(f'runs={len(runs)} detail_runs={len(cache)} requests={g.requests}/{g.budget} auth={g.auth} complete={complete} buckets={dict(counts)} unstable_jobs={len(unstable_jobs)}')
     for e in errors: print('warning:',e,file=sys.stderr)
 
