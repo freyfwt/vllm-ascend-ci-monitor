@@ -24,14 +24,16 @@ PATTERNS=[
 NON_CI=re.compile(
  r'(bot[_ -]|stale|label(er)?|merge[_ -]?conflict|issue[_ -]?(manage|triage)|handle /|command|'
  r'auto[_ -]?merge|assign(er)?|welcome|pr[_ -]?close|cancel[_ -]?(runs?|jobs?)|cancel (runs?|jobs?))',re.I)
-# User-requested strict policy: these classes are treated as probability-sensitive
-# as soon as the job exists, even before a same-commit flip is observed.
 PROB_POLICY=re.compile(
  r'(performance|\bperf\b|benchmark|accuracy|acceptance|pass.?rate|precision|evaluation|\beval\b|'
  r'性能|精度|采信)',re.I)
+ARTIFACT_ONLY=re.compile(r'\bartifact(s)?\b',re.I)
 
 def is_ci_text(text): return not bool(NON_CI.search(text or ''))
 def is_ci_run(r): return is_ci_text((r.get('path') or '')+' '+(r.get('name') or ''))
+def is_policy_prob(workflow,name):
+    text=(workflow or '')+' '+(name or '')
+    return bool(PROB_POLICY.search(text)) and not bool(ARTIFACT_ONLY.search(name or ''))
 def now(): return datetime.now(timezone.utc)
 def dt(s):
     if not s: return None
@@ -71,13 +73,10 @@ class GH:
         return json.loads(self.request(ROOT+path+q).decode())
 
 def _run_span(g,event,start,end,depth=0):
-    """Return all runs for one event/span, splitting around GitHub's 1000-result cap."""
     if not g.ok(8): return {},False,{'expected':None,'fetched':0,'complete':False,'slices':0}
     span=f'{it(start)}..{it(end)}'
     first=g.get(f'/repos/{REPO}/actions/runs',{'event':event,'created':span,'per_page':100,'page':1})
     expected=int(first.get('total_count') or 0); rows=first.get('workflow_runs',[])
-    # GitHub filtered workflow-run queries cap pagination around 1000. Split the
-    # time range recursively until each slice is safely below the cap.
     if expected>950 and (end-start)>timedelta(minutes=15) and depth<12:
         mid=start+(end-start)/2
         left,lc,lm=_run_span(g,event,start,mid,depth+1)
@@ -89,10 +88,7 @@ def _run_span(g,event,start,end,depth=0):
             'slices':(lm.get('slices') or 1)+(rm.get('slices') or 1)
         }
     out={int(r['id']):r for r in rows if r.get('id')}
-    pages=max(1,math.ceil(expected/100))
-    if pages>10:
-        # We reached the minimum split size and still exceed the API cap.
-        pages=10
+    pages=max(1,math.ceil(expected/100)); pages=min(pages,10)
     for page in range(2,pages+1):
         if not g.ok(8): break
         p=g.get(f'/repos/{REPO}/actions/runs',{'event':event,'created':span,'per_page':100,'page':page})
@@ -144,8 +140,12 @@ def migrate(tests,state):
             x['probabilistic']=False; x.pop('first_detected_at',None); x.pop('probability_reason',None)
     if old < 5:
         tests['tests']={k:x for k,x in tests.get('tests',{}).items() if is_ci_text(k+' '+(x.get('workflow') or '')+' '+(x.get('name') or ''))}
-    if old < 6:
-        tests['schema_version']=6; state['schema_version']=6
+    if old < 7:
+        # Undo only policy-based false positives such as "Merge benchmark artifacts".
+        for x in tests.get('tests',{}).values():
+            if x.get('probability_reason')=='policy_probability_sensitive' and not is_policy_prob(x.get('workflow'),x.get('name')):
+                x['probabilistic']=False; x.pop('first_detected_at',None); x.pop('probability_reason',None)
+        tests['schema_version']=7; state['schema_version']=7
         return True
     return False
 
@@ -172,11 +172,10 @@ def recompute(x,n):
             if c=='success' and o.get('head_sha'): bysha[o['head_sha']].add('success')
             elif c in ('failure','timed_out') and o.get('head_sha'): bysha[o['head_sha']].add('failure')
     same_sha=x.get('kind')=='job' and any(len(v)>1 for v in bysha.values())
-    policy=x.get('kind')=='job' and bool(PROB_POLICY.search((x.get('workflow') or '')+' '+(x.get('name') or '')))
+    policy=x.get('kind')=='job' and is_policy_prob(x.get('workflow'),x.get('name'))
     detected=same_sha or policy; old=bool(x.get('probabilistic'))
     if detected and not old:
-        x['first_detected_at']=it(n)
-        x['probability_reason']='policy_probability_sensitive' if policy else 'same_commit_mixed_outcomes'
+        x['first_detected_at']=it(n); x['probability_reason']='policy_probability_sensitive' if policy else 'same_commit_mixed_outcomes'
     elif policy:
         x['probability_reason']='policy_probability_sensitive'
     x['probabilistic']=old or detected; x['samples_30d']=len(seq); x['successes_30d']=succ; x['failures_30d']=fail; x['pass_rate_30d']=round(succ/len(seq),4) if seq else None
@@ -191,8 +190,8 @@ def prune(state,n):
         state[f]={k:v for k,v in state.get(f,{}).items() if (dt(v) or n)>=cutoff}
 
 def main():
-    n=now(); history=load(HISTORY,{'schema_version':6,'hours':[]}); tests=load(TESTS,{'schema_version':6,'tests':{}}); state=load(STATE,{'schema_version':6,'seen_run_ids':{},'seen_job_ids':{}})
-    legacy=migrate(tests,state); bootstrap=legacy or int(history.get('schema_version') or 0)<6 or not history.get('hours'); hours=BOOT if bootstrap else LOOKBACK
+    n=now(); history=load(HISTORY,{'schema_version':7,'hours':[]}); tests=load(TESTS,{'schema_version':7,'tests':{}}); state=load(STATE,{'schema_version':7,'seen_run_ids':{},'seen_job_ids':{}})
+    legacy=migrate(tests,state); bootstrap=legacy or int(history.get('schema_version') or 0)<7 or not history.get('hours'); hours=BOOT if bootstrap else LOOKBACK
     end=n.replace(minute=0,second=0,microsecond=0); start=end-timedelta(hours=hours); buckets={}; cur=start
     while cur<end: buckets[ih(cur)]=bucket(cur); cur+=timedelta(hours=1)
     g=GH(); errors=[]
@@ -202,7 +201,6 @@ def main():
     runs=[r for r in runs if is_ci_run(r) and not (r.get('status')=='completed' and r.get('conclusion')=='skipped')]
     for r in runs: observe_run(tests,state,r)
     for x in tests.get('tests',{}).values(): recompute(x,n)
-    unstable_work={k for k,x in tests.get('tests',{}).items() if x.get('kind')=='workflow' and x.get('probabilistic')}
     byid={}
     for r in runs:
         rid=int(r.get('id') or 0)
@@ -252,9 +250,9 @@ def main():
         if b['runs'] or b['active_runs'] or k not in old or not errors: old[k]=b
     cutoff=n-timedelta(days=RETENTION); rows=[v for k,v in sorted(old.items()) if (dt(k) or n)>=cutoff]
     prune(state,n)
-    history.update({'schema_version':6,'updated_at':it(n),'upstream_repo':REPO,'policy':{'any_failed_workflow_or_job_is_unavailable':True,'probability_sensitive_job_presence_is_unavailable':True,'degraded_counts_as_unavailable':True,'unknown_excluded_from_availability':True},'collector':{'authenticated':g.auth,'auth_fallbacks':g.fallbacks,'api_requests':g.requests,'request_budget':g.budget,'run_listing_complete':complete,'event_coverage':cov,'detail_runs':len(cache),'errors':errors[-10:]},'hours':rows})
-    tests.update({'schema_version':6,'updated_at':it(n),'upstream_repo':REPO,'tests':dict(sorted(tests.get('tests',{}).items(),key=lambda kv:(not bool(kv[1].get('probabilistic')),0 if kv[1].get('kind')=='workflow' else 1,kv[0].lower())))})
-    state.update({'schema_version':6,'updated_at':it(n)}); save(HISTORY,history); save(TESTS,tests); save(STATE,state)
+    history.update({'schema_version':7,'updated_at':it(n),'upstream_repo':REPO,'policy':{'any_failed_workflow_or_job_is_unavailable':True,'probability_sensitive_job_presence_is_unavailable':True,'degraded_counts_as_unavailable':True,'unknown_excluded_from_availability':True},'collector':{'authenticated':g.auth,'auth_fallbacks':g.fallbacks,'api_requests':g.requests,'request_budget':g.budget,'run_listing_complete':complete,'event_coverage':cov,'detail_runs':len(cache),'errors':errors[-10:]},'hours':rows})
+    tests.update({'schema_version':7,'updated_at':it(n),'upstream_repo':REPO,'tests':dict(sorted(tests.get('tests',{}).items(),key=lambda kv:(not bool(kv[1].get('probabilistic')),0 if kv[1].get('kind')=='workflow' else 1,kv[0].lower())))})
+    state.update({'schema_version':7,'updated_at':it(n)}); save(HISTORY,history); save(TESTS,tests); save(STATE,state)
     counts=Counter(x['status'] for x in buckets.values()); print(f'runs={len(runs)} detail_runs={len(cache)} requests={g.requests}/{g.budget} auth={g.auth} complete={complete} buckets={dict(counts)} unstable_jobs={len(unstable_jobs)}')
     for e in errors: print('warning:',e,file=sys.stderr)
 
