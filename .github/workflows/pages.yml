@@ -1,16 +1,19 @@
 name: Deploy CI Monitor Pages
 
-# Publishes the CI reliability policy dashboard and the latest committed monitor data.
 on:
   workflow_run:
-    workflows: ["Monitor vLLM-Ascend CI"]
+    workflows: ["Monitor vLLM-Ascend CI", "Backfill CI availability history"]
     types: [completed]
   push:
     branches: ["main"]
     paths:
       - "index.html"
+      - "calendar.js"
       - "data/history.json"
       - "data/tests.json"
+      - "data/calendar.json"
+      - "data/summary.json"
+      - "data/days/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -39,9 +42,11 @@ jobs:
       - name: Build static site artifact
         run: |
           rm -rf _site
-          mkdir -p _site/data
-          cp index.html _site/index.html
+          mkdir -p _site/data/days
+          cp index.html calendar.js _site/
           cp data/history.json data/tests.json _site/data/
+          cp data/calendar.json data/summary.json _site/data/ 2>/dev/null || true
+          cp data/days/*.json _site/data/days/ 2>/dev/null || true
           touch _site/.nojekyll
 
       - name: Setup Pages
