@@ -2,69 +2,78 @@
 
 [中文](#中文) · [English](#english)
 
-A lightweight, contributor-owned status page for the public CI of
-[`vllm-project/vllm-ascend`](https://github.com/vllm-project/vllm-ascend).
+A contributor-owned, bilingual status page for the public CI of [`vllm-project/vllm-ascend`](https://github.com/vllm-project/vllm-ascend).
 
 ## 中文
 
 这是一个**不需要 vLLM-Ascend 管理权限**的被动 CI 可用性监控站点。
 
-它每小时读取 vLLM-Ascend 公开的 GitHub Actions workflow runs / jobs，将结果保存为 JSON，并通过 GitHub Pages 展示最近 24 小时状态、每日可用率、不可用时间区间，以及历史上观察到的概率性/不稳定 CI 用例。
+每小时通过 GitHub Actions 读取上游公开 workflow runs / jobs，将结果保存为 JSON，并在 GitHub Pages 展示：
 
-### 当前判定口径
+- 最近 24 个完整小时的 CI 状态；
+- 当天已观测可用率、可用/不可用小时、观测覆盖率；
+- 具体不可用时间区间；
+- 所有已观测 CI workflow/job；
+- performance、accuracy、acceptance、benchmark、eval 等概率敏感用例。
 
-监控采用刻意严格的规则：
+### 判定口径
 
-1. **任意 CI job 失败即不可用**  
-   只要某个已完成 job 的 conclusion 不是 `success` / `neutral` / `skipped`，对应小时记为 `Down`。
+采用刻意严格的规则：
 
-2. **概率性/不稳定用例出现即不可用**  
-   系统会按 `Workflow :: Job` 保存最近 30 天结果。一旦观察到：
-   - 同一 commit 的同名 job 同时出现 PASS 和 FAIL；或
-   - 至少 5 个样本中出现至少两次 PASS↔FAIL 状态切换，
+1. **任意实际 CI workflow/job 失败 = 不可用**  
+   实际构建/测试 workflow 或 job 的 conclusion 只要不是 `success` / `neutral` / `skipped`，对应小时记为 `Down`。label、stale、PR close cancel、命令处理等仓库管理机器人流程不纳入 CI 健康度。
 
-   该 job 会被永久标记为 `probabilistic / unstable`。以后只要这个 job 在某小时出现，**即使本次 PASS，该小时仍记为 Down**。
+2. **概率敏感用例出现 = 不可用**  
+   以下 job 会标记为 `probabilistic / probability-sensitive`：
+   - 名称属于 performance / perf / accuracy / acceptance / benchmark / eval / precision / pass-rate 等类别；或
+   - 同一 `head_sha`、同名 job 被实际观察到既 PASS 又 FAIL/timeout。
 
-3. **证据不足不算可用**  
-   没有 CI 活动，或公开 API 请求预算导致覆盖不完整时，状态为 `Unknown`。`Unknown` 不进入已观测可用率分母。
+   一旦属于该类，只要它出现在某小时，**即使这次成功或被 skipped，该小时仍记为 Down**。纯 matrix 生成、setup、prepare、artifact merge/upload/download 等辅助 job 会排除。
 
-4. **Degraded 也属于不可用时间**  
-   例如跨越完整小时仍未结束的活跃 workflow，会显示为 `Degraded`。Dashboard 的不可用小时包括 `Down + Degraded`。
+3. **证据不足 = Unknown**  
+   没有实际 CI 活动，或公开 API 覆盖不完整时，不会冒充 Healthy；`Unknown` 不进入可用率分母。
+
+4. **Degraded 计入不可用时间**  
+   长时间跨小时仍未完成的 CI 会显示为 `Degraded`，Dashboard 的不可用小时为 `Down + Degraded`。
 
 ### 状态
 
 | 状态 | 含义 |
 |---|---|
-| Healthy | 该小时已观测 CI 全部正常，且没有概率性用例出现 |
-| Down | 存在失败 job，或概率性/不稳定 job 出现 |
-| Degraded | 存在长时间未完成的活跃 CI，但没有已确认失败 |
+| Healthy | 该小时有实际 CI 证据，未发现失败或概率敏感用例 |
+| Down | 存在失败 workflow/job，或概率敏感 job 出现 |
+| Degraded | 有长时间未完成的活跃 CI，但还没有已确认失败 |
 | Unknown | 没有足够证据，或 API 覆盖不完整 |
+
+### 完整性处理
+
+GitHub 对带过滤条件的 workflow-runs 查询存在约 1000 条分页上限。采集器会在某个 event/time range 超过阈值时自动把时间范围二分，直到每个切片都可以完整分页，再合并去重。`data/history.json` 会记录每类 event 的 `expected / fetched / complete / slices`，覆盖不完整时不会标绿。
 
 ### 运行方式
 
-- GitHub Actions 每小时第 17 分钟运行一次。
-- 首次运行尝试观察最近 24 小时；之后每次回看最近 3 小时以修正延迟完成的 job。
-- 默认不需要任何 Secret。
-- 为避免匿名 GitHub API 的 60 req/hour 限制，单轮保守控制在约 52 次 API 请求。
-- 如果未来希望提高采集容量，可以添加仓库 Secret `UPSTREAM_GITHUB_TOKEN`；不是必需项。
+- GitHub Actions：每小时第 17 分钟执行；
+- 首次/规则升级：回填最近 24 小时；
+- 正常运行：回看最近 3 小时，修正延迟完成的 job；
+- 数据保留：90 天小时历史；
+- 默认使用仓库 `GITHUB_TOKEN` 读取公开上游数据；如需单独 token，可添加 `UPSTREAM_GITHUB_TOKEN` Secret。
 
 ### GitHub Pages
 
-仓库中的 workflow 已包含官方 GitHub Pages 部署步骤。仓库所有者需要在：
+仓库所有者只需设置一次：
 
-`Settings → Pages → Build and deployment → Source`
+`Settings → Pages → Build and deployment → Source → GitHub Actions`
 
-选择 **GitHub Actions**。之后重新运行 `Monitor vLLM-Ascend CI` workflow 即可发布网站。
+之后 `Monitor vLLM-Ascend CI` workflow 会自动发布网站。
 
 ### 数据文件
 
-- `data/history.json`：最近 90 天的小时状态。
-- `data/tests.json`：所有已观察 job 的 30 天样本和概率性判定。
-- `data/state.json`：去重状态，仅供采集器使用，不发布到网站。
+- `data/history.json`：小时状态、失败证据、概率敏感命中和采集完整性；
+- `data/tests.json`：所有已观测 workflow/job 的 30 天样本与概率敏感判定；
+- `data/state.json`：采集去重状态，不发布到网站。
 
 ### 局限
 
-这是基于公开 CI 活动的**被动观测**，不是 vLLM-Ascend 官方 SLA，也无法主动探测社区的 A2/A3 runner。故障原因目前使用 job 名称和失败 step 名称做启发式分类；但“是否可用”的核心判定不依赖故障分类，因此不会因为分类不准而把失败 job 误算成可用。
+这是公开 CI 活动的**被动观测**，不是 vLLM-Ascend 官方 SLA，也无法主动向社区 A2/A3 runner 发探针。故障类别依赖 job/失败 step 名称做启发式分类，但“是否不可用”的核心判断直接使用公开 workflow/job conclusion，不依赖分类准确度。
 
 ---
 
@@ -72,32 +81,32 @@ A lightweight, contributor-owned status page for the public CI of
 
 This is a passive CI availability monitor that requires **no vLLM-Ascend administrative access**.
 
-Every hour it reads public GitHub Actions workflow runs/jobs from `vllm-project/vllm-ascend`, stores compact JSON history, and publishes a bilingual GitHub Pages dashboard with the last 24 hours, observed daily availability, unavailable intervals, and historically probabilistic/unstable CI jobs.
+It runs hourly in GitHub Actions, reads public workflow runs/jobs from `vllm-project/vllm-ascend`, stores compact JSON history, and publishes a bilingual GitHub Pages dashboard.
 
-### Strict availability policy
+### Strict policy
 
-1. **Any failed CI job makes the hour unavailable.**
-2. **Any appearance of a detected probabilistic/unstable job makes the hour unavailable, even if that particular execution passes.**
-3. **Missing or partial evidence is `Unknown`, never `Healthy`.**
-4. **`Degraded` time is counted as unavailable time on the dashboard.**
+1. **Any real CI workflow/job failure makes the hour unavailable.** Repository housekeeping automation such as labels, stale handling, PR-close cancellation and command bots is excluded.
+2. **Any probability-sensitive job makes the hour unavailable whenever present, even if that occurrence passes or is skipped.** Performance, accuracy, acceptance, benchmark, eval, precision and pass-rate jobs are policy-marked; same-commit PASS/FAIL job flips are also detected. Helper/matrix/artifact jobs are excluded.
+3. **Missing or partial evidence is `Unknown`, never `Healthy`.** Unknown hours are excluded from observed availability.
+4. **`Degraded` is counted as unavailable time.**
 
-A job is automatically marked probabilistic/unstable when public history shows either mixed outcomes for the same commit, or repeated PASS↔FAIL transitions with enough samples. The flag is sticky by design.
+The collector automatically time-slices workflow-run queries when GitHub's filtered pagination approaches its ~1000-result cap, and records per-event completeness in `data/history.json`.
 
 ### Operation
 
-- Runs hourly at minute 17 via GitHub Actions.
-- First run attempts a 24-hour bootstrap; later runs re-check the last 3 hours.
-- No secret is required.
-- Anonymous API use is kept under a conservative request budget.
-- Optional secret: `UPSTREAM_GITHUB_TOKEN` for higher API capacity.
+- Runs hourly at minute 17.
+- First run and rule upgrades backfill the latest 24 hours.
+- Normal runs re-check the latest 3 hours.
+- Keeps 90 days of hourly history.
+- Uses the repository `GITHUB_TOKEN` by default; optional secret: `UPSTREAM_GITHUB_TOKEN`.
 
 ### Pages setup
 
-In this repository, select:
+Select once:
 
 `Settings → Pages → Build and deployment → Source → GitHub Actions`
 
-Then re-run the `Monitor vLLM-Ascend CI` workflow.
+The `Monitor vLLM-Ascend CI` workflow will then publish the site automatically.
 
 ### Caveat
 
