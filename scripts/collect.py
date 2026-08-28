@@ -32,7 +32,7 @@ RETENTION_DAYS = int(os.getenv("RETENTION_DAYS", "90"))
 OBSERVATION_DAYS = int(os.getenv("OBSERVATION_DAYS", "30"))
 BOOTSTRAP_HOURS = int(os.getenv("BOOTSTRAP_HOURS", "24"))
 NORMAL_LOOKBACK_HOURS = int(os.getenv("NORMAL_LOOKBACK_HOURS", "3"))
-MAX_RUN_PAGES = int(os.getenv("MAX_RUN_PAGES", "3"))
+MAX_RUN_PAGES = int(os.getenv("MAX_RUN_PAGES", "5"))
 MAX_API_REQUESTS = int(os.getenv("MAX_API_REQUESTS", "52"))
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "20"))
 
@@ -58,6 +58,13 @@ RUNNER_PATTERNS = re.compile(
     r"(runner|self[- ]hosted|machine|pod|k8s|kubernetes|docker|container|environment|device|npu)",
     re.I,
 )
+
+IGNORED_EVENTS = {
+    "issue_comment", "issues", "discussion", "discussion_comment",
+    "pull_request_review", "pull_request_review_comment", "fork", "watch",
+    "create", "delete", "release",
+}
+
 TEST_PATTERNS = re.compile(
     r"(test|pytest|unittest|accuracy|acceptance|performance|perf|benchmark|bench|eval|evaluation)",
     re.I,
@@ -98,8 +105,8 @@ def save_json(path: Path, value: Any) -> None:
 
 class GitHubClient:
     def __init__(self) -> None:
-        # Prefer an explicit upstream PAT if the user adds one later. Otherwise try
-        # the workflow token and transparently fall back to anonymous public access.
+        # Prefer an explicit upstream PAT if the user adds one later. Otherwise use
+        # anonymous public access with a conservative request budget.
         self.token = os.getenv("UPSTREAM_GITHUB_TOKEN") or ""
         self.requests = 0
         self.auth_fallbacks = 0
@@ -118,8 +125,8 @@ class GitHubClient:
             with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
                 return resp.read()
         except urllib.error.HTTPError as exc:
-            # A repository-scoped Actions token may not be accepted for a different
-            # public repository. Anonymous access still works for public Actions data.
+            # A repository-scoped token may not be accepted for a different public
+            # repository. Anonymous access still works for public Actions data.
             if use_auth and self.token and exc.code in (401, 403, 404):
                 self.auth_fallbacks += 1
                 return self._request(url, use_auth=False)
@@ -132,30 +139,42 @@ class GitHubClient:
         data = self._request(f"{API_ROOT}{path}{query}")
         return json.loads(data.decode("utf-8"))
 
-def list_recent_runs(client: GitHubClient, cutoff: datetime) -> tuple[list[dict[str, Any]], bool]:
+def list_recent_runs(
+    client: GitHubClient,
+    cutoff: datetime,
+    end: datetime,
+) -> tuple[list[dict[str, Any]], bool]:
     runs: list[dict[str, Any]] = []
-    reached_cutoff = False
+    total_expected: int | None = None
+    created_range = f"{iso_ts(cutoff)}..{iso_ts(end)}"
     for page in range(1, MAX_RUN_PAGES + 1):
+        if client.requests >= MAX_API_REQUESTS:
+            break
         payload = client.json(
             f"/repos/{UPSTREAM_REPO}/actions/runs",
-            {"per_page": 100, "page": page},
+            {"per_page": 100, "page": page, "created": created_range},
         )
+        if total_expected is None:
+            total_expected = int(payload.get("total_count") or 0)
         page_runs = payload.get("workflow_runs", [])
         if not page_runs:
-            reached_cutoff = True
             break
         runs.extend(page_runs)
-
-        oldest = min(
-            (parse_dt(r.get("created_at")) for r in page_runs if parse_dt(r.get("created_at"))),
-            default=None,
-        )
-        if oldest and oldest <= cutoff:
-            reached_cutoff = True
+        if total_expected is not None and len(runs) >= total_expected:
             break
-    # Deduplicate defensively.
     dedup = {int(r["id"]): r for r in runs if r.get("id") is not None}
-    return list(dedup.values()), reached_cutoff
+    complete = total_expected is not None and len(dedup) >= total_expected
+    return list(dedup.values()), complete
+
+def is_candidate_ci_run(run: dict[str, Any]) -> bool:
+    event = (run.get("event") or "").lower()
+    if event in IGNORED_EVENTS:
+        return False
+    # A fully skipped workflow did not execute a CI signal and is not worth one
+    # of the limited anonymous job-list API requests.
+    if run.get("status") == "completed" and run.get("conclusion") == "skipped":
+        return False
+    return True
 
 def list_jobs(client: GitHubClient, run_id: int) -> list[dict[str, Any]]:
     jobs: list[dict[str, Any]] = []
@@ -365,7 +384,7 @@ def main() -> int:
     client = GitHubClient()
     errors: list[str] = []
     try:
-        runs, reached_cutoff = list_recent_runs(client, start_hour - timedelta(hours=2))
+        runs, reached_cutoff = list_recent_runs(client, start_hour - timedelta(hours=2), now)
     except Exception as exc:
         runs = []
         reached_cutoff = False
@@ -385,6 +404,8 @@ def main() -> int:
         updated = parse_dt(run.get("updated_at"))
         run_time = updated or created
         if not run_time:
+            continue
+        if not is_candidate_ci_run(run):
             continue
 
         # A still-running workflow that has occupied an earlier hour is visible as
