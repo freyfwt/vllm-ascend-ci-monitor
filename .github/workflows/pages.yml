@@ -1,6 +1,9 @@
 name: Deploy CI Monitor Pages
 
 on:
+  workflow_run:
+    workflows: ["Monitor vLLM-Ascend CI"]
+    types: [completed]
   push:
     branches: ["main"]
     paths:
@@ -21,13 +24,16 @@ concurrency:
 
 jobs:
   deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout latest monitor data
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Build static site artifact
         run: |
