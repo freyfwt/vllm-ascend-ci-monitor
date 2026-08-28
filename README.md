@@ -4,6 +4,8 @@
 
 A contributor-owned, bilingual status page for the public CI of [`vllm-project/vllm-ascend`](https://github.com/vllm-project/vllm-ascend).
 
+> GitHub Pages deployment is enabled for this repository.
+
 ## 中文
 
 这是一个**不需要 vLLM-Ascend 管理权限**的被动 CI 可用性监控站点。
