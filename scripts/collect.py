@@ -152,6 +152,9 @@ def main():
     try: runs,complete,cov=list_runs(g,start-timedelta(hours=2),n)
     except Exception as e: runs=[]; complete=False; cov={}; errors.append(f'runs: {type(e).__name__}: {e}')
     runs.sort(key=lambda r:r.get('updated_at') or r.get('created_at') or '',reverse=True)
+    # A skipped workflow did not execute a CI signal; do not let skipped-only
+    # hours appear healthy and do not spend job-detail requests on it.
+    runs=[r for r in runs if not (r.get('status')=='completed' and r.get('conclusion')=='skipped')]
     for r in runs: observe_run(tests,state,r)
     for x in tests.get('tests',{}).values(): recompute(x,n)
     unstable_work={k for k,x in tests.get('tests',{}).items() if x.get('kind')=='workflow' and x.get('probabilistic')}
@@ -175,7 +178,7 @@ def main():
                 if ih(cur) in buckets: buckets[ih(cur)]['active_runs']+=1
                 cur+=timedelta(hours=1)
     detail_cut=n-timedelta(hours=DETAIL_HOURS); candidates=[r for r in runs if r.get('status')=='completed' and (dt(r.get('updated_at')) or n)>=detail_cut]
-    candidates.sort(key=lambda r:(0 if bad(r.get('conclusion')) else 1,-(dt(r.get('updated_at')) or n).timestamp())); max_detail=220 if g.auth else 24; cache={}
+    candidates.sort(key=lambda r:(0 if bad(r.get('conclusion')) else 1,-(dt(r.get('updated_at')) or n).timestamp())); max_detail=120 if g.auth else 24; cache={}
     for r in candidates[:max_detail]:
         if not g.ok(): break
         rid=int(r.get('id') or 0)
