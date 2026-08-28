@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>vLLM-Ascend CI Monitor</title>
+  <meta name="description" content="Passive hourly availability monitor for public vLLM-Ascend GitHub Actions CI." />
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: rgba(255,255,255,.88);
+      --panel-solid: #fff;
+      --text: #111827;
+      --muted: #667085;
+      --line: #e5e7eb;
+      --healthy: #159455;
+      --healthy-bg: #eaf8f0;
+      --down: #d92d20;
+      --down-bg: #fff0ee;
+      --degraded: #dc8a00;
+      --degraded-bg: #fff7df;
+      --unknown: #98a2b3;
+      --unknown-bg: #f2f4f7;
+      --accent: #3157d5;
+      --shadow: 0 10px 30px rgba(16,24,40,.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --panel: rgba(22,27,34,.92);
+        --panel-solid: #161b22;
+        --text: #f0f3f6;
+        --muted: #8b949e;
+        --line: #30363d;
+        --healthy-bg: rgba(35,134,54,.16);
+        --down-bg: rgba(248,81,73,.15);
+        --degraded-bg: rgba(210,153,34,.15);
+        --unknown-bg: #21262d;
+        --accent: #7aa2ff;
+        --shadow: none;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 14px/1.5 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at 15% -10%, rgba(49,87,213,.10), transparent 35rem),
+        var(--bg);
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button, input { font: inherit; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 56px; }
+    header {
+      display: flex; gap: 16px; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 22px;
+    }
+    h1 { font-size: 24px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -.02em; }
+    h2 { font-size: 16px; margin: 0 0 14px; }
+    .subtitle, .muted { color: var(--muted); }
+    .toolbar { display: flex; gap: 8px; align-items: center; }
+    .btn {
+      border: 1px solid var(--line); background: var(--panel-solid); color: var(--text);
+      border-radius: 9px; padding: 7px 10px; cursor: pointer;
+    }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+      padding: 18px; box-shadow: var(--shadow); backdrop-filter: blur(8px);
+    }
+    .status-card { grid-column: span 5; min-height: 170px; }
+    .stats-card { grid-column: span 7; }
+    .timeline-card, .incidents-card, .tests-card, .policy-card { grid-column: 1 / -1; }
+    .status-row { display: flex; align-items: center; gap: 12px; margin: 12px 0 14px; }
+    .status-dot { width: 18px; height: 18px; border-radius: 50%; flex: 0 0 auto; }
+    .status-dot.healthy, .hour.healthy { background: var(--healthy); }
+    .status-dot.down, .hour.down { background: var(--down); }
+    .status-dot.degraded, .hour.degraded { background: var(--degraded); }
+    .status-dot.unknown, .hour.unknown { background: var(--unknown); }
+    .status-title { font-size: 28px; font-weight: 750; letter-spacing: -.03em; }
+    .status-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+    .metric { border-left: 2px solid var(--line); padding-left: 12px; min-width: 0; }
+    .metric strong { display: block; font-size: 22px; line-height: 1.25; margin-bottom: 4px; }
+    .metric span { color: var(--muted); font-size: 12px; }
+    .timeline {
+      display: grid; grid-template-columns: repeat(24, minmax(10px, 1fr));
+      gap: 4px; align-items: end;
+    }
+    .hour-wrap { min-width: 0; text-align: center; }
+    .hour {
+      height: 34px; border-radius: 5px; opacity: .92; cursor: default;
+      transition: transform .12s ease, opacity .12s ease;
+    }
+    .hour:hover { transform: translateY(-2px); opacity: 1; }
+    .hour-label { font-size: 10px; color: var(--muted); margin-top: 5px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; color: var(--muted); font-size: 12px; }
+    .legend span { display:flex; align-items:center; gap:6px; }
+    .legend i { width: 9px; height: 9px; border-radius:50%; display:inline-block; }
+    .incident {
+      display: grid; grid-template-columns: 165px 100px 1fr; gap: 14px;
+      padding: 12px 0; border-top: 1px solid var(--line); align-items: start;
+    }
+    .incident:first-of-type { border-top: 0; padding-top: 0; }
+    .pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 999px; padding: 3px 8px; font-size: 11px; font-weight: 700;
+      width: fit-content;
+    }
+    .pill.down { color: var(--down); background: var(--down-bg); }
+    .pill.degraded { color: var(--degraded); background: var(--degraded-bg); }
+    .pill.healthy { color: var(--healthy); background: var(--healthy-bg); }
+    .pill.unknown { color: var(--unknown); background: var(--unknown-bg); }
+    .reason-list { color: var(--muted); }
+    .table-toolbar {
+      display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 10px;
+    }
+    .search {
+      width: min(340px, 100%); padding: 8px 10px; border: 1px solid var(--line);
+      border-radius: 9px; background: var(--panel-solid); color: var(--text);
+    }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; min-width: 780px; }
+    th, td { text-align: left; padding: 10px 8px; border-top: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    td code { font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .policy {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
+    }
+    .policy > div { padding: 12px; background: var(--unknown-bg); border-radius: 10px; }
+    .policy strong { display:block; margin-bottom:4px; }
+    .error {
+      padding: 14px; border: 1px solid var(--down); background: var(--down-bg);
+      color: var(--down); border-radius: 10px; margin-bottom: 14px; display:none;
+    }
+    footer { color: var(--muted); font-size: 12px; margin-top: 20px; display:flex; gap:8px; flex-wrap:wrap; }
+    @media (max-width: 820px) {
+      .status-card, .stats-card { grid-column: 1 / -1; }
+      .metrics { grid-template-columns: repeat(2,1fr); }
+      .incident { grid-template-columns: 1fr; gap: 5px; }
+      .policy { grid-template-columns: 1fr; }
+      header { align-items: stretch; }
+      .toolbar { flex-direction: column; align-items: flex-end; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <h1>vLLM-Ascend CI Monitor</h1>
+        <div class="subtitle" data-i18n="subtitle">公开 GitHub Actions 的每小时被动可用性监控</div>
+      </div>
+      <div class="toolbar">
+        <a class="btn" href="https://github.com/vllm-project/vllm-ascend/actions" target="_blank" rel="noreferrer" data-i18n="upstream">上游 CI</a>
+        <button class="btn" id="langBtn" type="button">EN</button>
+      </div>
+    </header>
+
+    <div id="error" class="error"></div>
+
+    <section class="grid">
+      <article class="card status-card">
+        <h2 data-i18n="currentStatus">最近完整小时状态</h2>
+        <div class="status-row">
+          <span id="statusDot" class="status-dot unknown"></span>
+          <span id="statusTitle" class="status-title">UNKNOWN</span>
+        </div>
+        <div id="statusMeta" class="status-meta"></div>
+      </article>
+
+      <article class="card stats-card">
+        <h2 data-i18n="today">今日统计</h2>
+        <div class="metrics">
+          <div class="metric"><strong id="availability">—</strong><span data-i18n="availability">已观测可用率</span></div>
+          <div class="metric"><strong id="availableHours">—</strong><span data-i18n="availableTime">可用小时</span></div>
+          <div class="metric"><strong id="unavailableHours">—</strong><span data-i18n="unavailableTime">不可用小时</span></div>
+          <div class="metric"><strong id="coverage">—</strong><span data-i18n="coverage">观测覆盖率</span></div>
+        </div>
+      </article>
+
+      <article class="card timeline-card">
+        <h2 data-i18n="timeline">最近 24 个完整小时</h2>
+        <div id="timeline" class="timeline"></div>
+        <div class="legend">
+          <span><i style="background:var(--healthy)"></i><b data-i18n="healthy">可用</b></span>
+          <span><i style="background:var(--down)"></i><b data-i18n="down">不可用</b></span>
+          <span><i style="background:var(--degraded)"></i><b data-i18n="degraded">降级</b></span>
+          <span><i style="background:var(--unknown)"></i><b data-i18n="unknown">未知</b></span>
+        </div>
+      </article>
+
+      <article class="card incidents-card">
+        <h2 data-i18n="incidents">近期不可用区间</h2>
+        <div id="incidents"></div>
+      </article>
+
+      <article class="card tests-card">
+        <div class="table-toolbar">
+          <div>
+            <h2 style="margin-bottom:2px" data-i18n="allJobs">所有已观测 CI 用例 / Jobs</h2>
+            <div class="muted" id="testsSummary"></div>
+          </div>
+          <input id="search" class="search" type="search" data-i18n-placeholder="search" placeholder="搜索 workflow / job" />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="state">状态</th>
+                <th>Workflow</th>
+                <th>Job</th>
+                <th data-i18n="samples">30 天样本</th>
+                <th data-i18n="passRate">30 天通过率</th>
+                <th data-i18n="reason">判定依据</th>
+              </tr>
+            </thead>
+            <tbody id="testsBody"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="card policy-card">
+        <h2 data-i18n="policyTitle">当前监控口径</h2>
+        <div class="policy">
+          <div><strong data-i18n="policyFailTitle">任意失败 = 不可用</strong><span class="muted" data-i18n="policyFail">任何已完成 job 非 success/neutral/skipped，该小时记为不可用。</span></div>
+          <div><strong data-i18n="policyProbTitle">概率性用例出现 = 不可用</strong><span class="muted" data-i18n="policyProb">一旦历史发现同名用例反复 PASS/FAIL，以后该用例只要在该小时出现，即使本次 PASS，也记为不可用。</span></div>
+          <div><strong data-i18n="policyUnknownTitle">未知不冒充可用</strong><span class="muted" data-i18n="policyUnknown">无 CI 或 API 覆盖不完整时记为 Unknown，并从可用率分母中排除。</span></div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span id="updated">—</span>
+      <span>·</span>
+      <a href="https://github.com/freyfwt/vllm-ascend-ci-monitor" target="_blank" rel="noreferrer">freyfwt/vllm-ascend-ci-monitor</a>
+      <span>·</span>
+      <span data-i18n="disclaimer">这是公开 CI 活动的被动观测，不代表 vLLM-Ascend 官方 SLA。</span>
+    </footer>
+  </main>
+
+<script>
+const I18N = {
+  zh: {
+    subtitle: "公开 GitHub Actions 的每小时被动可用性监控",
+    upstream: "上游 CI",
+    currentStatus: "最近完整小时状态",
+    today: "今日统计",
+    availability: "已观测可用率",
+    availableTime: "可用小时",
+    unavailableTime: "不可用小时",
+    coverage: "观测覆盖率",
+    timeline: "最近 24 个完整小时",
+    healthy: "可用", down: "不可用", degraded: "降级", unknown: "未知",
+    incidents: "近期不可用区间",
+    allJobs: "所有已观测 CI 用例 / Jobs",
+    search: "搜索 workflow / job",
+    state: "状态", samples: "30 天样本", passRate: "30 天通过率", reason: "判定依据",
+    policyTitle: "当前监控口径",
+    policyFailTitle: "任意失败 = 不可用",
+    policyFail: "任何已完成 job 非 success/neutral/skipped，该小时记为不可用。",
+    policyProbTitle: "概率性用例出现 = 不可用",
+    policyProb: "一旦历史发现同名用例反复 PASS/FAIL，以后该用例只要在该小时出现，即使本次 PASS，也记为不可用。",
+    policyUnknownTitle: "未知不冒充可用",
+    policyUnknown: "无 CI 或 API 覆盖不完整时记为 Unknown，并从可用率分母中排除。",
+    disclaimer: "这是公开 CI 活动的被动观测，不代表 vLLM-Ascend 官方 SLA。",
+    updated: "数据更新时间",
+    runs: "Runs", jobs: "Jobs", failed: "失败 Jobs", probabilistic: "概率性 Jobs",
+    noIncidents: "最近没有观测到不可用区间。",
+    noData: "尚无监控数据。等待首次 GitHub Actions 采集完成。",
+    loadError: "数据加载失败。请检查 GitHub Actions 是否已成功运行。",
+    unstable: "概率性 / 不稳定", stable: "未识别概率性",
+    same_commit_mixed_outcomes: "同一 commit 出现 PASS/FAIL",
+    repeated_pass_fail_transitions: "历史反复 PASS/FAIL",
+    none: "—",
+    samplesSummary: (all, unstable) => `已观测 ${all} 个 job，其中 ${unstable} 个被识别为概率性/不稳定`,
+    hours: n => `${n}h`,
+    incidentMeta: (failed, prob) => `${failed} 个失败 job · ${prob} 个概率性 job`,
+    coveragePartial: "API 覆盖不完整",
+  },
+  en: {
+    subtitle: "Hourly passive availability monitoring of public GitHub Actions",
+    upstream: "Upstream CI",
+    currentStatus: "Latest completed-hour status",
+    today: "Today",
+    availability: "Observed availability",
+    availableTime: "Available hours",
+    unavailableTime: "Unavailable hours",
+    coverage: "Observed coverage",
+    timeline: "Last 24 completed hours",
+    healthy: "Healthy", down: "Unavailable", degraded: "Degraded", unknown: "Unknown",
+    incidents: "Recent unavailable intervals",
+    allJobs: "All observed CI jobs",
+    search: "Search workflow / job",
+    state: "State", samples: "30d samples", passRate: "30d pass rate", reason: "Detection basis",
+    policyTitle: "Monitoring policy",
+    policyFailTitle: "Any failure = unavailable",
+    policyFail: "Any completed job outside success/neutral/skipped marks that hour unavailable.",
+    policyProbTitle: "Probabilistic job present = unavailable",
+    policyProb: "Once a job is observed repeatedly flipping PASS/FAIL, any future hour containing it is unavailable even when that run passes.",
+    policyUnknownTitle: "Unknown is never called healthy",
+    policyUnknown: "Hours without CI evidence or with partial API coverage are Unknown and excluded from availability.",
+    disclaimer: "Passive observation of public CI activity; this is not the official vLLM-Ascend SLA.",
+    updated: "Data updated",
+    runs: "Runs", jobs: "Jobs", failed: "Failed jobs", probabilistic: "Probabilistic jobs",
+    noIncidents: "No unavailable interval was observed recently.",
+    noData: "No monitoring data yet. Waiting for the first GitHub Actions collection.",
+    loadError: "Failed to load data. Check whether the GitHub Actions workflow completed successfully.",
+    unstable: "Probabilistic / unstable", stable: "No instability detected",
+    same_commit_mixed_outcomes: "Same commit produced PASS and FAIL",
+    repeated_pass_fail_transitions: "Repeated historical PASS/FAIL transitions",
+    none: "—",
+    samplesSummary: (all, unstable) => `${all} observed jobs; ${unstable} detected as probabilistic/unstable`,
+    hours: n => `${n}h`,
+    incidentMeta: (failed, prob) => `${failed} failed jobs · ${prob} probabilistic jobs`,
+    coveragePartial: "Partial API coverage",
+  }
+};
+
+let lang = localStorage.getItem("lang") || (navigator.language.startsWith("zh") ? "zh" : "en");
+let historyData = null;
+let testsData = null;
+
+const $ = id => document.getElementById(id);
+const t = key => I18N[lang][key] ?? key;
+
+function applyI18n() {
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const v = t(el.dataset.i18n);
+    if (typeof v === "string") el.textContent = v;
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    el.placeholder = t(el.dataset.i18nPlaceholder);
+  });
+  $("langBtn").textContent = lang === "zh" ? "EN" : "中文";
+  if (historyData && testsData) render();
+}
+
+function statusLabel(status) {
+  return t(status || "unknown");
+}
+function pct(v) {
+  return v == null || Number.isNaN(v) ? "—" : `${(v * 100).toFixed(1)}%`;
+}
+function pad(n) { return String(n).padStart(2, "0"); }
+function localDateKey(date) {
+  return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
+}
+function hourKey(date) {
+  return date.toISOString().slice(0,13) + ":00:00Z";
+}
+function fmtTime(iso) {
+  if (!iso) return "—";
+  return new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-GB", {
+    month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", hour12:false
+  }).format(new Date(iso));
+}
+function fmtHour(iso) {
+  const d = new Date(iso);
+  return `${pad(d.getHours())}:00`;
+}
+function setStatus(el, status) {
+  el.className = `status-dot ${status || "unknown"}`;
+}
+function reasonText(reason) {
+  if (!reason) return t("none");
+  return t(reason) !== reason ? t(reason) : reason;
+}
+
+function renderCurrent(hours) {
+  const latest = hours[hours.length - 1];
+  if (!latest) {
+    $("statusTitle").textContent = "UNKNOWN";
+    setStatus($("statusDot"), "unknown");
+    $("statusMeta").textContent = t("noData");
+    return;
+  }
+  const status = latest.status || "unknown";
+  $("statusTitle").textContent = statusLabel(status).toUpperCase();
+  setStatus($("statusDot"), status);
+  const bits = [
+    `${fmtTime(latest.hour)}`,
+    `${t("runs")}: ${latest.runs ?? 0}`,
+    `${t("jobs")}: ${latest.jobs ?? 0}`,
+    `${t("failed")}: ${latest.failed_jobs ?? 0}`,
+    `${t("probabilistic")}: ${latest.probabilistic_jobs ?? 0}`,
+  ];
+  if (latest.coverage === "partial") bits.push(t("coveragePartial"));
+  $("statusMeta").innerHTML = bits.map(x => `<span>${escapeHtml(x)}</span>`).join("");
+}
+
+function completedHoursToday(hours) {
+  const now = new Date();
+  const today = localDateKey(now);
+  const completedHourCount = now.getHours();
+  const byDate = hours.filter(h => localDateKey(new Date(h.hour)) === today);
+  return { today, completedHourCount, rows: byDate };
+}
+
+function renderToday(hours) {
+  const { completedHourCount, rows } = completedHoursToday(hours);
+  const counts = {healthy:0, down:0, degraded:0, unknown:0};
+  rows.forEach(h => counts[h.status] = (counts[h.status] || 0) + 1);
+  const observed = counts.healthy + counts.down + counts.degraded;
+  const available = counts.healthy;
+  const unavailable = counts.down + counts.degraded;
+  $("availability").textContent = observed ? pct(available / observed) : "—";
+  $("availableHours").textContent = t("hours")(available);
+  $("unavailableHours").textContent = t("hours")(unavailable);
+  $("coverage").textContent = completedHourCount ? pct(observed / completedHourCount) : "—";
+}
+
+function renderTimeline(hours) {
+  const map = new Map(hours.map(h => [h.hour, h]));
+  const latest = hours.length ? new Date(hours[hours.length - 1].hour) : new Date(Date.now() - 3600e3);
+  const rows = [];
+  for (let i=23; i>=0; i--) {
+    const d = new Date(latest.getTime() - i*3600e3);
+    const key = hourKey(d);
+    rows.push(map.get(key) || {hour:key, status:"unknown", jobs:0, failed_jobs:0, probabilistic_jobs:0, reasons:{}});
+  }
+  $("timeline").innerHTML = rows.map(h => {
+    const reasons = Object.entries(h.reasons || {}).map(([k,v]) => `${k}: ${v}`).join(", ");
+    const title = `${fmtTime(h.hour)} | ${statusLabel(h.status)} | ${t("jobs")}: ${h.jobs || 0} | ${t("failed")}: ${h.failed_jobs || 0} | ${t("probabilistic")}: ${h.probabilistic_jobs || 0}${reasons ? " | " + reasons : ""}`;
+    return `<div class="hour-wrap"><div class="hour ${h.status || "unknown"}" title="${escapeAttr(title)}"></div><div class="hour-label">${fmtHour(h.hour).slice(0,2)}</div></div>`;
+  }).join("");
+}
+
+function buildIncidents(hours) {
+  const recentCutoff = Date.now() - 7*24*3600e3;
+  const bad = hours.filter(h => new Date(h.hour).getTime() >= recentCutoff && ["down","degraded"].includes(h.status));
+  const incidents = [];
+  let current = null;
+  for (const h of bad) {
+    const time = new Date(h.hour).getTime();
+    if (!current || time - current.lastTime !== 3600e3) {
+      current = {start:h.hour, end:new Date(time+3600e3).toISOString(), lastTime:time, rows:[h]};
+      incidents.push(current);
+    } else {
+      current.end = new Date(time+3600e3).toISOString();
+      current.lastTime = time;
+      current.rows.push(h);
+    }
+  }
+  return incidents.reverse().slice(0,10);
+}
+
+function renderIncidents(hours) {
+  const incidents = buildIncidents(hours);
+  if (!incidents.length) {
+    $("incidents").innerHTML = `<div class="muted">${escapeHtml(t("noIncidents"))}</div>`;
+    return;
+  }
+  $("incidents").innerHTML = incidents.map(inc => {
+    const status = inc.rows.some(r => r.status === "down") ? "down" : "degraded";
+    const failed = inc.rows.reduce((s,r) => s + (r.failed_jobs || 0), 0);
+    const prob = inc.rows.reduce((s,r) => s + (r.probabilistic_jobs || 0), 0);
+    const reasons = {};
+    inc.rows.forEach(r => Object.entries(r.reasons || {}).forEach(([k,v]) => reasons[k] = (reasons[k] || 0) + v));
+    const reasonStr = Object.entries(reasons).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} × ${v}`).join(" · ") || t("none");
+    return `<div class="incident">
+      <div><strong>${escapeHtml(fmtTime(inc.start))}</strong><div class="muted">→ ${escapeHtml(fmtTime(inc.end))}</div></div>
+      <div><span class="pill ${status}">${escapeHtml(statusLabel(status))}</span></div>
+      <div><div>${escapeHtml(t("incidentMeta")(failed, prob))}</div><div class="reason-list">${escapeHtml(reasonStr)}</div></div>
+    </div>`;
+  }).join("");
+}
+
+function renderTests() {
+  const tests = Object.values(testsData?.tests || {});
+  const q = $("search").value.trim().toLowerCase();
+  const filtered = tests.filter(x => `${x.workflow} ${x.name}`.toLowerCase().includes(q));
+  const unstable = tests.filter(x => x.probabilistic).length;
+  $("testsSummary").textContent = t("samplesSummary")(tests.length, unstable);
+  $("testsBody").innerHTML = filtered.slice(0,300).map(x => {
+    const state = x.probabilistic ? "down" : "healthy";
+    const stateText = x.probabilistic ? t("unstable") : t("stable");
+    return `<tr>
+      <td><span class="pill ${state}">${escapeHtml(stateText)}</span></td>
+      <td>${escapeHtml(x.workflow || "—")}</td>
+      <td><code>${escapeHtml(x.name || "—")}</code></td>
+      <td>${x.samples_30d ?? 0}</td>
+      <td>${pct(x.pass_rate_30d)}</td>
+      <td>${escapeHtml(reasonText(x.probability_reason))}</td>
+    </tr>`;
+  }).join("");
+}
+
+function render() {
+  applyI18nStaticOnly();
+  const hours = [...(historyData?.hours || [])].sort((a,b) => a.hour.localeCompare(b.hour));
+  renderCurrent(hours);
+  renderToday(hours);
+  renderTimeline(hours);
+  renderIncidents(hours);
+  renderTests();
+  const updated = historyData?.updated_at;
+  $("updated").textContent = `${t("updated")}: ${updated ? fmtTime(updated) : "—"}`;
+}
+function applyI18nStaticOnly() {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const v = t(el.dataset.i18n);
+    if (typeof v === "string") el.textContent = v;
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => el.placeholder = t(el.dataset.i18nPlaceholder));
+  $("langBtn").textContent = lang === "zh" ? "EN" : "中文";
+}
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+function escapeAttr(value) { return escapeHtml(value); }
+
+async function load() {
+  try {
+    const stamp = Date.now();
+    const [h,tj] = await Promise.all([
+      fetch(`data/history.json?t=${stamp}`).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); }),
+      fetch(`data/tests.json?t=${stamp}`).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); }),
+    ]);
+    historyData = h; testsData = tj;
+    $("error").style.display = "none";
+    render();
+  } catch (err) {
+    console.error(err);
+    $("error").textContent = t("loadError");
+    $("error").style.display = "block";
+  }
+}
+
+$("langBtn").addEventListener("click", () => {
+  lang = lang === "zh" ? "en" : "zh";
+  localStorage.setItem("lang", lang);
+  applyI18n();
+});
+$("search").addEventListener("input", renderTests);
+applyI18n();
+load();
+</script>
+</body>
+</html>
