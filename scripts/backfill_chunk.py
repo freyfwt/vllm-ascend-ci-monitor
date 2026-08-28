@@ -169,9 +169,17 @@ def main() -> int:
         else:
             row["status"] = "unknown"
     output = {
-        "schema_version": 1, "date": args.date, "start_hour": args.start_hour,
+        "schema_version": 2, "date": args.date, "start_hour": args.start_hour,
         "complete": complete, "coverage": coverage, "api_requests": gh.requests,
         "errors": errors[-10:], "hours": [buckets[k] for k in sorted(buckets)],
+        "job_outcomes": [
+            {"key": key, "sha": sha, "outcomes": sorted(values)}
+            for (key, sha), values in sorted(outcomes.items())
+        ],
+        "job_occurrences": [
+            {"key": key, "hours": sorted(set(values))}
+            for key, values in sorted(occurrences.items())
+        ],
     }
     Path(args.output).write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n")
     print(f"{args.date} {args.start_hour:02d}:00 hours={len(output['hours'])} runs={len(candidate_runs)} requests={gh.requests} complete={complete}")
