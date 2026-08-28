@@ -79,8 +79,8 @@ def day_payload(date: str, source: list[dict[str, Any]], updated_at: str, now: d
 def main() -> int:
     history = load(HISTORY, {"hours": []})
     rows = history.get("hours", [])
-    updated_at = history.get("updated_at") or datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     now = datetime.now(timezone.utc)
+    updated_at = now.replace(microsecond=0).isoformat().replace("+00:00", "Z")
     grouped: dict[str, list[dict[str, Any]]] = {}
     for row in rows:
         hour = row.get("hour") or ""
