@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-28T03:29:45Z",
+  "updated_at": "2026-08-28T03:32:02Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "hours": [
     {
@@ -291,28 +291,63 @@
     },
     {
       "hour": "2026-08-28T01:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "partial",
-      "runs": 0,
-      "jobs": 0,
+      "runs": 56,
+      "jobs": 7,
       "failed_jobs": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
-      "reasons": {},
-      "failures": [],
-      "probabilistic": []
-    },
-    {
-      "hour": "2026-08-28T02:00:00Z",
-      "status": "unknown",
-      "coverage": "partial",
-      "runs": 145,
-      "jobs": 71,
-      "failed_jobs": 0,
-      "probabilistic_jobs": 0,
+      "probabilistic_jobs": 3,
       "active_runs": 4,
       "reasons": {},
       "failures": [],
+      "probabilistic": [
+        {
+          "key": "E2E :: pre-commit",
+          "workflow": "E2E",
+          "job": "pre-commit",
+          "pass_rate_30d": 0.6667,
+          "reason": "repeated_pass_fail_transitions"
+        },
+        {
+          "key": "E2E :: Recommend tests from coverage",
+          "workflow": "E2E",
+          "job": "Recommend tests from coverage",
+          "pass_rate_30d": 0.9167,
+          "reason": "repeated_pass_fail_transitions"
+        },
+        {
+          "key": "E2E :: select-tests",
+          "workflow": "E2E",
+          "job": "select-tests",
+          "pass_rate_30d": 0.5,
+          "reason": "repeated_pass_fail_transitions"
+        }
+      ]
+    },
+    {
+      "hour": "2026-08-28T02:00:00Z",
+      "status": "down",
+      "coverage": "partial",
+      "runs": 211,
+      "jobs": 92,
+      "failed_jobs": 1,
+      "probabilistic_jobs": 0,
+      "active_runs": 11,
+      "reasons": {
+        "RUNNER": 1
+      },
+      "failures": [
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "conclusion": "failure",
+          "reason": "RUNNER",
+          "failed_steps": [
+            "Run selected tests with device"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33133754598/job/98730589479"
+        }
+      ],
       "probabilistic": []
     }
   ],
@@ -323,7 +358,7 @@
   },
   "collector": {
     "api_requests": 52,
-    "job_requests": 49,
+    "job_requests": 47,
     "auth_fallbacks": 0,
     "run_pages_complete": false,
     "errors": []
