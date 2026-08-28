@@ -2,23 +2,31 @@
   "schema_version": 1,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-08-28T07:32:52Z",
+  "updated_at": "2026-08-28T07:50:48Z",
   "latest_hour": {
     "hour": "2026-08-28T06:00:00Z",
     "status": "down",
     "coverage": "complete",
     "runs": 47,
-    "jobs": 511,
+    "jobs": 62,
     "workflow_failures": 24,
     "infra_failures": 0,
-    "code_failures": 23,
-    "ignored_nonverdicts": 43,
-    "unresolved_failures": 33,
-    "probabilistic_jobs": 41,
-    "active_runs": 7,
+    "code_failures": 2,
+    "ignored_nonverdicts": 0,
+    "unresolved_failures": 24,
+    "probabilistic_jobs": 6,
+    "active_runs": 4,
     "reasons": {},
     "failures": [],
     "probabilistic": [
+      {
+        "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+        "pass_rate_30d": 0.6667,
+        "reason": "same_commit_mixed_outcomes"
+      },
       {
         "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only (main, pr-accuracy-group-1, linux-aarch64-a2b3-1, gemma-3-4b-i... / ${{ inputs.model_list }} accuracy test",
         "kind": "job",
@@ -58,35 +66,19 @@
         "job": "single-node-accuracy-tests-pr-only (main, pr-accuracy-group-2, linux-aarch64-a2b3-4, Qwen2.5-Math... / ${{ inputs.model_list }} accuracy test",
         "pass_rate_30d": null,
         "reason": "policy_probability_sensitive"
-      },
-      {
-        "key": "job::E2E::ci-gate",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "ci-gate",
-        "pass_rate_30d": 0.1925,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::run-selected-tests (v0.27.1) / a3-2 card-(part 1-2)",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "run-selected-tests (v0.27.1) / a3-2 card-(part 1-2)",
-        "pass_rate_30d": 0.8077,
-        "reason": "same_commit_mixed_outcomes"
       }
     ]
   },
   "days_tracked": 28,
   "overall": {
-    "availability": 0.204878,
-    "observed_hours": 205,
+    "availability": 0.206897,
+    "observed_hours": 203,
     "healthy_hours": 42,
-    "down_hours": 163,
-    "unknown_hours": 450,
+    "down_hours": 161,
+    "unknown_hours": 452,
     "infra_failures": 0,
-    "code_failures": 710,
-    "unresolved_failures": 4734,
-    "probabilistic_jobs": 552
+    "code_failures": 664,
+    "unresolved_failures": 4726,
+    "probabilistic_jobs": 478
   }
 }
