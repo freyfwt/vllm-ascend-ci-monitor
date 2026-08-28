@@ -1,6 +1,6 @@
 {
-  "schema_version": 5,
-  "updated_at": "2026-08-28T03:52:45Z",
+  "schema_version": 6,
+  "updated_at": "2026-08-28T03:57:21Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "hours": [
     {
@@ -308,7 +308,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 11,
-      "jobs": 0,
+      "jobs": 2,
       "failed_runs": 7,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -916,7 +916,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 80,
-      "jobs": 11,
+      "jobs": 17,
       "failed_runs": 65,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -1094,7 +1094,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 46,
-      "jobs": 31,
+      "jobs": 54,
       "failed_runs": 30,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -1272,7 +1272,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 45,
-      "jobs": 11,
+      "jobs": 58,
       "failed_runs": 32,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -1450,7 +1450,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 49,
-      "jobs": 0,
+      "jobs": 21,
       "failed_runs": 33,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -1628,7 +1628,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 39,
-      "jobs": 0,
+      "jobs": 17,
       "failed_runs": 30,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -1984,7 +1984,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 13,
-      "jobs": 0,
+      "jobs": 3,
       "failed_runs": 10,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -2082,7 +2082,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 15,
-      "jobs": 0,
+      "jobs": 2,
       "failed_runs": 10,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -2180,14 +2180,15 @@
       "status": "down",
       "coverage": "complete",
       "runs": 19,
-      "jobs": 0,
+      "jobs": 2,
       "failed_runs": 15,
-      "failed_jobs": 0,
+      "failed_jobs": 1,
       "probabilistic_workflows": 0,
       "probabilistic_jobs": 0,
       "active_runs": 4,
       "reasons": {
-        "WORKFLOW_FAILURE": 15
+        "WORKFLOW_FAILURE": 15,
+        "UNKNOWN": 1
       },
       "failures": [
         {
@@ -2309,6 +2310,16 @@
           "reason": "WORKFLOW_FAILURE",
           "failed_steps": [],
           "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33095719922"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "multi-node (releases-v0.26.0rc, GLM-5.1-w8a8c8-128k-1k-90-50-PD, GLM-5.1-W8A8C8-128k-1k-90-50-PD.... / GLM-5.1-W8A8C8-128k-1k-90-50-PD.yaml",
+          "conclusion": "failure",
+          "reason": "UNKNOWN",
+          "failed_steps": [
+            "Stream logs"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98593326354"
         }
       ],
       "probabilistic": []
@@ -2318,14 +2329,15 @@
       "status": "down",
       "coverage": "complete",
       "runs": 5,
-      "jobs": 0,
+      "jobs": 4,
       "failed_runs": 2,
-      "failed_jobs": 0,
+      "failed_jobs": 1,
       "probabilistic_workflows": 0,
       "probabilistic_jobs": 0,
       "active_runs": 4,
       "reasons": {
-        "WORKFLOW_FAILURE": 2
+        "WORKFLOW_FAILURE": 2,
+        "TEST": 1
       },
       "failures": [
         {
@@ -2343,6 +2355,16 @@
           "reason": "WORKFLOW_FAILURE",
           "failed_steps": [],
           "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33093176000"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "double-node (releases-v0.26.0rc, multi-node-qwen-disagg-pd, Qwen3-235B-disagg-pd.yaml, tests/e2e/... / Qwen3-235B-disagg-pd.yaml",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Stream logs"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98612890827"
         }
       ],
       "probabilistic": []
@@ -2352,7 +2374,7 @@
       "status": "down",
       "coverage": "complete",
       "runs": 2,
-      "jobs": 11,
+      "jobs": 55,
       "failed_runs": 1,
       "failed_jobs": 0,
       "probabilistic_workflows": 0,
@@ -2378,14 +2400,15 @@
       "status": "down",
       "coverage": "complete",
       "runs": 2,
-      "jobs": 17,
+      "jobs": 81,
       "failed_runs": 2,
-      "failed_jobs": 0,
+      "failed_jobs": 1,
       "probabilistic_workflows": 0,
       "probabilistic_jobs": 0,
       "active_runs": 4,
       "reasons": {
-        "WORKFLOW_FAILURE": 2
+        "WORKFLOW_FAILURE": 2,
+        "UNKNOWN": 1
       },
       "failures": [
         {
@@ -2403,23 +2426,76 @@
           "reason": "WORKFLOW_FAILURE",
           "failed_steps": [],
           "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33100394666"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "double-node (releases-v0.26.0rc, Minimax_m2.7_in128k_1k_prefix90_tpot50, Minimax_m2.7_in128k_1k_p... / Minimax_m2.7_in128k_1k_prefix90_tpot50.yaml",
+          "conclusion": "failure",
+          "reason": "UNKNOWN",
+          "failed_steps": [
+            "Stream logs"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98644340652"
         }
       ],
       "probabilistic": []
     },
     {
       "hour": "2026-08-27T21:00:00Z",
-      "status": "degraded",
+      "status": "down",
       "coverage": "complete",
       "runs": 0,
-      "jobs": 8,
+      "jobs": 31,
       "failed_runs": 0,
-      "failed_jobs": 0,
+      "failed_jobs": 4,
       "probabilistic_workflows": 0,
       "probabilistic_jobs": 0,
       "active_runs": 4,
-      "reasons": {},
-      "failures": [],
+      "reasons": {
+        "TEST": 4
+      },
+      "failures": [
+        {
+          "workflow": "Nightly-A3",
+          "job": "single-node (releases-v0.26.0rc, MiniMax-M3-BF16-A3, linux-aarch64-nightly-a3-16, MiniMax-M3-BF16... / MiniMax-M3-BF16-A3",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Run Pytest (YAML-driven)"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98672164357"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "single-node (releases-v0.26.0rc, MiniMax-M3-W8A8-A3, linux-aarch64-nightly-a3-16, MiniMax-M3-W8A8... / MiniMax-M3-W8A8-A3",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Run Pytest (YAML-driven)"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98672164448"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "single-node (releases-v0.26.0rc, Qwen3-32B-QuaRot, linux-aarch64-nightly-a3-2, Qwen3-32B-QuaRot-e... / Qwen3-32B-QuaRot",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Run Pytest (YAML-driven)"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98672164516"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "single-node (releases-v0.26.0rc, Qwen3-30B-QuaRot, linux-aarch64-nightly-a3-2, Qwen3-30B-QuaRot-e... / Qwen3-30B-QuaRot",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Run Pytest (YAML-driven)"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98672164997"
+        }
+      ],
       "probabilistic": []
     },
     {
@@ -2427,14 +2503,17 @@
       "status": "down",
       "coverage": "complete",
       "runs": 2,
-      "jobs": 0,
+      "jobs": 56,
       "failed_runs": 2,
-      "failed_jobs": 0,
+      "failed_jobs": 18,
       "probabilistic_workflows": 0,
       "probabilistic_jobs": 0,
       "active_runs": 4,
       "reasons": {
-        "WORKFLOW_FAILURE": 2
+        "WORKFLOW_FAILURE": 2,
+        "TEST": 3,
+        "UNKNOWN": 2,
+        "CANCELLED": 13
       },
       "failures": [
         {
@@ -2452,6 +2531,162 @@
           "reason": "WORKFLOW_FAILURE",
           "failed_steps": [],
           "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "single-node (releases-v0.26.0rc, kimi-k2-thinking, linux-aarch64-nightly-a3-16, Kimi-K2-Thinking.... / kimi-k2-thinking",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Run Pytest (YAML-driven)"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98672164443"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "single-node (releases-v0.26.0rc, kimi-k2.5, linux-aarch64-nightly-a3-16, Kimi-K2.5.yaml) / kimi-k2.5",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Run Pytest (YAML-driven)"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98672164456"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "single-node (releases-v0.26.0rc, glm-5.1-w8a8-prefill-mc2, linux-aarch64-nightly-a3-16, GLM-5.1-W... / glm-5.1-w8a8-prefill-mc2",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Run Pytest (YAML-driven)"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98678482154"
+        },
+        {
+          "workflow": "E2E",
+          "job": "pre-commit",
+          "conclusion": "failure",
+          "reason": "UNKNOWN",
+          "failed_steps": [
+            "Run pre-commit"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33120855965/job/98687552669"
+        },
+        {
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "conclusion": "failure",
+          "reason": "UNKNOWN",
+          "failed_steps": [
+            "Check all required jobs"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33120855965/job/98689000291"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a2-1 card-(part 4-5)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540656"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a2-1 card-(part 3-5)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540707"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a3-2 card-(part 2-2)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [
+            "Get architecture"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540713"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a3-4 card-(part 1-2)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540715"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a2-1 card-(part 2-5)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540729"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a2-1 card-(part 1-5)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540740"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a2-1 card-(part 5-5)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540766"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a3-2 card-(part 1-2)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540781"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a3-800i-4 card-(part 2-2)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670540987"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a3-8 card-(part 1-1)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670541097"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / a3-4 card-(part 2-2)",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98670541140"
+        },
+        {
+          "workflow": "E2E",
+          "job": "run-selected-tests (79651d6085885cf2842baf85526ece7afa87c87d) / upload-coverage-to-obs",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98687550944"
+        },
+        {
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "conclusion": "cancelled",
+          "reason": "CANCELLED",
+          "failed_steps": [],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33115230139/job/98687551872"
         }
       ],
       "probabilistic": []
@@ -2461,14 +2696,15 @@
       "status": "down",
       "coverage": "complete",
       "runs": 5,
-      "jobs": 3,
+      "jobs": 52,
       "failed_runs": 1,
-      "failed_jobs": 0,
+      "failed_jobs": 1,
       "probabilistic_workflows": 0,
-      "probabilistic_jobs": 0,
+      "probabilistic_jobs": 1,
       "active_runs": 4,
       "reasons": {
-        "WORKFLOW_FAILURE": 1
+        "WORKFLOW_FAILURE": 1,
+        "TEST": 1
       },
       "failures": [
         {
@@ -2478,16 +2714,35 @@
           "reason": "WORKFLOW_FAILURE",
           "failed_steps": [],
           "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459"
+        },
+        {
+          "workflow": "Nightly-A3",
+          "job": "single-node (releases-v0.26.0rc, Minimax_m2.7_w8a8_A3, linux-aarch64-nightly-a3-16, Minimax_m2.7_... / Minimax_m2.7_w8a8_A3",
+          "conclusion": "failure",
+          "reason": "TEST",
+          "failed_steps": [
+            "Run Pytest (YAML-driven)"
+          ],
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33089528459/job/98692174245"
         }
       ],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A3::Merge benchmark artifacts into nightly-a3.zip",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "Merge benchmark artifacts into nightly-a3.zip",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        }
+      ]
     },
     {
       "hour": "2026-08-28T00:00:00Z",
       "status": "down",
       "coverage": "complete",
       "runs": 1,
-      "jobs": 23,
+      "jobs": 32,
       "failed_runs": 0,
       "failed_jobs": 4,
       "probabilistic_workflows": 0,
@@ -2545,17 +2800,19 @@
       "status": "down",
       "coverage": "complete",
       "runs": 26,
-      "jobs": 237,
+      "jobs": 323,
       "failed_runs": 19,
-      "failed_jobs": 34,
+      "failed_jobs": 49,
       "probabilistic_workflows": 0,
-      "probabilistic_jobs": 0,
+      "probabilistic_jobs": 1,
       "active_runs": 8,
       "reasons": {
         "WORKFLOW_FAILURE": 19,
-        "TEST": 4,
-        "UNKNOWN": 13,
-        "CANCELLED": 17
+        "TEST": 8,
+        "UNKNOWN": 21,
+        "CANCELLED": 17,
+        "RUNNER": 2,
+        "NETWORK": 1
       },
       "failures": [
         {
@@ -2721,18 +2978,27 @@
           "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33132672947/job/98726246929"
         }
       ],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2::Generate accuracy test matrix",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "Generate accuracy test matrix",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        }
+      ]
     },
     {
       "hour": "2026-08-28T02:00:00Z",
       "status": "down",
       "coverage": "complete",
       "runs": 64,
-      "jobs": 682,
+      "jobs": 780,
       "failed_runs": 47,
       "failed_jobs": 124,
       "probabilistic_workflows": 0,
-      "probabilistic_jobs": 0,
+      "probabilistic_jobs": 7,
       "active_runs": 12,
       "reasons": {
         "WORKFLOW_FAILURE": 47,
@@ -2904,69 +3170,119 @@
           "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33135747591"
         }
       ],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.5-122B-A10B-w4a8-A3-accuracy, linux-aarch64-a3-16, Qwen3.5-122B-A10B-w4a... / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.5-122B-A10B-w4a8-A3-accuracy, linux-aarch64-a3-16, Qwen3.5-122B-A10B-w4a... / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.6-35B-A3B-w8a8-A3-accuracy, linux-aarch64-a3-2, Qwen3.6-35B-A3B-w8a8-A3-... / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.6-35B-A3B-w8a8-A3-accuracy, linux-aarch64-a3-2, Qwen3.6-35B-A3B-w8a8-A3-... / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Weekly-A3::Merge benchmark artifacts into weekly-a3.zip",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "Merge benchmark artifacts into weekly-a3.zip",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A3::Merge benchmark artifacts into nightly-a3.zip",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "Merge benchmark artifacts into nightly-a3.zip",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        }
+      ]
     }
   ],
   "policy": {
     "any_failed_workflow_or_job_is_unavailable": true,
-    "probabilistic_check_presence_is_unavailable": true,
+    "probability_sensitive_job_presence_is_unavailable": true,
     "degraded_counts_as_unavailable": true,
     "unknown_excluded_from_availability": true
   },
   "collector": {
     "authenticated": true,
     "auth_fallbacks": 0,
-    "api_requests": 149,
+    "api_requests": 222,
     "request_budget": 1200,
     "run_listing_complete": true,
     "event_coverage": {
       "pull_request": {
-        "expected": 926,
-        "fetched": 926,
-        "complete": true
+        "expected": 934,
+        "fetched": 934,
+        "complete": true,
+        "slices": 1
       },
       "pull_request_target": {
-        "expected": 1355,
-        "fetched": 1000,
-        "complete": true
+        "expected": 1363,
+        "fetched": 1363,
+        "complete": true,
+        "slices": 3
       },
       "push": {
         "expected": 43,
         "fetched": 43,
-        "complete": true
+        "complete": true,
+        "slices": 1
       },
       "schedule": {
         "expected": 4,
         "fetched": 4,
-        "complete": true
+        "complete": true,
+        "slices": 1
       },
       "workflow_dispatch": {
         "expected": 43,
         "fetched": 43,
-        "complete": true
+        "complete": true,
+        "slices": 1
       },
       "repository_dispatch": {
-        "expected": 108,
-        "fetched": 108,
-        "complete": true
+        "expected": 111,
+        "fetched": 111,
+        "complete": true,
+        "slices": 1
       },
       "workflow_call": {
         "expected": 0,
         "fetched": 0,
-        "complete": true
+        "complete": true,
+        "slices": 1
       },
       "workflow_run": {
         "expected": 0,
         "fetched": 0,
-        "complete": true
+        "complete": true,
+        "slices": 1
       },
       "merge_group": {
         "expected": 0,
         "fetched": 0,
-        "complete": true
+        "complete": true,
+        "slices": 1
       }
     },
-    "detail_runs": 120,
+    "detail_runs": 187,
     "errors": []
   }
 }
