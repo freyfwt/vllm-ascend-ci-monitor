@@ -47,6 +47,7 @@ A contributor-owned bilingual availability monitor for the public CI of [`vllm-p
 
 - Overview：最近 24 小时状态、当天可用率、不可用区间、概率敏感检查；
 - 判定标准 / Policy：以表格列出当前所有判定规则。
+- 阻塞分析 / Blocker Analysis：提取 main 分支持续存在的问题，展示关键错误日志、严格 PR 归因、作者/合入者、处理建议和连续 PASS 恢复状态。
 
 GitHub Pages: https://freyfwt.github.io/vllm-ascend-ci-monitor/
 
@@ -98,5 +99,7 @@ When public evidence cannot reliably distinguish a code failure from an infrastr
 ### Dashboard
 
 The site has an Overview tab and a dedicated Policy tab containing the current decision matrix.
+
+It also has a Blocker Analysis tab for persistent main-branch failures. Issues close only after three consecutive related passes. PR attribution is shown only for high-confidence test regressions: the previous three main executions passed, the signature first appears on one merge commit, and it reproduces afterward.
 
 GitHub Pages: https://freyfwt.github.io/vllm-ascend-ci-monitor/
