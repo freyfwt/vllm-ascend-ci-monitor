@@ -1,0 +1,27 @@
+name: Migrate CI policy data v9
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/migrate-policy-v9.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Migrate historical data conservatively
+        run: python3 .update/migrate_v9.py
+      - name: Commit and clean migration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/history.json data/tests.json data/state.json
+          git rm .update/migrate_v9.py .github/workflows/migrate-policy-v9.yml
+          git commit -m "data: migrate history to CI reliability policy v9"
+          git push
