@@ -120,7 +120,7 @@ class GH:
         return json.loads(self.request(ROOT + path + query).decode())
 
     def text(self, path: str) -> str:
-        return self.request(ROOT + path, fallback_404=False).decode('utf-8', errors='replace')
+        return self.request(ROOT + path, use_auth=False, fallback_404=False).decode('utf-8', errors='replace')
 
 def _run_span(gh: GH, event: str, start: datetime, end: datetime, depth: int=0) -> tuple[dict[int, dict[str, Any]], bool, dict[str, Any]]:
     if not gh.ok(8):
