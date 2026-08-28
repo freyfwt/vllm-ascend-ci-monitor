@@ -16,7 +16,7 @@ env:
 
 concurrency:
   group: vllm-ascend-ci-backfill
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   plan:
@@ -45,7 +45,7 @@ jobs:
     needs: plan
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 12
       matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
