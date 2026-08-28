@@ -1,49 +1,56 @@
 {
-  "schema_version": 2,
-  "updated_at": "2026-08-28T03:41:52Z",
+  "schema_version": 3,
+  "updated_at": "2026-08-28T03:45:34Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "tests": {
+    "job::Handle /nightly Command::Check user authorization": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Check user authorization",
+      "probabilistic": true,
+      "observations": [
+        {
+          "job_id": "98742198109",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743253012",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743326319",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744490649",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 1,
+      "failures_30d": 3,
+      "pass_rate_30d": 0.25,
+      "first_detected_at": "2026-08-28T03:45:34Z",
+      "probability_reason": "same_commit_mixed_outcomes"
+    },
     "workflow::.github/workflows/bot_merge_conflict.yaml": {
       "kind": "workflow",
       "workflow": "Merge Conflict Labeler",
       "name": "(workflow aggregate)",
-      "probabilistic": true,
+      "probabilistic": false,
       "observations": [
-        {
-          "run_id": "33029943364",
-          "at": "2026-08-27T01:24:40Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "9bef60ad56998e5c5dc8dd3d7d35ef0e75cb37e2"
-        },
-        {
-          "run_id": "33029958513",
-          "at": "2026-08-27T01:25:18Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33033813083",
-          "at": "2026-08-27T02:37:57Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "76421f173d68d9f2dae02b43b93cfee0331fa2bf"
-        },
-        {
-          "run_id": "33034315988",
-          "at": "2026-08-27T02:47:01Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f3475221a3e1e0de81806de25c1fa58f64216ca3"
-        },
-        {
-          "run_id": "33035551192",
-          "at": "2026-08-27T03:11:01Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "d543ccee0a1ff677165777e3defafd42b35e83ef"
-        },
         {
           "run_id": "33035872735",
           "at": "2026-08-27T03:17:46Z",
@@ -1688,10 +1695,43 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "ec4e97ea93af060ef0da7e71d2acd6d8c109a746"
+        },
+        {
+          "run_id": "33139613586",
+          "at": "2026-08-28T03:42:37Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "eec2535c84c972866da3a634944f79d7bf9414be"
+        },
+        {
+          "run_id": "33139619148",
+          "at": "2026-08-28T03:42:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "bbcf838e2e0cc450eca99695d93e3fa9eda6d214"
+        },
+        {
+          "run_id": "33139688101",
+          "at": "2026-08-28T03:44:13Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "ef5aecd0883218f14ccf5109f3173ccaa39f177e"
+        },
+        {
+          "run_id": "33139717268",
+          "at": "2026-08-28T03:44:52Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "7788263618882faba2042eb3ad94da87f5b4b841"
+        },
+        {
+          "run_id": "33139743788",
+          "at": "2026-08-28T03:45:14Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "32544435bd5f65d66dd84e7d898d225e6decb1c1"
         }
       ],
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes",
       "samples_30d": 240,
       "successes_30d": 235,
       "failures_30d": 5,
@@ -1701,57 +1741,8 @@
       "kind": "workflow",
       "workflow": "PR Create",
       "name": "(workflow aggregate)",
-      "probabilistic": true,
+      "probabilistic": false,
       "observations": [
-        {
-          "run_id": "33049327448",
-          "at": "2026-08-27T07:21:53Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "7a46f781878ff78dc2e1f4a372f6d2ef8ab052e2"
-        },
-        {
-          "run_id": "33049543001",
-          "at": "2026-08-27T07:24:54Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f82e8b6fa1e25a6cf20ce282940a81e562e6486e"
-        },
-        {
-          "run_id": "33049687506",
-          "at": "2026-08-27T07:27:12Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "06d0cca090dfd0d42b16d2981afd8e97f85855c4"
-        },
-        {
-          "run_id": "33049703598",
-          "at": "2026-08-27T07:27:13Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "4e662f519b5e2ca0bd1790db27a12adcc5b93cdd"
-        },
-        {
-          "run_id": "33049723877",
-          "at": "2026-08-27T07:27:37Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "e858c58de6b13be1ace96a2dd954d21ddf4f9744"
-        },
-        {
-          "run_id": "33049822968",
-          "at": "2026-08-27T07:28:55Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "72c39897059ebe43987460f96758674fa41e1ac8"
-        },
-        {
-          "run_id": "33049851923",
-          "at": "2026-08-27T07:29:28Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "a92376ee1656d929ae09ab80425b90062a898073"
-        },
         {
           "run_id": "33049969160",
           "at": "2026-08-27T07:31:07Z",
@@ -3382,10 +3373,57 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "0437f156a259c2f1550488502c1c956253b92995"
+        },
+        {
+          "run_id": "33139613597",
+          "at": "2026-08-28T03:42:18Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "eec2535c84c972866da3a634944f79d7bf9414be"
+        },
+        {
+          "run_id": "33139619142",
+          "at": "2026-08-28T03:42:33Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "bbcf838e2e0cc450eca99695d93e3fa9eda6d214"
+        },
+        {
+          "run_id": "33139688107",
+          "at": "2026-08-28T03:44:04Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "ef5aecd0883218f14ccf5109f3173ccaa39f177e"
+        },
+        {
+          "run_id": "33139703210",
+          "at": "2026-08-28T03:44:28Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6554393787f02f1a85f02b311da4158337009618"
+        },
+        {
+          "run_id": "33139717288",
+          "at": "2026-08-28T03:44:44Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "7788263618882faba2042eb3ad94da87f5b4b841"
+        },
+        {
+          "run_id": "33139743783",
+          "at": "2026-08-28T03:45:11Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "32544435bd5f65d66dd84e7d898d225e6decb1c1"
+        },
+        {
+          "run_id": "33139755387",
+          "at": "2026-08-28T03:45:26Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "ab1bcfceeb835499cdd9b712369707ae86967373"
         }
       ],
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes",
       "samples_30d": 240,
       "successes_30d": 238,
       "failures_30d": 2,
@@ -3395,7 +3433,7 @@
       "kind": "workflow",
       "workflow": "Doc Test",
       "name": "(workflow aggregate)",
-      "probabilistic": true,
+      "probabilistic": false,
       "observations": [
         {
           "run_id": "33032961215",
@@ -3699,18 +3737,652 @@
           "head_sha": "23fcb336dd91c4d79e44f32089b46ba099c59e71"
         }
       ],
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes",
       "samples_30d": 43,
       "successes_30d": 9,
       "failures_30d": 34,
       "pass_rate_30d": 0.2093
     },
+    "workflow::.github/workflows/pr_cancel_command.yml": {
+      "kind": "workflow",
+      "workflow": "Handle /cancel Command",
+      "name": "(workflow aggregate)",
+      "probabilistic": false,
+      "observations": [
+        {
+          "run_id": "33059657165",
+          "at": "2026-08-27T09:41:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "72059e41b239e2ea469a0fb2d9eb0cb7ee4e3085"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "workflow::.github/workflows/pr_cherry_pick_command.yml": {
+      "kind": "workflow",
+      "workflow": "Handle /cherry-pick Command",
+      "name": "(workflow aggregate)",
+      "probabilistic": false,
+      "observations": [
+        {
+          "run_id": "33076802535",
+          "at": "2026-08-27T13:27:44Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 0,
+      "failures_30d": 1,
+      "pass_rate_30d": 0.0
+    },
+    "workflow::.github/workflows/pr_close_cancel_job.yaml": {
+      "kind": "workflow",
+      "workflow": "Cancel runs on PR close",
+      "name": "(workflow aggregate)",
+      "probabilistic": false,
+      "observations": [
+        {
+          "run_id": "33033053712",
+          "at": "2026-08-27T02:22:06Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "512d7ef4c97ba7825e230cf3b1676c6837ec07e5"
+        },
+        {
+          "run_id": "33033081514",
+          "at": "2026-08-27T02:22:43Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6835b5a232bc892eb3bc1a1338d1b01ad01a6c58"
+        },
+        {
+          "run_id": "33033182400",
+          "at": "2026-08-27T02:24:36Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "cf2ce4d38c936243033df9fad4a737c9ad976f19"
+        },
+        {
+          "run_id": "33033195959",
+          "at": "2026-08-27T02:25:25Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "055d8358268c4cc954e5f8813ea82923fc0b1883"
+        },
+        {
+          "run_id": "33034315974",
+          "at": "2026-08-27T02:46:57Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "fca76e5689062c37e9f2b7a58281d11ad7dd6098"
+        },
+        {
+          "run_id": "33035551152",
+          "at": "2026-08-27T03:10:58Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "527cd80fc1b4aa2e915a660ea30f5fea4e3f07bb"
+        },
+        {
+          "run_id": "33037107907",
+          "at": "2026-08-27T03:42:02Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "386e8c219baa1acb8b24f2fff3caf6d66802fbdf"
+        },
+        {
+          "run_id": "33046794540",
+          "at": "2026-08-27T06:42:18Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "69ea22e7d013fd36c6387f5bd9447a3e416e267a"
+        },
+        {
+          "run_id": "33053612623",
+          "at": "2026-08-27T08:21:29Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "a6fe8cda1942bc7c8a03d727003ed2049f839580"
+        },
+        {
+          "run_id": "33054993212",
+          "at": "2026-08-27T08:39:57Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "8a3803c5df13cf3db697f32b9a3d14d694d47fd1"
+        },
+        {
+          "run_id": "33066934791",
+          "at": "2026-08-27T11:21:04Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "41293f7354559afd9978e9ec96667d0cae8f5743"
+        },
+        {
+          "run_id": "33071052431",
+          "at": "2026-08-27T12:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "12b77b78b63003a7b4f91e56bae335165778cc97"
+        },
+        {
+          "run_id": "33073156120",
+          "at": "2026-08-27T12:43:11Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "8b4f03e0b24a378109b5e4cd362d548d279fffff"
+        },
+        {
+          "run_id": "33077445403",
+          "at": "2026-08-27T13:33:37Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "a900d7ac4318b8da9bc4847a19e602c1d81c4ddb"
+        },
+        {
+          "run_id": "33077442614",
+          "at": "2026-08-27T13:33:39Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "771f3f605d3f3e9fa525c54a22d4a2929517e1cd"
+        },
+        {
+          "run_id": "33080418123",
+          "at": "2026-08-27T14:07:12Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "c516dbe7498b76e9e8b1016289488885c629f489"
+        },
+        {
+          "run_id": "33080713061",
+          "at": "2026-08-27T14:10:27Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "f835252d2a3e1e45944f7fec7bad6f5187331084"
+        },
+        {
+          "run_id": "33132480093",
+          "at": "2026-08-28T01:19:33Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "89d2cd8e288227907924279b1053e6e81581ccf1"
+        },
+        {
+          "run_id": "33132887229",
+          "at": "2026-08-28T01:27:37Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "0b98ebffa890be5e665b5271805ae6dece67c636"
+        },
+        {
+          "run_id": "33139351635",
+          "at": "2026-08-28T03:36:58Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "9c0c47eb835f47ca3df4849285cf22a43fd23a37"
+        }
+      ],
+      "samples_30d": 20,
+      "successes_30d": 9,
+      "failures_30d": 11,
+      "pass_rate_30d": 0.45
+    },
+    "workflow::.github/workflows/pr_close_job.yaml": {
+      "kind": "workflow",
+      "workflow": "Cancel runs on PR close",
+      "name": "(workflow aggregate)",
+      "probabilistic": false,
+      "observations": [
+        {
+          "run_id": "33049351937",
+          "at": "2026-08-27T07:22:15Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "5cb357014464ebf814072c1b6fc95b79ea35be1a"
+        },
+        {
+          "run_id": "33049592041",
+          "at": "2026-08-27T07:25:09Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "eb9fc7eff1d088f64efea26c812012a3c19d187f"
+        },
+        {
+          "run_id": "33049597598",
+          "at": "2026-08-27T07:26:05Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d6dd57a3a4a8f35cbe69ef5f393f4fc1e675112a"
+        },
+        {
+          "run_id": "33050838476",
+          "at": "2026-08-27T07:43:29Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "2c686b6ead1c9e9cfe33593bcd5a574d6507a203"
+        },
+        {
+          "run_id": "33050868455",
+          "at": "2026-08-27T07:43:55Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6d24b89e7d2b86c80e3f37251fe66f1215f628db"
+        },
+        {
+          "run_id": "33051389780",
+          "at": "2026-08-27T07:51:44Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "d83dd21f58edac577be0f9ba33c3ae3576f81156"
+        },
+        {
+          "run_id": "33052020159",
+          "at": "2026-08-27T07:59:45Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "a6a246a86fb0e0dfb9424bbd88e6eb766a277ef1"
+        },
+        {
+          "run_id": "33053110728",
+          "at": "2026-08-27T08:14:20Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
+        },
+        {
+          "run_id": "33053231281",
+          "at": "2026-08-27T08:17:02Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
+        },
+        {
+          "run_id": "33053553294",
+          "at": "2026-08-27T08:21:13Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "d2f5290da2de4419d10c06fdf8fc22aeb064e634"
+        },
+        {
+          "run_id": "33053612072",
+          "at": "2026-08-27T08:21:31Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "a6fe8cda1942bc7c8a03d727003ed2049f839580"
+        },
+        {
+          "run_id": "33053597833",
+          "at": "2026-08-27T08:22:01Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "a92376ee1656d929ae09ab80425b90062a898073"
+        },
+        {
+          "run_id": "33053614563",
+          "at": "2026-08-27T08:22:08Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "dd052ef8857899dd9192ed24a1bd95273deb8646"
+        },
+        {
+          "run_id": "33054982651",
+          "at": "2026-08-27T08:39:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "7bdb5cf39411daa5755ed7ab8ee17db03a9a3fd6"
+        },
+        {
+          "run_id": "33054993668",
+          "at": "2026-08-27T08:39:59Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "8a3803c5df13cf3db697f32b9a3d14d694d47fd1"
+        },
+        {
+          "run_id": "33055346130",
+          "at": "2026-08-27T08:44:43Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d6fd2fe96f9ee29a6fdd3c9d2ead7afcb1a46f0c"
+        },
+        {
+          "run_id": "33056434562",
+          "at": "2026-08-27T08:59:30Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "249b1e3ad7ecbc9d4a9ae13534a2f77b930f74ac"
+        },
+        {
+          "run_id": "33056782134",
+          "at": "2026-08-27T09:05:03Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "f356066358b6227d3df7395f54f15c9ac936cb63"
+        },
+        {
+          "run_id": "33057223431",
+          "at": "2026-08-27T09:10:02Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "cadb5c88f7a7a283c48976a77499e700940eedce"
+        },
+        {
+          "run_id": "33060035036",
+          "at": "2026-08-27T09:47:14Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "2002944f0145367b17912d7d254459993a6a6f47"
+        },
+        {
+          "run_id": "33061104565",
+          "at": "2026-08-27T10:02:14Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "46929f0635312aa1b46f0c213dd7b7a56c32c761"
+        },
+        {
+          "run_id": "33062912509",
+          "at": "2026-08-27T10:25:24Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "5ccefce9e0387fd0dc05e516ba75e2289658b4e5"
+        },
+        {
+          "run_id": "33062927716",
+          "at": "2026-08-27T10:26:25Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "46055a3e343a38cf6be16433e4adc1406054453c"
+        },
+        {
+          "run_id": "33064538898",
+          "at": "2026-08-27T10:48:13Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "852216d62d3970cd21f8d99c5555c145d26eeb85"
+        },
+        {
+          "run_id": "33066934653",
+          "at": "2026-08-27T11:21:06Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "41293f7354559afd9978e9ec96667d0cae8f5743"
+        },
+        {
+          "run_id": "33070994846",
+          "at": "2026-08-27T12:16:24Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "1f09a9e2b518fe04e6dacd5d2a4473ec23d9454f"
+        },
+        {
+          "run_id": "33071052236",
+          "at": "2026-08-27T12:16:40Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "12b77b78b63003a7b4f91e56bae335165778cc97"
+        },
+        {
+          "run_id": "33072912707",
+          "at": "2026-08-27T12:40:35Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "fa3551a3bfb9b652a831051aa9d97068af0c188f"
+        },
+        {
+          "run_id": "33073155829",
+          "at": "2026-08-27T12:43:13Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "8b4f03e0b24a378109b5e4cd362d548d279fffff"
+        },
+        {
+          "run_id": "33077445758",
+          "at": "2026-08-27T13:34:04Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "a900d7ac4318b8da9bc4847a19e602c1d81c4ddb"
+        },
+        {
+          "run_id": "33077443001",
+          "at": "2026-08-27T13:34:04Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "771f3f605d3f3e9fa525c54a22d4a2929517e1cd"
+        },
+        {
+          "run_id": "33077465864",
+          "at": "2026-08-27T13:34:22Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "09a8396e5c099e63ecec04a7b831e95137645bc8"
+        },
+        {
+          "run_id": "33077483623",
+          "at": "2026-08-27T13:34:34Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "862b731e612d1801a159807a093f4fc2c73bb999"
+        },
+        {
+          "run_id": "33077503329",
+          "at": "2026-08-27T13:34:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "51a3f797d08a756ac8a28362c1a3e3880ec45138"
+        },
+        {
+          "run_id": "33078671456",
+          "at": "2026-08-27T13:48:03Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33079226139",
+          "at": "2026-08-27T13:54:04Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "cc19593d6fdfa0cd5ea29fbb07958007c8799b8b"
+        },
+        {
+          "run_id": "33080418209",
+          "at": "2026-08-27T14:07:17Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c516dbe7498b76e9e8b1016289488885c629f489"
+        },
+        {
+          "run_id": "33080714108",
+          "at": "2026-08-27T14:10:33Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f835252d2a3e1e45944f7fec7bad6f5187331084"
+        },
+        {
+          "run_id": "33132318413",
+          "at": "2026-08-28T01:16:24Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6254169f82a21a67269d6637978e1eed760e241c"
+        },
+        {
+          "run_id": "33132479865",
+          "at": "2026-08-28T01:19:36Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "89d2cd8e288227907924279b1053e6e81581ccf1"
+        },
+        {
+          "run_id": "33132887182",
+          "at": "2026-08-28T01:27:34Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "0b98ebffa890be5e665b5271805ae6dece67c636"
+        },
+        {
+          "run_id": "33132898004",
+          "at": "2026-08-28T01:28:17Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "3c4927e6d570b65fac556049813fb8c343296123"
+        },
+        {
+          "run_id": "33132999634",
+          "at": "2026-08-28T01:30:29Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "ba14b852dedb0fbeb1bdec0124c9eb6db6ba7a96"
+        },
+        {
+          "run_id": "33133421499",
+          "at": "2026-08-28T01:38:06Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "7a87deab7118c779a3635939606c6f329b1260b4"
+        },
+        {
+          "run_id": "33133421770",
+          "at": "2026-08-28T01:38:08Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "cbcea5da74748451246cb801e7af20fee2b9cfd2"
+        },
+        {
+          "run_id": "33133421849",
+          "at": "2026-08-28T01:38:08Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "bcabb1c30ecbf706b5235ddd25e2e2608c0774d5"
+        },
+        {
+          "run_id": "33133423738",
+          "at": "2026-08-28T01:38:30Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "1102bdf5734c0f43049acb95cbf880735c6f0b13"
+        },
+        {
+          "run_id": "33133423655",
+          "at": "2026-08-28T01:38:31Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "de3e50ea0828a135376e20c9c477ff7535c41d4f"
+        },
+        {
+          "run_id": "33133424342",
+          "at": "2026-08-28T01:38:32Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "b264c21623bccb1066ea4545b26d617a0cd4a19e"
+        },
+        {
+          "run_id": "33133426142",
+          "at": "2026-08-28T01:38:41Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "4d8c0a79644b23b2f0dfbddb65ebfcaa4cc00bc9"
+        },
+        {
+          "run_id": "33133426012",
+          "at": "2026-08-28T01:38:42Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f001f91c09e8b93a6bca75e42b4b08359ec174da"
+        },
+        {
+          "run_id": "33133426335",
+          "at": "2026-08-28T01:38:43Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "581357e7777d7a0d2410409c4254d715805b03cf"
+        },
+        {
+          "run_id": "33133428284",
+          "at": "2026-08-28T01:38:53Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "663c1332dd6d68af8be53e38609b637ae7e445bc"
+        },
+        {
+          "run_id": "33134078290",
+          "at": "2026-08-28T01:51:00Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "eb772074d015a22f3e86337dc80ca003dc0b44d0"
+        },
+        {
+          "run_id": "33134699599",
+          "at": "2026-08-28T02:04:41Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "138d60fcb0c0c619332051484ce3993c6826b8e8"
+        },
+        {
+          "run_id": "33134779037",
+          "at": "2026-08-28T02:05:05Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "3ee8249f3075dd7c9b2404a54fcc98414466d1cf"
+        },
+        {
+          "run_id": "33135771693",
+          "at": "2026-08-28T02:24:28Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "737409e3b2f2148db842981cf02e9c3161486f75"
+        },
+        {
+          "run_id": "33135951715",
+          "at": "2026-08-28T02:29:20Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "a629481bcee15097137f11ac9bcee0f2362b2d6b"
+        },
+        {
+          "run_id": "33137422993",
+          "at": "2026-08-28T02:57:13Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "063fbdfb7c43eae84858232403a4d5693d1d9fec"
+        },
+        {
+          "run_id": "33138357471",
+          "at": "2026-08-28T03:16:31Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "run_id": "33139351459",
+          "at": "2026-08-28T03:36:52Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "9c0c47eb835f47ca3df4849285cf22a43fd23a37"
+        },
+        {
+          "run_id": "33139342809",
+          "at": "2026-08-28T03:37:13Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "75c02aa6445dc41f49e557258bd6d5c470270999"
+        }
+      ],
+      "samples_30d": 62,
+      "successes_30d": 47,
+      "failures_30d": 15,
+      "pass_rate_30d": 0.7581
+    },
     "workflow::.github/workflows/pr_e2e_command.yml": {
       "kind": "workflow",
       "workflow": "Handle /e2e Command",
       "name": "(workflow aggregate)",
-      "probabilistic": true,
+      "probabilistic": false,
       "observations": [
         {
           "run_id": "33062850385",
@@ -3797,8 +4469,6 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes",
       "samples_30d": 12,
       "successes_30d": 8,
       "failures_30d": 4,
@@ -3808,7 +4478,7 @@
       "kind": "workflow",
       "workflow": "Handle /nightly Command",
       "name": "(workflow aggregate)",
-      "probabilistic": true,
+      "probabilistic": false,
       "observations": [
         {
           "run_id": "33029487959",
@@ -4098,61 +4768,393 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes",
       "samples_30d": 41,
       "successes_30d": 36,
       "failures_30d": 5,
       "pass_rate_30d": 0.878
     },
+    "workflow::.github/workflows/pr_rerun_command.yml": {
+      "kind": "workflow",
+      "workflow": "Handle /rerun Command",
+      "name": "(workflow aggregate)",
+      "probabilistic": false,
+      "observations": [
+        {
+          "run_id": "33029255900",
+          "at": "2026-08-27T01:11:35Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e8d9c1ac39ef1b09f1502a62eab7bc9d31fccc42"
+        },
+        {
+          "run_id": "33029925754",
+          "at": "2026-08-27T01:24:12Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e8d9c1ac39ef1b09f1502a62eab7bc9d31fccc42"
+        },
+        {
+          "run_id": "33030232498",
+          "at": "2026-08-27T01:30:39Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
+        },
+        {
+          "run_id": "33030624896",
+          "at": "2026-08-27T01:37:17Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
+        },
+        {
+          "run_id": "33030709608",
+          "at": "2026-08-27T01:41:12Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
+        },
+        {
+          "run_id": "33030795178",
+          "at": "2026-08-27T01:41:28Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
+        },
+        {
+          "run_id": "33031011622",
+          "at": "2026-08-27T01:44:54Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
+        },
+        {
+          "run_id": "33031008140",
+          "at": "2026-08-27T01:47:20Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
+        },
+        {
+          "run_id": "33031822856",
+          "at": "2026-08-27T02:00:01Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
+        },
+        {
+          "run_id": "33033366870",
+          "at": "2026-08-27T02:30:50Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
+        },
+        {
+          "run_id": "33035671445",
+          "at": "2026-08-27T03:13:43Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "76421f173d68d9f2dae02b43b93cfee0331fa2bf"
+        },
+        {
+          "run_id": "33037276745",
+          "at": "2026-08-27T03:45:47Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "7702ccd7d8dea6b4dabdacb0118adb522dedbec7"
+        },
+        {
+          "run_id": "33037653149",
+          "at": "2026-08-27T03:54:04Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "7702ccd7d8dea6b4dabdacb0118adb522dedbec7"
+        },
+        {
+          "run_id": "33043456393",
+          "at": "2026-08-27T05:45:21Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "7702ccd7d8dea6b4dabdacb0118adb522dedbec7"
+        },
+        {
+          "run_id": "33045010661",
+          "at": "2026-08-27T06:12:58Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "ff450cb3a99bc725db7fe5a60b0fc72963dcd7ec"
+        },
+        {
+          "run_id": "33046699041",
+          "at": "2026-08-27T06:41:05Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "ff450cb3a99bc725db7fe5a60b0fc72963dcd7ec"
+        },
+        {
+          "run_id": "33049087211",
+          "at": "2026-08-27T07:18:25Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "bdd3afb15cb83fc48a1e2478a9aa2e1e7dae42bd"
+        },
+        {
+          "run_id": "33051071766",
+          "at": "2026-08-27T07:47:02Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "4a5d2bd262c8d186b86a31e14fbca2ee4f13e43d"
+        },
+        {
+          "run_id": "33052436085",
+          "at": "2026-08-27T08:05:45Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
+        },
+        {
+          "run_id": "33053035663",
+          "at": "2026-08-27T08:13:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
+        },
+        {
+          "run_id": "33053089011",
+          "at": "2026-08-27T08:14:33Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
+        },
+        {
+          "run_id": "33054430090",
+          "at": "2026-08-27T08:32:51Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "453f409a704e0b3ba2dbf399a1d64ad4d3764ffa"
+        },
+        {
+          "run_id": "33055417584",
+          "at": "2026-08-27T08:46:30Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "453f409a704e0b3ba2dbf399a1d64ad4d3764ffa"
+        },
+        {
+          "run_id": "33055926215",
+          "at": "2026-08-27T08:54:21Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "453f409a704e0b3ba2dbf399a1d64ad4d3764ffa"
+        },
+        {
+          "run_id": "33056250805",
+          "at": "2026-08-27T08:57:26Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "453f409a704e0b3ba2dbf399a1d64ad4d3764ffa"
+        },
+        {
+          "run_id": "33064003576",
+          "at": "2026-08-27T10:40:48Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
+        },
+        {
+          "run_id": "33064798067",
+          "at": "2026-08-27T10:52:08Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
+        },
+        {
+          "run_id": "33065501422",
+          "at": "2026-08-27T11:01:46Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
+        },
+        {
+          "run_id": "33070168329",
+          "at": "2026-08-27T12:05:39Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
+        },
+        {
+          "run_id": "33071380402",
+          "at": "2026-08-27T12:21:15Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "894f603aa2546c5d4f112c9224932c8b4cee23b0"
+        },
+        {
+          "run_id": "33071714784",
+          "at": "2026-08-27T12:25:41Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "894f603aa2546c5d4f112c9224932c8b4cee23b0"
+        },
+        {
+          "run_id": "33074998236",
+          "at": "2026-08-27T13:05:59Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33076427143",
+          "at": "2026-08-27T13:23:05Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33077276343",
+          "at": "2026-08-27T13:32:41Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33078209196",
+          "at": "2026-08-27T13:43:14Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33082978648",
+          "at": "2026-08-27T14:35:23Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33087766810",
+          "at": "2026-08-27T15:26:54Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33092811582",
+          "at": "2026-08-27T16:22:58Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33106232181",
+          "at": "2026-08-27T19:00:34Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33114487225",
+          "at": "2026-08-27T20:41:40Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33123452439",
+          "at": "2026-08-27T22:41:47Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33126406148",
+          "at": "2026-08-27T23:29:35Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33127250026",
+          "at": "2026-08-27T23:43:57Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33130282035",
+          "at": "2026-08-28T00:37:54Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33132207650",
+          "at": "2026-08-28T01:14:44Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33132767779",
+          "at": "2026-08-28T01:25:35Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33133384547",
+          "at": "2026-08-28T01:37:46Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "0a023b094e9e88ffaca0b1fda02529cef6277f8e"
+        },
+        {
+          "run_id": "33137981322",
+          "at": "2026-08-28T03:08:48Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "run_id": "33138310194",
+          "at": "2026-08-28T03:15:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "run_id": "33139115319",
+          "at": "2026-08-28T03:31:58Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "run_id": "33139203569",
+          "at": "2026-08-28T03:33:54Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "run_id": "33139771699",
+          "at": "2026-08-28T03:45:39Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "1e6e24b0cfc4eeecab3247747da1f2b288ccee6c"
+        }
+      ],
+      "samples_30d": 52,
+      "successes_30d": 52,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
     "workflow::.github/workflows/pr_test.yaml": {
       "kind": "workflow",
       "workflow": "E2E",
       "name": "(workflow aggregate)",
-      "probabilistic": true,
+      "probabilistic": false,
       "observations": [
-        {
-          "run_id": "33028816431",
-          "at": "2026-08-27T01:06:56Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "b5be2d7c1c568561cbc3151a8494a6e2854e06ea"
-        },
-        {
-          "run_id": "33028938246",
-          "at": "2026-08-27T01:09:22Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "fd592777d44ae3bb765f88d5eef422e3315eb338"
-        },
-        {
-          "run_id": "33028842225",
-          "at": "2026-08-27T01:12:26Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "4487ad5773e088d6c4dc1a3f39b05783bb966c4b"
-        },
-        {
-          "run_id": "33029169914",
-          "at": "2026-08-27T01:12:52Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "f1cf3b5d1b78d3dacfd118309710970e538eca7f"
-        },
-        {
-          "run_id": "33029364567",
-          "at": "2026-08-27T01:16:06Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "cb62b13ab1b9664a68ebe1dd8f90e4bddd521214"
-        },
-        {
-          "run_id": "33029546393",
-          "at": "2026-08-27T01:18:59Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "91595ef82777c6862ea6be2dcc55868c2ccf3ffc"
-        },
         {
           "run_id": "33029451826",
           "at": "2026-08-27T01:21:09Z",
@@ -5790,1488 +6792,54 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "a1ea7cd11885a173028c6d688ccda688ef5f5f3a"
+        },
+        {
+          "run_id": "33139550460",
+          "at": "2026-08-28T03:42:05Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "run_id": "33134876573",
+          "at": "2026-08-28T03:42:28Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
+          "run_id": "33139341683",
+          "at": "2026-08-28T03:42:50Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
+        },
+        {
+          "run_id": "33139516572",
+          "at": "2026-08-28T03:43:25Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "run_id": "33139380087",
+          "at": "2026-08-28T03:44:18Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "run_id": "33139562188",
+          "at": "2026-08-28T03:45:17Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes",
       "samples_30d": 240,
       "successes_30d": 47,
       "failures_30d": 193,
       "pass_rate_30d": 0.1958
-    },
-    "workflow::.github/workflows/schedule_weekly_test_a3.yaml": {
-      "kind": "workflow",
-      "workflow": "Weekly-A3",
-      "name": "(workflow aggregate)",
-      "probabilistic": true,
-      "observations": [
-        {
-          "run_id": "33048931657",
-          "at": "2026-08-27T08:41:46Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "bdd3afb15cb83fc48a1e2478a9aa2e1e7dae42bd"
-        },
-        {
-          "run_id": "33066718077",
-          "at": "2026-08-27T12:03:22Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
-        },
-        {
-          "run_id": "33070022214",
-          "at": "2026-08-27T13:30:02Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
-        },
-        {
-          "run_id": "33134851290",
-          "at": "2026-08-28T02:58:22Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
-        },
-        {
-          "run_id": "33136214842",
-          "at": "2026-08-28T03:01:26Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes",
-      "samples_30d": 5,
-      "successes_30d": 1,
-      "failures_30d": 4,
-      "pass_rate_30d": 0.2
-    },
-    "job::Handle /nightly Command::Check user authorization": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Check user authorization",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742198109",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743253012",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743326319",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744490649",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 1,
-      "failures_30d": 3,
-      "pass_rate_30d": 0.25,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Nightly-310P": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Nightly-310P",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416281",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505027",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549700",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744761375",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Nightly-A2": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Nightly-A2",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416614",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505335",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549675",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744761632",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Nightly-A3": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Nightly-A3",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416565",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505272",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549557",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744760461",
-          "at": "2026-08-28T03:25:51Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Nightly-A3-560T": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Nightly-A3-560T",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416532",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505352",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549477",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744761509",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Nightly-A5": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Nightly-A5",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416386",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505217",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549582",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744761318",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Weekly-310P": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Weekly-310P",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416256",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505182",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549836",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744761562",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Weekly-A2": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Weekly-A2",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416277",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505570",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549679",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744761378",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Weekly-A3": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Weekly-A3",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416455",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505384",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549562",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744761680",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "job::Handle /nightly Command::Trigger Weekly-A3-560T": {
-      "kind": "job",
-      "workflow": "Handle /nightly Command",
-      "name": "Trigger Weekly-A3-560T",
-      "probabilistic": true,
-      "observations": [
-        {
-          "job_id": "98742416543",
-          "at": "2026-08-28T03:08:58Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743505522",
-          "at": "2026-08-28T03:16:24Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98743549413",
-          "at": "2026-08-28T03:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "job_id": "98744761155",
-          "at": "2026-08-28T03:24:37Z",
-          "outcome": "success",
-          "conclusion": "skipped",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 4,
-      "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5,
-      "first_detected_at": "2026-08-28T03:41:52Z",
-      "probability_reason": "same_commit_mixed_outcomes"
-    },
-    "workflow::.github/workflows/pr_cancel_command.yml": {
-      "kind": "workflow",
-      "workflow": "Handle /cancel Command",
-      "name": "(workflow aggregate)",
-      "probabilistic": false,
-      "observations": [
-        {
-          "run_id": "33059657165",
-          "at": "2026-08-27T09:41:49Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "72059e41b239e2ea469a0fb2d9eb0cb7ee4e3085"
-        }
-      ],
-      "samples_30d": 1,
-      "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
-    },
-    "workflow::.github/workflows/pr_cherry_pick_command.yml": {
-      "kind": "workflow",
-      "workflow": "Handle /cherry-pick Command",
-      "name": "(workflow aggregate)",
-      "probabilistic": false,
-      "observations": [
-        {
-          "run_id": "33076802535",
-          "at": "2026-08-27T13:27:44Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        }
-      ],
-      "samples_30d": 1,
-      "successes_30d": 0,
-      "failures_30d": 1,
-      "pass_rate_30d": 0.0
-    },
-    "workflow::.github/workflows/pr_close_cancel_job.yaml": {
-      "kind": "workflow",
-      "workflow": "Cancel runs on PR close",
-      "name": "(workflow aggregate)",
-      "probabilistic": false,
-      "observations": [
-        {
-          "run_id": "33033053712",
-          "at": "2026-08-27T02:22:06Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "512d7ef4c97ba7825e230cf3b1676c6837ec07e5"
-        },
-        {
-          "run_id": "33033081514",
-          "at": "2026-08-27T02:22:43Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6835b5a232bc892eb3bc1a1338d1b01ad01a6c58"
-        },
-        {
-          "run_id": "33033182400",
-          "at": "2026-08-27T02:24:36Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "cf2ce4d38c936243033df9fad4a737c9ad976f19"
-        },
-        {
-          "run_id": "33033195959",
-          "at": "2026-08-27T02:25:25Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "055d8358268c4cc954e5f8813ea82923fc0b1883"
-        },
-        {
-          "run_id": "33034315974",
-          "at": "2026-08-27T02:46:57Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "fca76e5689062c37e9f2b7a58281d11ad7dd6098"
-        },
-        {
-          "run_id": "33035551152",
-          "at": "2026-08-27T03:10:58Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "527cd80fc1b4aa2e915a660ea30f5fea4e3f07bb"
-        },
-        {
-          "run_id": "33037107907",
-          "at": "2026-08-27T03:42:02Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "386e8c219baa1acb8b24f2fff3caf6d66802fbdf"
-        },
-        {
-          "run_id": "33046794540",
-          "at": "2026-08-27T06:42:18Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "69ea22e7d013fd36c6387f5bd9447a3e416e267a"
-        },
-        {
-          "run_id": "33053612623",
-          "at": "2026-08-27T08:21:29Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "a6fe8cda1942bc7c8a03d727003ed2049f839580"
-        },
-        {
-          "run_id": "33054993212",
-          "at": "2026-08-27T08:39:57Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "8a3803c5df13cf3db697f32b9a3d14d694d47fd1"
-        },
-        {
-          "run_id": "33066934791",
-          "at": "2026-08-27T11:21:04Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "41293f7354559afd9978e9ec96667d0cae8f5743"
-        },
-        {
-          "run_id": "33071052431",
-          "at": "2026-08-27T12:16:39Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "12b77b78b63003a7b4f91e56bae335165778cc97"
-        },
-        {
-          "run_id": "33073156120",
-          "at": "2026-08-27T12:43:11Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "8b4f03e0b24a378109b5e4cd362d548d279fffff"
-        },
-        {
-          "run_id": "33077445403",
-          "at": "2026-08-27T13:33:37Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "a900d7ac4318b8da9bc4847a19e602c1d81c4ddb"
-        },
-        {
-          "run_id": "33077442614",
-          "at": "2026-08-27T13:33:39Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "771f3f605d3f3e9fa525c54a22d4a2929517e1cd"
-        },
-        {
-          "run_id": "33080418123",
-          "at": "2026-08-27T14:07:12Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "c516dbe7498b76e9e8b1016289488885c629f489"
-        },
-        {
-          "run_id": "33080713061",
-          "at": "2026-08-27T14:10:27Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "f835252d2a3e1e45944f7fec7bad6f5187331084"
-        },
-        {
-          "run_id": "33132480093",
-          "at": "2026-08-28T01:19:33Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "89d2cd8e288227907924279b1053e6e81581ccf1"
-        },
-        {
-          "run_id": "33132887229",
-          "at": "2026-08-28T01:27:37Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "0b98ebffa890be5e665b5271805ae6dece67c636"
-        },
-        {
-          "run_id": "33139351635",
-          "at": "2026-08-28T03:36:58Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "9c0c47eb835f47ca3df4849285cf22a43fd23a37"
-        }
-      ],
-      "samples_30d": 20,
-      "successes_30d": 9,
-      "failures_30d": 11,
-      "pass_rate_30d": 0.45
-    },
-    "workflow::.github/workflows/pr_close_job.yaml": {
-      "kind": "workflow",
-      "workflow": "Cancel runs on PR close",
-      "name": "(workflow aggregate)",
-      "probabilistic": false,
-      "observations": [
-        {
-          "run_id": "33049351937",
-          "at": "2026-08-27T07:22:15Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "5cb357014464ebf814072c1b6fc95b79ea35be1a"
-        },
-        {
-          "run_id": "33049592041",
-          "at": "2026-08-27T07:25:09Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "eb9fc7eff1d088f64efea26c812012a3c19d187f"
-        },
-        {
-          "run_id": "33049597598",
-          "at": "2026-08-27T07:26:05Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "d6dd57a3a4a8f35cbe69ef5f393f4fc1e675112a"
-        },
-        {
-          "run_id": "33050838476",
-          "at": "2026-08-27T07:43:29Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "2c686b6ead1c9e9cfe33593bcd5a574d6507a203"
-        },
-        {
-          "run_id": "33050868455",
-          "at": "2026-08-27T07:43:55Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "6d24b89e7d2b86c80e3f37251fe66f1215f628db"
-        },
-        {
-          "run_id": "33051389780",
-          "at": "2026-08-27T07:51:44Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "d83dd21f58edac577be0f9ba33c3ae3576f81156"
-        },
-        {
-          "run_id": "33052020159",
-          "at": "2026-08-27T07:59:45Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "a6a246a86fb0e0dfb9424bbd88e6eb766a277ef1"
-        },
-        {
-          "run_id": "33053110728",
-          "at": "2026-08-27T08:14:20Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
-        },
-        {
-          "run_id": "33053231281",
-          "at": "2026-08-27T08:17:02Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
-        },
-        {
-          "run_id": "33053553294",
-          "at": "2026-08-27T08:21:13Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "d2f5290da2de4419d10c06fdf8fc22aeb064e634"
-        },
-        {
-          "run_id": "33053612072",
-          "at": "2026-08-27T08:21:31Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "a6fe8cda1942bc7c8a03d727003ed2049f839580"
-        },
-        {
-          "run_id": "33053597833",
-          "at": "2026-08-27T08:22:01Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "a92376ee1656d929ae09ab80425b90062a898073"
-        },
-        {
-          "run_id": "33053614563",
-          "at": "2026-08-27T08:22:08Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "dd052ef8857899dd9192ed24a1bd95273deb8646"
-        },
-        {
-          "run_id": "33054982651",
-          "at": "2026-08-27T08:39:49Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "7bdb5cf39411daa5755ed7ab8ee17db03a9a3fd6"
-        },
-        {
-          "run_id": "33054993668",
-          "at": "2026-08-27T08:39:59Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "8a3803c5df13cf3db697f32b9a3d14d694d47fd1"
-        },
-        {
-          "run_id": "33055346130",
-          "at": "2026-08-27T08:44:43Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "d6fd2fe96f9ee29a6fdd3c9d2ead7afcb1a46f0c"
-        },
-        {
-          "run_id": "33056434562",
-          "at": "2026-08-27T08:59:30Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "249b1e3ad7ecbc9d4a9ae13534a2f77b930f74ac"
-        },
-        {
-          "run_id": "33056782134",
-          "at": "2026-08-27T09:05:03Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "f356066358b6227d3df7395f54f15c9ac936cb63"
-        },
-        {
-          "run_id": "33057223431",
-          "at": "2026-08-27T09:10:02Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "cadb5c88f7a7a283c48976a77499e700940eedce"
-        },
-        {
-          "run_id": "33060035036",
-          "at": "2026-08-27T09:47:14Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "2002944f0145367b17912d7d254459993a6a6f47"
-        },
-        {
-          "run_id": "33061104565",
-          "at": "2026-08-27T10:02:14Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "46929f0635312aa1b46f0c213dd7b7a56c32c761"
-        },
-        {
-          "run_id": "33062912509",
-          "at": "2026-08-27T10:25:24Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "5ccefce9e0387fd0dc05e516ba75e2289658b4e5"
-        },
-        {
-          "run_id": "33062927716",
-          "at": "2026-08-27T10:26:25Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "46055a3e343a38cf6be16433e4adc1406054453c"
-        },
-        {
-          "run_id": "33064538898",
-          "at": "2026-08-27T10:48:13Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "852216d62d3970cd21f8d99c5555c145d26eeb85"
-        },
-        {
-          "run_id": "33066934653",
-          "at": "2026-08-27T11:21:06Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "41293f7354559afd9978e9ec96667d0cae8f5743"
-        },
-        {
-          "run_id": "33070994846",
-          "at": "2026-08-27T12:16:24Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "1f09a9e2b518fe04e6dacd5d2a4473ec23d9454f"
-        },
-        {
-          "run_id": "33071052236",
-          "at": "2026-08-27T12:16:40Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "12b77b78b63003a7b4f91e56bae335165778cc97"
-        },
-        {
-          "run_id": "33072912707",
-          "at": "2026-08-27T12:40:35Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "fa3551a3bfb9b652a831051aa9d97068af0c188f"
-        },
-        {
-          "run_id": "33073155829",
-          "at": "2026-08-27T12:43:13Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "8b4f03e0b24a378109b5e4cd362d548d279fffff"
-        },
-        {
-          "run_id": "33077445758",
-          "at": "2026-08-27T13:34:04Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "a900d7ac4318b8da9bc4847a19e602c1d81c4ddb"
-        },
-        {
-          "run_id": "33077443001",
-          "at": "2026-08-27T13:34:04Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "771f3f605d3f3e9fa525c54a22d4a2929517e1cd"
-        },
-        {
-          "run_id": "33077465864",
-          "at": "2026-08-27T13:34:22Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "09a8396e5c099e63ecec04a7b831e95137645bc8"
-        },
-        {
-          "run_id": "33077483623",
-          "at": "2026-08-27T13:34:34Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "862b731e612d1801a159807a093f4fc2c73bb999"
-        },
-        {
-          "run_id": "33077503329",
-          "at": "2026-08-27T13:34:49Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "51a3f797d08a756ac8a28362c1a3e3880ec45138"
-        },
-        {
-          "run_id": "33078671456",
-          "at": "2026-08-27T13:48:03Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33079226139",
-          "at": "2026-08-27T13:54:04Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "cc19593d6fdfa0cd5ea29fbb07958007c8799b8b"
-        },
-        {
-          "run_id": "33080418209",
-          "at": "2026-08-27T14:07:17Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "c516dbe7498b76e9e8b1016289488885c629f489"
-        },
-        {
-          "run_id": "33080714108",
-          "at": "2026-08-27T14:10:33Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f835252d2a3e1e45944f7fec7bad6f5187331084"
-        },
-        {
-          "run_id": "33132318413",
-          "at": "2026-08-28T01:16:24Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6254169f82a21a67269d6637978e1eed760e241c"
-        },
-        {
-          "run_id": "33132479865",
-          "at": "2026-08-28T01:19:36Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "89d2cd8e288227907924279b1053e6e81581ccf1"
-        },
-        {
-          "run_id": "33132887182",
-          "at": "2026-08-28T01:27:34Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "0b98ebffa890be5e665b5271805ae6dece67c636"
-        },
-        {
-          "run_id": "33132898004",
-          "at": "2026-08-28T01:28:17Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "3c4927e6d570b65fac556049813fb8c343296123"
-        },
-        {
-          "run_id": "33132999634",
-          "at": "2026-08-28T01:30:29Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "ba14b852dedb0fbeb1bdec0124c9eb6db6ba7a96"
-        },
-        {
-          "run_id": "33133421499",
-          "at": "2026-08-28T01:38:06Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "7a87deab7118c779a3635939606c6f329b1260b4"
-        },
-        {
-          "run_id": "33133421770",
-          "at": "2026-08-28T01:38:08Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "cbcea5da74748451246cb801e7af20fee2b9cfd2"
-        },
-        {
-          "run_id": "33133421849",
-          "at": "2026-08-28T01:38:08Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "bcabb1c30ecbf706b5235ddd25e2e2608c0774d5"
-        },
-        {
-          "run_id": "33133423738",
-          "at": "2026-08-28T01:38:30Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "1102bdf5734c0f43049acb95cbf880735c6f0b13"
-        },
-        {
-          "run_id": "33133423655",
-          "at": "2026-08-28T01:38:31Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "de3e50ea0828a135376e20c9c477ff7535c41d4f"
-        },
-        {
-          "run_id": "33133424342",
-          "at": "2026-08-28T01:38:32Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "b264c21623bccb1066ea4545b26d617a0cd4a19e"
-        },
-        {
-          "run_id": "33133426142",
-          "at": "2026-08-28T01:38:41Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "4d8c0a79644b23b2f0dfbddb65ebfcaa4cc00bc9"
-        },
-        {
-          "run_id": "33133426012",
-          "at": "2026-08-28T01:38:42Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f001f91c09e8b93a6bca75e42b4b08359ec174da"
-        },
-        {
-          "run_id": "33133426335",
-          "at": "2026-08-28T01:38:43Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "581357e7777d7a0d2410409c4254d715805b03cf"
-        },
-        {
-          "run_id": "33133428284",
-          "at": "2026-08-28T01:38:53Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "663c1332dd6d68af8be53e38609b637ae7e445bc"
-        },
-        {
-          "run_id": "33134078290",
-          "at": "2026-08-28T01:51:00Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "eb772074d015a22f3e86337dc80ca003dc0b44d0"
-        },
-        {
-          "run_id": "33134699599",
-          "at": "2026-08-28T02:04:41Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "138d60fcb0c0c619332051484ce3993c6826b8e8"
-        },
-        {
-          "run_id": "33134779037",
-          "at": "2026-08-28T02:05:05Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "3ee8249f3075dd7c9b2404a54fcc98414466d1cf"
-        },
-        {
-          "run_id": "33135771693",
-          "at": "2026-08-28T02:24:28Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "737409e3b2f2148db842981cf02e9c3161486f75"
-        },
-        {
-          "run_id": "33135951715",
-          "at": "2026-08-28T02:29:20Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "a629481bcee15097137f11ac9bcee0f2362b2d6b"
-        },
-        {
-          "run_id": "33137422993",
-          "at": "2026-08-28T02:57:13Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "063fbdfb7c43eae84858232403a4d5693d1d9fec"
-        },
-        {
-          "run_id": "33138357471",
-          "at": "2026-08-28T03:16:31Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "run_id": "33139351459",
-          "at": "2026-08-28T03:36:52Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "9c0c47eb835f47ca3df4849285cf22a43fd23a37"
-        },
-        {
-          "run_id": "33139342809",
-          "at": "2026-08-28T03:37:13Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "75c02aa6445dc41f49e557258bd6d5c470270999"
-        }
-      ],
-      "samples_30d": 62,
-      "successes_30d": 47,
-      "failures_30d": 15,
-      "pass_rate_30d": 0.7581
-    },
-    "workflow::.github/workflows/pr_rerun_command.yml": {
-      "kind": "workflow",
-      "workflow": "Handle /rerun Command",
-      "name": "(workflow aggregate)",
-      "probabilistic": false,
-      "observations": [
-        {
-          "run_id": "33029255900",
-          "at": "2026-08-27T01:11:35Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "e8d9c1ac39ef1b09f1502a62eab7bc9d31fccc42"
-        },
-        {
-          "run_id": "33029925754",
-          "at": "2026-08-27T01:24:12Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "e8d9c1ac39ef1b09f1502a62eab7bc9d31fccc42"
-        },
-        {
-          "run_id": "33030232498",
-          "at": "2026-08-27T01:30:39Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33030624896",
-          "at": "2026-08-27T01:37:17Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33030709608",
-          "at": "2026-08-27T01:41:12Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33030795178",
-          "at": "2026-08-27T01:41:28Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33031011622",
-          "at": "2026-08-27T01:44:54Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33031008140",
-          "at": "2026-08-27T01:47:20Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33031822856",
-          "at": "2026-08-27T02:00:01Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33033366870",
-          "at": "2026-08-27T02:30:50Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "f8958a8496bad5d2c5a7939e8aa53d8168c5c813"
-        },
-        {
-          "run_id": "33035671445",
-          "at": "2026-08-27T03:13:43Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "76421f173d68d9f2dae02b43b93cfee0331fa2bf"
-        },
-        {
-          "run_id": "33037276745",
-          "at": "2026-08-27T03:45:47Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "7702ccd7d8dea6b4dabdacb0118adb522dedbec7"
-        },
-        {
-          "run_id": "33037653149",
-          "at": "2026-08-27T03:54:04Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "7702ccd7d8dea6b4dabdacb0118adb522dedbec7"
-        },
-        {
-          "run_id": "33043456393",
-          "at": "2026-08-27T05:45:21Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "7702ccd7d8dea6b4dabdacb0118adb522dedbec7"
-        },
-        {
-          "run_id": "33045010661",
-          "at": "2026-08-27T06:12:58Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "ff450cb3a99bc725db7fe5a60b0fc72963dcd7ec"
-        },
-        {
-          "run_id": "33046699041",
-          "at": "2026-08-27T06:41:05Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "ff450cb3a99bc725db7fe5a60b0fc72963dcd7ec"
-        },
-        {
-          "run_id": "33049087211",
-          "at": "2026-08-27T07:18:25Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "bdd3afb15cb83fc48a1e2478a9aa2e1e7dae42bd"
-        },
-        {
-          "run_id": "33051071766",
-          "at": "2026-08-27T07:47:02Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "4a5d2bd262c8d186b86a31e14fbca2ee4f13e43d"
-        },
-        {
-          "run_id": "33052436085",
-          "at": "2026-08-27T08:05:45Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
-        },
-        {
-          "run_id": "33053035663",
-          "at": "2026-08-27T08:13:49Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
-        },
-        {
-          "run_id": "33053089011",
-          "at": "2026-08-27T08:14:33Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "251334c84ca9113622f2dbda70cf17867379ab0b"
-        },
-        {
-          "run_id": "33054430090",
-          "at": "2026-08-27T08:32:51Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "453f409a704e0b3ba2dbf399a1d64ad4d3764ffa"
-        },
-        {
-          "run_id": "33055417584",
-          "at": "2026-08-27T08:46:30Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "453f409a704e0b3ba2dbf399a1d64ad4d3764ffa"
-        },
-        {
-          "run_id": "33055926215",
-          "at": "2026-08-27T08:54:21Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "453f409a704e0b3ba2dbf399a1d64ad4d3764ffa"
-        },
-        {
-          "run_id": "33056250805",
-          "at": "2026-08-27T08:57:26Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "453f409a704e0b3ba2dbf399a1d64ad4d3764ffa"
-        },
-        {
-          "run_id": "33064003576",
-          "at": "2026-08-27T10:40:48Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
-        },
-        {
-          "run_id": "33064798067",
-          "at": "2026-08-27T10:52:08Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
-        },
-        {
-          "run_id": "33065501422",
-          "at": "2026-08-27T11:01:46Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
-        },
-        {
-          "run_id": "33070168329",
-          "at": "2026-08-27T12:05:39Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
-        },
-        {
-          "run_id": "33071380402",
-          "at": "2026-08-27T12:21:15Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "894f603aa2546c5d4f112c9224932c8b4cee23b0"
-        },
-        {
-          "run_id": "33071714784",
-          "at": "2026-08-27T12:25:41Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "894f603aa2546c5d4f112c9224932c8b4cee23b0"
-        },
-        {
-          "run_id": "33074998236",
-          "at": "2026-08-27T13:05:59Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33076427143",
-          "at": "2026-08-27T13:23:05Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33077276343",
-          "at": "2026-08-27T13:32:41Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33078209196",
-          "at": "2026-08-27T13:43:14Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33082978648",
-          "at": "2026-08-27T14:35:23Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33087766810",
-          "at": "2026-08-27T15:26:54Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33092811582",
-          "at": "2026-08-27T16:22:58Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33106232181",
-          "at": "2026-08-27T19:00:34Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33114487225",
-          "at": "2026-08-27T20:41:40Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33123452439",
-          "at": "2026-08-27T22:41:47Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33126406148",
-          "at": "2026-08-27T23:29:35Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33127250026",
-          "at": "2026-08-27T23:43:57Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33130282035",
-          "at": "2026-08-28T00:37:54Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33132207650",
-          "at": "2026-08-28T01:14:44Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33132767779",
-          "at": "2026-08-28T01:25:35Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
-        },
-        {
-          "run_id": "33133384547",
-          "at": "2026-08-28T01:37:46Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "0a023b094e9e88ffaca0b1fda02529cef6277f8e"
-        },
-        {
-          "run_id": "33137981322",
-          "at": "2026-08-28T03:08:48Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "run_id": "33138310194",
-          "at": "2026-08-28T03:15:49Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "run_id": "33139115319",
-          "at": "2026-08-28T03:31:58Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        },
-        {
-          "run_id": "33139203569",
-          "at": "2026-08-28T03:33:54Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
-        }
-      ],
-      "samples_30d": 51,
-      "successes_30d": 51,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
     },
     "workflow::.github/workflows/push_build_csrc_cache.yaml": {
       "kind": "workflow",
@@ -7519,11 +7087,18 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "9d31792d0ffe35d06b91df1d88d6e212d83a0dac"
+        },
+        {
+          "run_id": "33139516463",
+          "at": "2026-08-28T03:43:23Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
         }
       ],
-      "samples_30d": 27,
+      "samples_30d": 28,
       "successes_30d": 0,
-      "failures_30d": 27,
+      "failures_30d": 28,
       "pass_rate_30d": 0.0
     },
     "workflow::.github/workflows/schedule_doc_linkcheck.yaml": {
@@ -8301,12 +7876,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "run_id": "33139614488",
+          "at": "2026-08-28T03:42:51Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "eec2535c84c972866da3a634944f79d7bf9414be"
+        },
+        {
+          "run_id": "33139689349",
+          "at": "2026-08-28T03:44:22Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "ef5aecd0883218f14ccf5109f3173ccaa39f177e"
         }
       ],
-      "samples_30d": 110,
-      "successes_30d": 103,
+      "samples_30d": 112,
+      "successes_30d": 105,
       "failures_30d": 7,
-      "pass_rate_30d": 0.9364
+      "pass_rate_30d": 0.9375
     },
     "workflow::.github/workflows/schedule_image_build_and_push.yaml": {
       "kind": "workflow",
@@ -8592,12 +8181,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "run_id": "33135756492",
+          "at": "2026-08-28T03:44:08Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 7,
       "successes_30d": 1,
-      "failures_30d": 5,
-      "pass_rate_30d": 0.1667
+      "failures_30d": 6,
+      "pass_rate_30d": 0.1429
     },
     "workflow::.github/workflows/schedule_nightly_test_a5.yaml": {
       "kind": "workflow",
@@ -8688,6 +8284,53 @@
       "successes_30d": 1,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
+    },
+    "workflow::.github/workflows/schedule_weekly_test_a3.yaml": {
+      "kind": "workflow",
+      "workflow": "Weekly-A3",
+      "name": "(workflow aggregate)",
+      "probabilistic": false,
+      "observations": [
+        {
+          "run_id": "33048931657",
+          "at": "2026-08-27T08:41:46Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "bdd3afb15cb83fc48a1e2478a9aa2e1e7dae42bd"
+        },
+        {
+          "run_id": "33066718077",
+          "at": "2026-08-27T12:03:22Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
+        },
+        {
+          "run_id": "33070022214",
+          "at": "2026-08-27T13:30:02Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "23c8bf712c5c2963e12c8488551bcc7837f7fca7"
+        },
+        {
+          "run_id": "33134851290",
+          "at": "2026-08-28T02:58:22Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
+        {
+          "run_id": "33136214842",
+          "at": "2026-08-28T03:01:26Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 5,
+      "successes_30d": 1,
+      "failures_30d": 4,
+      "pass_rate_30d": 0.2
     },
     "workflow::.github/workflows/test-liqo-sz-lab.yaml": {
       "kind": "workflow",
@@ -9594,12 +9237,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "f9d40a605561d1f31960e02d8f3df80fb3fbac82"
+        },
+        {
+          "job_id": "98747257813",
+          "at": "2026-08-28T03:42:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::ci-gate": {
       "kind": "job",
@@ -10222,12 +9872,54 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "job_id": "98747257703",
+          "at": "2026-08-28T03:41:36Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
+        },
+        {
+          "job_id": "98747415147",
+          "at": "2026-08-28T03:42:04Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "job_id": "98747364333",
+          "at": "2026-08-28T03:42:27Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
+          "job_id": "98747611650",
+          "at": "2026-08-28T03:43:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "job_id": "98747633703",
+          "at": "2026-08-28T03:44:17Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "job_id": "98747791774",
+          "at": "2026-08-28T03:45:16Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "samples_30d": 88,
+      "samples_30d": 94,
       "successes_30d": 4,
-      "failures_30d": 84,
-      "pass_rate_30d": 0.0455
+      "failures_30d": 90,
+      "pass_rate_30d": 0.0426
     },
     "job::E2E::ensure-csrc-cache": {
       "kind": "job",
@@ -10789,15 +10481,50 @@
           "head_sha": "d407431f423b46601f8d44aa708e989ff764b078"
         },
         {
+          "job_id": "98747258384",
+          "at": "2026-08-28T03:41:00Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
+        },
+        {
           "job_id": "98747335663",
           "at": "2026-08-28T03:41:31Z",
           "outcome": "success",
           "conclusion": "skipped",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "job_id": "98747414270",
+          "at": "2026-08-28T03:42:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "job_id": "98747611638",
+          "at": "2026-08-28T03:43:24Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "job_id": "98747633941",
+          "at": "2026-08-28T03:43:32Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "job_id": "98747791843",
+          "at": "2026-08-28T03:44:34Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "samples_30d": 80,
-      "successes_30d": 80,
+      "samples_30d": 85,
+      "successes_30d": 85,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -10836,6 +10563,13 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         },
         {
+          "job_id": "98734365727",
+          "at": "2026-08-28T02:17:52Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98739351384",
           "at": "2026-08-28T02:49:51Z",
           "outcome": "success",
@@ -10850,8 +10584,8 @@
           "head_sha": "2c40b29d9b4077bd8fe1d24ea531a235e034bbc0"
         }
       ],
-      "samples_30d": 6,
-      "successes_30d": 6,
+      "samples_30d": 7,
+      "successes_30d": 7,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -10989,6 +10723,13 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         },
         {
+          "job_id": "98733985005",
+          "at": "2026-08-28T02:17:52Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98739011412",
           "at": "2026-08-28T02:49:51Z",
           "outcome": "success",
@@ -10996,8 +10737,8 @@
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
         }
       ],
-      "samples_30d": 8,
-      "successes_30d": 8,
+      "samples_30d": 9,
+      "successes_30d": 9,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -11081,10 +10822,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "769b79ad6463e2c2eeec423cc31bf3413d9d959a"
+        },
+        {
+          "job_id": "98747257481",
+          "at": "2026-08-28T03:42:20Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
         }
       ],
-      "samples_30d": 3,
-      "successes_30d": 3,
+      "samples_30d": 4,
+      "successes_30d": 4,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -11252,6 +11000,13 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "5ce7d8ea319ff5007916b9f8d604ea34d93252ff"
+        },
+        {
+          "job_id": "98732497981",
+          "at": "2026-08-28T02:10:42Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         },
         {
           "job_id": "98733518582",
@@ -11730,17 +11485,52 @@
           "head_sha": "d407431f423b46601f8d44aa708e989ff764b078"
         },
         {
+          "job_id": "98746440698",
+          "at": "2026-08-28T03:39:36Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
+        },
+        {
           "job_id": "98746558259",
           "at": "2026-08-28T03:40:22Z",
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "job_id": "98746558804",
+          "at": "2026-08-28T03:40:43Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "job_id": "98746999259",
+          "at": "2026-08-28T03:42:00Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "job_id": "98747090870",
+          "at": "2026-08-28T03:42:04Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "job_id": "98747125872",
+          "at": "2026-08-28T03:43:00Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "samples_30d": 89,
-      "successes_30d": 40,
-      "failures_30d": 49,
-      "pass_rate_30d": 0.4494
+      "samples_30d": 95,
+      "successes_30d": 43,
+      "failures_30d": 52,
+      "pass_rate_30d": 0.4526
     },
     "job::E2E::Recommend tests from coverage": {
       "kind": "job",
@@ -11887,6 +11677,13 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "5ce7d8ea319ff5007916b9f8d604ea34d93252ff"
+        },
+        {
+          "job_id": "98733225964",
+          "at": "2026-08-28T02:13:47Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         },
         {
           "job_id": "98733997083",
@@ -12377,12 +12174,40 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "job_id": "98747215044",
+          "at": "2026-08-28T03:41:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "job_id": "98747404025",
+          "at": "2026-08-28T03:42:00Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "job_id": "98747414034",
+          "at": "2026-08-28T03:42:04Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "job_id": "98747550374",
+          "at": "2026-08-28T03:43:00Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "samples_30d": 90,
-      "successes_30d": 67,
-      "failures_30d": 23,
-      "pass_rate_30d": 0.7444
+      "samples_30d": 95,
+      "successes_30d": 71,
+      "failures_30d": 24,
+      "pass_rate_30d": 0.7474
     },
     "job::E2E::run-selected-tests": {
       "kind": "job",
@@ -12958,15 +12783,50 @@
           "head_sha": "d407431f423b46601f8d44aa708e989ff764b078"
         },
         {
+          "job_id": "98747258069",
+          "at": "2026-08-28T03:41:00Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
+        },
+        {
           "job_id": "98747335696",
           "at": "2026-08-28T03:41:32Z",
           "outcome": "success",
           "conclusion": "skipped",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "job_id": "98747414574",
+          "at": "2026-08-28T03:42:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "job_id": "98747611391",
+          "at": "2026-08-28T03:43:24Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "job_id": "98747634337",
+          "at": "2026-08-28T03:43:32Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "job_id": "98747792344",
+          "at": "2026-08-28T03:44:34Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "samples_30d": 82,
-      "successes_30d": 82,
+      "samples_30d": 87,
+      "successes_30d": 87,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13497,10 +13357,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365853",
+          "at": "2026-08-28T03:08:01Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13544,10 +13411,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365790",
+          "at": "2026-08-28T02:56:05Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13591,10 +13465,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365819",
+          "at": "2026-08-28T03:20:17Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13633,6 +13514,13 @@
           "head_sha": "2c40b29d9b4077bd8fe1d24ea531a235e034bbc0"
         },
         {
+          "job_id": "98734365875",
+          "at": "2026-08-28T03:19:11Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98732346260",
           "at": "2026-08-28T03:19:18Z",
           "outcome": "success",
@@ -13640,8 +13528,8 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13685,10 +13573,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365813",
+          "at": "2026-08-28T03:35:38Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13732,10 +13627,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365761",
+          "at": "2026-08-28T03:23:13Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13760,6 +13662,13 @@
           "head_sha": "c004084312de9591e75bf38f6a4c58ff439d22cf"
         },
         {
+          "job_id": "98734365952",
+          "at": "2026-08-28T03:21:46Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98730589442",
           "at": "2026-08-28T03:24:43Z",
           "outcome": "success",
@@ -13781,8 +13690,8 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13821,6 +13730,13 @@
           "head_sha": "2c40b29d9b4077bd8fe1d24ea531a235e034bbc0"
         },
         {
+          "job_id": "98734365785",
+          "at": "2026-08-28T03:05:10Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98732346378",
           "at": "2026-08-28T03:07:00Z",
           "outcome": "success",
@@ -13828,8 +13744,8 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13873,10 +13789,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365973",
+          "at": "2026-08-28T03:35:30Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13920,10 +13843,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365881",
+          "at": "2026-08-28T03:25:43Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -13948,6 +13878,13 @@
           "head_sha": "c004084312de9591e75bf38f6a4c58ff439d22cf"
         },
         {
+          "job_id": "98734365806",
+          "at": "2026-08-28T03:05:55Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98730589487",
           "at": "2026-08-28T03:11:47Z",
           "outcome": "success",
@@ -13969,8 +13906,8 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -14014,10 +13951,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365870",
+          "at": "2026-08-28T03:23:56Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -14061,10 +14005,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365810",
+          "at": "2026-08-28T02:53:03Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -14108,10 +14059,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365820",
+          "at": "2026-08-28T03:01:52Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -14148,12 +14106,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365793",
+          "at": "2026-08-28T02:55:31Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 4,
+      "samples_30d": 5,
       "successes_30d": 2,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.5
+      "failures_30d": 3,
+      "pass_rate_30d": 0.4
     },
     "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 2-2)": {
       "kind": "job",
@@ -14195,12 +14160,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365863",
+          "at": "2026-08-28T03:14:57Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 4,
+      "samples_30d": 6,
+      "successes_30d": 5,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8
+      "pass_rate_30d": 0.8333
     },
     "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / cpu-0 card-(part 1-1)": {
       "kind": "job",
@@ -14242,10 +14214,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365845",
+          "at": "2026-08-28T02:23:42Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -14282,12 +14261,19 @@
           "outcome": "success",
           "conclusion": "skipped",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98746459041",
+          "at": "2026-08-28T03:35:39Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 4,
-      "successes_30d": 3,
+      "samples_30d": 5,
+      "successes_30d": 4,
       "failures_30d": 1,
-      "pass_rate_30d": 0.75
+      "pass_rate_30d": 0.8
     },
     "job::E2E::run-selected-tests (v0.26.0) / 310p-1 card-(part 1-1)": {
       "kind": "job",
@@ -14647,12 +14633,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734365843",
+          "at": "2026-08-28T03:07:45Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / 310p-4 card-(part 1-1)": {
       "kind": "job",
@@ -14708,12 +14701,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734365907",
+          "at": "2026-08-28T03:05:23Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a2-1 card-(part 1-5)": {
       "kind": "job",
@@ -14769,12 +14769,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365839",
+          "at": "2026-08-28T03:21:29Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a2-1 card-(part 2-5)": {
       "kind": "job",
@@ -14830,12 +14837,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365879",
+          "at": "2026-08-28T03:41:43Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a2-1 card-(part 3-5)": {
       "kind": "job",
@@ -14891,12 +14905,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365895",
+          "at": "2026-08-28T03:39:12Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a2-1 card-(part 4-5)": {
       "kind": "job",
@@ -14952,12 +14973,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365897",
+          "at": "2026-08-28T03:23:36Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a2-1 card-(part 5-5)": {
       "kind": "job",
@@ -14994,6 +15022,13 @@
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
         },
         {
+          "job_id": "98734365833",
+          "at": "2026-08-28T03:18:56Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98730589422",
           "at": "2026-08-28T03:23:09Z",
           "outcome": "success",
@@ -15015,10 +15050,10 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-16 card-(part 1-1)": {
       "kind": "job",
@@ -15093,12 +15128,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734365964",
+          "at": "2026-08-28T03:13:01Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
+      "samples_30d": 8,
       "successes_30d": 6,
-      "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "failures_30d": 2,
+      "pass_rate_30d": 0.75
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-2 card-(part 2-2)": {
       "kind": "job",
@@ -15154,12 +15196,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734365916",
+          "at": "2026-08-28T03:22:20Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-4 card-(part 1-2)": {
       "kind": "job",
@@ -15215,12 +15264,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365959",
+          "at": "2026-08-28T03:25:24Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-4 card-(part 2-2)": {
       "kind": "job",
@@ -15271,6 +15327,13 @@
           "head_sha": "2c40b29d9b4077bd8fe1d24ea531a235e034bbc0"
         },
         {
+          "job_id": "98734365912",
+          "at": "2026-08-28T03:16:20Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98732346306",
           "at": "2026-08-28T03:18:39Z",
           "outcome": "success",
@@ -15278,10 +15341,10 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 4,
+      "samples_30d": 8,
+      "successes_30d": 5,
       "failures_30d": 3,
-      "pass_rate_30d": 0.5714
+      "pass_rate_30d": 0.625
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-8 card-(part 1-1)": {
       "kind": "job",
@@ -15337,12 +15400,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734365939",
+          "at": "2026-08-28T03:13:06Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-800i-2 card-(part 1-2)": {
       "kind": "job",
@@ -15398,12 +15468,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734366022",
+          "at": "2026-08-28T03:13:27Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-800i-2 card-(part 2-2)": {
       "kind": "job",
@@ -15459,12 +15536,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734365979",
+          "at": "2026-08-28T03:22:00Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 7,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8571
+      "pass_rate_30d": 0.875
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-800i-4 card-(part 1-2)": {
       "kind": "job",
@@ -15520,12 +15604,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734365970",
+          "at": "2026-08-28T03:18:13Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 5,
+      "samples_30d": 8,
+      "successes_30d": 6,
       "failures_30d": 2,
-      "pass_rate_30d": 0.7143
+      "pass_rate_30d": 0.75
     },
     "job::E2E::run-selected-tests (v0.27.1) / a3-800i-4 card-(part 2-2)": {
       "kind": "job",
@@ -15581,12 +15672,19 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
+        },
+        {
+          "job_id": "98734365963",
+          "at": "2026-08-28T03:16:00Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 5,
+      "samples_30d": 8,
+      "successes_30d": 6,
       "failures_30d": 2,
-      "pass_rate_30d": 0.7143
+      "pass_rate_30d": 0.75
     },
     "job::E2E::run-selected-tests (v0.27.1) / cpu-0 card-(part 1-1)": {
       "kind": "job",
@@ -15637,6 +15735,13 @@
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
         },
         {
+          "job_id": "98734365831",
+          "at": "2026-08-28T02:24:14Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
+        },
+        {
           "job_id": "98739351242",
           "at": "2026-08-28T02:56:12Z",
           "outcome": "success",
@@ -15644,8 +15749,8 @@
           "head_sha": "65c195d10f6e515c947abb0e5866fb31a4f30206"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 7,
+      "samples_30d": 8,
+      "successes_30d": 8,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -15703,12 +15808,19 @@
           "outcome": "success",
           "conclusion": "skipped",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98747364827",
+          "at": "2026-08-28T03:41:44Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 4,
+      "samples_30d": 8,
+      "successes_30d": 5,
       "failures_30d": 3,
-      "pass_rate_30d": 0.5714
+      "pass_rate_30d": 0.625
     },
     "job::E2E::run-selected-tests-a5": {
       "kind": "job",
@@ -15806,6 +15918,13 @@
           "outcome": "success",
           "conclusion": "skipped",
           "head_sha": "bc5cb50b2a76b81df052c5616a5ff706da5739aa"
+        },
+        {
+          "job_id": "98733986098",
+          "at": "2026-08-28T02:15:26Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         },
         {
           "job_id": "98734121630",
@@ -16282,10 +16401,38 @@
           "outcome": "success",
           "conclusion": "skipped",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "job_id": "98747414227",
+          "at": "2026-08-28T03:42:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "job_id": "98747611365",
+          "at": "2026-08-28T03:43:24Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "job_id": "98747633960",
+          "at": "2026-08-28T03:43:32Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "job_id": "98747791694",
+          "at": "2026-08-28T03:44:34Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "samples_30d": 81,
-      "successes_30d": 81,
+      "samples_30d": 86,
+      "successes_30d": 86,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -16870,15 +17017,50 @@
           "head_sha": "d407431f423b46601f8d44aa708e989ff764b078"
         },
         {
+          "job_id": "98747258144",
+          "at": "2026-08-28T03:41:00Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
+        },
+        {
           "job_id": "98747335759",
           "at": "2026-08-28T03:41:32Z",
           "outcome": "success",
           "conclusion": "skipped",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "job_id": "98747414539",
+          "at": "2026-08-28T03:42:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "job_id": "98747611595",
+          "at": "2026-08-28T03:43:24Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "job_id": "98747634549",
+          "at": "2026-08-28T03:43:32Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "job_id": "98747792347",
+          "at": "2026-08-28T03:44:34Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "samples_30d": 83,
-      "successes_30d": 83,
+      "samples_30d": 88,
+      "successes_30d": 88,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -16922,10 +17104,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365749",
+          "at": "2026-08-28T02:29:36Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -16988,10 +17177,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "115477a0df3d2dbf18f4112da30d484f6e51c6fa"
+        },
+        {
+          "job_id": "98734365769",
+          "at": "2026-08-28T02:29:35Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 5,
+      "samples_30d": 6,
+      "successes_30d": 6,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -17140,6 +17336,13 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "5ce7d8ea319ff5007916b9f8d604ea34d93252ff"
+        },
+        {
+          "job_id": "98733716624",
+          "at": "2026-08-28T02:15:26Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e4afa461344ccfdcb5d2ba3728ea19db98c391b4"
         },
         {
           "job_id": "98734121586",
@@ -17618,17 +17821,52 @@
           "head_sha": "d407431f423b46601f8d44aa708e989ff764b078"
         },
         {
+          "job_id": "98747050780",
+          "at": "2026-08-28T03:41:00Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
+        },
+        {
           "job_id": "98747335477",
           "at": "2026-08-28T03:41:31Z",
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
+        },
+        {
+          "job_id": "98747414178",
+          "at": "2026-08-28T03:42:04Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
+        },
+        {
+          "job_id": "98747403274",
+          "at": "2026-08-28T03:43:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "46bf3999ff23092d50f444a6ef3e484b3a72ece7"
+        },
+        {
+          "job_id": "98747378247",
+          "at": "2026-08-28T03:43:32Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "39e6b80182eb0fce2fddd0a10e7af822cda20e95"
+        },
+        {
+          "job_id": "98747549862",
+          "at": "2026-08-28T03:44:33Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "2575522885a5358bf1242186e8d19625bb503107"
         }
       ],
-      "samples_30d": 89,
-      "successes_30d": 32,
-      "failures_30d": 57,
-      "pass_rate_30d": 0.3596
+      "samples_30d": 95,
+      "successes_30d": 35,
+      "failures_30d": 60,
+      "pass_rate_30d": 0.3684
     },
     "job::Handle /e2e Command::e2e-comment (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)": {
       "kind": "job",
@@ -17945,6 +18183,366 @@
       "successes_30d": 4,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
+    },
+    "job::Handle /nightly Command::Trigger Nightly-310P": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Nightly-310P",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416281",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505027",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549700",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744761375",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
+    },
+    "job::Handle /nightly Command::Trigger Nightly-A2": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Nightly-A2",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416614",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505335",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549675",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744761632",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
+    },
+    "job::Handle /nightly Command::Trigger Nightly-A3": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Nightly-A3",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416565",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505272",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549557",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744760461",
+          "at": "2026-08-28T03:25:51Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
+    },
+    "job::Handle /nightly Command::Trigger Nightly-A3-560T": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Nightly-A3-560T",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416532",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505352",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549477",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744761509",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
+    },
+    "job::Handle /nightly Command::Trigger Nightly-A5": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Nightly-A5",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416386",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505217",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549582",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744761318",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
+    },
+    "job::Handle /nightly Command::Trigger Weekly-310P": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Weekly-310P",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416256",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505182",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549836",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744761562",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
+    },
+    "job::Handle /nightly Command::Trigger Weekly-A2": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Weekly-A2",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416277",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505570",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549679",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744761378",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
+    },
+    "job::Handle /nightly Command::Trigger Weekly-A3": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Weekly-A3",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416455",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505384",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549562",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744761680",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
+    },
+    "job::Handle /nightly Command::Trigger Weekly-A3-560T": {
+      "kind": "job",
+      "workflow": "Handle /nightly Command",
+      "name": "Trigger Weekly-A3-560T",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98742416543",
+          "at": "2026-08-28T03:08:58Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743505522",
+          "at": "2026-08-28T03:16:24Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98743549413",
+          "at": "2026-08-28T03:16:39Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98744761155",
+          "at": "2026-08-28T03:24:37Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        }
+      ],
+      "samples_30d": 4,
+      "successes_30d": 2,
+      "failures_30d": 2,
+      "pass_rate_30d": 0.5
     },
     "job::Handle /rerun Command::Re-run failed CI jobs": {
       "kind": "job",
@@ -18977,6 +19575,13 @@
       "probabilistic": false,
       "observations": [
         {
+          "job_id": "98735229504",
+          "at": "2026-08-28T02:23:18Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
+        {
           "job_id": "98736213032",
           "at": "2026-08-28T02:29:34Z",
           "outcome": "success",
@@ -18991,8 +19596,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19002,6 +19607,13 @@
       "name": "clear-pre-logs",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736271601",
+          "at": "2026-08-28T02:29:57Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737077588",
           "at": "2026-08-28T02:35:06Z",
@@ -19017,8 +19629,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19028,6 +19640,13 @@
       "name": "double-node (main, multi-node-dpsk3.2-2node, DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml, 2) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736270421",
+          "at": "2026-08-28T02:29:57Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737076147",
           "at": "2026-08-28T02:35:05Z",
@@ -19043,8 +19662,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19054,6 +19673,13 @@
       "name": "double-node (main, multi-node-GLM-5.1-w8a8-A3, GLM5_1-W8A8-A3-dual-nodes.yaml, 2) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736270299",
+          "at": "2026-08-28T02:29:57Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737076447",
           "at": "2026-08-28T02:35:05Z",
@@ -19069,8 +19695,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19080,6 +19706,13 @@
       "name": "double-node (main, multi-node-qwen-disagg-pd, Qwen3-235B-disagg-pd.yaml, 2) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736270267",
+          "at": "2026-08-28T02:29:57Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737076327",
           "at": "2026-08-28T02:35:05Z",
@@ -19095,8 +19728,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19106,6 +19739,13 @@
       "name": "double-node (main, multi-node-qwen-vl-disagg-pd, Qwen3-VL-235B-disagg-pd.yaml, 2) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736270716",
+          "at": "2026-08-28T02:29:57Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737077094",
           "at": "2026-08-28T02:35:06Z",
@@ -19121,8 +19761,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19132,6 +19772,13 @@
       "name": "double-node (main, multi-node-qwen3-dp, Qwen3-235B-A22B.yaml, 2) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736270250",
+          "at": "2026-08-28T02:29:57Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737076141",
           "at": "2026-08-28T02:35:05Z",
@@ -19147,8 +19794,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19158,6 +19805,13 @@
       "name": "double-node (main, multi-node-qwenw8a8-2node-eplb, Qwen3-235B-W8A8-EPLB.yaml, 2) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736271063",
+          "at": "2026-08-28T02:29:57Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737077173",
           "at": "2026-08-28T02:35:06Z",
@@ -19173,8 +19827,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19184,6 +19838,13 @@
       "name": "Export global env vars as job outputs",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98735329604",
+          "at": "2026-08-28T02:29:56Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98736371099",
           "at": "2026-08-28T02:35:04Z",
@@ -19199,8 +19860,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19216,10 +19877,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98747590704",
+          "at": "2026-08-28T03:44:07Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19229,6 +19897,13 @@
       "name": "multi-node (main, multi-node-deepseek-v3.1, DeepSeek-V3.1-BF16.yaml, 2) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736269120",
+          "at": "2026-08-28T02:29:56Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737075411",
           "at": "2026-08-28T02:35:05Z",
@@ -19244,8 +19919,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19255,6 +19930,13 @@
       "name": "multi-node (main, multi-node-deepseek-v3.2-W8A8-EP, DeepSeek-V3_2-W8A8-EP.yaml, 4) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736269201",
+          "at": "2026-08-28T02:29:56Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737075302",
           "at": "2026-08-28T02:35:05Z",
@@ -19270,8 +19952,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19281,6 +19963,13 @@
       "name": "multi-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, 2) / inputs.config_file_path",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736269306",
+          "at": "2026-08-28T02:29:56Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737075355",
           "at": "2026-08-28T02:35:05Z",
@@ -19296,8 +19985,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19307,6 +19996,13 @@
       "name": "Parse trigger and determine test scope",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98735228632",
+          "at": "2026-08-28T02:23:56Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98736212305",
           "at": "2026-08-28T02:30:33Z",
@@ -19322,8 +20018,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19339,11 +20035,18 @@
           "outcome": "failure",
           "conclusion": "cancelled",
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
+        },
+        {
+          "job_id": "98747591462",
+          "at": "2026-08-28T03:43:16Z",
+          "outcome": "failure",
+          "conclusion": "cancelled",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 0,
-      "failures_30d": 1,
+      "failures_30d": 2,
       "pass_rate_30d": 0.0
     },
     "job::Nightly-A3-560T::single-node (main, deepseek-r1-0528-w8a8, linux-aarch64-a3-16-cn12-001, DeepSeek-R1-0528-W8A8.yaml) / inputs.name || inputs.config_file_path || inputs.tests": {
@@ -19352,6 +20055,13 @@
       "name": "single-node (main, deepseek-r1-0528-w8a8, linux-aarch64-a3-16-cn12-001, DeepSeek-R1-0528-W8A8.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287238",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733543",
           "at": "2026-08-28T02:39:21Z",
@@ -19367,8 +20077,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19378,6 +20088,13 @@
       "name": "single-node (main, deepseek-r1-0528-w8a8-prefix-cache, linux-aarch64-a3-16-cn12-001, Prefix-Cache... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736289453",
+          "at": "2026-08-28T02:30:05Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737735372",
           "at": "2026-08-28T02:39:22Z",
@@ -19393,8 +20110,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19404,6 +20121,13 @@
       "name": "single-node (main, deepseek-v3-2-w8a8, linux-aarch64-a3-16-cn12-001, DeepSeek-V3.2-W8A8.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287089",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733612",
           "at": "2026-08-28T02:39:21Z",
@@ -19419,10 +20143,29 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, DeepSeek-V3.2-W8A8-DCP, linux-aarch64-a3-16-cn12-001, DeepSeek-V3.2-W8A8-DCP.y... / DeepSeek-V3.2-W8A8-DCP": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, DeepSeek-V3.2-W8A8-DCP, linux-aarch64-a3-16-cn12-001, DeepSeek-V3.2-W8A8-DCP.y... / DeepSeek-V3.2-W8A8-DCP",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736288614",
+          "at": "2026-08-28T02:53:02Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 0,
+      "failures_30d": 1,
+      "pass_rate_30d": 0.0
     },
     "job::Nightly-A3-560T::single-node (main, DeepSeek-V4-Flash-W8A8-A3, linux-aarch64-a3-16-cn12-001, DeepSeek-V4-Flash-W8A... / inputs.name || inputs.config_file_path || inputs.tests": {
       "kind": "job",
@@ -19430,6 +20173,13 @@
       "name": "single-node (main, DeepSeek-V4-Flash-W8A8-A3, linux-aarch64-a3-16-cn12-001, DeepSeek-V4-Flash-W8A... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287170",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733444",
           "at": "2026-08-28T02:39:21Z",
@@ -19445,8 +20195,27 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, DeepSeek-V4-Flash-W8A8-A3-Breakable, linux-aarch64-a3-16-cn12-001, DeepSeek-V4... / DeepSeek-V4-Flash-W8A8-A3-Breakable": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, DeepSeek-V4-Flash-W8A8-A3-Breakable, linux-aarch64-a3-16-cn12-001, DeepSeek-V4... / DeepSeek-V4-Flash-W8A8-A3-Breakable",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736288651",
+          "at": "2026-08-28T03:43:16Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19456,6 +20225,13 @@
       "name": "single-node (main, glm-4.7-w8a8, linux-aarch64-a3-16-cn12-001, GLM-4.7.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736289808",
+          "at": "2026-08-28T02:30:05Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737735561",
           "at": "2026-08-28T02:39:22Z",
@@ -19471,8 +20247,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19482,6 +20258,13 @@
       "name": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287116",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733374",
           "at": "2026-08-28T02:39:21Z",
@@ -19497,8 +20280,27 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, Hy3-preview, linux-aarch64-a3-16-cn12-001, Hy3-preview.yaml) / inputs.name || inputs.config_file_path || inputs.tests": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, Hy3-preview, linux-aarch64-a3-16-cn12-001, Hy3-preview.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736289377",
+          "at": "2026-08-28T02:30:05Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19508,6 +20310,13 @@
       "name": "single-node (main, kimi-k2-thinking, linux-aarch64-a3-16-cn12-001, Kimi-K2-Thinking.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287056",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733454",
           "at": "2026-08-28T02:39:21Z",
@@ -19523,8 +20332,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19534,6 +20343,13 @@
       "name": "single-node (main, kimi-k2.5, linux-aarch64-a3-16-cn12-001, Kimi-K2.5.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287436",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733603",
           "at": "2026-08-28T02:39:21Z",
@@ -19549,8 +20365,46 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, Kimi-K2.6-w4a8-A3, linux-aarch64-a3-16-cn12-001, Kimi-K2.6-w4a8-A3.yaml) / inputs.name || inputs.config_file_path || inputs.tests": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, Kimi-K2.6-w4a8-A3, linux-aarch64-a3-16-cn12-001, Kimi-K2.6-w4a8-A3.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736289587",
+          "at": "2026-08-28T02:30:05Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, MiniMax-M2.5-w8a8-QuaRot-A3, linux-aarch64-a3-8-cn12-001, MiniMax-M2.5-w8a8-Qu... / inputs.name || inputs.config_file_path || inputs.tests": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, MiniMax-M2.5-w8a8-QuaRot-A3, linux-aarch64-a3-8-cn12-001, MiniMax-M2.5-w8a8-Qu... / inputs.name || inputs.config_file_path || inputs.tests",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736287518",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19560,6 +20414,13 @@
       "name": "single-node (main, mtpx-deepseek-r1-0528-w8a8, linux-aarch64-a3-16-cn12-001, MTPX-DeepSeek-R1-052... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287185",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733588",
           "at": "2026-08-28T02:39:21Z",
@@ -19575,8 +20436,27 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, qwen3-235b-a22b-w8a8, linux-aarch64-a3-16-cn12-001, Qwen3-235B-A22B-W8A8.yaml) / inputs.name || inputs.config_file_path || inputs.tests": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, qwen3-235b-a22b-w8a8, linux-aarch64-a3-16-cn12-001, Qwen3-235B-A22B-W8A8.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736287177",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19606,6 +20486,13 @@
       "probabilistic": false,
       "observations": [
         {
+          "job_id": "98736287881",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
+        {
           "job_id": "98737733356",
           "at": "2026-08-28T02:39:21Z",
           "outcome": "success",
@@ -19620,8 +20507,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19631,6 +20518,13 @@
       "name": "single-node (main, qwen3-30b-a3b-w8a8, linux-aarch64-a3-4-cn12-001, Qwen3-30B-A3B-W8A8.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287335",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733286",
           "at": "2026-08-28T02:39:21Z",
@@ -19646,8 +20540,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19657,6 +20551,13 @@
       "name": "single-node (main, qwen3-30b-acc, linux-aarch64-a3-4-cn12-001, tests/e2e/weekly/single_node/model... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287718",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733346",
           "at": "2026-08-28T02:39:21Z",
@@ -19672,8 +20573,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19683,6 +20584,13 @@
       "name": "single-node (main, Qwen3-30B-QuaRot, linux-aarch64-a3-2-cn12-001, Qwen3-30B-QuaRot-eagle3.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287423",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733473",
           "at": "2026-08-28T02:39:21Z",
@@ -19698,8 +20606,27 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, qwen3-32b-bf16-gpqa-acc, linux-aarch64-a3-4-cn12-001, tests/e2e/nightly/test_q... / inputs.name || inputs.config_file_path || inputs.tests": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, qwen3-32b-bf16-gpqa-acc, linux-aarch64-a3-4-cn12-001, tests/e2e/nightly/test_q... / inputs.name || inputs.config_file_path || inputs.tests",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736287281",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19709,6 +20636,13 @@
       "name": "single-node (main, qwen3-32b-int8, linux-aarch64-a3-4-cn12-001, Qwen3-32B-Int8.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287748",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733566",
           "at": "2026-08-28T02:39:21Z",
@@ -19724,8 +20658,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19735,6 +20669,13 @@
       "name": "single-node (main, qwen3-32b-int8-prefix-cache, linux-aarch64-a3-4-cn12-001, Prefix-Cache-Qwen3-3... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287226",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733459",
           "at": "2026-08-28T02:39:21Z",
@@ -19750,8 +20691,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19761,6 +20702,13 @@
       "name": "single-node (main, Qwen3-32B-QuaRot, linux-aarch64-a3-2-cn12-001, Qwen3-32B-QuaRot-eagle3.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287241",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733411",
           "at": "2026-08-28T02:39:21Z",
@@ -19776,8 +20724,27 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, qwen3-32b-w8a8-aime2024-acc, linux-aarch64-a3-4-cn12-001, tests/e2e/nightly/te... / inputs.name || inputs.config_file_path || inputs.tests": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, qwen3-32b-w8a8-aime2024-acc, linux-aarch64-a3-4-cn12-001, tests/e2e/nightly/te... / inputs.name || inputs.config_file_path || inputs.tests",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736287148",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19787,6 +20754,13 @@
       "name": "single-node (main, Qwen3-32B-W8A8C8-A3, linux-aarch64-a3-4-cn12-001, Qwen3-32B-W8A8C8-A3.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287179",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733364",
           "at": "2026-08-28T02:39:21Z",
@@ -19802,8 +20776,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19813,6 +20787,13 @@
       "name": "single-node (main, qwen3-vl-235b-a22b-instruct-w8a8, linux-aarch64-a3-16-cn12-001, Qwen3-VL-235B-... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736289777",
+          "at": "2026-08-28T02:30:05Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737735634",
           "at": "2026-08-28T02:39:22Z",
@@ -19828,8 +20809,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19839,6 +20820,13 @@
       "name": "single-node (main, Qwen3.5-122B-A10B-W8A8-A3, linux-aarch64-a3-16-cn12-001, Qwen3.5-122B-A10B-W8A... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287504",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733731",
           "at": "2026-08-28T02:39:21Z",
@@ -19854,8 +20842,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19865,6 +20853,13 @@
       "name": "single-node (main, Qwen3.5-27B-w8a8-A3, linux-aarch64-a3-2-cn12-001, Qwen3.5-27B-w8a8-A3.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736287083",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737733527",
           "at": "2026-08-28T02:39:21Z",
@@ -19880,8 +20875,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19891,6 +20886,13 @@
       "name": "single-node (main, Qwen3.5-397B-A17B-w8a8-mtp, linux-aarch64-a3-16-cn12-001, Qwen3.5-397B-A17B-W8... / inputs.name || inputs.config_file_path || inputs.tests",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736289273",
+          "at": "2026-08-28T02:30:05Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737735179",
           "at": "2026-08-28T02:39:22Z",
@@ -19906,8 +20908,27 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
+      "failures_30d": 0,
+      "pass_rate_30d": 1.0
+    },
+    "job::Nightly-A3-560T::single-node (main, Qwen3_32b_w8a8_ml_A3, linux-aarch64-a3-4-cn12-001, Qwen3_32b_w8a8_ml_A3.yaml) / inputs.name || inputs.config_file_path || inputs.tests": {
+      "kind": "job",
+      "workflow": "Nightly-A3-560T",
+      "name": "single-node (main, Qwen3_32b_w8a8_ml_A3, linux-aarch64-a3-4-cn12-001, Qwen3_32b_w8a8_ml_A3.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98736287608",
+          "at": "2026-08-28T02:30:04Z",
+          "outcome": "success",
+          "conclusion": "skipped",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        }
+      ],
+      "samples_30d": 1,
+      "successes_30d": 1,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19917,6 +20938,13 @@
       "name": "Wait for all double-node pods launched / Poll GitHub commit statuses",
       "probabilistic": false,
       "observations": [
+        {
+          "job_id": "98736269048",
+          "at": "2026-08-28T02:30:03Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "d72770f5bc63346858f990837836d291dbe54887"
+        },
         {
           "job_id": "98737075295",
           "at": "2026-08-28T02:39:21Z",
@@ -19932,8 +20960,8 @@
           "head_sha": "6b52b112e63109e124abd75dc2f67edb769874b6"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
