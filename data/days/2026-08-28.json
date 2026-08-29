@@ -2,22 +2,22 @@
   "schema_version": 1,
   "date": "2026-08-28",
   "timezone": "UTC",
-  "updated_at": "2026-08-28T16:37:09Z",
+  "updated_at": "2026-08-29T00:58:12Z",
   "status": "down",
   "metrics": {
     "availability": 0.0,
-    "coverage": 0.6875,
-    "expected_hours": 16,
-    "observed_hours": 11,
+    "coverage": 0.5,
+    "expected_hours": 24,
+    "observed_hours": 12,
     "healthy_hours": 0,
-    "down_hours": 11,
-    "unknown_hours": 5,
-    "runs": 468,
-    "jobs": 4359,
+    "down_hours": 12,
+    "unknown_hours": 12,
+    "runs": 472,
+    "jobs": 4453,
     "infra_failures": 0,
-    "code_failures": 166,
-    "unresolved_failures": 276,
-    "probabilistic_jobs": 335
+    "code_failures": 186,
+    "unresolved_failures": 280,
+    "probabilistic_jobs": 342
   },
   "hours": [
     {
@@ -697,11 +697,11 @@
       "status": "unknown",
       "coverage": "complete",
       "runs": 0,
-      "jobs": 0,
+      "jobs": 1,
       "workflow_failures": 0,
       "infra_failures": 0,
       "code_failures": 0,
-      "ignored_nonverdicts": 0,
+      "ignored_nonverdicts": 1,
       "unresolved_failures": 0,
       "probabilistic_jobs": 0,
       "active_runs": 0,
@@ -714,10 +714,10 @@
       "status": "unknown",
       "coverage": "complete",
       "runs": 0,
-      "jobs": 0,
+      "jobs": 15,
       "workflow_failures": 0,
       "infra_failures": 0,
-      "code_failures": 0,
+      "code_failures": 7,
       "ignored_nonverdicts": 0,
       "unresolved_failures": 0,
       "probabilistic_jobs": 0,
@@ -728,20 +728,61 @@
     },
     {
       "hour": "2026-08-28T23:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 4,
+      "jobs": 78,
+      "workflow_failures": 2,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "code_failures": 13,
+      "ignored_nonverdicts": 5,
+      "unresolved_failures": 4,
+      "probabilistic_jobs": 7,
+      "active_runs": 2,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / ${{ inputs.model_list }} accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / ${{ inputs.model_list }} accuracy test",
+          "pass_rate_30d": null,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / ${{ inputs.model_list }} accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / ${{ inputs.model_list }} accuracy test",
+          "pass_rate_30d": null,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only (main, pr-accuracy-group-1, linux-aarch64-a2b3-1, gemma-3-4b-i... / ${{ inputs.model_list }} accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests-pr-only (main, pr-accuracy-group-1, linux-aarch64-a2b3-1, gemma-3-4b-i... / ${{ inputs.model_list }} accuracy test",
+          "pass_rate_30d": null,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only (main, pr-accuracy-group-2, linux-aarch64-a2b3-4, Qwen2.5-Math... / ${{ inputs.model_list }} accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests-pr-only (main, pr-accuracy-group-2, linux-aarch64-a2b3-4, Qwen2.5-Math... / ${{ inputs.model_list }} accuracy test",
+          "pass_rate_30d": null,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2083,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     }
   ]
 }

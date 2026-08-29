@@ -1,6 +1,6 @@
 {
   "schema_version": 9,
-  "updated_at": "2026-08-28T16:36:11Z",
+  "updated_at": "2026-08-29T00:57:59Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "hours": [
     {
@@ -14376,6 +14376,98 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ]
+    },
+    {
+      "hour": "2026-08-28T21:00:00Z",
+      "status": "unknown",
+      "coverage": "complete",
+      "runs": 0,
+      "jobs": 1,
+      "workflow_failures": 0,
+      "infra_failures": 0,
+      "code_failures": 0,
+      "ignored_nonverdicts": 1,
+      "unresolved_failures": 0,
+      "probabilistic_jobs": 0,
+      "active_runs": 0,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": []
+    },
+    {
+      "hour": "2026-08-28T22:00:00Z",
+      "status": "unknown",
+      "coverage": "complete",
+      "runs": 0,
+      "jobs": 15,
+      "workflow_failures": 0,
+      "infra_failures": 0,
+      "code_failures": 7,
+      "ignored_nonverdicts": 0,
+      "unresolved_failures": 0,
+      "probabilistic_jobs": 0,
+      "active_runs": 0,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": []
+    },
+    {
+      "hour": "2026-08-28T23:00:00Z",
+      "status": "down",
+      "coverage": "complete",
+      "runs": 4,
+      "jobs": 78,
+      "workflow_failures": 2,
+      "infra_failures": 0,
+      "code_failures": 13,
+      "ignored_nonverdicts": 5,
+      "unresolved_failures": 4,
+      "probabilistic_jobs": 7,
+      "active_runs": 2,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / ${{ inputs.model_list }} accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / ${{ inputs.model_list }} accuracy test",
+          "pass_rate_30d": null,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / ${{ inputs.model_list }} accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / ${{ inputs.model_list }} accuracy test",
+          "pass_rate_30d": null,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only (main, pr-accuracy-group-1, linux-aarch64-a2b3-1, gemma-3-4b-i... / ${{ inputs.model_list }} accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests-pr-only (main, pr-accuracy-group-1, linux-aarch64-a2b3-1, gemma-3-4b-i... / ${{ inputs.model_list }} accuracy test",
+          "pass_rate_30d": null,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only (main, pr-accuracy-group-2, linux-aarch64-a2b3-4, Qwen2.5-Math... / ${{ inputs.model_list }} accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests-pr-only (main, pr-accuracy-group-2, linux-aarch64-a2b3-4, Qwen2.5-Math... / ${{ inputs.model_list }} accuracy test",
+          "pass_rate_30d": null,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2083,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     }
   ],
   "policy": {
@@ -14388,43 +14480,43 @@
   "collector": {
     "authenticated": true,
     "auth_fallbacks": 0,
-    "api_requests": 100,
+    "api_requests": 22,
     "request_budget": 1200,
     "run_listing_complete": true,
     "event_coverage": {
       "pull_request": {
-        "expected": 72,
-        "fetched": 72,
+        "expected": 10,
+        "fetched": 10,
         "complete": true,
         "slices": 1
       },
       "pull_request_target": {
-        "expected": 97,
-        "fetched": 97,
+        "expected": 16,
+        "fetched": 16,
         "complete": true,
         "slices": 1
       },
       "push": {
-        "expected": 2,
-        "fetched": 2,
+        "expected": 0,
+        "fetched": 0,
         "complete": true,
         "slices": 1
       },
       "schedule": {
-        "expected": 2,
-        "fetched": 2,
+        "expected": 1,
+        "fetched": 1,
         "complete": true,
         "slices": 1
       },
       "workflow_dispatch": {
-        "expected": 10,
-        "fetched": 10,
+        "expected": 5,
+        "fetched": 5,
         "complete": true,
         "slices": 1
       },
       "repository_dispatch": {
-        "expected": 10,
-        "fetched": 10,
+        "expected": 5,
+        "fetched": 5,
         "complete": true,
         "slices": 1
       },
@@ -14447,7 +14539,7 @@
         "slices": 1
       }
     },
-    "detail_runs": 69,
+    "detail_runs": 9,
     "errors": []
   }
 }

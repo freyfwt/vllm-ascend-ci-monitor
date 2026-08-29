@@ -1,6 +1,6 @@
 {
   "schema_version": 9,
-  "updated_at": "2026-08-28T16:36:11Z",
+  "updated_at": "2026-08-29T00:57:59Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "tests": {
     "job::buildkit-dockerfile-test-group1::Dockerfile (arm64)": {
@@ -139,27 +139,6 @@
       "name": "ci-gate",
       "probabilistic": true,
       "observations": [
-        {
-          "job_id": "98745757641",
-          "at": "2026-08-28T03:31:45Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "9c20601935c62ad278be1886acbfe1ac52f90d18"
-        },
-        {
-          "job_id": "98745789745",
-          "at": "2026-08-28T03:32:06Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "cf4d5358e4dc834fae37ab91cd4d72e57262713c"
-        },
-        {
-          "job_id": "98745794537",
-          "at": "2026-08-28T03:32:07Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "4f93d879daec400d5ebe38ed25633a9aee6e9ca4"
-        },
         {
           "job_id": "98746294475",
           "at": "2026-08-28T03:35:02Z",
@@ -1818,12 +1797,33 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "fa3c9e2539ed97d77df4c0b158e8c46e6ead81b0"
+        },
+        {
+          "job_id": "99015200242",
+          "at": "2026-08-28T23:39:43Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "f27a393c1cefcb08c924a2788a78104c624b040b"
+        },
+        {
+          "job_id": "99017417392",
+          "at": "2026-08-28T23:54:10Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "9579ac179406594a6549fbfd285be04b12921b6b"
+        },
+        {
+          "job_id": "99018622432",
+          "at": "2026-08-29T00:02:13Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
       "samples_30d": 240,
-      "successes_30d": 51,
-      "failures_30d": 189,
-      "pass_rate_30d": 0.2125,
+      "successes_30d": 50,
+      "failures_30d": 190,
+      "pass_rate_30d": 0.2083,
       "first_detected_at": "2026-08-28T04:20:34Z",
       "probability_reason": "same_commit_mixed_outcomes"
     },
@@ -2440,6 +2440,27 @@
       "failures_30d": 0,
       "pass_rate_30d": null
     },
+    "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8... / [\n  \"Qwen3-VL-8B-Instruct-W8A8\",\n  \"Qwen3-8B\",\n  \"Qwen2-Audio-7B-Instruct\",\n  \"Qwen3-8B-W8A8\",\n  \"Qwen3-VL-8B-Instruct\",\n  \"Minitron-8B-Base\"\n] accuracy test": {
+      "kind": "job",
+      "workflow": "Nightly-A2",
+      "name": "single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8... / [\n  \"Qwen3-VL-8B-Instruct-W8A8\",\n  \"Qwen3-8B\",\n  \"Qwen2-Audio-7B-Instruct\",\n  \"Qwen3-8B-W8A8\",\n  \"Qwen3-VL-8B-Instruct\",\n  \"Minitron-8B-Base\"\n] accuracy test",
+      "probabilistic": true,
+      "observations": [
+        {
+          "job_id": "99016296947",
+          "at": "2026-08-29T00:45:07Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
+        }
+      ],
+      "first_detected_at": "2026-08-29T00:57:59Z",
+      "probability_reason": "policy_probability_sensitive",
+      "samples_30d": 1,
+      "successes_30d": 0,
+      "failures_30d": 1,
+      "pass_rate_30d": 0.0
+    },
     "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / ${{ inputs.model_list }} accuracy test": {
       "kind": "job",
       "workflow": "Nightly-A2",
@@ -2728,20 +2749,6 @@
       "name": "(workflow aggregate)",
       "probabilistic": false,
       "observations": [
-        {
-          "run_id": "33055914917",
-          "at": "2026-08-27T08:52:37Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "46055a3e343a38cf6be16433e4adc1406054453c"
-        },
-        {
-          "run_id": "33055615732",
-          "at": "2026-08-27T08:55:30Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "2ef7b1b55e72c89124e0090473d19400ac65d104"
-        },
         {
           "run_id": "33055819766",
           "at": "2026-08-27T08:56:07Z",
@@ -4407,6 +4414,20 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "fa3c9e2539ed97d77df4c0b158e8c46e6ead81b0"
+        },
+        {
+          "run_id": "33221018655",
+          "at": "2026-08-28T23:39:44Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "f27a393c1cefcb08c924a2788a78104c624b040b"
+        },
+        {
+          "run_id": "33221754481",
+          "at": "2026-08-28T23:54:11Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "9579ac179406594a6549fbfd285be04b12921b6b"
         }
       ],
       "samples_30d": 240,
@@ -5769,12 +5790,26 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "1af0273507662abcece3c4ea8a134215a05565dd"
+        },
+        {
+          "run_id": "33221754381",
+          "at": "2026-08-28T23:53:06Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "9579ac179406594a6549fbfd285be04b12921b6b"
+        },
+        {
+          "run_id": "33224944031",
+          "at": "2026-08-29T00:56:50Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "8d1f7a0ce6807a188ceedb4b3c71300ac3699810"
         }
       ],
-      "samples_30d": 153,
-      "successes_30d": 144,
+      "samples_30d": 155,
+      "successes_30d": 146,
       "failures_30d": 9,
-      "pass_rate_30d": 0.9412
+      "pass_rate_30d": 0.9419
     },
     "workflow::.github/workflows/schedule_doc_translate.yaml": {
       "kind": "workflow",
@@ -5934,12 +5969,19 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "07f0eac9c7383df6efcbf4d92b220182c26829df"
+        },
+        {
+          "run_id": "33221265286",
+          "at": "2026-08-29T00:45:08Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 8,
+      "samples_30d": 9,
       "successes_30d": 4,
-      "failures_30d": 4,
-      "pass_rate_30d": 0.5
+      "failures_30d": 5,
+      "pass_rate_30d": 0.4444
     },
     "workflow::.github/workflows/schedule_nightly_test_a3.yaml": {
       "kind": "workflow",
@@ -6288,12 +6330,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "run_id": "33214966206",
+          "at": "2026-08-29T00:16:21Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "workflow::.github/workflows/schedule_weekly_test_a3.yaml": {
       "kind": "workflow",
@@ -7957,12 +8006,26 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "1af0273507662abcece3c4ea8a134215a05565dd"
+        },
+        {
+          "job_id": "99017068675",
+          "at": "2026-08-28T23:53:06Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "9579ac179406594a6549fbfd285be04b12921b6b"
+        },
+        {
+          "job_id": "99026603032",
+          "at": "2026-08-29T00:56:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "8d1f7a0ce6807a188ceedb4b3c71300ac3699810"
         }
       ],
-      "samples_30d": 58,
-      "successes_30d": 55,
+      "samples_30d": 60,
+      "successes_30d": 57,
       "failures_30d": 3,
-      "pass_rate_30d": 0.9483
+      "pass_rate_30d": 0.95
     },
     "job::E2E::Analyze failure report": {
       "kind": "job",
@@ -9992,10 +10055,31 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "98967180323",
+          "at": "2026-08-28T19:58:24Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
+        },
+        {
+          "job_id": "99008463383",
+          "at": "2026-08-28T23:02:12Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99016706887",
+          "at": "2026-08-28T23:51:05Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 74,
-      "successes_30d": 74,
+      "samples_30d": 77,
+      "successes_30d": 77,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -10191,10 +10275,24 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "16a36cbd19f1e7f17e5b0502f08c936aeb51da2f"
+        },
+        {
+          "job_id": "99008463396",
+          "at": "2026-08-28T23:01:12Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99016706840",
+          "at": "2026-08-28T23:50:10Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 18,
-      "successes_30d": 18,
+      "samples_30d": 20,
+      "successes_30d": 20,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -10293,41 +10391,6 @@
       "name": "pre-commit",
       "probabilistic": false,
       "observations": [
-        {
-          "job_id": "98747687019",
-          "at": "2026-08-28T03:48:41Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "32544435bd5f65d66dd84e7d898d225e6decb1c1"
-        },
-        {
-          "job_id": "98748438235",
-          "at": "2026-08-28T03:50:05Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "e5e60cfe97195e93abadbb476dd418d0f4eeb2ba"
-        },
-        {
-          "job_id": "98748014220",
-          "at": "2026-08-28T03:50:36Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "744089b615ccdfc42625b01ff37806db40c3b2a7"
-        },
-        {
-          "job_id": "98748152930",
-          "at": "2026-08-28T03:50:49Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "977539bae826a2fbe04ab3b97c29f9060b605bdd"
-        },
-        {
-          "job_id": "98748352377",
-          "at": "2026-08-28T03:51:05Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "51c3d152949431740a5f3667cb540592b601bebd"
-        },
         {
           "job_id": "98748492314",
           "at": "2026-08-28T03:52:11Z",
@@ -11972,6 +12035,41 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "fa3c9e2539ed97d77df4c0b158e8c46e6ead81b0"
+        },
+        {
+          "job_id": "98965842818",
+          "at": "2026-08-28T19:54:31Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
+        },
+        {
+          "job_id": "99007489459",
+          "at": "2026-08-28T22:58:42Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99014854664",
+          "at": "2026-08-28T23:37:56Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "f27a393c1cefcb08c924a2788a78104c624b040b"
+        },
+        {
+          "job_id": "99015823820",
+          "at": "2026-08-28T23:47:33Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
+        },
+        {
+          "job_id": "99017069076",
+          "at": "2026-08-28T23:52:23Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "9579ac179406594a6549fbfd285be04b12921b6b"
         }
       ],
       "samples_30d": 240,
@@ -11985,20 +12083,6 @@
       "name": "Recommend tests from coverage",
       "probabilistic": false,
       "observations": [
-        {
-          "job_id": "98736119599",
-          "at": "2026-08-28T02:30:32Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "4c3043752af5c9893bd4f87101fe0c1736234223"
-        },
-        {
-          "job_id": "98736452864",
-          "at": "2026-08-28T02:31:03Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "1fa7089ce120eb49a27de7f3478a48017879dd8c"
-        },
         {
           "job_id": "98736549702",
           "at": "2026-08-28T02:31:41Z",
@@ -13664,12 +13748,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "d3a5c7cfb2ae2f906d85d50c40ee4aee184fe225"
+        },
+        {
+          "job_id": "99007489383",
+          "at": "2026-08-28T22:55:52Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99015823941",
+          "at": "2026-08-28T23:44:45Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
       "samples_30d": 240,
-      "successes_30d": 217,
-      "failures_30d": 23,
-      "pass_rate_30d": 0.9042
+      "successes_30d": 218,
+      "failures_30d": 22,
+      "pass_rate_30d": 0.9083
     },
     "job::E2E::run-selected-tests": {
       "kind": "job",
@@ -19935,10 +20033,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726774",
+          "at": "2026-08-28T20:31:21Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 4,
-      "successes_30d": 4,
+      "samples_30d": 5,
+      "successes_30d": 5,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -19975,10 +20080,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726802",
+          "at": "2026-08-28T20:40:46Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 4,
-      "successes_30d": 4,
+      "samples_30d": 5,
+      "successes_30d": 5,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20008,10 +20120,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "49555a91f7fb5e0d8baa0a3a84bae4c2fb2af453"
+        },
+        {
+          "job_id": "98967726719",
+          "at": "2026-08-28T20:56:07Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 3,
-      "successes_30d": 3,
+      "samples_30d": 4,
+      "successes_30d": 4,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20041,10 +20160,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "49555a91f7fb5e0d8baa0a3a84bae4c2fb2af453"
+        },
+        {
+          "job_id": "98967726902",
+          "at": "2026-08-28T20:24:00Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 3,
-      "successes_30d": 3,
+      "samples_30d": 4,
+      "successes_30d": 4,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20074,12 +20200,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "49555a91f7fb5e0d8baa0a3a84bae4c2fb2af453"
+        },
+        {
+          "job_id": "98967726689",
+          "at": "2026-08-28T20:18:08Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 3,
-      "successes_30d": 2,
+      "samples_30d": 4,
+      "successes_30d": 3,
       "failures_30d": 1,
-      "pass_rate_30d": 0.6667
+      "pass_rate_30d": 0.75
     },
     "job::E2E::run-selected-tests (e6bfe03ad73a3330cb427885aa90d97a12e1c704) / a2-1 card-(part 4-5)": {
       "kind": "job",
@@ -20140,12 +20273,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "49555a91f7fb5e0d8baa0a3a84bae4c2fb2af453"
+        },
+        {
+          "job_id": "98967726738",
+          "at": "2026-08-28T20:13:21Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 3,
-      "successes_30d": 1,
+      "samples_30d": 4,
+      "successes_30d": 2,
       "failures_30d": 2,
-      "pass_rate_30d": 0.3333
+      "pass_rate_30d": 0.5
     },
     "job::E2E::run-selected-tests (e6bfe03ad73a3330cb427885aa90d97a12e1c704) / a3-16 card-(part 1-1)": {
       "kind": "job",
@@ -20194,12 +20334,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726837",
+          "at": "2026-08-28T22:44:51Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 6,
-      "successes_30d": 4,
+      "samples_30d": 7,
+      "successes_30d": 5,
       "failures_30d": 2,
-      "pass_rate_30d": 0.6667
+      "pass_rate_30d": 0.7143
     },
     "job::E2E::run-selected-tests (e6bfe03ad73a3330cb427885aa90d97a12e1c704) / a3-2 card-(part 1-2)": {
       "kind": "job",
@@ -20246,10 +20393,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "49555a91f7fb5e0d8baa0a3a84bae4c2fb2af453"
+        },
+        {
+          "job_id": "98967726706",
+          "at": "2026-08-28T20:59:06Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 3,
-      "successes_30d": 3,
+      "samples_30d": 4,
+      "successes_30d": 4,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20293,12 +20447,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726751",
+          "at": "2026-08-28T20:24:36Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 4,
+      "samples_30d": 6,
+      "successes_30d": 5,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8
+      "pass_rate_30d": 0.8333
     },
     "job::E2E::run-selected-tests (e6bfe03ad73a3330cb427885aa90d97a12e1c704) / a3-4 card-(part 2-2)": {
       "kind": "job",
@@ -20333,10 +20494,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726824",
+          "at": "2026-08-28T20:48:48Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 4,
-      "successes_30d": 4,
+      "samples_30d": 5,
+      "successes_30d": 5,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20373,12 +20541,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726717",
+          "at": "2026-08-28T20:35:53Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 4,
-      "successes_30d": 3,
+      "samples_30d": 5,
+      "successes_30d": 4,
       "failures_30d": 1,
-      "pass_rate_30d": 0.75
+      "pass_rate_30d": 0.8
     },
     "job::E2E::run-selected-tests (e6bfe03ad73a3330cb427885aa90d97a12e1c704) / a3-800i-2 card-(part 1-2)": {
       "kind": "job",
@@ -20413,10 +20588,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726740",
+          "at": "2026-08-28T20:10:18Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 4,
-      "successes_30d": 4,
+      "samples_30d": 5,
+      "successes_30d": 5,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20453,12 +20635,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726768",
+          "at": "2026-08-28T20:19:32Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 4,
-      "successes_30d": 3,
+      "samples_30d": 5,
+      "successes_30d": 4,
       "failures_30d": 1,
-      "pass_rate_30d": 0.75
+      "pass_rate_30d": 0.8
     },
     "job::E2E::run-selected-tests (e6bfe03ad73a3330cb427885aa90d97a12e1c704) / a3-800i-4 card-(part 1-2)": {
       "kind": "job",
@@ -20500,12 +20689,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726877",
+          "at": "2026-08-28T20:23:25Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 5,
-      "successes_30d": 4,
+      "samples_30d": 6,
+      "successes_30d": 5,
       "failures_30d": 1,
-      "pass_rate_30d": 0.8
+      "pass_rate_30d": 0.8333
     },
     "job::E2E::run-selected-tests (e6bfe03ad73a3330cb427885aa90d97a12e1c704) / a3-800i-4 card-(part 2-2)": {
       "kind": "job",
@@ -20540,10 +20736,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726735",
+          "at": "2026-08-28T20:36:37Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 4,
-      "successes_30d": 4,
+      "samples_30d": 5,
+      "successes_30d": 5,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20594,10 +20797,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "78a6e81b71a6c56bbca3a6899b9cda0021895902"
+        },
+        {
+          "job_id": "98967726709",
+          "at": "2026-08-28T20:03:39Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
         }
       ],
-      "samples_30d": 6,
-      "successes_30d": 6,
+      "samples_30d": 7,
+      "successes_30d": 7,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20659,12 +20869,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99008887084",
+          "at": "2026-08-28T23:37:14Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029906",
+          "at": "2026-08-29T00:25:06Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 8,
       "successes_30d": 6,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 2,
+      "pass_rate_30d": 0.75
     },
     "job::E2E::run-selected-tests (v0.26.0) / 310p-4 card-(part 1-1)": {
       "kind": "job",
@@ -20720,10 +20944,24 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99008887093",
+          "at": "2026-08-28T23:34:29Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017030038",
+          "at": "2026-08-29T00:26:51Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 7,
+      "samples_30d": 9,
+      "successes_30d": 9,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -20774,12 +21012,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99008887101",
+          "at": "2026-08-28T23:27:36Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029949",
+          "at": "2026-08-29T00:05:37Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 8,
       "successes_30d": 6,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 2,
+      "pass_rate_30d": 0.75
     },
     "job::E2E::run-selected-tests (v0.26.0) / a2-1 card-(part 2-5)": {
       "kind": "job",
@@ -20828,12 +21080,26 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99008887075",
+          "at": "2026-08-28T23:23:19Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029986",
+          "at": "2026-08-29T00:07:51Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 8,
       "successes_30d": 5,
-      "failures_30d": 1,
-      "pass_rate_30d": 0.8333
+      "failures_30d": 3,
+      "pass_rate_30d": 0.625
     },
     "job::E2E::run-selected-tests (v0.26.0) / a2-1 card-(part 3-5)": {
       "kind": "job",
@@ -20882,12 +21148,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99017029924",
+          "at": "2026-08-29T00:08:09Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 7,
       "successes_30d": 6,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.8571
     },
     "job::E2E::run-selected-tests (v0.26.0) / a2-1 card-(part 4-5)": {
       "kind": "job",
@@ -20936,12 +21209,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99008887225",
+          "at": "2026-08-28T23:39:14Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029987",
+          "at": "2026-08-29T00:06:03Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 8,
       "successes_30d": 5,
-      "failures_30d": 1,
-      "pass_rate_30d": 0.8333
+      "failures_30d": 3,
+      "pass_rate_30d": 0.625
     },
     "job::E2E::run-selected-tests (v0.26.0) / a2-1 card-(part 5-5)": {
       "kind": "job",
@@ -20990,12 +21277,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99008887117",
+          "at": "2026-08-28T23:15:19Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029956",
+          "at": "2026-08-29T00:04:19Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 8,
       "successes_30d": 6,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 2,
+      "pass_rate_30d": 0.75
     },
     "job::E2E::run-selected-tests (v0.26.0) / a3-2 card-(part 1-3)": {
       "kind": "job",
@@ -21037,12 +21338,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "0751848594329f03ce01122bab115e58c8b2271f"
+        },
+        {
+          "job_id": "99008887206",
+          "at": "2026-08-28T23:15:06Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017030081",
+          "at": "2026-08-29T00:03:14Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 5,
+      "samples_30d": 7,
       "successes_30d": 5,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 2,
+      "pass_rate_30d": 0.7143
     },
     "job::E2E::run-selected-tests (v0.26.0) / a3-2 card-(part 2-3)": {
       "kind": "job",
@@ -21131,12 +21446,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "0751848594329f03ce01122bab115e58c8b2271f"
+        },
+        {
+          "job_id": "99008887135",
+          "at": "2026-08-28T23:31:05Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029981",
+          "at": "2026-08-29T00:23:42Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 5,
+      "samples_30d": 7,
       "successes_30d": 5,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 2,
+      "pass_rate_30d": 0.7143
     },
     "job::E2E::run-selected-tests (v0.26.0) / a3-4 card-(part 1-3)": {
       "kind": "job",
@@ -21185,10 +21514,24 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "e92f9034d02877625a715e1e38d56c91cd36174e"
+        },
+        {
+          "job_id": "99008887100",
+          "at": "2026-08-28T23:23:49Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029993",
+          "at": "2026-08-29T00:14:19Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
-      "successes_30d": 6,
+      "samples_30d": 8,
+      "successes_30d": 8,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -21293,12 +21636,26 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "e92f9034d02877625a715e1e38d56c91cd36174e"
+        },
+        {
+          "job_id": "99008887158",
+          "at": "2026-08-28T23:37:57Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017030040",
+          "at": "2026-08-29T00:26:23Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 8,
       "successes_30d": 4,
-      "failures_30d": 2,
-      "pass_rate_30d": 0.6667
+      "failures_30d": 4,
+      "pass_rate_30d": 0.5
     },
     "job::E2E::run-selected-tests (v0.26.0) / a3-8 card-(part 1-1)": {
       "kind": "job",
@@ -21347,12 +21704,26 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "e92f9034d02877625a715e1e38d56c91cd36174e"
+        },
+        {
+          "job_id": "99008887116",
+          "at": "2026-08-28T23:28:32Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017030032",
+          "at": "2026-08-29T00:13:30Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 6,
+      "samples_30d": 8,
       "successes_30d": 6,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 2,
+      "pass_rate_30d": 0.75
     },
     "job::E2E::run-selected-tests (v0.26.0) / cpu-0 card-(part 1-1)": {
       "kind": "job",
@@ -21415,10 +21786,24 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99008887138",
+          "at": "2026-08-28T23:07:11Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029984",
+          "at": "2026-08-28T23:56:02Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 8,
-      "successes_30d": 8,
+      "samples_30d": 10,
+      "successes_30d": 10,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -27903,10 +28288,24 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "4ead69018f8bd56cd52cc83b8a704a8ad33d7774"
+        },
+        {
+          "job_id": "99008887063",
+          "at": "2026-08-28T23:12:06Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99017029898",
+          "at": "2026-08-29T00:00:15Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
         }
       ],
-      "samples_30d": 8,
-      "successes_30d": 8,
+      "samples_30d": 10,
+      "successes_30d": 10,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -28089,41 +28488,6 @@
       "name": "select-tests",
       "probabilistic": false,
       "observations": [
-        {
-          "job_id": "98746687995",
-          "at": "2026-08-28T03:38:43Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "9d31792d0ffe35d06b91df1d88d6e212d83a0dac"
-        },
-        {
-          "job_id": "98746993286",
-          "at": "2026-08-28T03:40:32Z",
-          "outcome": "failure",
-          "conclusion": "failure",
-          "head_sha": "d407431f423b46601f8d44aa708e989ff764b078"
-        },
-        {
-          "job_id": "98747050780",
-          "at": "2026-08-28T03:41:00Z",
-          "outcome": "success",
-          "conclusion": "success",
-          "head_sha": "d989a1de2337af8a6df57013c2117c7f4c1f09f2"
-        },
-        {
-          "job_id": "98747335477",
-          "at": "2026-08-28T03:41:31Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "c49b9a646601c9f510d290b7957c9f165573f6ca"
-        },
-        {
-          "job_id": "98747414178",
-          "at": "2026-08-28T03:42:04Z",
-          "outcome": "failure",
-          "conclusion": "cancelled",
-          "head_sha": "affc610b0f91c22ffdd663dadf1a36ee5aa6cf0d"
-        },
         {
           "job_id": "98747403274",
           "at": "2026-08-28T03:43:24Z",
@@ -29768,12 +30132,47 @@
           "outcome": "failure",
           "conclusion": "failure",
           "head_sha": "fa3c9e2539ed97d77df4c0b158e8c46e6ead81b0"
+        },
+        {
+          "job_id": "98966777123",
+          "at": "2026-08-28T19:56:09Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "373379c089b05ea3939b4d6bf83dbe5c7e0c18bb"
+        },
+        {
+          "job_id": "99008237260",
+          "at": "2026-08-28T23:00:02Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "e296739d375cd2f243ffa276e32c50c473fba705"
+        },
+        {
+          "job_id": "99015008330",
+          "at": "2026-08-28T23:39:13Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "f27a393c1cefcb08c924a2788a78104c624b040b"
+        },
+        {
+          "job_id": "99016482188",
+          "at": "2026-08-28T23:48:59Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "c3ea85e9aec00beecac159f7049a1db23603acee"
+        },
+        {
+          "job_id": "99017226717",
+          "at": "2026-08-28T23:53:41Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "9579ac179406594a6549fbfd285be04b12921b6b"
         }
       ],
       "samples_30d": 240,
-      "successes_30d": 149,
-      "failures_30d": 91,
-      "pass_rate_30d": 0.6208
+      "successes_30d": 151,
+      "failures_30d": 89,
+      "pass_rate_30d": 0.6292
     },
     "job::Image Build and Push::${{ matrix.build_meta.name }} (commit mode)": {
       "kind": "job",
@@ -30654,10 +31053,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "07f0eac9c7383df6efcbf4d92b220182c26829df"
+        },
+        {
+          "job_id": "99015677949",
+          "at": "2026-08-28T23:46:20Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 7,
+      "samples_30d": 8,
+      "successes_30d": 8,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -30680,10 +31086,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "2617fb6abf541145ea7f12d1dd39c757f1180b66"
+        },
+        {
+          "job_id": "99015677908",
+          "at": "2026-08-28T23:46:20Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 2,
-      "successes_30d": 2,
+      "samples_30d": 3,
+      "successes_30d": 3,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -30741,10 +31154,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "07f0eac9c7383df6efcbf4d92b220182c26829df"
+        },
+        {
+          "job_id": "99016298133",
+          "at": "2026-08-28T23:46:53Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 7,
+      "samples_30d": 8,
+      "successes_30d": 8,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -30914,10 +31334,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "07f0eac9c7383df6efcbf4d92b220182c26829df"
+        },
+        {
+          "job_id": "99015590143",
+          "at": "2026-08-28T23:42:22Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 7,
-      "successes_30d": 7,
+      "samples_30d": 8,
+      "successes_30d": 8,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38551,10 +38978,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98996740037",
+          "at": "2026-08-28T22:03:27Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38570,12 +39004,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208303",
+          "at": "2026-08-28T22:56:37Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / 310p-4 card-(part 1-1)": {
       "kind": "job",
@@ -38589,10 +39030,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208358",
+          "at": "2026-08-28T23:03:56Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38608,12 +39056,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208357",
+          "at": "2026-08-28T23:13:10Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a2-1 card-(part 2-5)": {
       "kind": "job",
@@ -38627,12 +39082,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208405",
+          "at": "2026-08-28T22:28:01Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a2-1 card-(part 3-5)": {
       "kind": "job",
@@ -38646,12 +39108,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208390",
+          "at": "2026-08-28T22:25:23Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a2-1 card-(part 4-5)": {
       "kind": "job",
@@ -38665,12 +39134,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208370",
+          "at": "2026-08-28T22:23:47Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a2-1 card-(part 5-5)": {
       "kind": "job",
@@ -38684,6 +39160,32 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208343",
+          "at": "2026-08-28T22:26:54Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
+        }
+      ],
+      "samples_30d": 2,
+      "successes_30d": 1,
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
+    },
+    "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a3-16 card-(part 1-1)": {
+      "kind": "job",
+      "workflow": "Schedule Test Coverage",
+      "name": "run-full-tests (v0.27.1) / a3-16 card-(part 1-1)",
+      "probabilistic": false,
+      "observations": [
+        {
+          "job_id": "98997208410",
+          "at": "2026-08-28T23:19:17Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
       "samples_30d": 1,
@@ -38703,10 +39205,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208377",
+          "at": "2026-08-28T23:22:46Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38722,10 +39231,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208466",
+          "at": "2026-08-28T23:23:52Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38741,10 +39257,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208318",
+          "at": "2026-08-28T23:24:27Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38760,12 +39283,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208464",
+          "at": "2026-08-29T00:14:06Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a3-8 card-(part 1-1)": {
       "kind": "job",
@@ -38779,12 +39309,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208434",
+          "at": "2026-08-28T23:44:23Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a3-800i-2 card-(part 1-2)": {
       "kind": "job",
@@ -38798,12 +39335,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208340",
+          "at": "2026-08-28T22:20:33Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a3-800i-2 card-(part 2-2)": {
       "kind": "job",
@@ -38817,12 +39361,19 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208365",
+          "at": "2026-08-28T22:26:01Z",
+          "outcome": "failure",
+          "conclusion": "failure",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
+      "samples_30d": 2,
       "successes_30d": 1,
-      "failures_30d": 0,
-      "pass_rate_30d": 1.0
+      "failures_30d": 1,
+      "pass_rate_30d": 0.5
     },
     "job::Schedule Test Coverage::run-full-tests (v0.27.1) / a3-800i-4 card-(part 1-2)": {
       "kind": "job",
@@ -38836,10 +39387,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208414",
+          "at": "2026-08-28T22:47:54Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38855,10 +39413,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208413",
+          "at": "2026-08-28T23:19:35Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38874,10 +39439,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98997208368",
+          "at": "2026-08-28T22:10:41Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38893,10 +39465,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "99020592495",
+          "at": "2026-08-29T00:16:19Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
@@ -38912,10 +39491,17 @@
           "outcome": "success",
           "conclusion": "success",
           "head_sha": "933737c9e7f4903c613d65b7cb6fcd046f64dfd3"
+        },
+        {
+          "job_id": "98996461563",
+          "at": "2026-08-28T22:01:18Z",
+          "outcome": "success",
+          "conclusion": "success",
+          "head_sha": "6953f266922e3ec2c33a04db4febb00e15893cec"
         }
       ],
-      "samples_30d": 1,
-      "successes_30d": 1,
+      "samples_30d": 2,
+      "successes_30d": 2,
       "failures_30d": 0,
       "pass_rate_30d": 1.0
     },
