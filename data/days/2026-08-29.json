@@ -2,22 +2,22 @@
   "schema_version": 1,
   "date": "2026-08-29",
   "timezone": "UTC",
-  "updated_at": "2026-08-29T07:54:28Z",
+  "updated_at": "2026-08-29T13:52:11Z",
   "status": "down",
   "metrics": {
     "availability": 0.0,
-    "coverage": 0.428571,
-    "expected_hours": 7,
-    "observed_hours": 3,
+    "coverage": 0.461538,
+    "expected_hours": 13,
+    "observed_hours": 6,
     "healthy_hours": 0,
-    "down_hours": 3,
-    "unknown_hours": 4,
-    "runs": 74,
-    "jobs": 1133,
+    "down_hours": 6,
+    "unknown_hours": 7,
+    "runs": 167,
+    "jobs": 2368,
     "infra_failures": 0,
-    "code_failures": 67,
-    "unresolved_failures": 55,
-    "probabilistic_jobs": 77
+    "code_failures": 136,
+    "unresolved_failures": 114,
+    "probabilistic_jobs": 157
   },
   "hours": [
     {
@@ -259,54 +259,145 @@
     },
     {
       "hour": "2026-08-29T10:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 62,
+      "jobs": 818,
+      "workflow_failures": 30,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
+      "code_failures": 36,
+      "ignored_nonverdicts": 60,
+      "unresolved_failures": 38,
+      "probabilistic_jobs": 52,
       "active_runs": 0,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.6-35B-A3B-w8a8-A3-accuracy, linux-aarch64-a3-2, Qwen3.6-35B-A3B-w8a8-A3-... / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.6-35B-A3B-w8a8-A3-accuracy, linux-aarch64-a3-2, Qwen3.6-35B-A3B-w8a8-A3-... / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.5-122B-A10B-w4a8-A3-accuracy, linux-aarch64-a3-16, Qwen3.5-122B-A10B-w4a... / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.5-122B-A10B-w4a8-A3-accuracy, linux-aarch64-a3-16, Qwen3.5-122B-A10B-w4a... / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Weekly-A3::single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "single-node (main, Qwen3.5-397B-Memcache-perf, linux-aarch64-a3-16, Qwen3.5-397B-Memcache-perf.yaml) / inputs.name || inputs.config_file_path || inputs.tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "pass_rate_30d": 0.8442,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.25,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-A3::double-node (main, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml, tests/e... / Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "double-node (main, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml, tests/e... / Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml",
+          "pass_rate_30d": 0.25,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     },
     {
       "hour": "2026-08-29T11:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 20,
+      "jobs": 202,
+      "workflow_failures": 13,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
+      "code_failures": 11,
+      "ignored_nonverdicts": 3,
+      "unresolved_failures": 15,
+      "probabilistic_jobs": 19,
       "active_runs": 0,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "pass_rate_30d": 0.8442,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.25,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     },
     {
       "hour": "2026-08-29T12:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 11,
+      "jobs": 215,
+      "workflow_failures": 8,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
+      "code_failures": 22,
+      "ignored_nonverdicts": 20,
+      "unresolved_failures": 6,
+      "probabilistic_jobs": 9,
       "active_runs": 0,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "pass_rate_30d": 0.8442,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.25,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-A3::double-node (main, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml, tests/e... / Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "double-node (main, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml, tests/e... / Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml",
+          "pass_rate_30d": 0.25,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     },
     {
       "hour": "2026-08-29T13:00:00Z",
