@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-08-30T07:18:33Z",
+  "updated_at": "2026-08-30T13:14:09Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "scope": {
     "branch": "main",
@@ -10,17 +10,17 @@
   },
   "analysis": {
     "complete": true,
-    "window_start": "2026-08-29T23:18:33Z",
-    "window_end": "2026-08-30T07:18:33Z",
-    "runs": 3,
-    "jobs": 43,
-    "api_requests": 8,
+    "window_start": "2026-08-30T05:14:09Z",
+    "window_end": "2026-08-30T13:14:09Z",
+    "runs": 16,
+    "jobs": 118,
+    "api_requests": 23,
     "request_budget": 2600,
     "evidence_requests": {
-      "evidence_attempted": 8,
-      "annotations_attempted": 8,
-      "annotations_succeeded": 8,
-      "annotations_with_text": 8,
+      "evidence_attempted": 25,
+      "annotations_attempted": 25,
+      "annotations_succeeded": 25,
+      "annotations_with_text": 25,
       "annotations_failed": 0,
       "job_logs_attempted": 0,
       "job_logs_succeeded": 0,
@@ -34,20 +34,20 @@
         "slices": 1
       },
       "schedule": {
-        "expected": 1,
-        "fetched": 1,
-        "complete": true,
-        "slices": 1
-      },
-      "workflow_dispatch": {
         "expected": 5,
         "fetched": 5,
         "complete": true,
         "slices": 1
       },
+      "workflow_dispatch": {
+        "expected": 18,
+        "fetched": 18,
+        "complete": true,
+        "slices": 1
+      },
       "repository_dispatch": {
-        "expected": 4,
-        "fetched": 4,
+        "expected": 18,
+        "fetched": 18,
         "complete": true,
         "slices": 1
       },
@@ -61,11 +61,11 @@
     "errors": []
   },
   "stats": {
-    "open": 247,
+    "open": 256,
     "attributed": 0,
-    "flaky": 2,
+    "flaky": 3,
     "infrastructure": 2,
-    "resolved": 2
+    "resolved": 3
   },
   "open": [
     {
@@ -132,13 +132,13 @@
       "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1\nUpload failed. See log:",
       "evidence_source": "annotations",
       "first_seen": "2026-08-21T17:09:20Z",
-      "last_seen": "2026-08-29T08:35:36Z",
-      "occurrences": 9,
+      "last_seen": "2026-08-30T11:40:32Z",
+      "occurrences": 11,
       "bootstrap_failure_count": 6,
       "evidence_sampling": "first_and_latest_when_budget_allows",
       "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33238453443/job/99064157053",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33238453443",
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33307720962/job/99247622821",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33307720962",
       "affected_commits": [
         "770e476f359a485a8762ec04a806ae5206589cad",
         "1a086ce8ab27a01d2b2fdef32797b6d989f4727f",
@@ -147,7 +147,8 @@
         "933737c9e7f4903c613d65b7cb6fcd046f64dfd3",
         "2617fb6abf541145ea7f12d1dd39c757f1180b66",
         "6953f266922e3ec2c33a04db4febb00e15893cec",
-        "4b25eb34793efa9f00201d654eb2f107ecebfbbd"
+        "4b25eb34793efa9f00201d654eb2f107ecebfbbd",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
       ],
       "affected_runs": [
         32497215451,
@@ -158,7 +159,9 @@
         33150596678,
         33186664693,
         33221942849,
-        33238453443
+        33238453443,
+        33300837688,
+        33307720962
       ],
       "signals": []
     },
@@ -207,8 +210,8 @@
     {
       "id": "be5613868d696ea0",
       "status": "open",
-      "category": "code",
-      "classification": "TEST_FAILURE",
+      "category": "flaky",
+      "classification": "FLAKY",
       "workflow": "Nightly-A2",
       "job": "multi-node (main, multi-node-GLM-5.1-w8a8-A2, GLM5_1-W8A8-A2-dual-nodes.yaml, tests/e2e/nightly/m... / GLM5_1-W8A8-A2-dual-nodes.yaml",
       "failed_step": "Stream logs",
@@ -216,13 +219,13 @@
       "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1\nUpload failed. See log:",
       "evidence_source": "annotations",
       "first_seen": "2026-08-21T16:22:54Z",
-      "last_seen": "2026-08-30T07:11:25Z",
-      "occurrences": 7,
+      "last_seen": "2026-08-30T08:09:19Z",
+      "occurrences": 8,
       "bootstrap_failure_count": 9,
       "evidence_sampling": "first_and_latest_when_budget_allows",
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33296267422/job/99216906826",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33296267422",
+      "pass_streak": 1,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33298028350/job/99221312966",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33298028350",
       "affected_commits": [
         "770e476f359a485a8762ec04a806ae5206589cad",
         "6953f266922e3ec2c33a04db4febb00e15893cec",
@@ -235,7 +238,47 @@
         33225019784,
         33267068921,
         33295121754,
-        33296267422
+        33296267422,
+        33298028350
+      ],
+      "signals": [
+        "same_commit_mixed_outcomes"
+      ]
+    },
+    {
+      "id": "732dc3d7ac0bf9c7",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Nightly-A2",
+      "job": "single-node (main, MiniMax-M2.5-w8a8-QuaRot-A2, linux-aarch64-a2b3-8, MiniMax-M2.5-w8a8-QuaRot-A2... / MiniMax-M2.5-w8a8-QuaRot-A2",
+      "failed_step": "Run Pytest (YAML-driven)",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-21T19:37:37Z",
+      "last_seen": "2026-08-30T12:14:16Z",
+      "occurrences": 8,
+      "bootstrap_failure_count": 6,
+      "evidence_sampling": "first_and_latest_when_budget_allows",
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33307720962/job/99251924263",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33307720962",
+      "affected_commits": [
+        "770e476f359a485a8762ec04a806ae5206589cad",
+        "1a086ce8ab27a01d2b2fdef32797b6d989f4727f",
+        "6fd6ea161b904ee4b379f6a18bc29d3e076cf25a",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        32514337689,
+        32517285667,
+        32520065060,
+        32532423142,
+        32745086701,
+        32867724386,
+        33300837688,
+        33307720962
       ],
       "signals": []
     },
@@ -275,40 +318,6 @@
         32986043913,
         33046425982,
         33054593891
-      ],
-      "signals": []
-    },
-    {
-      "id": "732dc3d7ac0bf9c7",
-      "status": "open",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "workflow": "Nightly-A2",
-      "job": "single-node (main, MiniMax-M2.5-w8a8-QuaRot-A2, linux-aarch64-a2b3-8, MiniMax-M2.5-w8a8-QuaRot-A2... / MiniMax-M2.5-w8a8-QuaRot-A2",
-      "failed_step": "Run Pytest (YAML-driven)",
-      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "evidence_source": "annotations",
-      "first_seen": "2026-08-21T19:37:37Z",
-      "last_seen": "2026-08-25T20:05:51Z",
-      "occurrences": 6,
-      "bootstrap_failure_count": 6,
-      "evidence_sampling": "first_and_latest_when_budget_allows",
-      "pass_streak": 2,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32867724386/job/97906220297",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32867724386",
-      "affected_commits": [
-        "770e476f359a485a8762ec04a806ae5206589cad",
-        "1a086ce8ab27a01d2b2fdef32797b6d989f4727f",
-        "6fd6ea161b904ee4b379f6a18bc29d3e076cf25a"
-      ],
-      "affected_runs": [
-        32514337689,
-        32517285667,
-        32520065060,
-        32532423142,
-        32745086701,
-        32867724386
       ],
       "signals": []
     },
@@ -555,6 +564,126 @@
       "signals": []
     },
     {
+      "id": "62dbee6ecbf374cb",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Schedule All E2E Tests",
+      "job": "run-all-tests (v0.27.1) / cpu-0 card-(part 1-1)",
+      "failed_step": "Run selected tests without device",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-29T04:09:14Z",
+      "last_seen": "2026-08-30T08:09:59Z",
+      "occurrences": 4,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948/job/99228025421",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948",
+      "affected_commits": [
+        "5c59cfba98045f49645284745be035346a4d82d8",
+        "f1ab204e5b357c65a474cf9faef59f39bccf6092",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33232738948,
+        33242105495,
+        33282259957,
+        33300495948
+      ],
+      "signals": []
+    },
+    {
+      "id": "647b0e94d20e494f",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Schedule All E2E Tests",
+      "job": "run-all-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / cpu-0 card-(part 1-1)",
+      "failed_step": "Run selected tests without device",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-29T04:10:25Z",
+      "last_seen": "2026-08-30T08:10:20Z",
+      "occurrences": 4,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948/job/99228025337",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948",
+      "affected_commits": [
+        "5c59cfba98045f49645284745be035346a4d82d8",
+        "f1ab204e5b357c65a474cf9faef59f39bccf6092",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33232738948,
+        33242105495,
+        33282259957,
+        33300495948
+      ],
+      "signals": []
+    },
+    {
+      "id": "7e144c560d2a38b6",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Nightly-A3",
+      "job": "double-node (main, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml, tests/e... / Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml",
+      "failed_step": "Stream logs",
+      "signature": "Upload failed. See log:",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1\nUpload failed. See log:",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-29T06:30:45Z",
+      "last_seen": "2026-08-30T13:08:57Z",
+      "occurrences": 4,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33308274839/job/99249220661",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33308274839",
+      "affected_commits": [
+        "5c59cfba98045f49645284745be035346a4d82d8",
+        "a1affe4d3218f292c2c79c6d7666877efe526cbb",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33234716808,
+        33248505039,
+        33257064768,
+        33308274839
+      ],
+      "signals": []
+    },
+    {
+      "id": "99b1255a43a6a125",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Nightly-A3",
+      "job": "single-node (main, Minimax_m2.7_w8a8_A3, linux-aarch64-nightly-a3-16, Minimax_m2.7_w8a8_A3.yaml) / Minimax_m2.7_w8a8_A3",
+      "failed_step": "Run Pytest (YAML-driven)",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-21T21:49:59Z",
+      "last_seen": "2026-08-30T09:08:55Z",
+      "occurrences": 3,
+      "bootstrap_failure_count": 8,
+      "evidence_sampling": "first_and_latest_when_budget_allows",
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300777926/job/99231618387",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300777926",
+      "affected_commits": [
+        "770e476f359a485a8762ec04a806ae5206589cad",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        32497217812,
+        33299957099,
+        33300777926
+      ],
+      "signals": []
+    },
+    {
       "id": "c0e710f051bfd252",
       "status": "open",
       "category": "code",
@@ -679,88 +808,29 @@
       "signals": []
     },
     {
-      "id": "62dbee6ecbf374cb",
-      "status": "open",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "workflow": "Schedule All E2E Tests",
-      "job": "run-all-tests (v0.27.1) / cpu-0 card-(part 1-1)",
-      "failed_step": "Run selected tests without device",
-      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "evidence_source": "annotations",
-      "first_seen": "2026-08-29T04:09:14Z",
-      "last_seen": "2026-08-30T00:09:31Z",
-      "occurrences": 3,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957/job/99179687816",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957",
-      "affected_commits": [
-        "5c59cfba98045f49645284745be035346a4d82d8",
-        "f1ab204e5b357c65a474cf9faef59f39bccf6092",
-        "e6a133f710c54e84cefcd29be46678c50008e8ea"
-      ],
-      "affected_runs": [
-        33232738948,
-        33242105495,
-        33282259957
-      ],
-      "signals": []
-    },
-    {
-      "id": "647b0e94d20e494f",
-      "status": "open",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "workflow": "Schedule All E2E Tests",
-      "job": "run-all-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / cpu-0 card-(part 1-1)",
-      "failed_step": "Run selected tests without device",
-      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "evidence_source": "annotations",
-      "first_seen": "2026-08-29T04:10:25Z",
-      "last_seen": "2026-08-30T00:09:18Z",
-      "occurrences": 3,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957/job/99179687797",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957",
-      "affected_commits": [
-        "5c59cfba98045f49645284745be035346a4d82d8",
-        "f1ab204e5b357c65a474cf9faef59f39bccf6092",
-        "e6a133f710c54e84cefcd29be46678c50008e8ea"
-      ],
-      "affected_runs": [
-        33232738948,
-        33242105495,
-        33282259957
-      ],
-      "signals": []
-    },
-    {
-      "id": "7e144c560d2a38b6",
+      "id": "16ae73d20d614705",
       "status": "open",
       "category": "code",
       "classification": "TEST_FAILURE",
       "workflow": "Nightly-A3",
-      "job": "double-node (main, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml, tests/e... / Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml",
-      "failed_step": "Stream logs",
-      "signature": "Upload failed. See log:",
-      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1\nUpload failed. See log:",
+      "job": "single-node (main, qwen3-vl-235b-a22b-instruct-w8a8, linux-aarch64-nightly-a3-16, Qwen3-VL-235B-A... / qwen3-vl-235b-a22b-instruct-w8a8",
+      "failed_step": "Run Pytest (YAML-driven)",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
       "evidence_source": "annotations",
-      "first_seen": "2026-08-29T06:30:45Z",
-      "last_seen": "2026-08-29T15:26:41Z",
+      "first_seen": "2026-08-30T08:30:14Z",
+      "last_seen": "2026-08-30T10:43:03Z",
       "occurrences": 3,
       "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33257064768/job/99113064823",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33257064768",
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33305529502/job/99241802203",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33305529502",
       "affected_commits": [
-        "5c59cfba98045f49645284745be035346a4d82d8",
-        "a1affe4d3218f292c2c79c6d7666877efe526cbb"
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
       ],
       "affected_runs": [
-        33234716808,
-        33248505039,
-        33257064768
+        33299957099,
+        33300777926,
+        33305529502
       ],
       "signals": []
     },
@@ -819,6 +889,35 @@
       "signals": []
     },
     {
+      "id": "ff45c5402a75dfc3",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Nightly-A3",
+      "job": "double-node (main, multi-node-qwen-disagg-pd, Qwen3-235B-disagg-pd.yaml, tests/e2e/nightly/multi_... / Qwen3-235B-disagg-pd.yaml",
+      "failed_step": "Wait for pods ready",
+      "signature": "Upload failed. See log:",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1\nUpload failed. See log:",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-28T09:27:48Z",
+      "last_seen": "2026-08-30T08:35:01Z",
+      "occurrences": 2,
+      "bootstrap_failure_count": 8,
+      "evidence_sampling": "first_and_latest_when_budget_allows",
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300777926/job/99229036801",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300777926",
+      "affected_commits": [
+        "989caea5883d40de3829489f64c688c456042a93",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33157505173,
+        33300777926
+      ],
+      "signals": []
+    },
+    {
       "id": "7a57be220289b24f",
       "status": "open",
       "category": "code",
@@ -868,6 +967,33 @@
       "affected_runs": [
         33232114271,
         33236289001
+      ],
+      "signals": []
+    },
+    {
+      "id": "77fc09f867206d68",
+      "status": "open",
+      "category": "code",
+      "classification": "BUILD_OR_CHECK_FAILURE",
+      "workflow": "Release Code and Wheel",
+      "job": "build and release wheel (A5) (ubuntu-24.04-arm, 3.10)",
+      "failed_step": "Build wheel",
+      "signature": "The command [sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel libgl1-mesa-dri --fix-missing] failed to complete successfully. Proceeding...",
+      "log_excerpt": "The command [sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel libgl1-mesa-dri --fix-missing] failed to complete successfully. Proceeding...",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-29T08:58:07Z",
+      "last_seen": "2026-08-30T08:15:41Z",
+      "occurrences": 2,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300479633/job/99227562322",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300479633",
+      "affected_commits": [
+        "28bf3a2e8e8db396ee5dcfa6812626eee2d394ab",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33243785516,
+        33300479633
       ],
       "signals": []
     },
@@ -924,6 +1050,32 @@
       "signals": []
     },
     {
+      "id": "0434b8201eba0fd2",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Nightly-A2",
+      "job": "single-node (main, Qwen3.5-27B-w8a8-A2, linux-aarch64-a2b3-2, Qwen3.5-27B-w8a8-A2.yaml) / Qwen3.5-27B-w8a8-A2",
+      "failed_step": "Run Pytest (YAML-driven)",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T09:38:18Z",
+      "last_seen": "2026-08-30T12:17:30Z",
+      "occurrences": 2,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33307711299/job/99247607939",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33307711299",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33300811561,
+        33307711299
+      ],
+      "signals": []
+    },
+    {
       "id": "5b4433bcd258be5f",
       "status": "open",
       "category": "code",
@@ -941,33 +1093,6 @@
       "evidence_sampling": "first_and_latest_when_budget_allows",
       "pass_streak": 0,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32497217812/job/96831822896",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32497217812",
-      "affected_commits": [
-        "770e476f359a485a8762ec04a806ae5206589cad"
-      ],
-      "affected_runs": [
-        32497217812
-      ],
-      "signals": []
-    },
-    {
-      "id": "99b1255a43a6a125",
-      "status": "open",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "workflow": "Nightly-A3",
-      "job": "single-node (main, Minimax_m2.7_w8a8_A3, linux-aarch64-nightly-a3-16, Minimax_m2.7_w8a8_A3.yaml) / Minimax_m2.7_w8a8_A3",
-      "failed_step": "Run Pytest (YAML-driven)",
-      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "evidence_source": "annotations",
-      "first_seen": "2026-08-21T21:49:59Z",
-      "last_seen": "2026-08-21T21:49:59Z",
-      "occurrences": 1,
-      "bootstrap_failure_count": 8,
-      "evidence_sampling": "first_and_latest_when_budget_allows",
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32497217812/job/96914453807",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32497217812",
       "affected_commits": [
         "770e476f359a485a8762ec04a806ae5206589cad"
@@ -4119,7 +4244,7 @@
       "occurrences": 1,
       "bootstrap_failure_count": 2,
       "evidence_sampling": "first_and_latest_when_budget_allows",
-      "pass_streak": 2,
+      "pass_streak": 0,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32745090271/job/97547595379",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32745090271",
       "affected_commits": [
@@ -5765,33 +5890,6 @@
       "signals": []
     },
     {
-      "id": "ff45c5402a75dfc3",
-      "status": "open",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "workflow": "Nightly-A3",
-      "job": "double-node (main, multi-node-qwen-disagg-pd, Qwen3-235B-disagg-pd.yaml, tests/e2e/nightly/multi_... / Qwen3-235B-disagg-pd.yaml",
-      "failed_step": "Wait for pods ready",
-      "signature": "Upload failed. See log:",
-      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1\nUpload failed. See log:",
-      "evidence_source": "annotations",
-      "first_seen": "2026-08-28T09:27:48Z",
-      "last_seen": "2026-08-28T09:27:48Z",
-      "occurrences": 1,
-      "bootstrap_failure_count": 8,
-      "evidence_sampling": "first_and_latest_when_budget_allows",
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33157505173/job/98805113336",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33157505173",
-      "affected_commits": [
-        "989caea5883d40de3829489f64c688c456042a93"
-      ],
-      "affected_runs": [
-        33157505173
-      ],
-      "signals": []
-    },
-    {
       "id": "9f68dc86d0745f1b",
       "status": "open",
       "category": "code",
@@ -5807,7 +5905,7 @@
       "occurrences": 1,
       "bootstrap_failure_count": 9,
       "evidence_sampling": "first_and_latest_when_budget_allows",
-      "pass_streak": 0,
+      "pass_streak": 1,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33159149278/job/98810167050",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33159149278",
       "affected_commits": [
@@ -6248,31 +6346,6 @@
       "signals": []
     },
     {
-      "id": "e86686bf2558e3c8",
-      "status": "open",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "workflow": "Schedule All E2E Tests",
-      "job": "run-all-tests (v0.27.1) / a2-1 card-(part 1-5)",
-      "failed_step": "Run selected tests with device",
-      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
-      "evidence_source": "annotations",
-      "first_seen": "2026-08-29T05:00:26Z",
-      "last_seen": "2026-08-29T05:00:26Z",
-      "occurrences": 1,
-      "pass_streak": 2,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33232738948/job/99048691994",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33232738948",
-      "affected_commits": [
-        "5c59cfba98045f49645284745be035346a4d82d8"
-      ],
-      "affected_runs": [
-        33232738948
-      ],
-      "signals": []
-    },
-    {
       "id": "aca73197c3f0da8c",
       "status": "open",
       "category": "code",
@@ -6294,31 +6367,6 @@
       ],
       "affected_runs": [
         33232726316
-      ],
-      "signals": []
-    },
-    {
-      "id": "77fc09f867206d68",
-      "status": "open",
-      "category": "code",
-      "classification": "BUILD_OR_CHECK_FAILURE",
-      "workflow": "Release Code and Wheel",
-      "job": "build and release wheel (A5) (ubuntu-24.04-arm, 3.10)",
-      "failed_step": "Build wheel",
-      "signature": "The command [sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel libgl1-mesa-dri --fix-missing] failed to complete successfully. Proceeding...",
-      "log_excerpt": "The command [sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel libgl1-mesa-dri --fix-missing] failed to complete successfully. Proceeding...",
-      "evidence_source": "annotations",
-      "first_seen": "2026-08-29T08:58:07Z",
-      "last_seen": "2026-08-29T08:58:07Z",
-      "occurrences": 1,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33243785516/job/99077566670",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33243785516",
-      "affected_commits": [
-        "28bf3a2e8e8db396ee5dcfa6812626eee2d394ab"
-      ],
-      "affected_runs": [
-        33243785516
       ],
       "signals": []
     },
@@ -6536,7 +6584,7 @@
       "first_seen": "2026-08-30T00:11:29Z",
       "last_seen": "2026-08-30T00:11:29Z",
       "occurrences": 1,
-      "pass_streak": 0,
+      "pass_streak": 1,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957/job/99179687844",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957",
       "affected_commits": [
@@ -6561,7 +6609,7 @@
       "first_seen": "2026-08-30T00:12:51Z",
       "last_seen": "2026-08-30T00:12:51Z",
       "occurrences": 1,
-      "pass_streak": 0,
+      "pass_streak": 1,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957/job/99179687811",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957",
       "affected_commits": [
@@ -6586,7 +6634,7 @@
       "first_seen": "2026-08-30T00:13:43Z",
       "last_seen": "2026-08-30T00:13:43Z",
       "occurrences": 1,
-      "pass_streak": 0,
+      "pass_streak": 1,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957/job/99179687738",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957",
       "affected_commits": [
@@ -6611,7 +6659,7 @@
       "first_seen": "2026-08-30T00:52:05Z",
       "last_seen": "2026-08-30T00:52:05Z",
       "occurrences": 1,
-      "pass_streak": 0,
+      "pass_streak": 1,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957/job/99179687809",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282259957",
       "affected_commits": [
@@ -6621,9 +6669,235 @@
         33282259957
       ],
       "signals": []
+    },
+    {
+      "id": "04cc38abf3d06438",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Schedule All E2E Tests",
+      "job": "run-all-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-2 card-(part 1-2)",
+      "failed_step": "Run selected tests with device",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T08:11:21Z",
+      "last_seen": "2026-08-30T08:11:21Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948/job/99228025371",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33300495948
+      ],
+      "signals": []
+    },
+    {
+      "id": "831230888c9f6f7f",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Schedule All E2E Tests",
+      "job": "run-all-tests (v0.27.1) / a3-800i-2 card-(part 1-2)",
+      "failed_step": "Run selected tests with device",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T08:12:33Z",
+      "last_seen": "2026-08-30T08:12:33Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948/job/99228025490",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33300495948
+      ],
+      "signals": []
+    },
+    {
+      "id": "af9510e054a8caae",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Schedule All E2E Tests",
+      "job": "run-all-tests (v0.27.1) / a3-800i-4 card-(part 2-2)",
+      "failed_step": "Run selected tests with device",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T08:14:29Z",
+      "last_seen": "2026-08-30T08:14:29Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948/job/99228025497",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33300495948
+      ],
+      "signals": []
+    },
+    {
+      "id": "03353bd7a7823462",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Schedule All E2E Tests",
+      "job": "run-all-tests (v0.27.1) / a3-2 card-(part 1-2)",
+      "failed_step": "Run selected tests with device",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T08:14:47Z",
+      "last_seen": "2026-08-30T08:14:47Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948/job/99228025411",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33300495948
+      ],
+      "signals": []
+    },
+    {
+      "id": "4758b7d24e63b640",
+      "status": "open",
+      "category": "unresolved",
+      "classification": "CODE_OR_UNKNOWN_FAILURE",
+      "workflow": "Nightly-A3",
+      "job": "double-node (main, Minimax_m2.7_in128k_1k_prefix90_tpot50, Minimax_m2.7_in128k_1k_prefix90_tpot50... / Minimax_m2.7_in128k_1k_prefix90_tpot50.yaml",
+      "failed_step": "Wait for pods ready",
+      "signature": "Upload failed. See log:",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1\nUpload failed. See log:",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T08:34:13Z",
+      "last_seen": "2026-08-30T08:34:13Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300777926/job/99229038821",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300777926",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33300777926
+      ],
+      "signals": []
+    },
+    {
+      "id": "49fd22c586c51e24",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Nightly-A3",
+      "job": "single-node (main, kimi-k2.5, linux-aarch64-nightly-a3-16, Kimi-K2.5.yaml) / kimi-k2.5",
+      "failed_step": "Run Pytest (YAML-driven)",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T08:58:53Z",
+      "last_seen": "2026-08-30T08:58:53Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33299957099/job/99226710436",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33299957099",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33299957099
+      ],
+      "signals": []
+    },
+    {
+      "id": "e7e1c40bd8af8402",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Schedule All E2E Tests",
+      "job": "run-all-tests (v0.27.1) / a3-4 card-(part 2-2)",
+      "failed_step": "Run selected tests with device",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T09:11:27Z",
+      "last_seen": "2026-08-30T09:11:27Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948/job/99228025489",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300495948",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33300495948
+      ],
+      "signals": []
+    },
+    {
+      "id": "645ad974a6e64880",
+      "status": "open",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Nightly-A3",
+      "job": "single-node (main, Qwen3.5-27B-w8a8-A3, linux-aarch64-nightly-a3-2, Qwen3.5-27B-w8a8-A3.yaml) / Qwen3.5-27B-w8a8-A3",
+      "failed_step": "Run Pytest (YAML-driven)",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-30T09:51:08Z",
+      "last_seen": "2026-08-30T09:51:08Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300777926/job/99231616604",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33300777926",
+      "affected_commits": [
+        "e6a133f710c54e84cefcd29be46678c50008e8ea"
+      ],
+      "affected_runs": [
+        33300777926
+      ],
+      "signals": []
     }
   ],
   "resolved": [
+    {
+      "id": "e86686bf2558e3c8",
+      "status": "resolved",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "workflow": "Schedule All E2E Tests",
+      "job": "run-all-tests (v0.27.1) / a2-1 card-(part 1-5)",
+      "failed_step": "Run selected tests with device",
+      "signature": "Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "log_excerpt": "Executing the custom container implementation failed. Please contact your self hosted runner administrator.\nError: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1",
+      "evidence_source": "annotations",
+      "first_seen": "2026-08-29T05:00:26Z",
+      "last_seen": "2026-08-29T05:00:26Z",
+      "occurrences": 1,
+      "pass_streak": 3,
+      "resolved_at": "2026-08-30T09:15:57Z",
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33232738948/job/99048691994",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33232738948",
+      "affected_commits": [
+        "5c59cfba98045f49645284745be035346a4d82d8"
+      ],
+      "affected_runs": [
+        33232738948
+      ],
+      "signals": []
+    },
     {
       "id": "9230878e02a0b074",
       "status": "resolved",
