@@ -2,43 +2,59 @@
   "schema_version": 1,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-08-30T01:17:06Z",
+  "updated_at": "2026-08-30T06:43:24Z",
   "latest_hour": {
-    "hour": "2026-08-30T00:00:00Z",
+    "hour": "2026-08-30T05:00:00Z",
     "status": "down",
     "coverage": "complete",
-    "runs": 2,
-    "jobs": 16,
-    "workflow_failures": 2,
+    "runs": 1,
+    "jobs": 22,
+    "workflow_failures": 1,
     "infra_failures": 0,
-    "code_failures": 2,
+    "code_failures": 1,
     "ignored_nonverdicts": 0,
-    "unresolved_failures": 4,
-    "probabilistic_jobs": 2,
-    "active_runs": 2,
+    "unresolved_failures": 1,
+    "probabilistic_jobs": 3,
+    "active_runs": 5,
     "reasons": {},
     "failures": [],
     "probabilistic": [
+      {
+        "key": "job::E2E::pre-commit",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "pre-commit",
+        "pass_rate_30d": 0.6208,
+        "reason": "same_commit_mixed_outcomes"
+      },
       {
         "key": "job::E2E::ci-gate",
         "kind": "job",
         "workflow": "E2E",
         "job": "ci-gate",
-        "pass_rate_30d": 0.2208,
+        "pass_rate_30d": 0.2042,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+        "pass_rate_30d": 0.8462,
         "reason": "same_commit_mixed_outcomes"
       }
     ]
   },
   "days_tracked": 30,
   "overall": {
-    "availability": 0.190265,
-    "observed_hours": 226,
+    "availability": 0.187773,
+    "observed_hours": 229,
     "healthy_hours": 43,
-    "down_hours": 183,
-    "unknown_hours": 471,
+    "down_hours": 186,
+    "unknown_hours": 473,
     "infra_failures": 0,
-    "code_failures": 941,
-    "unresolved_failures": 4999,
-    "probabilistic_jobs": 864
+    "code_failures": 948,
+    "unresolved_failures": 5011,
+    "probabilistic_jobs": 893
   }
 }
