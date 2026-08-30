@@ -2,22 +2,22 @@
   "schema_version": 1,
   "date": "2026-08-30",
   "timezone": "UTC",
-  "updated_at": "2026-08-30T12:52:08Z",
+  "updated_at": "2026-08-30T17:27:52Z",
   "status": "down",
   "metrics": {
     "availability": 0.0,
-    "coverage": 0.583333,
-    "expected_hours": 12,
-    "observed_hours": 7,
+    "coverage": 0.588235,
+    "expected_hours": 17,
+    "observed_hours": 10,
     "healthy_hours": 0,
-    "down_hours": 7,
-    "unknown_hours": 5,
-    "runs": 42,
-    "jobs": 523,
+    "down_hours": 10,
+    "unknown_hours": 7,
+    "runs": 64,
+    "jobs": 1049,
     "infra_failures": 0,
-    "code_failures": 23,
-    "unresolved_failures": 34,
-    "probabilistic_jobs": 69
+    "code_failures": 48,
+    "unresolved_failures": 48,
+    "probabilistic_jobs": 96
   },
   "hours": [
     {
@@ -427,54 +427,177 @@
     },
     {
       "hour": "2026-08-30T14:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 7,
+      "jobs": 336,
+      "workflow_failures": 5,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "code_failures": 15,
+      "ignored_nonverdicts": 5,
+      "unresolved_failures": 5,
+      "probabilistic_jobs": 12,
+      "active_runs": 1,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::pre-commit",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "pre-commit",
+          "pass_rate_30d": 0.5792,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+          "pass_rate_30d": 0.8537,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-A3::double-node (main, multi-node-qwenw8a8-2node-eplb, Qwen3-235B-W8A8-EPLB.yaml, tests/e2e/nightly/m... / Qwen3-235B-W8A8-EPLB.yaml",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "double-node (main, multi-node-qwenw8a8-2node-eplb, Qwen3-235B-W8A8-EPLB.yaml, tests/e2e/nightly/m... / Qwen3-235B-W8A8-EPLB.yaml",
+          "pass_rate_30d": 0.0,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-A3::double-node (main, multi-node-deepseek-v3.1, DeepSeek-V3.1-BF16.yaml, tests/e2e/nightly/multi_nod... / DeepSeek-V3.1-BF16.yaml",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "double-node (main, multi-node-deepseek-v3.1, DeepSeek-V3.1-BF16.yaml, tests/e2e/nightly/multi_nod... / DeepSeek-V3.1-BF16.yaml",
+          "pass_rate_30d": 0.0,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2042,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-A3::double-node (main, Minimax_m2.7_in128k_1k_prefix90_tpot50, Minimax_m2.7_in128k_1k_prefix90_tpot50... / Minimax_m2.7_in128k_1k_prefix90_tpot50.yaml",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "double-node (main, Minimax_m2.7_in128k_1k_prefix90_tpot50, Minimax_m2.7_in128k_1k_prefix90_tpot50... / Minimax_m2.7_in128k_1k_prefix90_tpot50.yaml",
+          "pass_rate_30d": 0.25,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     },
     {
       "hour": "2026-08-30T15:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 10,
+      "jobs": 99,
+      "workflow_failures": 8,
       "infra_failures": 0,
-      "code_failures": 0,
+      "code_failures": 7,
       "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "unresolved_failures": 6,
+      "probabilistic_jobs": 8,
+      "active_runs": 4,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests-pr-only",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests",
+          "pass_rate_30d": 1.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A3::single-node (main, qwen3-vl-235b-a22b-instruct-w8a8, linux-aarch64-nightly-a3-16, Qwen3-VL-235B-A... / qwen3-vl-235b-a22b-instruct-w8a8",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "single-node (main, qwen3-vl-235b-a22b-instruct-w8a8, linux-aarch64-nightly-a3-16, Qwen3-VL-235B-A... / qwen3-vl-235b-a22b-instruct-w8a8",
+          "pass_rate_30d": 0.1429,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Release Code and Wheel::build and release wheel (ubuntu-24.04, 3.12)",
+          "kind": "job",
+          "workflow": "Release Code and Wheel",
+          "job": "build and release wheel (ubuntu-24.04, 3.12)",
+          "pass_rate_30d": 1.0,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2042,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::pre-commit",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "pre-commit",
+          "pass_rate_30d": 0.5792,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     },
     {
       "hour": "2026-08-30T16:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 5,
+      "jobs": 91,
+      "workflow_failures": 3,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "code_failures": 3,
+      "ignored_nonverdicts": 4,
+      "unresolved_failures": 3,
+      "probabilistic_jobs": 7,
+      "active_runs": 4,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::pre-commit",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "pre-commit",
+          "pass_rate_30d": 0.5792,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2042,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-A3::single-node (main, qwen3-vl-235b-a22b-instruct-w8a8, linux-aarch64-nightly-a3-16, Qwen3-VL-235B-A... / qwen3-vl-235b-a22b-instruct-w8a8",
+          "kind": "job",
+          "workflow": "Nightly-A3",
+          "job": "single-node (main, qwen3-vl-235b-a22b-instruct-w8a8, linux-aarch64-nightly-a3-16, Qwen3-VL-235B-A... / qwen3-vl-235b-a22b-instruct-w8a8",
+          "pass_rate_30d": 0.1429,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     },
     {
       "hour": "2026-08-30T17:00:00Z",
