@@ -2,22 +2,22 @@
   "schema_version": 1,
   "date": "2026-08-29",
   "timezone": "UTC",
-  "updated_at": "2026-08-29T23:16:54Z",
+  "updated_at": "2026-08-30T01:17:06Z",
   "status": "down",
   "metrics": {
-    "availability": 0.076923,
-    "coverage": 0.565217,
-    "expected_hours": 23,
-    "observed_hours": 13,
+    "availability": 0.071429,
+    "coverage": 0.583333,
+    "expected_hours": 24,
+    "observed_hours": 14,
     "healthy_hours": 1,
-    "down_hours": 12,
+    "down_hours": 13,
     "unknown_hours": 10,
-    "runs": 202,
-    "jobs": 2809,
+    "runs": 204,
+    "jobs": 2825,
     "infra_failures": 0,
-    "code_failures": 169,
-    "unresolved_failures": 143,
-    "probabilistic_jobs": 187
+    "code_failures": 170,
+    "unresolved_failures": 145,
+    "probabilistic_jobs": 189
   },
   "hours": [
     {
@@ -673,20 +673,29 @@
     },
     {
       "hour": "2026-08-29T23:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 2,
+      "jobs": 16,
+      "workflow_failures": 2,
       "infra_failures": 0,
-      "code_failures": 0,
+      "code_failures": 1,
       "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "unresolved_failures": 2,
+      "probabilistic_jobs": 2,
+      "active_runs": 1,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2208,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     }
   ]
 }
