@@ -2,22 +2,22 @@
   "schema_version": 1,
   "date": "2026-08-31",
   "timezone": "UTC",
-  "updated_at": "2026-08-31T20:02:11Z",
+  "updated_at": "2026-08-31T23:49:20Z",
   "status": "down",
   "metrics": {
     "availability": 0.0,
-    "coverage": 0.4,
-    "expected_hours": 20,
-    "observed_hours": 8,
+    "coverage": 0.391304,
+    "expected_hours": 23,
+    "observed_hours": 9,
     "healthy_hours": 0,
-    "down_hours": 8,
-    "unknown_hours": 12,
-    "runs": 251,
-    "jobs": 3008,
+    "down_hours": 9,
+    "unknown_hours": 14,
+    "runs": 252,
+    "jobs": 3016,
     "infra_failures": 0,
-    "code_failures": 124,
-    "unresolved_failures": 137,
-    "probabilistic_jobs": 507
+    "code_failures": 125,
+    "unresolved_failures": 139,
+    "probabilistic_jobs": 510
   },
   "hours": [
     {
@@ -684,27 +684,52 @@
       "ignored_nonverdicts": 0,
       "unresolved_failures": 0,
       "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "active_runs": 1,
       "reasons": {},
       "failures": [],
       "probabilistic": []
     },
     {
       "hour": "2026-08-31T21:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 1,
+      "jobs": 8,
+      "workflow_failures": 1,
       "infra_failures": 0,
-      "code_failures": 0,
+      "code_failures": 1,
       "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "unresolved_failures": 2,
+      "probabilistic_jobs": 3,
+      "active_runs": 1,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::pre-commit",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "pre-commit",
+          "pass_rate_30d": 0.6875,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::select-tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "select-tests",
+          "pass_rate_30d": 0.6583,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2625,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     },
     {
       "hour": "2026-08-31T22:00:00Z",
@@ -718,7 +743,7 @@
       "ignored_nonverdicts": 0,
       "unresolved_failures": 0,
       "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "active_runs": 3,
       "reasons": {},
       "failures": [],
       "probabilistic": []
