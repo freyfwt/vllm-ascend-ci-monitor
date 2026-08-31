@@ -2,37 +2,69 @@
   "schema_version": 1,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-08-31T05:32:13Z",
+  "updated_at": "2026-08-31T13:48:13Z",
   "latest_hour": {
-    "hour": "2026-08-31T04:00:00Z",
+    "hour": "2026-08-31T12:00:00Z",
     "status": "down",
     "coverage": "complete",
-    "runs": 27,
-    "jobs": 288,
-    "workflow_failures": 13,
+    "runs": 55,
+    "jobs": 521,
+    "workflow_failures": 17,
     "infra_failures": 0,
-    "code_failures": 9,
-    "ignored_nonverdicts": 6,
-    "unresolved_failures": 19,
-    "probabilistic_jobs": 37,
-    "active_runs": 13,
+    "code_failures": 18,
+    "ignored_nonverdicts": 138,
+    "unresolved_failures": 22,
+    "probabilistic_jobs": 127,
+    "active_runs": 12,
     "reasons": {},
     "failures": [],
     "probabilistic": [
+      {
+        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a3-800i-2 card-(part 2-2)",
+        "kind": "job",
+        "workflow": "Schedule All E2E Tests",
+        "job": "run-all-tests (v0.27.1) / a3-800i-2 card-(part 2-2)",
+        "pass_rate_30d": 0.875,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a3-800i-2 card-(part 1-2)",
+        "kind": "job",
+        "workflow": "Schedule All E2E Tests",
+        "job": "run-all-tests (v0.27.1) / a3-800i-2 card-(part 1-2)",
+        "pass_rate_30d": 0.875,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Schedule All E2E Tests::run-all-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-2 card-(part 1-2)",
+        "kind": "job",
+        "workflow": "Schedule All E2E Tests",
+        "job": "run-all-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-2 card-(part 1-2)",
+        "pass_rate_30d": 0.875,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a3-800i-4 card-(part 2-2)",
+        "kind": "job",
+        "workflow": "Schedule All E2E Tests",
+        "job": "run-all-tests (v0.27.1) / a3-800i-4 card-(part 2-2)",
+        "pass_rate_30d": 0.875,
+        "reason": "same_commit_mixed_outcomes"
+      },
       {
         "key": "job::E2E::pre-commit",
         "kind": "job",
         "workflow": "E2E",
         "job": "pre-commit",
-        "pass_rate_30d": 0.625,
+        "pass_rate_30d": 0.7,
         "reason": "same_commit_mixed_outcomes"
       },
       {
-        "key": "job::E2E::ci-gate",
+        "key": "job::E2E::select-tests",
         "kind": "job",
         "workflow": "E2E",
-        "job": "ci-gate",
-        "pass_rate_30d": 0.2208,
+        "job": "select-tests",
+        "pass_rate_30d": 0.6625,
         "reason": "same_commit_mixed_outcomes"
       },
       {
@@ -40,29 +72,53 @@
         "kind": "job",
         "workflow": "E2E",
         "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
-        "pass_rate_30d": 0.8545,
+        "pass_rate_30d": 0.873,
         "reason": "same_commit_mixed_outcomes"
       },
       {
-        "key": "job::Nightly-A3::double-node (main, Minimax_m2.7_in128k_1k_prefix90_tpot50, Minimax_m2.7_in128k_1k_prefix90_tpot50... / Minimax_m2.7_in128k_1k_prefix90_tpot50.yaml",
+        "key": "job::E2E::ci-gate",
         "kind": "job",
-        "workflow": "Nightly-A3",
-        "job": "double-node (main, Minimax_m2.7_in128k_1k_prefix90_tpot50, Minimax_m2.7_in128k_1k_prefix90_tpot50... / Minimax_m2.7_in128k_1k_prefix90_tpot50.yaml",
-        "pass_rate_30d": 0.2,
+        "workflow": "E2E",
+        "job": "ci-gate",
+        "pass_rate_30d": 0.2625,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Nightly-A2::single-node-accuracy-tests",
+        "kind": "job",
+        "workflow": "Nightly-A2",
+        "job": "single-node-accuracy-tests",
+        "pass_rate_30d": 1.0,
+        "reason": "policy_probability_sensitive"
+      },
+      {
+        "key": "job::Nightly-A2::single-node-accuracy-tests-pr-only",
+        "kind": "job",
+        "workflow": "Nightly-A2",
+        "job": "single-node-accuracy-tests-pr-only",
+        "pass_rate_30d": 1.0,
+        "reason": "policy_probability_sensitive"
+      },
+      {
+        "key": "job::E2E::run-selected-tests (v0.27.1) / a3-2 card-(part 1-2)",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "run-selected-tests (v0.27.1) / a3-2 card-(part 1-2)",
+        "pass_rate_30d": 0.8235,
         "reason": "same_commit_mixed_outcomes"
       }
     ]
   },
   "days_tracked": 31,
   "overall": {
-    "availability": 0.182573,
-    "observed_hours": 241,
+    "availability": 0.180328,
+    "observed_hours": 244,
     "healthy_hours": 44,
-    "down_hours": 197,
-    "unknown_hours": 484,
+    "down_hours": 200,
+    "unknown_hours": 489,
     "infra_failures": 0,
-    "code_failures": 1065,
-    "unresolved_failures": 5115,
-    "probabilistic_jobs": 1152
+    "code_failures": 1110,
+    "unresolved_failures": 5181,
+    "probabilistic_jobs": 1466
   }
 }
