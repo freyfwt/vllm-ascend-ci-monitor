@@ -2,22 +2,22 @@
   "schema_version": 1,
   "date": "2026-08-31",
   "timezone": "UTC",
-  "updated_at": "2026-08-31T13:48:13Z",
+  "updated_at": "2026-08-31T20:02:11Z",
   "status": "down",
   "metrics": {
     "availability": 0.0,
-    "coverage": 0.461538,
-    "expected_hours": 13,
-    "observed_hours": 6,
+    "coverage": 0.4,
+    "expected_hours": 20,
+    "observed_hours": 8,
     "healthy_hours": 0,
-    "down_hours": 6,
-    "unknown_hours": 7,
-    "runs": 248,
-    "jobs": 2993,
+    "down_hours": 8,
+    "unknown_hours": 12,
+    "runs": 251,
+    "jobs": 3008,
     "infra_failures": 0,
-    "code_failures": 120,
+    "code_failures": 124,
     "unresolved_failures": 137,
-    "probabilistic_jobs": 503
+    "probabilistic_jobs": 507
   },
   "hours": [
     {
@@ -589,37 +589,71 @@
     },
     {
       "hour": "2026-08-31T17:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 1,
+      "jobs": 11,
+      "workflow_failures": 1,
       "infra_failures": 0,
-      "code_failures": 0,
+      "code_failures": 4,
       "ignored_nonverdicts": 0,
       "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "probabilistic_jobs": 2,
+      "active_runs": 2,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / [\n  \"Qwen3-Next-80B-A3B-Instruct\",\n  \"Qwen3-Omni-30B-A3B-Instruct\",\n  \"Mixtral-8x7B-Instruct-v0.1\"\n] accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / [\n  \"Qwen3-Next-80B-A3B-Instruct\",\n  \"Qwen3-Omni-30B-A3B-Instruct\",\n  \"Mixtral-8x7B-Instruct-v0.1\"\n] accuracy test",
+          "pass_rate_30d": 0.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / [\n  \"Qwen3-30B-A3B\",\n  \"Qwen3-VL-30B-A3B-Instruct\",\n  \"Qwen3-30B-A3B-W8A8\"\n] accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / [\n  \"Qwen3-30B-A3B\",\n  \"Qwen3-VL-30B-A3B-Instruct\",\n  \"Qwen3-30B-A3B-W8A8\"\n] accuracy test",
+          "pass_rate_30d": 0.0,
+          "reason": "policy_probability_sensitive"
+        }
+      ]
     },
     {
       "hour": "2026-08-31T18:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 2,
+      "jobs": 4,
+      "workflow_failures": 1,
       "infra_failures": 0,
       "code_failures": 0,
       "ignored_nonverdicts": 0,
       "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "probabilistic_jobs": 2,
+      "active_runs": 2,
       "reasons": {},
       "failures": [],
-      "probabilistic": []
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8... / [\n  \"Qwen3-VL-8B-Instruct-W8A8\",\n  \"Qwen3-8B\",\n  \"Qwen2-Audio-7B-Instruct\",\n  \"Qwen3-8B-W8A8\",\n  \"Qwen3-VL-8B-Instruct\",\n  \"Minitron-8B-Base\"\n] accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8... / [\n  \"Qwen3-VL-8B-Instruct-W8A8\",\n  \"Qwen3-8B\",\n  \"Qwen2-Audio-7B-Instruct\",\n  \"Qwen3-8B-W8A8\",\n  \"Qwen3-VL-8B-Instruct\",\n  \"Minitron-8B-Base\"\n] accuracy test",
+          "pass_rate_30d": 0.6667,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Main2Main::main2main",
+          "kind": "job",
+          "workflow": "Main2Main",
+          "job": "main2main",
+          "pass_rate_30d": 0.6667,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
     },
     {
       "hour": "2026-08-31T19:00:00Z",
@@ -633,7 +667,7 @@
       "ignored_nonverdicts": 0,
       "unresolved_failures": 0,
       "probabilistic_jobs": 0,
-      "active_runs": 0,
+      "active_runs": 3,
       "reasons": {},
       "failures": [],
       "probabilistic": []

@@ -1,6 +1,6 @@
 {
   "schema_version": 9,
-  "updated_at": "2026-08-31T13:43:51Z",
+  "updated_at": "2026-08-31T20:01:59Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "hours": [
     {
@@ -15968,6 +15968,91 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ]
+    },
+    {
+      "hour": "2026-08-31T17:00:00Z",
+      "status": "down",
+      "coverage": "complete",
+      "runs": 1,
+      "jobs": 11,
+      "workflow_failures": 1,
+      "infra_failures": 0,
+      "code_failures": 4,
+      "ignored_nonverdicts": 0,
+      "unresolved_failures": 0,
+      "probabilistic_jobs": 2,
+      "active_runs": 2,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / [\n  \"Qwen3-Next-80B-A3B-Instruct\",\n  \"Qwen3-Omni-30B-A3B-Instruct\",\n  \"Mixtral-8x7B-Instruct-v0.1\"\n] accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / [\n  \"Qwen3-Next-80B-A3B-Instruct\",\n  \"Qwen3-Omni-30B-A3B-Instruct\",\n  \"Mixtral-8x7B-Instruct-v0.1\"\n] accuracy test",
+          "pass_rate_30d": 0.0,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / [\n  \"Qwen3-30B-A3B\",\n  \"Qwen3-VL-30B-A3B-Instruct\",\n  \"Qwen3-30B-A3B-W8A8\"\n] accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / [\n  \"Qwen3-30B-A3B\",\n  \"Qwen3-VL-30B-A3B-Instruct\",\n  \"Qwen3-30B-A3B-W8A8\"\n] accuracy test",
+          "pass_rate_30d": 0.0,
+          "reason": "policy_probability_sensitive"
+        }
+      ]
+    },
+    {
+      "hour": "2026-08-31T18:00:00Z",
+      "status": "down",
+      "coverage": "complete",
+      "runs": 2,
+      "jobs": 4,
+      "workflow_failures": 1,
+      "infra_failures": 0,
+      "code_failures": 0,
+      "ignored_nonverdicts": 0,
+      "unresolved_failures": 0,
+      "probabilistic_jobs": 2,
+      "active_runs": 2,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8... / [\n  \"Qwen3-VL-8B-Instruct-W8A8\",\n  \"Qwen3-8B\",\n  \"Qwen2-Audio-7B-Instruct\",\n  \"Qwen3-8B-W8A8\",\n  \"Qwen3-VL-8B-Instruct\",\n  \"Minitron-8B-Base\"\n] accuracy test",
+          "kind": "job",
+          "workflow": "Nightly-A2",
+          "job": "single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8... / [\n  \"Qwen3-VL-8B-Instruct-W8A8\",\n  \"Qwen3-8B\",\n  \"Qwen2-Audio-7B-Instruct\",\n  \"Qwen3-8B-W8A8\",\n  \"Qwen3-VL-8B-Instruct\",\n  \"Minitron-8B-Base\"\n] accuracy test",
+          "pass_rate_30d": 0.6667,
+          "reason": "policy_probability_sensitive"
+        },
+        {
+          "key": "job::Main2Main::main2main",
+          "kind": "job",
+          "workflow": "Main2Main",
+          "job": "main2main",
+          "pass_rate_30d": 0.6667,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ]
+    },
+    {
+      "hour": "2026-08-31T19:00:00Z",
+      "status": "unknown",
+      "coverage": "complete",
+      "runs": 0,
+      "jobs": 0,
+      "workflow_failures": 0,
+      "infra_failures": 0,
+      "code_failures": 0,
+      "ignored_nonverdicts": 0,
+      "unresolved_failures": 0,
+      "probabilistic_jobs": 0,
+      "active_runs": 3,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": []
     }
   ],
   "policy": {
@@ -15980,25 +16065,25 @@
   "collector": {
     "authenticated": true,
     "auth_fallbacks": 0,
-    "api_requests": 344,
+    "api_requests": 17,
     "request_budget": 1200,
     "run_listing_complete": true,
     "event_coverage": {
       "pull_request": {
-        "expected": 302,
-        "fetched": 302,
+        "expected": 7,
+        "fetched": 7,
         "complete": true,
         "slices": 1
       },
       "pull_request_target": {
-        "expected": 439,
-        "fetched": 439,
+        "expected": 18,
+        "fetched": 18,
         "complete": true,
         "slices": 1
       },
       "push": {
-        "expected": 21,
-        "fetched": 21,
+        "expected": 0,
+        "fetched": 0,
         "complete": true,
         "slices": 1
       },
@@ -16009,14 +16094,14 @@
         "slices": 1
       },
       "workflow_dispatch": {
-        "expected": 16,
-        "fetched": 16,
+        "expected": 4,
+        "fetched": 4,
         "complete": true,
         "slices": 1
       },
       "repository_dispatch": {
-        "expected": 23,
-        "fetched": 23,
+        "expected": 0,
+        "fetched": 0,
         "complete": true,
         "slices": 1
       },
@@ -16039,7 +16124,7 @@
         "slices": 1
       }
     },
-    "detail_runs": 266,
+    "detail_runs": 8,
     "errors": []
   }
 }
