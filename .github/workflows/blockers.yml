@@ -29,7 +29,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           AUTH_REQUEST_BUDGET: "2600"
-          BLOCKER_EVIDENCE_CAP: "32"
+          BLOCKER_EVIDENCE_CAP: "0"
         run: python3 scripts/analyze_blockers.py
 
       - name: Persist blocker state safely
