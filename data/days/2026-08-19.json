@@ -2,7 +2,7 @@
   "schema_version": 2,
   "date": "2026-08-19",
   "timezone": "UTC",
-  "updated_at": "2026-09-01T12:38:46Z",
+  "updated_at": "2026-09-01T12:51:42Z",
   "status": "partial",
   "metrics": {
     "availability": null,
@@ -16,8 +16,8 @@
     "unknown_hours": 24,
     "runs": 291,
     "jobs": 130,
-    "merge_gate_runs": 0,
-    "merge_gate_code_failures": 0,
+    "merge_gate_runs": 5,
+    "merge_gate_code_failures": 4,
     "merge_blocking_ci_failures": 0,
     "merge_gate_unknown_failures": 0,
     "infra_failures": 0,
@@ -76,13 +76,59 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
-      "merge_gate_policy_failures": 0,
+      "merge_gate_runs": 5,
+      "merge_gate_code_failures": 4,
+      "merge_gate_policy_failures": 1,
       "merge_blocking_ci_failures": 0,
       "merge_gate_unknown_failures": 0,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
+      "merge_gate_evidence": [
+        {
+          "run_id": 32204915922,
+          "sha": "4bf48a63623dc0d7d32f83c7d7246121f1f9bcde",
+          "kind": "code",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32204915922/job/95926678320"
+        },
+        {
+          "run_id": 32205859135,
+          "sha": "568767666f5e0e0235ce0ea24e63079303c7f8be",
+          "kind": "code",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Validate PR title prefix",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32205859135/job/95929227993"
+        },
+        {
+          "run_id": 32205703374,
+          "sha": "0c4b43844956e2445a71679457e70f2a08023a9b",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32205703374/job/95929821450"
+        },
+        {
+          "run_id": 32206073318,
+          "sha": "f874415b1217b346b13a2078b9f247dd24efef13",
+          "kind": "code",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32206073318/job/95930238204"
+        },
+        {
+          "run_id": 32206407728,
+          "sha": "7b17598b0429f1ecc2b95e21d06b7163831cc4dc",
+          "kind": "code",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32206407728/job/95931154875"
+        }
+      ],
       "merge_gate_analyzed": false
     },
     {
