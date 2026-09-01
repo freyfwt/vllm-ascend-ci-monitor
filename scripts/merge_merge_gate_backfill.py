@@ -9,7 +9,7 @@ from collect import load, save
 from reapply_merge_status import apply
 
 HISTORY = Path("data/history.json")
-REQUIRED_SHARD_SCHEMA = 5
+REQUIRED_SHARD_SCHEMA = 6
 FIELDS = (
     "merge_gate_runs",
     "merge_gate_code_failures",
@@ -37,7 +37,7 @@ def main() -> int:
             legacy.append(path.name)
     if legacy:
         raise SystemExit(
-            "refusing legacy merge-gate shards; schema 5 per-hour completeness is required: "
+            "refusing legacy merge-gate shards; schema 6 root-cause attribution is required: "
             + ", ".join(legacy[:8])
             + (" ..." if len(legacy) > 8 else "")
         )
