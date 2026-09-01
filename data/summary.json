@@ -2,34 +2,67 @@
   "schema_version": 1,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-08-31T23:49:20Z",
+  "updated_at": "2026-09-01T05:06:14Z",
   "latest_hour": {
-    "hour": "2026-08-31T22:00:00Z",
-    "status": "unknown",
+    "hour": "2026-09-01T04:00:00Z",
+    "status": "down",
     "coverage": "complete",
-    "runs": 0,
-    "jobs": 0,
-    "workflow_failures": 0,
+    "runs": 29,
+    "jobs": 237,
+    "workflow_failures": 15,
     "infra_failures": 0,
-    "code_failures": 0,
-    "ignored_nonverdicts": 0,
-    "unresolved_failures": 0,
-    "probabilistic_jobs": 0,
-    "active_runs": 3,
+    "code_failures": 20,
+    "ignored_nonverdicts": 38,
+    "unresolved_failures": 17,
+    "probabilistic_jobs": 56,
+    "active_runs": 15,
     "reasons": {},
     "failures": [],
-    "probabilistic": []
+    "probabilistic": [
+      {
+        "key": "job::E2E::pre-commit",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "pre-commit",
+        "pass_rate_30d": 0.6167,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::ci-gate",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "ci-gate",
+        "pass_rate_30d": 0.2375,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::select-tests",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "select-tests",
+        "pass_rate_30d": 0.6208,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+        "pass_rate_30d": 0.8832,
+        "reason": "same_commit_mixed_outcomes"
+      }
+    ]
   },
-  "days_tracked": 31,
+  "days_tracked": 32,
   "overall": {
-    "availability": 0.178138,
-    "observed_hours": 247,
+    "availability": 0.176,
+    "observed_hours": 250,
     "healthy_hours": 44,
-    "down_hours": 203,
-    "unknown_hours": 496,
+    "down_hours": 206,
+    "unknown_hours": 499,
     "infra_failures": 0,
-    "code_failures": 1115,
-    "unresolved_failures": 5183,
-    "probabilistic_jobs": 1473
+    "code_failures": 1185,
+    "unresolved_failures": 5279,
+    "probabilistic_jobs": 1792
   }
 }
