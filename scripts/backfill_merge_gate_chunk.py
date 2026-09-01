@@ -19,7 +19,7 @@ from classify_merge_availability import (
 from collect import GH, TESTS, iso_hour, iso_ts, load, parse_dt
 from run_merge_availability import list_e2e_pr_runs_status, list_failed_e2e_pr_runs
 
-SHARD_SCHEMA = 3
+SHARD_SCHEMA = 4
 FAIL = {"failure", "timed_out", "startup_failure"}
 NONVERDICT = {"skipped", "cancelled", "action_required", "stale", "neutral"}
 
@@ -73,6 +73,7 @@ def seed_day_observations(tests: dict[str, Any], run_jobs: list[tuple[dict[str, 
 def blank(hour: datetime) -> dict[str, Any]:
     return {
         "hour": iso_hour(hour),
+        "merge_gate_analyzed": False,
         "merge_gate_runs": 0,
         "merge_gate_code_failures": 0,
         "merge_gate_policy_failures": 0,
@@ -181,7 +182,7 @@ def main() -> int:
     failed_shas = {run.get("head_sha") for run in failed_runs if run.get("head_sha")}
 
     # Same-SHA instability requires seeing the successful rerun too. Query
-    # successful E2E run metadata, but fetch jobs only for SHAs that also had a
+    # successful E2E metadata, but fetch jobs only for SHAs that also had a
     # failed E2E run in this local window.
     try:
         success_meta = list_e2e_pr_runs_status(gh, scan_start, scan_end, "success") if failed_shas else []
@@ -276,11 +277,19 @@ def main() -> int:
                     gate_conclusion=gate_conclusion,
                 )
 
+    # Only a complete day replay is allowed to make a no-fault hour green. If
+    # any API/job retrieval was incomplete, the day stays gray except that a
+    # proven red event still wins when merged/reapplied.
+    analysis_complete = not errors
+    for row in hours.values():
+        row["merge_gate_analyzed"] = analysis_complete
+
     payload = {
         "schema_version": SHARD_SCHEMA,
         "date": args.date,
         "generated_at": iso_ts(datetime.now(timezone.utc)),
         "analysis": {
+            "complete": analysis_complete,
             "failed_runs_scanned": len(failed_runs),
             "failed_runs_with_jobs": len(failed_run_jobs),
             "matched_success_runs": len(matched_success),
@@ -299,7 +308,7 @@ def main() -> int:
     print(
         args.date,
         dict(stats),
-        f"failed_runs={len(failed_runs)} failed_jobs={len(failed_run_jobs)} "
+        f"complete={analysis_complete} failed_runs={len(failed_runs)} failed_jobs={len(failed_run_jobs)} "
         f"matched_success={len(matched_success)} requests={gh.requests}/{gh.budget} logs={logs.used}",
     )
     return 0
