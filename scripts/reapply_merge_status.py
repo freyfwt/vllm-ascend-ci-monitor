@@ -26,11 +26,11 @@ def decide(row: dict[str, Any]) -> str:
     if int(row.get("merge_blocking_ci_failures") or 0) > 0:
         return "down"
 
-    # Gray means we did not complete merge-path analysis for this hour. Never
-    # invent a green result from unrelated CI activity.
+    # Gray means the dedicated merge-path analysis was not completed. Generic
+    # all-workflow collector coverage is deliberately ignored here: once the
+    # required PR merge path was causally replayed, unrelated API gaps must not
+    # erase that result.
     if not bool(row.get("merge_gate_analyzed")):
-        return "unknown"
-    if row.get("coverage") == "partial":
         return "unknown"
 
     # The merge path was analyzed and a required gate really failed, but the
@@ -55,7 +55,7 @@ def apply(history: dict[str, Any]) -> dict[str, int]:
     for row in history.get("hours", []):
         row["status"] = decide(row)
         counts[row["status"]] = counts.get(row["status"], 0) + 1
-    history["schema_version"] = max(13, int(history.get("schema_version") or 0))
+    history["schema_version"] = max(14, int(history.get("schema_version") or 0))
     return counts
 
 
