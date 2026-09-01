@@ -9,7 +9,7 @@ from collect import load, save
 from reapply_merge_status import apply
 
 HISTORY = Path("data/history.json")
-REQUIRED_SHARD_SCHEMA = 3
+REQUIRED_SHARD_SCHEMA = 4
 FIELDS = (
     "merge_gate_runs",
     "merge_gate_code_failures",
@@ -36,10 +36,11 @@ def main() -> int:
         if int(payload.get("schema_version") or 0) < REQUIRED_SHARD_SCHEMA:
             legacy.append(path.name)
     if legacy:
-        # v1 missed skipped gates; v2 used the workflow-path endpoint which did
-        # not expose historical E2E runs consistently. Never publish either.
+        # v1 missed skipped gates; v2 used an unreliable historical workflow
+        # endpoint; v3 did not carry the analyzed/completeness guard. Never
+        # publish any of them as green history.
         raise SystemExit(
-            "refusing legacy merge-gate shards; status-filtered repo replay is required: "
+            "refusing legacy merge-gate shards; schema 4 causal replay is required: "
             + ", ".join(legacy[:8])
             + (" ..." if len(legacy) > 8 else "")
         )
@@ -59,6 +60,7 @@ def main() -> int:
             row = by_hour.get(key)
             if not row:
                 continue
+            row["merge_gate_analyzed"] = bool(overlay.get("merge_gate_analyzed"))
             for field in FIELDS:
                 row[field] = int(overlay.get(field) or 0)
             row["merge_gate_evidence"] = list(overlay.get("merge_gate_evidence") or [])[:20]
