@@ -34,6 +34,22 @@ CODE_STEP = re.compile(
     r"validate pr title|gitleaks|secret scan|compile|build wheel)",
     re.I,
 )
+TITLE_STEP = re.compile(r"validate pr title", re.I)
+DETERMINISTIC_META_STEP = re.compile(
+    r"(run pre-commit|run mypy|ruff|format|lint|gitleaks|secret scan|codespell|typos)",
+    re.I,
+)
+TITLE_POLICY_LOG = re.compile(
+    r"(pr title must contain|pr title cannot be empty|invalid pr title|unsupported pr title)",
+    re.I,
+)
+DETERMINISTIC_CODE_LOG = re.compile(
+    r"(pre-commit hook\(s\) made changes|files were modified by this hook|"
+    r"ruff (?:check|format).*failed|hook id:\s*(?:ruff|ruff-check|ruff-format|codespell|typos|mypy|markdownlint)|"
+    r"(?:codespell|typos|mypy|markdownlint|gitleaks|secret scan).*?(?:failed|error|finding|leak))",
+    re.I,
+)
+RECOVERED_ACTION_DOWNLOAD = re.compile(r"failed to download action", re.I)
 SETUP_OR_INFRA_STEP = re.compile(
     r"(checkout|download|install|cache|container|runner|docker|setup|prepare|"
     r"recommend tests from coverage|ensure csrc cache)",
@@ -177,6 +193,34 @@ def failed_step_text(job: dict[str, Any]) -> str:
     return " | ".join(x for x in failed_step_names(job) if x)
 
 
+def last_matching_line(text: str, pattern: re.Pattern[str]) -> str | None:
+    for raw in reversed((text or "").splitlines()[-5000:]):
+        line = raw.strip()
+        if line and pattern.search(line):
+            return line[-400:]
+    return None
+
+
+def diagnose_deterministic_text(text: str) -> tuple[str, str, str | None] | None:
+    """Diagnose a deterministic check without treating recovered setup warnings as root cause."""
+    if not text:
+        return None
+    evidence = last_matching_line(text, DETERMINISTIC_CODE_LOG)
+    if evidence:
+        return "code", "DETERMINISTIC_CHECK_OR_TEST_FAILURE", evidence
+
+    # Focus generic diagnosis on the tail where the failed step actually ran.
+    # A transient action-download warning before the job reached this step is
+    # not the cause of a later lint/pre-commit failure.
+    tail = "\n".join(text.splitlines()[-1500:])
+    why, infra, evidence = diagnose_log(tail)
+    if not why:
+        return None
+    if infra and evidence and RECOVERED_ACTION_DOWNLOAD.search(evidence):
+        return None
+    return ("ci" if infra else "code"), why, evidence
+
+
 def classify_leaf(
     gh: GH,
     logs: LogReader,
@@ -188,16 +232,59 @@ def classify_leaf(
     name = job.get("name") or "Unnamed job"
     conclusion = (job.get("conclusion") or "").lower()
     steps = failed_step_text(job)
-
-    # Same code, same concrete required leaf job, both PASS and FAIL is direct
-    # evidence that the merge signal itself is not deterministic.
-    if observations_mixed_for_sha(tests, name, sha):
-        return "ci", "SAME_SHA_MIXED_OUTCOME", f"{name} failed and passed on the same commit"
+    job_id = int(job.get("id") or 0)
 
     if conclusion == "startup_failure":
         return "ci", "STARTUP_FAILURE", "GitHub Actions startup_failure"
 
-    text = annotations(gh, int(job.get("id") or 0))
+    # PR title is mutable metadata: a same-SHA fail/pass can be caused by an
+    # author editing the title, so classify the actual title step before using
+    # same-SHA mixed outcomes as flaky evidence.
+    if TITLE_STEP.search(steps):
+        text = logs.read(job_id)
+        evidence = last_matching_line(text, TITLE_POLICY_LOG)
+        if evidence:
+            return "code", "PR_TITLE_POLICY_FAILURE", evidence
+        diagnosed = diagnose_deterministic_text(text)
+        if diagnosed:
+            return diagnosed
+
+        text = annotations(gh, job_id)
+        evidence = last_matching_line(text, TITLE_POLICY_LOG)
+        if evidence:
+            return "code", "PR_TITLE_POLICY_FAILURE", evidence
+        if text:
+            why, infra, evidence = diagnose_log(text)
+            if why and not (infra and evidence and RECOVERED_ACTION_DOWNLOAD.search(evidence)):
+                return ("ci" if infra else "code"), why, evidence
+        return "code", "PR_TITLE_POLICY_FAILURE", steps[:400]
+
+    # Same code, same concrete required leaf job, both PASS and FAIL is direct
+    # evidence that the merge signal itself is not deterministic. Title checks
+    # are excluded above because PR metadata can change without a new SHA.
+    if observations_mixed_for_sha(tests, name, sha):
+        return "ci", "SAME_SHA_MIXED_OUTCOME", f"{name} failed and passed on the same commit"
+
+    # For deterministic lint/check steps, inspect the final job log before
+    # annotations. GitHub annotations can contain recovered setup warnings from
+    # earlier in the job and must not override the step that actually failed.
+    if DETERMINISTIC_META_STEP.search(steps):
+        text = logs.read(job_id)
+        diagnosed = diagnose_deterministic_text(text)
+        if diagnosed:
+            return diagnosed
+
+        text = annotations(gh, job_id)
+        evidence = last_matching_line(text, DETERMINISTIC_CODE_LOG)
+        if evidence:
+            return "code", "DETERMINISTIC_CHECK_OR_TEST_FAILURE", evidence
+        if text:
+            why, infra, evidence = diagnose_log(text)
+            if why and not (infra and evidence and RECOVERED_ACTION_DOWNLOAD.search(evidence)):
+                return ("ci" if infra else "code"), why, evidence
+        return "code", "DETERMINISTIC_CHECK_OR_TEST_FAILURE", steps[:400]
+
+    text = annotations(gh, job_id)
     if text:
         why, infra, evidence = diagnose_log(text)
         if why:
@@ -205,7 +292,7 @@ def classify_leaf(
 
     # Read only a bounded number of heavy logs, only for failed jobs on the
     # actual merge path.
-    text = logs.read(int(job.get("id") or 0))
+    text = logs.read(job_id)
     if text:
         why, infra, evidence = diagnose_log(text)
         if why:
@@ -341,7 +428,7 @@ def main() -> int:
             or parse_dt(run.get("updated_at"))
             or parse_dt(run.get("created_at"))
         )
-        if not gate_time:
+        if not gate_time or gate_time < floor:
             continue
         key = iso_hour(gate_time)
         row = by_hour.get(key)
