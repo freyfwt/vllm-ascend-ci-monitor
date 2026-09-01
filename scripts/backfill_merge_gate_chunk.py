@@ -17,9 +17,9 @@ from classify_merge_availability import (
     list_jobs,
 )
 from collect import GH, TESTS, iso_hour, iso_ts, load, parse_dt
-from run_merge_availability import list_e2e_pr_runs
+from run_merge_availability import list_e2e_pr_runs_status, list_failed_e2e_pr_runs
 
-SHARD_SCHEMA = 2
+SHARD_SCHEMA = 3
 FAIL = {"failure", "timed_out", "startup_failure"}
 NONVERDICT = {"skipped", "cancelled", "action_required", "stale", "neutral"}
 
@@ -139,6 +139,21 @@ def record(
         row["merge_gate_evidence"].append(event)
 
 
+def fetch_jobs(gh: GH, runs: list[dict[str, Any]], errors: list[str]) -> list[tuple[dict[str, Any], list[dict[str, Any]]]]:
+    out: list[tuple[dict[str, Any], list[dict[str, Any]]]] = []
+    for run in runs:
+        if not gh.ok(10):
+            errors.append("API budget exhausted while listing E2E jobs")
+            break
+        try:
+            jobs = list_jobs(gh, int(run.get("id") or 0))
+        except Exception as exc:
+            errors.append(f"jobs:{run.get('id')}: {type(exc).__name__}: {exc}")
+            continue
+        out.append((run, jobs))
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", required=True, help="UTC date YYYY-MM-DD")
@@ -157,28 +172,31 @@ def main() -> int:
     errors: list[str] = []
 
     try:
-        runs = list_e2e_pr_runs(gh, scan_start, scan_end)
+        failed_runs = list_failed_e2e_pr_runs(gh, scan_start, scan_end)
     except Exception as exc:
-        runs = []
-        errors.append(f"runs: {type(exc).__name__}: {exc}")
+        failed_runs = []
+        errors.append(f"failed-runs: {type(exc).__name__}: {exc}")
 
-    runs.sort(key=lambda r: r.get("updated_at") or r.get("created_at") or "")
-    run_jobs: list[tuple[dict[str, Any], list[dict[str, Any]]]] = []
-    for run in runs:
-        if not gh.ok(10):
-            errors.append("API budget exhausted while listing E2E jobs")
-            break
-        try:
-            jobs = list_jobs(gh, int(run.get("id") or 0))
-        except Exception as exc:
-            errors.append(f"jobs:{run.get('id')}: {type(exc).__name__}: {exc}")
-            continue
-        run_jobs.append((run, jobs))
+    failed_runs.sort(key=lambda r: r.get("updated_at") or r.get("created_at") or "")
+    failed_shas = {run.get("head_sha") for run in failed_runs if run.get("head_sha")}
 
-    seed_day_observations(tests, run_jobs)
+    # Same-SHA instability requires seeing the successful rerun too. Query
+    # successful E2E run metadata, but fetch jobs only for SHAs that also had a
+    # failed E2E run in this local window.
+    try:
+        success_meta = list_e2e_pr_runs_status(gh, scan_start, scan_end, "success") if failed_shas else []
+    except Exception as exc:
+        success_meta = []
+        errors.append(f"success-runs: {type(exc).__name__}: {exc}")
+    matched_success = [run for run in success_meta if run.get("head_sha") in failed_shas]
+
+    failed_run_jobs = fetch_jobs(gh, failed_runs, errors)
+    success_run_jobs = fetch_jobs(gh, matched_success, errors)
+    seed_day_observations(tests, failed_run_jobs + success_run_jobs)
+
     hours = {iso_hour(day + timedelta(hours=h)): blank(day + timedelta(hours=h)) for h in range(24)}
 
-    for run, jobs in run_jobs:
+    for run, jobs in failed_run_jobs:
         run_id = int(run.get("id") or 0)
         sha = run.get("head_sha")
         gates = [job for job in jobs if (job.get("name") or "").lower() == GATE]
@@ -193,9 +211,6 @@ def main() -> int:
             and direct_gate_job(job.get("name") or "")
         ]
 
-        # Historical versions of the E2E workflow often skipped ci-gate after
-        # a required leaf failed. The PR was still blocked, so classify that
-        # leaf rather than silently treating the hour as healthy.
         event_time = job_time(gate, run) if gate else None
         if (not event_time or gate_conclusion in NONVERDICT | {"absent"}) and leaf_failures:
             leaf_times = [job_time(job, run) for job in leaf_failures]
@@ -208,7 +223,9 @@ def main() -> int:
             row["merge_gate_runs"] += 1
 
         if gate_conclusion == "success":
-            stats["gate_success"] += 1
+            # The workflow failed elsewhere but the required merge gate passed;
+            # it cannot make this hour unavailable.
+            stats["gate_success_in_failed_workflow"] += 1
             continue
 
         if gate_conclusion in FAIL:
@@ -247,8 +264,6 @@ def main() -> int:
                     gate_conclusion=gate_conclusion,
                 )
             elif gate_conclusion == "cancelled":
-                # Cancellation blocks a required check but is not necessarily a
-                # CI fault (it may be manual/superseded), so keep it gray.
                 record(
                     row,
                     stats,
@@ -260,15 +275,16 @@ def main() -> int:
                     url=(gate or {}).get("html_url") or run.get("html_url"),
                     gate_conclusion=gate_conclusion,
                 )
-            continue
 
     payload = {
         "schema_version": SHARD_SCHEMA,
         "date": args.date,
         "generated_at": iso_ts(datetime.now(timezone.utc)),
         "analysis": {
-            "runs_scanned": len(runs),
-            "runs_with_jobs": len(run_jobs),
+            "failed_runs_scanned": len(failed_runs),
+            "failed_runs_with_jobs": len(failed_run_jobs),
+            "matched_success_runs": len(matched_success),
+            "matched_success_runs_with_jobs": len(success_run_jobs),
             "api_requests": gh.requests,
             "request_budget": gh.budget,
             "log_reads": logs.used,
@@ -280,7 +296,12 @@ def main() -> int:
     path = Path(args.out)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
-    print(args.date, dict(stats), f"runs={len(runs)} jobs={len(run_jobs)} requests={gh.requests}/{gh.budget} logs={logs.used}")
+    print(
+        args.date,
+        dict(stats),
+        f"failed_runs={len(failed_runs)} failed_jobs={len(failed_run_jobs)} "
+        f"matched_success={len(matched_success)} requests={gh.requests}/{gh.budget} logs={logs.used}",
+    )
     return 0
 
 
