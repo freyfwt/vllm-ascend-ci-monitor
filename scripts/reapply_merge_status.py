@@ -22,12 +22,14 @@ def ensure(row: dict[str, Any]) -> None:
 
 def decide(row: dict[str, Any]) -> str:
     ensure(row)
-    # This is the guardrail that prevents an un-replayed historical hour from
-    # looking green merely because unrelated CI ran in that hour.
-    if not bool(row.get("merge_gate_analyzed")):
-        return "unknown"
+    # One proven CI-caused merge blockage is enough for red, even if some other
+    # evidence in the same hour/day is incomplete.
     if int(row.get("merge_blocking_ci_failures") or 0) > 0:
         return "down"
+    # This guardrail prevents an un-replayed historical hour from looking green
+    # merely because unrelated CI ran in that hour.
+    if not bool(row.get("merge_gate_analyzed")):
+        return "unknown"
     if row.get("coverage") == "partial":
         return "unknown"
     if int(row.get("merge_gate_unknown_failures") or 0) > 0:
