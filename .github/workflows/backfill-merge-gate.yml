@@ -6,6 +6,7 @@ on:
     branches: ["main"]
     paths:
       - "scripts/backfill_merge_gate_chunk.py"
+      - "scripts/backfill_merge_gate_recent.py"
       - "scripts/merge_merge_gate_backfill.py"
       - "scripts/classify_merge_availability.py"
       - "scripts/run_merge_availability.py"
@@ -65,18 +66,18 @@ jobs:
 
       - name: Replay E2E merge gate for ${{ matrix.window.start }}
         env:
-          # Prefer a user-provided public-repo read token when configured.
-          # Otherwise the analyzer intentionally falls back to bounded public API access.
+          # Current E2E workflow (.github/workflows/pr_test.yaml). Restricting
+          # recent replay to it avoids scanning every unrelated PR workflow.
+          E2E_WORKFLOW_ID: "280054652"
           UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
           AUTH_REQUEST_BUDGET: "900"
           ANON_REQUEST_BUDGET: "54"
-          # Historical replay must stay lightweight: Jobs/steps/annotations only.
-          # Full job logs remain available for targeted interactive investigation.
+          # Historical replay stays lightweight: metadata/steps/annotations only.
           MERGE_GATE_LOG_CAP: "0"
           MERGE_GATE_LOG_TIMEOUT: "4"
         run: |
           mkdir -p data/merge_gate_backfill
-          python3 scripts/backfill_merge_gate_chunk.py \
+          python3 scripts/backfill_merge_gate_recent.py \
             --start "${{ matrix.window.start }}" \
             --hours 4 \
             --out "data/merge_gate_backfill/${{ matrix.window.key }}.json"
