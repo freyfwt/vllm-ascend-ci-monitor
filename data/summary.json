@@ -2,23 +2,31 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-09-01T14:38:07Z",
+  "updated_at": "2026-09-01T14:43:24Z",
   "latest_hour": {
     "hour": "2026-09-01T13:00:00Z",
     "status": "unknown",
     "coverage": "complete",
     "runs": 45,
-    "jobs": 493,
+    "jobs": 187,
     "workflow_failures": 11,
     "infra_failures": 0,
-    "code_failures": 14,
-    "ignored_nonverdicts": 116,
-    "unresolved_failures": 7,
-    "probabilistic_jobs": 70,
-    "active_runs": 17,
+    "code_failures": 13,
+    "ignored_nonverdicts": 0,
+    "unresolved_failures": 6,
+    "probabilistic_jobs": 18,
+    "active_runs": 14,
     "reasons": {},
     "failures": [],
     "probabilistic": [
+      {
+        "key": "job::E2E::pre-commit",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "pre-commit",
+        "pass_rate_30d": 0.6792,
+        "reason": "same_commit_mixed_outcomes"
+      },
       {
         "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
         "kind": "job",
@@ -32,15 +40,7 @@
         "kind": "job",
         "workflow": "E2E",
         "job": "ci-gate",
-        "pass_rate_30d": 0.2625,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::pre-commit",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "pre-commit",
-        "pass_rate_30d": 0.6792,
+        "pass_rate_30d": 0.2542,
         "reason": "same_commit_mixed_outcomes"
       },
       {
@@ -49,30 +49,6 @@
         "workflow": "E2E",
         "job": "select-tests",
         "pass_rate_30d": 0.5958,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a2-1 card-(part 1-5)",
-        "kind": "job",
-        "workflow": "Schedule All E2E Tests",
-        "job": "run-all-tests (v0.27.1) / a2-1 card-(part 1-5)",
-        "pass_rate_30d": 0.75,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a3-800i-2 card-(part 1-2)",
-        "kind": "job",
-        "workflow": "Schedule All E2E Tests",
-        "job": "run-all-tests (v0.27.1) / a3-800i-2 card-(part 1-2)",
-        "pass_rate_30d": 0.9167,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a3-2 card-(part 1-2)",
-        "kind": "job",
-        "workflow": "Schedule All E2E Tests",
-        "job": "run-all-tests (v0.27.1) / a3-2 card-(part 1-2)",
-        "pass_rate_30d": 0.9167,
         "reason": "same_commit_mixed_outcomes"
       }
     ],
@@ -87,20 +63,20 @@
   },
   "days_tracked": 32,
   "overall": {
-    "availability": 0.736842,
-    "availability_floor": 0.01847,
-    "coverage": 0.025066,
-    "observed_hours": 19,
+    "availability": 0.936508,
+    "availability_floor": 0.077836,
+    "coverage": 0.083113,
+    "observed_hours": 63,
     "healthy_hours": 14,
-    "degraded_hours": 0,
-    "down_hours": 5,
-    "unknown_hours": 739,
-    "merge_gate_runs": 1301,
-    "merge_blocking_ci_failures": 5,
-    "merge_gate_unknown_failures": 984,
+    "degraded_hours": 45,
+    "down_hours": 4,
+    "unknown_hours": 695,
+    "merge_gate_runs": 1133,
+    "merge_blocking_ci_failures": 4,
+    "merge_gate_unknown_failures": 874,
     "infra_failures": 0,
-    "code_failures": 1532,
-    "unresolved_failures": 5497,
-    "probabilistic_jobs": 2465
+    "code_failures": 1491,
+    "unresolved_failures": 5498,
+    "probabilistic_jobs": 2193
   }
 }
