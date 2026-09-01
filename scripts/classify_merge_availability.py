@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import json
 import os
 import re
 import urllib.error
-import urllib.parse
 import urllib.request
 from collections import Counter
 from datetime import datetime, timedelta, timezone
@@ -18,7 +16,7 @@ DATA = Path("data")
 HISTORY = DATA / "history.json"
 TESTS = DATA / "tests.json"
 LOOKBACK = int(os.getenv("MERGE_AVAILABILITY_LOOKBACK_HOURS", "12"))
-LOG_CAP = int(os.getenv("MERGE_GATE_LOG_CAP", "10"))
+LOG_CAP = int(os.getenv("MERGE_GATE_LOG_CAP", "12"))
 LOG_TIMEOUT = int(os.getenv("MERGE_GATE_LOG_TIMEOUT", "8"))
 E2E_PATH = ".github/workflows/pr_test.yaml"
 GATE = "ci-gate"
@@ -28,14 +26,30 @@ DIRECT_GATE_PREFIXES = (
     "run-selected-tests",
     "run-selected-tests-a5",
 )
+
+# Strong deterministic PR verdict steps. Do not match generic words such as
+# "test" here: select-tests is control-plane logic and can fail for CI reasons.
 CODE_STEP = re.compile(
-    r"(pre-commit|mypy|ruff|format|lint|pytest|unit.?test|test(?:s)?\b|"
+    r"(run pre-commit|run mypy|ruff|format|lint|pytest|unit.?test|"
     r"validate pr title|gitleaks|secret scan|compile|build wheel)",
     re.I,
 )
 SETUP_OR_INFRA_STEP = re.compile(
     r"(checkout|download|install|cache|container|runner|docker|setup|prepare|"
     r"recommend tests from coverage|ensure csrc cache)",
+    re.I,
+)
+
+# ci-gate also enforces contribution policy. A missing ready-* label is a valid
+# verdict that blocks the PR, but it is not CI unavailability.
+GATE_POLICY = re.compile(
+    r"(selected tests are required; add the .*ready.*label|"
+    r"ready-precise or ready-all label|ready-a5.*(?:not set|required))",
+    re.I,
+)
+GATE_CONTROL_PLANE = re.compile(
+    r"(invalid or missing has_tests(?:_a5)? output|"
+    r"run-selected-tests(?:-a5)? did not succeed \(result: (?:skipped|cancelled|startup_failure)\))",
     re.I,
 )
 
@@ -145,7 +159,7 @@ class LogReader:
         headers = {
             "Accept": "application/vnd.github+json",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "vllm-ascend-ci-monitor-merge-gate/1",
+            "User-Agent": "vllm-ascend-ci-monitor-merge-gate/2",
             "Authorization": "Bearer " + self.token,
         }
         req = urllib.request.Request(
@@ -175,6 +189,8 @@ def classify_leaf(
     conclusion = (job.get("conclusion") or "").lower()
     steps = failed_step_text(job)
 
+    # Same code, same concrete required leaf job, both PASS and FAIL is direct
+    # evidence that the merge signal itself is not deterministic.
     if observations_mixed_for_sha(tests, name, sha):
         return "ci", "SAME_SHA_MIXED_OUTCOME", f"{name} failed and passed on the same commit"
 
@@ -187,14 +203,16 @@ def classify_leaf(
         if why:
             return ("ci" if infra else "code"), why, evidence
 
-    # Only read the heavy log for merge-path failures that remain ambiguous.
+    # Read only a bounded number of heavy logs, only for failed jobs on the
+    # actual merge path.
     text = logs.read(int(job.get("id") or 0))
     if text:
         why, infra, evidence = diagnose_log(text)
         if why:
             return ("ci" if infra else "code"), why, evidence
 
-    # Strong deterministic verdict steps are valid CI outcomes even without raw logs.
+    # Strong deterministic verdict steps are valid CI outcomes even without
+    # raw logs. select-tests is intentionally excluded from this fallback.
     if CODE_STEP.search(steps):
         return "code", "DETERMINISTIC_CHECK_OR_TEST_FAILURE", steps[:400]
 
@@ -209,9 +227,42 @@ def classify_leaf(
     return "unknown", "MERGE_PATH_FAILURE_UNKNOWN", steps[:400] or None
 
 
+def classify_gate_without_failed_leaf(
+    gh: GH,
+    logs: LogReader,
+    gate: dict[str, Any],
+) -> tuple[str, str, str | None]:
+    """Classify a gate failure only after reading its own explanation."""
+    job_id = int(gate.get("id") or 0)
+    text = annotations(gh, job_id)
+    if not text:
+        text = logs.read(job_id)
+
+    if text:
+        match = GATE_POLICY.search(text)
+        if match:
+            return "policy", "MERGE_POLICY_REQUIRES_READY_LABEL", match.group(0)[:400]
+        match = GATE_CONTROL_PLANE.search(text)
+        if match:
+            return "ci", "CI_GATE_CONTROL_PLANE_FAILURE", match.group(0)[:400]
+        why, infra, evidence = diagnose_log(text)
+        if why:
+            return ("ci" if infra else "code"), why, evidence
+
+    conclusion = (gate.get("conclusion") or "").lower()
+    if conclusion == "startup_failure":
+        return "ci", "CI_GATE_STARTUP_FAILURE", "ci-gate startup_failure"
+    if conclusion == "timed_out":
+        return "ci", "CI_GATE_TIMEOUT", failed_step_text(gate)[:400] or None
+
+    # Suspicious but not proven infrastructure: gray, not red.
+    return "unknown", "CI_GATE_FAILURE_UNEXPLAINED", failed_step_text(gate)[:400] or None
+
+
 def ensure_fields(row: dict[str, Any]) -> None:
     row.setdefault("merge_gate_runs", 0)
     row.setdefault("merge_gate_code_failures", 0)
+    row.setdefault("merge_gate_policy_failures", 0)
     row.setdefault("merge_blocking_ci_failures", 0)
     row.setdefault("merge_gate_unknown_failures", 0)
     row.setdefault("nonblocking_ci_failures", 0)
@@ -248,6 +299,7 @@ def main() -> int:
             for field in (
                 "merge_gate_runs",
                 "merge_gate_code_failures",
+                "merge_gate_policy_failures",
                 "merge_blocking_ci_failures",
                 "merge_gate_unknown_failures",
                 "nonblocking_ci_failures",
@@ -265,6 +317,10 @@ def main() -> int:
     except Exception as exc:
         print(f"warning: merge-gate run scan failed: {type(exc).__name__}: {exc}")
         return 0
+
+    # Keep temporal order because label changes can legitimately change a gate
+    # result on the same SHA.
+    runs.sort(key=lambda r: r.get("updated_at") or r.get("created_at") or "")
 
     for run in runs:
         run_id = int(run.get("id") or 0)
@@ -301,42 +357,31 @@ def main() -> int:
             continue
 
         stats["gate_failure"] += 1
+        leaf_failures = [
+            job
+            for job in jobs
+            if (job.get("conclusion") or "").lower() in {"failure", "timed_out", "startup_failure"}
+            and (job.get("name") or "").lower() != GATE
+            and direct_gate_job(job.get("name") or "")
+        ]
+        results = [classify_leaf(gh, logs, tests, job, sha) for job in leaf_failures]
 
-        if observations_mixed_for_sha(tests, gate.get("name") or GATE, sha):
-            kind, reason, evidence = (
-                "ci",
-                "CI_GATE_SAME_SHA_MIXED_OUTCOME",
-                "ci-gate failed and passed on the same commit",
-            )
+        if any(item[0] == "ci" for item in results):
+            kind = "ci"
+            first = next(item for item in results if item[0] == "ci")
+            reason, evidence = first[1], first[2]
+        elif results and all(item[0] == "code" for item in results):
+            kind = "code"
+            reason, evidence = results[0][1], results[0][2]
+        elif not leaf_failures:
+            kind, reason, evidence = classify_gate_without_failed_leaf(gh, logs, gate)
         else:
-            leaf_failures = [
-                job
-                for job in jobs
-                if (job.get("conclusion") or "").lower() in {"failure", "timed_out", "startup_failure"}
-                and (job.get("name") or "").lower() != GATE
-                and direct_gate_job(job.get("name") or "")
-            ]
-            results = [classify_leaf(gh, logs, tests, job, sha) for job in leaf_failures]
-            if any(item[0] == "ci" for item in results):
-                kind = "ci"
-                first = next(item for item in results if item[0] == "ci")
-                reason, evidence = first[1], first[2]
-            elif results and all(item[0] == "code" for item in results):
-                kind = "code"
-                reason, evidence = results[0][1], results[0][2]
-            elif not leaf_failures:
-                kind, reason, evidence = (
-                    "ci",
-                    "CI_GATE_FAILURE_WITHOUT_FAILED_DEPENDENCY",
-                    failed_step_text(gate)[:400] or None,
-                )
-            else:
-                kind = "unknown"
-                first = next(
-                    (item for item in results if item[0] == "unknown"),
-                    ("unknown", "MERGE_PATH_FAILURE_UNKNOWN", None),
-                )
-                reason, evidence = first[1], first[2]
+            kind = "unknown"
+            first = next(
+                (item for item in results if item[0] == "unknown"),
+                ("unknown", "MERGE_PATH_FAILURE_UNKNOWN", None),
+            )
+            reason, evidence = first[1], first[2]
 
         item = {
             "run_id": run_id,
@@ -351,6 +396,9 @@ def main() -> int:
         elif kind == "code":
             row["merge_gate_code_failures"] += 1
             stats["code_verdict"] += 1
+        elif kind == "policy":
+            row["merge_gate_policy_failures"] += 1
+            stats["policy_verdict"] += 1
         else:
             row["merge_gate_unknown_failures"] += 1
             stats["unknown_gate"] += 1
@@ -358,8 +406,8 @@ def main() -> int:
             item["kind"] = kind
             row["merge_gate_evidence"].append(item)
 
-    # Status is merge-gate centric. Non-gating proven infra is yellow rather
-    # than red; unresolved unrelated failures no longer erase a valid green.
+    # A single proven CI-caused required-check blockage is red. Non-gating
+    # infra is yellow. Valid PR-code/policy failures remain green.
     for row in rows:
         dt = parse_dt(row.get("hour"))
         if dt and dt >= floor:
@@ -369,10 +417,10 @@ def main() -> int:
     history["merge_availability_policy"] = {
         "required_ci_check": "ci-gate",
         "required_status_checks_source": "public repository ruleset main",
-        "down": "at least one PR ci-gate failure proven to be caused by CI/reliability rather than PR code",
+        "down": "at least one PR ci-gate is blocked by a proven CI/reliability fault rather than PR code or merge policy",
         "degraded": "proven CI infrastructure issue outside the merge-blocking path",
-        "unknown": "merge-gate failure exists but evidence cannot distinguish CI from PR code",
-        "healthy": "CI produced valid merge-gate verdicts and no merge-blocking CI fault was proven",
+        "unknown": "merge-gate failure exists but evidence cannot distinguish CI/reliability from PR code/policy",
+        "healthy": "no proven merge-blocking CI fault; code and ready-label policy failures are valid CI verdicts",
     }
     history["merge_availability_updated_at"] = iso_ts(now)
     save(HISTORY, history)
