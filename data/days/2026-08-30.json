@@ -2,24 +2,24 @@
   "schema_version": 2,
   "date": "2026-08-30",
   "timezone": "UTC",
-  "updated_at": "2026-09-01T14:14:19Z",
-  "status": "partial",
+  "updated_at": "2026-09-01T14:29:45Z",
+  "status": "down",
   "metrics": {
-    "availability": null,
-    "availability_floor": 0.0,
-    "coverage": 0.0,
+    "availability": 0.666667,
+    "availability_floor": 0.083333,
+    "coverage": 0.125,
     "expected_hours": 24,
-    "observed_hours": 0,
-    "healthy_hours": 0,
+    "observed_hours": 3,
+    "healthy_hours": 2,
     "degraded_hours": 0,
-    "down_hours": 0,
-    "unknown_hours": 24,
+    "down_hours": 1,
+    "unknown_hours": 21,
     "runs": 69,
     "jobs": 1087,
-    "merge_gate_runs": 0,
-    "merge_gate_code_failures": 0,
-    "merge_blocking_ci_failures": 0,
-    "merge_gate_unknown_failures": 0,
+    "merge_gate_runs": 31,
+    "merge_gate_code_failures": 1,
+    "merge_blocking_ci_failures": 1,
+    "merge_gate_unknown_failures": 17,
     "infra_failures": 0,
     "code_failures": 51,
     "unresolved_failures": 49,
@@ -51,14 +51,33 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 2,
       "merge_gate_code_failures": 0,
       "merge_gate_policy_failures": 0,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 2,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33282972327,
+          "sha": "a608325d87ae4ae6d4847f54d1c02c0568aa978b",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282972327/job/99181573159"
+        },
+        {
+          "run_id": 33282973900,
+          "sha": "f77c259bc6f99ac97147b5837a4c1cb87439e82c",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33282973900/job/99181586319"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T01:00:00Z",
@@ -106,7 +125,7 @@
     },
     {
       "hour": "2026-08-30T03:00:00Z",
-      "status": "unknown",
+      "status": "down",
       "coverage": "complete",
       "runs": 11,
       "jobs": 98,
@@ -145,14 +164,78 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 7,
       "merge_gate_code_failures": 0,
-      "merge_gate_policy_failures": 0,
-      "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_policy_failures": 4,
+      "merge_blocking_ci_failures": 1,
+      "merge_gate_unknown_failures": 2,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33289112998,
+          "sha": "dc7e2634629fe5a025790570fe51e2c4594c2343",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33289112998/job/99197905053"
+        },
+        {
+          "run_id": 33289460672,
+          "sha": "64f8f650adedc27e01f4b5700e4615084ac9e619",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33289460672/job/99199320586"
+        },
+        {
+          "run_id": 33289440306,
+          "sha": "29a5afae4f1207f63444d911da956314ce1e0567",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33289440306/job/99199353154"
+        },
+        {
+          "run_id": 33289341752,
+          "sha": "3c681e02cff4efebf73c3d1b42990696d7395556",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Run selected tests without device",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33289341752/job/99199705488"
+        },
+        {
+          "run_id": 33289870825,
+          "sha": "2ee7542b79aced0ed3668a94f7a07df16ee70ab9",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33289870825/job/99200364637"
+        },
+        {
+          "run_id": 33289943322,
+          "sha": "b89884b781ed89dd04c5dc77fd1ebaa6e6c464c4",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33289943322/job/99200535194"
+        },
+        {
+          "run_id": 33290270910,
+          "sha": "2ee7542b79aced0ed3668a94f7a07df16ee70ab9",
+          "kind": "ci",
+          "reason": "SAME_SHA_MIXED_OUTCOME",
+          "evidence": "pre-commit failed and passed on the same commit",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33290270910/job/99201232752"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T04:00:00Z",
@@ -195,14 +278,33 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 2,
       "merge_gate_code_failures": 0,
-      "merge_gate_policy_failures": 0,
+      "merge_gate_policy_failures": 1,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 1,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33292159070,
+          "sha": "5c2dee14e73cd472a75c570310edfa1e9e90b445",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33292159070/job/99205801341"
+        },
+        {
+          "run_id": 33292289354,
+          "sha": "de55359d549dfd4c0f9c5a72bf779c520269e04b",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33292289354/job/99206710545"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T05:00:00Z",
@@ -245,14 +347,24 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 1,
       "merge_gate_code_failures": 0,
       "merge_gate_policy_failures": 0,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 1,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33295025218,
+          "sha": "c643d46bc7fad3f5466546e5e7ec8a644fd6f491",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Validate test coverage config",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33295025218/job/99213956611"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T06:00:00Z",
@@ -369,14 +481,51 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 4,
       "merge_gate_code_failures": 0,
-      "merge_gate_policy_failures": 0,
+      "merge_gate_policy_failures": 3,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 1,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33302716804,
+          "sha": "34f94ca3462c0d14c16ccacae8c8a307344895f3",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33302716804/job/99234485837"
+        },
+        {
+          "run_id": 33304817539,
+          "sha": "7bc185a6ba8e89ffe591bd49951736395563362e",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33304817539/job/99240131903"
+        },
+        {
+          "run_id": 33304837647,
+          "sha": "83eb05357f3f99d88d6972798e28cac38467d20f",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33304837647/job/99240433640"
+        },
+        {
+          "run_id": 33305211798,
+          "sha": "82bcb5cd7be66fd933d4e2e2f3dfde9295dbf260",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33305211798/job/99240635065"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T10:00:00Z",
@@ -411,14 +560,42 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 3,
       "merge_gate_code_failures": 0,
-      "merge_gate_policy_failures": 0,
+      "merge_gate_policy_failures": 2,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 1,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33305154522,
+          "sha": "83dd6f2a3bf0b84ba88ab8afe7e9425f5e78adce",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33305154522/job/99241188614"
+        },
+        {
+          "run_id": 33305801162,
+          "sha": "61e3eb19af70d6c6e04b7c2f623aa8dbd61853ae",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33305801162/job/99242854964"
+        },
+        {
+          "run_id": 33307575703,
+          "sha": "83f2873b8c8634255f105e4c84767f5f2727190d",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Resolve source snapshot",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33307575703/job/99247134069"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T11:00:00Z",
@@ -469,14 +646,60 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 5,
       "merge_gate_code_failures": 0,
-      "merge_gate_policy_failures": 0,
+      "merge_gate_policy_failures": 1,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 4,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33308042522,
+          "sha": "75cf746eb4bcc55b9952e7f11d073cc94bec9b1b",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Validate test coverage config",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33308042522/job/99248418245"
+        },
+        {
+          "run_id": 33308673425,
+          "sha": "a9af8300d69e8f8aa0789fa1a124bae27a518160",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33308673425/job/99250080548"
+        },
+        {
+          "run_id": 33308581083,
+          "sha": "203bb90f34587e7f752fab4f9323a15b997a359b",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33308581083/job/99250102487"
+        },
+        {
+          "run_id": 33308744891,
+          "sha": "7cf4ae216e5735fa030a983149ae751dd2b4d456",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Validate test coverage config",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33308744891/job/99250273485"
+        },
+        {
+          "run_id": 33309452048,
+          "sha": "1769bd9911f9dbe34d4e60d099f2b23f4280211b",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Validate test coverage config",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33309452048/job/99252191356"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T12:00:00Z",
@@ -587,14 +810,33 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 2,
       "merge_gate_code_failures": 0,
       "merge_gate_policy_failures": 0,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 2,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33316831369,
+          "sha": "f850a073e4dec380c708497628d930f8c9bd9955",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33316831369/job/99272183734"
+        },
+        {
+          "run_id": 33318128134,
+          "sha": "41e86999b50a6c17ba173ded072664287b65b17b",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33318128134/job/99275459235"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T15:00:00Z",
@@ -661,14 +903,33 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
+      "merge_gate_runs": 2,
+      "merge_gate_code_failures": 1,
       "merge_gate_policy_failures": 0,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 1,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33318479132,
+          "sha": "459b50e757eced7b0341d9ac8a3a5857deba3905",
+          "kind": "code",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33318479132/job/99276467588"
+        },
+        {
+          "run_id": 33314233881,
+          "sha": "a96dd111d725a5a86318c40f7e74afdfd6db8fac",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Run selected tests without device",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33314233881/job/99277735542"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T16:00:00Z",
@@ -711,14 +972,33 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 2,
       "merge_gate_code_failures": 0,
-      "merge_gate_policy_failures": 0,
+      "merge_gate_policy_failures": 1,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 1,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33321444171,
+          "sha": "83fe8e7049b41e9148be30358b0a378c6e7835ac",
+          "kind": "policy",
+          "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
+          "evidence": "Selected tests are required; add the ready-precise or ready-all label",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33321444171/job/99285172756"
+        },
+        {
+          "run_id": 33322686446,
+          "sha": "5edd9f4a29ba49767708400a72f1249d4e229d9b",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33322686446/job/99287825263"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T17:00:00Z",
@@ -775,18 +1055,28 @@
           "reason": "same_commit_mixed_outcomes"
         }
       ],
-      "merge_gate_runs": 0,
+      "merge_gate_runs": 1,
       "merge_gate_code_failures": 0,
       "merge_gate_policy_failures": 0,
       "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "merge_gate_unknown_failures": 1,
       "nonblocking_ci_failures": 0,
-      "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_evidence": [
+        {
+          "run_id": 33326659165,
+          "sha": "1f7954ebc0fdbe7f22f90cfd4d9de18b2a350569",
+          "kind": "unknown",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Validate test coverage config",
+          "gate_conclusion": "failure",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33326659165/job/99299140113"
+        }
+      ],
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T19:00:00Z",
-      "status": "unknown",
+      "status": "healthy",
       "coverage": "complete",
       "runs": 2,
       "jobs": 19,
@@ -824,7 +1114,7 @@
       "merge_gate_unknown_failures": 0,
       "nonblocking_ci_failures": 0,
       "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T20:00:00Z",
@@ -849,7 +1139,7 @@
       "merge_gate_unknown_failures": 0,
       "nonblocking_ci_failures": 0,
       "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T21:00:00Z",
@@ -874,11 +1164,11 @@
       "merge_gate_unknown_failures": 0,
       "nonblocking_ci_failures": 0,
       "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T22:00:00Z",
-      "status": "unknown",
+      "status": "healthy",
       "coverage": "complete",
       "runs": 1,
       "jobs": 1,
@@ -899,7 +1189,7 @@
       "merge_gate_unknown_failures": 0,
       "nonblocking_ci_failures": 0,
       "merge_gate_evidence": [],
-      "merge_gate_analyzed": false
+      "merge_gate_analyzed": true
     },
     {
       "hour": "2026-08-30T23:00:00Z",
