@@ -4,12 +4,12 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 from collect import load, save
 from reapply_merge_status import apply
 
 HISTORY = Path("data/history.json")
+REQUIRED_SHARD_SCHEMA = 2
 FIELDS = (
     "merge_gate_runs",
     "merge_gate_code_failures",
@@ -27,10 +27,26 @@ def main() -> int:
     history = load(HISTORY, {"hours": []})
     by_hour = {row.get("hour"): row for row in history.get("hours", []) if row.get("hour")}
     files = sorted(Path(args.dir).glob("*.json"))
+    if not files:
+        raise SystemExit("no merge-gate backfill shards found")
+
+    legacy = []
+    for path in files:
+        payload = load(path, {})
+        if int(payload.get("schema_version") or 0) < REQUIRED_SHARD_SCHEMA:
+            legacy.append(path.name)
+    if legacy:
+        # Shard v1 did not interpret historical ci-gate=skipped runs. Refuse to
+        # publish those results rather than silently painting old history green.
+        raise SystemExit(
+            "refusing legacy merge-gate shards without skipped-gate leaf analysis: "
+            + ", ".join(legacy[:8])
+            + (" ..." if len(legacy) > 8 else "")
+        )
+
     dates: list[str] = []
     merged_hours = 0
     errors: list[str] = []
-
     for path in files:
         payload = load(path, {})
         date = payload.get("date")
@@ -50,7 +66,7 @@ def main() -> int:
 
     counts = apply(history)
     history["merge_gate_backfill"] = {
-        "schema_version": 1,
+        "schema_version": REQUIRED_SHARD_SCHEMA,
         "updated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "dates": sorted(set(dates)),
         "days": len(set(dates)),
