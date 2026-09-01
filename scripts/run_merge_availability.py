@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import Any
 
 import classify_merge_availability as merge
-from collect import GH, REPO, iso_ts
+from collect import GH, REPO, iso_ts, load, parse_dt, save
 
 ENDPOINT = f"/repos/{REPO}/actions/runs"
+HISTORY = Path("data/history.json")
 
 
 def list_e2e_pr_runs_status(gh: GH, start, end, status: str) -> list[dict[str, Any]]:
-    """List one conclusion class from repository-wide PR runs, then keep E2E.
-
-    This is compatible with historical workflow identity/name changes. Using a
-    status filter keeps the expensive job scan focused without relying on the
-    workflow-file endpoint, which does not reliably expose older runs.
-    """
+    """List one conclusion class from repository-wide PR runs, then keep E2E."""
     span = f"{iso_ts(start)}..{iso_ts(end)}"
     params: dict[str, Any] = {
         "event": "pull_request",
@@ -56,7 +54,25 @@ def main() -> int:
     # Hourly availability only needs E2E workflows capable of turning an hour
     # red/gray. Generic collector activity proves working CI for green hours.
     merge.list_pr_runs = list_failed_e2e_pr_runs
-    return merge.main()
+
+    before = load(HISTORY, {}).get("merge_availability_updated_at")
+    rc = merge.main()
+    history = load(HISTORY, {"hours": []})
+    after = history.get("merge_availability_updated_at")
+
+    # merge.main updates this timestamp only after a successful causal scan.
+    # Old, never-replayed history must not become green merely because it has
+    # ordinary CI runs.
+    if after and after != before:
+        now = datetime.now(timezone.utc)
+        floor = now - timedelta(hours=merge.LOOKBACK)
+        for row in history.get("hours", []):
+            dt = parse_dt(row.get("hour"))
+            if dt and dt >= floor:
+                row["merge_gate_analyzed"] = True
+        history["schema_version"] = max(12, int(history.get("schema_version") or 0))
+        save(HISTORY, history)
+    return rc
 
 
 if __name__ == "__main__":
