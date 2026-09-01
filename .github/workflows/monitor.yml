@@ -10,6 +10,7 @@ on:
     paths:
       - "scripts/collect.py"
       - "scripts/classify_merge_availability.py"
+      - "scripts/run_merge_availability.py"
       - "scripts/reapply_merge_status.py"
       - "scripts/rebuild_daily.py"
       - "README.md"
@@ -42,7 +43,7 @@ jobs:
           MERGE_AVAILABILITY_LOOKBACK_HOURS: "12"
           MERGE_GATE_LOG_CAP: "10"
           MERGE_GATE_LOG_TIMEOUT: "8"
-        run: python3 scripts/classify_merge_availability.py
+        run: python3 scripts/run_merge_availability.py
 
       - name: Reapply merge-gate status to all retained history
         run: python3 scripts/reapply_merge_status.py
