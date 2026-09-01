@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -14,18 +15,21 @@ from classify_merge_availability import (
     classify_gate_without_failed_leaf,
     classify_leaf,
     direct_gate_job,
-    list_jobs,
+    is_e2e_pr_run,
 )
-from collect import GH, TESTS, iso_hour, iso_ts, load, parse_dt
-from run_merge_availability import list_e2e_pr_runs_status, list_failed_e2e_pr_runs
+from collect import GH, REPO, TESTS, iso_hour, iso_ts, load, parse_dt
 
-SHARD_SCHEMA = 4
+SHARD_SCHEMA = 5
 FAIL = {"failure", "timed_out", "startup_failure"}
 NONVERDICT = {"skipped", "cancelled", "action_required", "stale", "neutral"}
+SCAN_BACK_HOURS = 24
 
 
-def parse_day(value: str) -> datetime:
-    return datetime.strptime(value, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+def parse_start(value: str) -> datetime:
+    parsed = parse_dt(value)
+    if not parsed:
+        raise argparse.ArgumentTypeError("expected ISO-8601 UTC datetime")
+    return parsed.astimezone(timezone.utc)
 
 
 def job_key(name: str) -> str:
@@ -41,8 +45,29 @@ def job_time(job: dict[str, Any], run: dict[str, Any]) -> datetime | None:
     )
 
 
-def seed_day_observations(tests: dict[str, Any], run_jobs: list[tuple[dict[str, Any], list[dict[str, Any]]]]) -> None:
-    """Augment bounded tests.json with same-SHA required-leaf outcomes near this day."""
+def run_interval(run: dict[str, Any]) -> tuple[datetime | None, datetime | None]:
+    start = parse_dt(run.get("run_started_at")) or parse_dt(run.get("created_at"))
+    end = parse_dt(run.get("updated_at")) or start
+    if start and end and end < start:
+        end = start
+    return start, end
+
+
+def overlap_hour_keys(run: dict[str, Any], start: datetime, end: datetime) -> list[str]:
+    run_start, run_end = run_interval(run)
+    if not run_start or not run_end or run_start >= end or run_end < start:
+        return []
+    cursor = max(run_start, start).replace(minute=0, second=0, microsecond=0)
+    last = min(run_end, end - timedelta(microseconds=1))
+    keys: list[str] = []
+    while cursor <= last:
+        keys.append(iso_hour(cursor))
+        cursor += timedelta(hours=1)
+    return keys
+
+
+def seed_observations(tests: dict[str, Any], run_jobs: list[tuple[dict[str, Any], list[dict[str, Any]]]]) -> None:
+    """Augment bounded tests.json with required-leaf failures visible in this shard."""
     for run, jobs in run_jobs:
         sha = run.get("head_sha")
         if not sha:
@@ -81,6 +106,121 @@ def blank(hour: datetime) -> dict[str, Any]:
         "merge_gate_unknown_failures": 0,
         "merge_gate_evidence": [],
     }
+
+
+def _list_status_span(
+    gh: GH,
+    start: datetime,
+    end: datetime,
+    status: str,
+    depth: int = 0,
+) -> tuple[list[dict[str, Any]], bool, dict[str, Any]]:
+    """List repository PR runs for one conclusion with explicit completeness."""
+    if not gh.ok(6):
+        return [], False, {"status": status, "expected": None, "fetched": 0, "complete": False, "slices": 0}
+
+    span = f"{iso_ts(start)}..{iso_ts(end)}"
+    params: dict[str, Any] = {
+        "event": "pull_request",
+        "status": status,
+        "created": span,
+        "per_page": 100,
+        "page": 1,
+    }
+    first = gh.get(f"/repos/{REPO}/actions/runs", params)
+    expected = int(first.get("total_count") or 0)
+
+    # GitHub caps pagination at 1000 results. Split dense ranges rather than
+    # silently treating a truncated result as complete.
+    if expected > 950 and end - start > timedelta(minutes=30) and depth < 10:
+        mid = start + (end - start) / 2
+        left, left_ok, left_meta = _list_status_span(gh, start, mid, status, depth + 1)
+        right, right_ok, right_meta = _list_status_span(
+            gh, mid + timedelta(seconds=1), end, status, depth + 1
+        )
+        dedup = {int(row["id"]): row for row in left + right if row.get("id")}
+        return list(dedup.values()), left_ok and right_ok, {
+            "status": status,
+            "expected": (left_meta.get("expected") or 0) + (right_meta.get("expected") or 0),
+            "fetched": len(dedup),
+            "complete": left_ok and right_ok,
+            "slices": (left_meta.get("slices") or 1) + (right_meta.get("slices") or 1),
+        }
+
+    all_rows: dict[int, dict[str, Any]] = {
+        int(row["id"]): row for row in first.get("workflow_runs", []) if row.get("id")
+    }
+    pages = min(10, max(1, math.ceil(expected / 100)))
+    for page in range(2, pages + 1):
+        if not gh.ok(6):
+            break
+        params["page"] = page
+        payload = gh.get(f"/repos/{REPO}/actions/runs", params)
+        for row in payload.get("workflow_runs", []):
+            if row.get("id"):
+                all_rows[int(row["id"])] = row
+
+    complete = len(all_rows) >= expected
+    rows = [row for row in all_rows.values() if row.get("status") == "completed" and is_e2e_pr_run(row)]
+    return rows, complete, {
+        "status": status,
+        "expected": expected,
+        "fetched": len(all_rows),
+        "e2e": len(rows),
+        "complete": complete,
+        "slices": 1,
+    }
+
+
+def list_failed_runs(
+    gh: GH, start: datetime, end: datetime
+) -> tuple[list[dict[str, Any]], bool, list[dict[str, Any]]]:
+    rows: list[dict[str, Any]] = []
+    coverage: list[dict[str, Any]] = []
+    complete = True
+    for status in ("failure", "timed_out", "startup_failure"):
+        try:
+            part, ok, meta = _list_status_span(gh, start, end, status)
+        except Exception as exc:
+            part, ok = [], False
+            meta = {
+                "status": status,
+                "expected": None,
+                "fetched": 0,
+                "complete": False,
+                "error": f"{type(exc).__name__}: {exc}",
+            }
+        rows.extend(part)
+        coverage.append(meta)
+        complete &= ok
+        if not gh.ok(6):
+            complete = False
+            break
+    dedup = {int(row["id"]): row for row in rows if row.get("id")}
+    return list(dedup.values()), complete, coverage
+
+
+def list_jobs_complete(gh: GH, run_id: int) -> tuple[list[dict[str, Any]], bool]:
+    if not gh.ok(4):
+        return [], False
+    out: dict[int, dict[str, Any]] = {}
+    expected: int | None = None
+    for page in range(1, 10):
+        if not gh.ok(4):
+            break
+        payload = gh.get(
+            f"/repos/{REPO}/actions/runs/{run_id}/jobs",
+            {"filter": "latest", "per_page": 100, "page": page},
+        )
+        if expected is None:
+            expected = int(payload.get("total_count") or 0)
+        part = payload.get("jobs", [])
+        for job in part:
+            if job.get("id"):
+                out[int(job["id"])] = job
+        if not part or len(out) >= (expected or len(out)):
+            break
+    return list(out.values()), expected is not None and len(out) >= expected
 
 
 def classify_leaf_set(
@@ -140,31 +280,28 @@ def record(
         row["merge_gate_evidence"].append(event)
 
 
-def fetch_jobs(gh: GH, runs: list[dict[str, Any]], errors: list[str]) -> list[tuple[dict[str, Any], list[dict[str, Any]]]]:
-    out: list[tuple[dict[str, Any], list[dict[str, Any]]]] = []
-    for run in runs:
-        if not gh.ok(10):
-            errors.append("API budget exhausted while listing E2E jobs")
-            break
-        try:
-            jobs = list_jobs(gh, int(run.get("id") or 0))
-        except Exception as exc:
-            errors.append(f"jobs:{run.get('id')}: {type(exc).__name__}: {exc}")
-            continue
-        out.append((run, jobs))
-    return out
-
-
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--date", required=True, help="UTC date YYYY-MM-DD")
+    ap.add_argument("--start", type=parse_start, help="UTC window start")
+    ap.add_argument("--date", help="compatibility: UTC date YYYY-MM-DD")
+    ap.add_argument("--hours", type=int)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
-    day = parse_day(args.date)
-    day_end = day + timedelta(days=1)
-    scan_start = day - timedelta(hours=12)
-    scan_end = day_end + timedelta(hours=12)
+    if args.start:
+        target_start = args.start.replace(minute=0, second=0, microsecond=0)
+        target_hours = args.hours or 4
+    elif args.date:
+        target_start = datetime.strptime(args.date, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        target_hours = args.hours or 24
+    else:
+        raise SystemExit("--start or --date is required")
+    if target_hours < 1 or target_hours > 24:
+        raise SystemExit("--hours must be between 1 and 24")
+
+    target_end = target_start + timedelta(hours=target_hours)
+    scan_start = target_start - timedelta(hours=SCAN_BACK_HOURS)
+    scan_end = target_end
 
     gh = GH()
     tests = load(TESTS, {"tests": {}})
@@ -172,32 +309,42 @@ def main() -> int:
     stats = Counter()
     errors: list[str] = []
 
-    try:
-        failed_runs = list_failed_e2e_pr_runs(gh, scan_start, scan_end)
-    except Exception as exc:
-        failed_runs = []
-        errors.append(f"failed-runs: {type(exc).__name__}: {exc}")
-
+    failed_runs, failed_query_complete, query_coverage = list_failed_runs(gh, scan_start, scan_end)
     failed_runs.sort(key=lambda r: r.get("updated_at") or r.get("created_at") or "")
-    failed_shas = {run.get("head_sha") for run in failed_runs if run.get("head_sha")}
 
-    # Same-SHA instability requires seeing the successful rerun too. Query
-    # successful E2E metadata, but fetch jobs only for SHAs that also had a
-    # failed E2E run in this local window.
-    try:
-        success_meta = list_e2e_pr_runs_status(gh, scan_start, scan_end, "success") if failed_shas else []
-    except Exception as exc:
-        success_meta = []
-        errors.append(f"success-runs: {type(exc).__name__}: {exc}")
-    matched_success = [run for run in success_meta if run.get("head_sha") in failed_shas]
+    candidates = [run for run in failed_runs if overlap_hour_keys(run, target_start, target_end)]
+    hours = {
+        iso_hour(target_start + timedelta(hours=h)): blank(target_start + timedelta(hours=h))
+        for h in range(target_hours)
+    }
+    unresolved: dict[str, set[int]] = {key: set() for key in hours}
+    for run in candidates:
+        run_id = int(run.get("id") or 0)
+        for key in overlap_hour_keys(run, target_start, target_end):
+            if key in unresolved:
+                unresolved[key].add(run_id)
 
-    failed_run_jobs = fetch_jobs(gh, failed_runs, errors)
-    success_run_jobs = fetch_jobs(gh, matched_success, errors)
-    seed_day_observations(tests, failed_run_jobs + success_run_jobs)
+    # Fetch all candidate job metadata before spending remaining API budget on
+    # annotations/log diagnosis. This maximizes the number of hours whose
+    # absence of a hidden merge blocker can be proven.
+    run_jobs: list[tuple[dict[str, Any], list[dict[str, Any]]]] = []
+    for run in candidates:
+        run_id = int(run.get("id") or 0)
+        try:
+            jobs, jobs_complete = list_jobs_complete(gh, run_id)
+        except Exception as exc:
+            jobs, jobs_complete = [], False
+            errors.append(f"jobs:{run_id}: {type(exc).__name__}: {exc}")
+        if not jobs_complete:
+            errors.append(f"jobs:{run_id}: incomplete")
+            continue
+        run_jobs.append((run, jobs))
+        for key in overlap_hour_keys(run, target_start, target_end):
+            unresolved.get(key, set()).discard(run_id)
 
-    hours = {iso_hour(day + timedelta(hours=h)): blank(day + timedelta(hours=h)) for h in range(24)}
+    seed_observations(tests, run_jobs)
 
-    for run, jobs in failed_run_jobs:
+    for run, jobs in run_jobs:
         run_id = int(run.get("id") or 0)
         sha = run.get("head_sha")
         gates = [job for job in jobs if (job.get("name") or "").lower() == GATE]
@@ -217,15 +364,13 @@ def main() -> int:
             leaf_times = [job_time(job, run) for job in leaf_failures]
             event_time = max((value for value in leaf_times if value), default=event_time)
 
-        if not event_time or not (day <= event_time < day_end):
+        if not event_time or not (target_start <= event_time < target_end):
             continue
         row = hours[iso_hour(event_time)]
         if gate:
             row["merge_gate_runs"] += 1
 
         if gate_conclusion == "success":
-            # The workflow failed elsewhere but the required merge gate passed;
-            # it cannot make this hour unavailable.
             stats["gate_success_in_failed_workflow"] += 1
             continue
 
@@ -277,28 +422,30 @@ def main() -> int:
                     gate_conclusion=gate_conclusion,
                 )
 
-    # Only a complete day replay is allowed to make a no-fault hour green. If
-    # any API/job retrieval was incomplete, the day stays gray except that a
-    # proven red event still wins when merged/reapplied.
-    analysis_complete = not errors
-    for row in hours.values():
-        row["merge_gate_analyzed"] = analysis_complete
+    for key, row in hours.items():
+        row["merge_gate_analyzed"] = bool(failed_query_complete and not unresolved[key])
 
+    analyzed_hours = sum(1 for row in hours.values() if row["merge_gate_analyzed"])
     payload = {
         "schema_version": SHARD_SCHEMA,
-        "date": args.date,
+        "window_start": iso_ts(target_start),
+        "window_hours": target_hours,
         "generated_at": iso_ts(datetime.now(timezone.utc)),
         "analysis": {
-            "complete": analysis_complete,
+            "complete": analyzed_hours == target_hours,
+            "failed_query_complete": failed_query_complete,
+            "query_coverage": query_coverage,
             "failed_runs_scanned": len(failed_runs),
-            "failed_runs_with_jobs": len(failed_run_jobs),
-            "matched_success_runs": len(matched_success),
-            "matched_success_runs_with_jobs": len(success_run_jobs),
+            "candidate_runs": len(candidates),
+            "candidate_runs_with_complete_jobs": len(run_jobs),
+            "analyzed_hours": analyzed_hours,
+            "unresolved_by_hour": {key: len(value) for key, value in unresolved.items() if value},
+            "scan_back_hours": SCAN_BACK_HOURS,
             "api_requests": gh.requests,
             "request_budget": gh.budget,
             "log_reads": logs.used,
             "stats": dict(stats),
-            "errors": errors[-20:],
+            "errors": errors[-40:],
         },
         "hours": [hours[key] for key in sorted(hours)],
     }
@@ -306,10 +453,10 @@ def main() -> int:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     print(
-        args.date,
+        iso_ts(target_start),
         dict(stats),
-        f"complete={analysis_complete} failed_runs={len(failed_runs)} failed_jobs={len(failed_run_jobs)} "
-        f"matched_success={len(matched_success)} requests={gh.requests}/{gh.budget} logs={logs.used}",
+        f"query_complete={failed_query_complete} candidates={len(candidates)} jobs={len(run_jobs)} "
+        f"analyzed={analyzed_hours}/{target_hours} requests={gh.requests}/{gh.budget} logs={logs.used}",
     )
     return 0
 
