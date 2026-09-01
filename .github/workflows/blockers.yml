@@ -28,6 +28,7 @@ jobs:
       - name: Analyze current main-branch blockers
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
           AUTH_REQUEST_BUDGET: "2600"
           BLOCKER_EVIDENCE_CAP: "0"
         run: python3 scripts/analyze_blockers.py
