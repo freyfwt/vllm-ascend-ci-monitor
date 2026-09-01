@@ -2,6 +2,12 @@ name: Backfill PR merge-gate availability
 
 on:
   workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/backfill_merge_gate_chunk.py"
+      - "scripts/merge_merge_gate_backfill.py"
+      - ".github/workflows/backfill-merge-gate.yml"
 
 permissions:
   contents: write
@@ -39,7 +45,7 @@ jobs:
     needs: prepare
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 3
       matrix:
         date: ${{ fromJSON(needs.prepare.outputs.dates) }}
     runs-on: ubuntu-latest
