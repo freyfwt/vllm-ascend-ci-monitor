@@ -19,7 +19,7 @@ from classify_merge_availability import (
 )
 from collect import GH, REPO, TESTS, iso_hour, iso_ts, load, parse_dt
 
-SHARD_SCHEMA = 5
+SHARD_SCHEMA = 6
 FAIL = {"failure", "timed_out", "startup_failure"}
 NONVERDICT = {"skipped", "cancelled", "action_required", "stale", "neutral"}
 SCAN_BACK_HOURS = 24
