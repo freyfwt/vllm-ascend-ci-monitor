@@ -1,0 +1,117 @@
+name: Backfill PR merge-gate availability
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/backfill_merge_gate_chunk.py"
+      - "scripts/merge_merge_gate_backfill.py"
+      - ".github/workflows/backfill-merge-gate.yml"
+
+permissions:
+  contents: write
+
+env:
+  TRACKING_START: "2026-08-01"
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      dates: ${{ steps.matrix.outputs.dates }}
+    steps:
+      - id: matrix
+        shell: bash
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from datetime import date, timedelta
+          start = date.fromisoformat("2026-08-01")
+          end = date.today()
+          dates = []
+          cur = start
+          while cur <= end:
+              dates.append(cur.isoformat())
+              cur += timedelta(days=1)
+          print("dates=" + json.dumps(dates, separators=(",", ":")))
+          PY
+
+  chunk:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        date: ${{ fromJSON(needs.prepare.outputs.dates) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout monitor repository
+        uses: actions/checkout@v4
+
+      - name: Replay E2E merge gate for ${{ matrix.date }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
+          AUTH_REQUEST_BUDGET: "900"
+          MERGE_GATE_LOG_CAP: "6"
+          MERGE_GATE_LOG_TIMEOUT: "8"
+        run: |
+          mkdir -p data/merge_gate_backfill
+          python3 scripts/backfill_merge_gate_chunk.py \
+            --date "${{ matrix.date }}" \
+            --out "data/merge_gate_backfill/${{ matrix.date }}.json"
+
+      - name: Upload day result
+        uses: actions/upload-artifact@v4
+        with:
+          name: merge-gate-${{ matrix.date }}
+          path: data/merge_gate_backfill/${{ matrix.date }}.json
+          retention-days: 2
+
+  merge:
+    needs: [prepare, chunk]
+    if: ${{ always() && needs.chunk.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest monitor repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download all day results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: merge-gate-*
+          path: data/merge_gate_backfill
+          merge-multiple: true
+
+      - name: Merge into latest history and rebuild calendar
+        run: |
+          git pull --rebase origin main
+          python3 scripts/merge_merge_gate_backfill.py --dir data/merge_gate_backfill
+          python3 scripts/rebuild_daily.py
+
+      - name: Persist merge-gate history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/history.json data/calendar.json data/summary.json data/days/
+          if git diff --cached --quiet; then
+            echo "No merge-gate backfill changes."
+            exit 0
+          fi
+          git commit -m "data: backfill PR merge-gate availability"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git pull --rebase origin main
+            python3 scripts/merge_merge_gate_backfill.py --dir data/merge_gate_backfill
+            python3 scripts/rebuild_daily.py
+            git add data/history.json data/calendar.json data/summary.json data/days/
+            git commit -m "data: backfill PR merge-gate availability"
+          done
+          exit 1
