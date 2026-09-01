@@ -52,9 +52,9 @@ jobs:
           cp data/days/*.json _site/data/days/ 2>/dev/null || true
           touch _site/.nojekyll
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
+      # Pages is already enabled for this repository. Avoid configure-pages
+      # here because it performs a redundant site lookup that can hit the
+      # installation API rate limit before the actual deployment starts.
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
