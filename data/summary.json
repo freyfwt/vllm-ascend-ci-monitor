@@ -2,29 +2,29 @@
   "schema_version": 1,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-09-01T10:07:11Z",
+  "updated_at": "2026-09-01T11:29:03Z",
   "latest_hour": {
-    "hour": "2026-09-01T09:00:00Z",
-    "status": "down",
+    "hour": "2026-09-01T10:00:00Z",
+    "status": "unknown",
     "coverage": "complete",
-    "runs": 59,
-    "jobs": 413,
-    "workflow_failures": 32,
+    "runs": 34,
+    "jobs": 343,
+    "workflow_failures": 17,
     "infra_failures": 0,
-    "code_failures": 20,
-    "ignored_nonverdicts": 46,
-    "unresolved_failures": 36,
-    "probabilistic_jobs": 126,
-    "active_runs": 23,
+    "code_failures": 17,
+    "ignored_nonverdicts": 22,
+    "unresolved_failures": 13,
+    "probabilistic_jobs": 43,
+    "active_runs": 16,
     "reasons": {},
     "failures": [],
     "probabilistic": [
       {
-        "key": "job::E2E::run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
+        "key": "job::E2E::select-tests",
         "kind": "job",
         "workflow": "E2E",
-        "job": "run-selected-tests (ba07e4a48fc951300d97eb506217dd530583dea3) / a3-800i-4 card-(part 1-2)",
-        "pass_rate_30d": 0.8808,
+        "job": "select-tests",
+        "pass_rate_30d": 0.6083,
         "reason": "same_commit_mixed_outcomes"
       },
       {
@@ -32,69 +32,29 @@
         "kind": "job",
         "workflow": "E2E",
         "job": "ci-gate",
-        "pass_rate_30d": 0.2125,
+        "pass_rate_30d": 0.2583,
         "reason": "same_commit_mixed_outcomes"
       },
       {
-        "key": "job::E2E::pre-commit",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "pre-commit",
-        "pass_rate_30d": 0.6167,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::select-tests",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "select-tests",
-        "pass_rate_30d": 0.5417,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a2-1 card-(part 1-5)",
-        "kind": "job",
-        "workflow": "Schedule All E2E Tests",
-        "job": "run-all-tests (v0.27.1) / a2-1 card-(part 1-5)",
-        "pass_rate_30d": 0.7,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a3-2 card-(part 1-2)",
-        "kind": "job",
-        "workflow": "Schedule All E2E Tests",
-        "job": "run-all-tests (v0.27.1) / a3-2 card-(part 1-2)",
-        "pass_rate_30d": 0.9,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / [\n  \"Qwen3-30B-A3B\",\n  \"Qwen3-VL-30B-A3B-Instruct\",\n  \"Qwen3-30B-A3B-W8A8\"\n] accuracy test",
+        "key": "job::Nightly-A2::multi-node (main, multi-node-GLM-5.1-w8a8-A2, GLM5_1-W8A8-A2-dual-nodes.yaml, tests/e2e/nightly/m... / GLM5_1-W8A8-A2-dual-nodes.yaml",
         "kind": "job",
         "workflow": "Nightly-A2",
-        "job": "single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL... / [\n  \"Qwen3-30B-A3B\",\n  \"Qwen3-VL-30B-A3B-Instruct\",\n  \"Qwen3-30B-A3B-W8A8\"\n] accuracy test",
-        "pass_rate_30d": 0.5,
-        "reason": "policy_probability_sensitive"
-      },
-      {
-        "key": "job::Nightly-A2::single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / [\n  \"Qwen3-Next-80B-A3B-Instruct\",\n  \"Qwen3-Omni-30B-A3B-Instruct\",\n  \"Mixtral-8x7B-Instruct-v0.1\"\n] accuracy test",
-        "kind": "job",
-        "workflow": "Nightly-A2",
-        "job": "single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst... / [\n  \"Qwen3-Next-80B-A3B-Instruct\",\n  \"Qwen3-Omni-30B-A3B-Instruct\",\n  \"Mixtral-8x7B-Instruct-v0.1\"\n] accuracy test",
-        "pass_rate_30d": 0.5,
-        "reason": "policy_probability_sensitive"
+        "job": "multi-node (main, multi-node-GLM-5.1-w8a8-A2, GLM5_1-W8A8-A2-dual-nodes.yaml, tests/e2e/nightly/m... / GLM5_1-W8A8-A2-dual-nodes.yaml",
+        "pass_rate_30d": 0.2,
+        "reason": "same_commit_mixed_outcomes"
       }
     ]
   },
   "days_tracked": 32,
   "overall": {
-    "availability": 0.173913,
-    "observed_hours": 253,
-    "healthy_hours": 44,
-    "down_hours": 209,
-    "unknown_hours": 501,
+    "availability": 1.0,
+    "observed_hours": 64,
+    "healthy_hours": 64,
+    "down_hours": 0,
+    "unknown_hours": 691,
     "infra_failures": 0,
-    "code_failures": 1285,
-    "unresolved_failures": 5424,
-    "probabilistic_jobs": 2259
+    "code_failures": 1516,
+    "unresolved_failures": 5442,
+    "probabilistic_jobs": 2303
   }
 }
