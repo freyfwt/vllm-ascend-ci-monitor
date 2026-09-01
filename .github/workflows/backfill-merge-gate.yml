@@ -23,54 +23,61 @@ jobs:
   prepare:
     runs-on: ubuntu-latest
     outputs:
-      dates: ${{ steps.matrix.outputs.dates }}
+      windows: ${{ steps.matrix.outputs.windows }}
     steps:
       - id: matrix
         shell: bash
         run: |
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json
-          from datetime import date, timedelta
-          start = date.fromisoformat("2026-08-01")
-          end = date.today()
-          dates = []
+          from datetime import datetime, timedelta, timezone
+
+          start = datetime(2026, 8, 1, tzinfo=timezone.utc)
+          # Historical backfill only covers fully completed UTC days. The live
+          # hourly monitor owns the current day.
+          today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+          windows = []
           cur = start
-          while cur <= end:
-              dates.append(cur.isoformat())
-              cur += timedelta(days=1)
-          print("dates=" + json.dumps(dates, separators=(",", ":")))
+          while cur < today:
+              windows.append({
+                  "start": cur.isoformat().replace("+00:00", "Z"),
+                  "key": cur.strftime("%Y-%m-%d-%H"),
+              })
+              cur += timedelta(hours=4)
+          print("windows=" + json.dumps(windows, separators=(",", ":")))
           PY
 
   chunk:
     needs: prepare
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 8
       matrix:
-        date: ${{ fromJSON(needs.prepare.outputs.dates) }}
+        window: ${{ fromJSON(needs.prepare.outputs.windows) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout monitor repository
         uses: actions/checkout@v4
 
-      - name: Replay E2E merge gate for ${{ matrix.date }}
+      - name: Replay E2E merge gate for ${{ matrix.window.start }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
           UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
           AUTH_REQUEST_BUDGET: "900"
-          MERGE_GATE_LOG_CAP: "6"
+          MERGE_GATE_LOG_CAP: "8"
           MERGE_GATE_LOG_TIMEOUT: "8"
         run: |
           mkdir -p data/merge_gate_backfill
           python3 scripts/backfill_merge_gate_chunk.py \
-            --date "${{ matrix.date }}" \
-            --out "data/merge_gate_backfill/${{ matrix.date }}.json"
+            --start "${{ matrix.window.start }}" \
+            --hours 4 \
+            --out "data/merge_gate_backfill/${{ matrix.window.key }}.json"
 
-      - name: Upload day result
+      - name: Upload window result
         uses: actions/upload-artifact@v4
         with:
-          name: merge-gate-${{ matrix.date }}
-          path: data/merge_gate_backfill/${{ matrix.date }}.json
+          name: merge-gate-${{ matrix.window.key }}
+          path: data/merge_gate_backfill/${{ matrix.window.key }}.json
           retention-days: 2
 
   merge:
@@ -83,7 +90,7 @@ jobs:
         with:
           ref: main
 
-      - name: Download all day results
+      - name: Download all window results
         uses: actions/download-artifact@v4
         with:
           pattern: merge-gate-*
