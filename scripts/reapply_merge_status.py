@@ -10,6 +10,7 @@ HISTORY = Path("data/history.json")
 
 
 def ensure(row: dict[str, Any]) -> None:
+    row.setdefault("merge_gate_analyzed", False)
     row.setdefault("merge_gate_runs", 0)
     row.setdefault("merge_gate_code_failures", 0)
     row.setdefault("merge_gate_policy_failures", 0)
@@ -21,6 +22,10 @@ def ensure(row: dict[str, Any]) -> None:
 
 def decide(row: dict[str, Any]) -> str:
     ensure(row)
+    # This is the guardrail that prevents an un-replayed historical hour from
+    # looking green merely because unrelated CI ran in that hour.
+    if not bool(row.get("merge_gate_analyzed")):
+        return "unknown"
     if int(row.get("merge_blocking_ci_failures") or 0) > 0:
         return "down"
     if row.get("coverage") == "partial":
@@ -39,7 +44,7 @@ def apply(history: dict[str, Any]) -> dict[str, int]:
     for row in history.get("hours", []):
         row["status"] = decide(row)
         counts[row["status"]] = counts.get(row["status"], 0) + 1
-    history["schema_version"] = max(11, int(history.get("schema_version") or 0))
+    history["schema_version"] = max(12, int(history.get("schema_version") or 0))
     return counts
 
 
