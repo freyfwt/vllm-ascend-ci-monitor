@@ -36,10 +36,10 @@ jobs:
           import json
           from datetime import datetime, timedelta, timezone
 
-          start = datetime(2026, 8, 1, tzinfo=timezone.utc)
-          # Historical backfill only covers fully completed UTC days. The live
-          # hourly monitor owns the current day.
+          # Keep historical replay bounded and reliable. The live monitor owns
+          # the current UTC day; replay only the seven fully completed days.
           today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+          start = today - timedelta(days=7)
           windows = []
           cur = start
           while cur < today:
@@ -65,11 +65,15 @@ jobs:
 
       - name: Replay E2E merge gate for ${{ matrix.window.start }}
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          # Prefer a user-provided public-repo read token when configured.
+          # Otherwise the analyzer intentionally falls back to bounded public API access.
           UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
           AUTH_REQUEST_BUDGET: "900"
-          MERGE_GATE_LOG_CAP: "8"
-          MERGE_GATE_LOG_TIMEOUT: "8"
+          ANON_REQUEST_BUDGET: "54"
+          # Historical replay must stay lightweight: Jobs/steps/annotations only.
+          # Full job logs remain available for targeted interactive investigation.
+          MERGE_GATE_LOG_CAP: "0"
+          MERGE_GATE_LOG_TIMEOUT: "4"
         run: |
           mkdir -p data/merge_gate_backfill
           python3 scripts/backfill_merge_gate_chunk.py \
@@ -116,7 +120,7 @@ jobs:
             echo "No merge-gate backfill changes."
             exit 0
           fi
-          git commit -m "data: backfill PR merge-gate availability"
+          git commit -m "data: backfill recent PR merge-gate availability"
           for attempt in 1 2 3; do
             git fetch origin main
             if git rebase origin/main && git push; then
@@ -127,6 +131,6 @@ jobs:
             python3 scripts/merge_merge_gate_backfill.py --dir data/merge_gate_backfill
             python3 scripts/rebuild_daily.py
             git add data/history.json data/calendar.json data/summary.json data/days/
-            git commit -m "data: backfill PR merge-gate availability"
+            git commit -m "data: backfill recent PR merge-gate availability"
           done
           exit 1
