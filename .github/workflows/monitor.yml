@@ -1,6 +1,6 @@
 name: Monitor vLLM-Ascend CI
 
-# Policy v9: code/test regressions are valid CI verdicts; infrastructure/reliability failures drive availability.
+# Availability answers one question: can a normal PR obtain a reliable required ci-gate verdict?
 on:
   schedule:
     - cron: "17 * * * *"
@@ -9,6 +9,7 @@ on:
     branches: ["main"]
     paths:
       - "scripts/collect.py"
+      - "scripts/classify_merge_availability.py"
       - "scripts/rebuild_daily.py"
       - "README.md"
       - ".github/workflows/monitor.yml"
@@ -32,6 +33,15 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
         run: python3 scripts/collect.py
+
+      - name: Classify PR merge-gate availability
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          UPSTREAM_GITHUB_TOKEN: ${{ secrets.UPSTREAM_GITHUB_TOKEN }}
+          MERGE_AVAILABILITY_LOOKBACK_HOURS: "12"
+          MERGE_GATE_LOG_CAP: "10"
+          MERGE_GATE_LOG_TIMEOUT: "8"
+        run: python3 scripts/classify_merge_availability.py
 
       - name: Rebuild persistent daily availability
         run: python3 scripts/rebuild_daily.py
