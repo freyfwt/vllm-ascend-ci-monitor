@@ -2,15 +2,13 @@ name: Backfill PR merge-gate availability
 
 on:
   workflow_dispatch:
-  push:
-    branches: ["main"]
-    paths:
-      - "scripts/backfill_merge_gate_chunk.py"
-      - "scripts/merge_merge_gate_backfill.py"
-      - ".github/workflows/backfill-merge-gate.yml"
 
 permissions:
   contents: write
+
+concurrency:
+  group: vllm-ascend-ci-merge-gate-backfill-v2
+  cancel-in-progress: true
 
 env:
   TRACKING_START: "2026-08-01"
