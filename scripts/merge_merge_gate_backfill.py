@@ -9,7 +9,7 @@ from collect import load, save
 from reapply_merge_status import apply
 
 HISTORY = Path("data/history.json")
-REQUIRED_SHARD_SCHEMA = 2
+REQUIRED_SHARD_SCHEMA = 3
 FIELDS = (
     "merge_gate_runs",
     "merge_gate_code_failures",
@@ -36,10 +36,10 @@ def main() -> int:
         if int(payload.get("schema_version") or 0) < REQUIRED_SHARD_SCHEMA:
             legacy.append(path.name)
     if legacy:
-        # Shard v1 did not interpret historical ci-gate=skipped runs. Refuse to
-        # publish those results rather than silently painting old history green.
+        # v1 missed skipped gates; v2 used the workflow-path endpoint which did
+        # not expose historical E2E runs consistently. Never publish either.
         raise SystemExit(
-            "refusing legacy merge-gate shards without skipped-gate leaf analysis: "
+            "refusing legacy merge-gate shards; status-filtered repo replay is required: "
             + ", ".join(legacy[:8])
             + (" ..." if len(legacy) > 8 else "")
         )
