@@ -1,0 +1,388 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import re
+import urllib.error
+import urllib.parse
+import urllib.request
+from collections import Counter
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any
+
+from collect import GH, REPO, diagnose_log, failed_step_names, iso_hour, iso_ts, load, parse_dt, save
+
+DATA = Path("data")
+HISTORY = DATA / "history.json"
+TESTS = DATA / "tests.json"
+LOOKBACK = int(os.getenv("MERGE_AVAILABILITY_LOOKBACK_HOURS", "12"))
+LOG_CAP = int(os.getenv("MERGE_GATE_LOG_CAP", "10"))
+LOG_TIMEOUT = int(os.getenv("MERGE_GATE_LOG_TIMEOUT", "8"))
+E2E_PATH = ".github/workflows/pr_test.yaml"
+GATE = "ci-gate"
+DIRECT_GATE_PREFIXES = (
+    "pre-commit",
+    "select-tests",
+    "run-selected-tests",
+    "run-selected-tests-a5",
+)
+CODE_STEP = re.compile(
+    r"(pre-commit|mypy|ruff|format|lint|pytest|unit.?test|test(?:s)?\b|"
+    r"validate pr title|gitleaks|secret scan|compile|build wheel)",
+    re.I,
+)
+SETUP_OR_INFRA_STEP = re.compile(
+    r"(checkout|download|install|cache|container|runner|docker|setup|prepare|"
+    r"recommend tests from coverage|ensure csrc cache)",
+    re.I,
+)
+
+
+def utcnow() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def is_e2e_pr_run(run: dict[str, Any]) -> bool:
+    return (
+        run.get("event") == "pull_request"
+        and (
+            run.get("name") == "E2E"
+            or (run.get("path") or "").endswith(E2E_PATH)
+            or (run.get("path") or "").endswith("pr_test.yaml")
+        )
+    )
+
+
+def list_pr_runs(gh: GH, start: datetime, end: datetime) -> list[dict[str, Any]]:
+    span = f"{iso_ts(start)}..{iso_ts(end)}"
+    params = {"event": "pull_request", "created": span, "per_page": 100, "page": 1}
+    first = gh.get(f"/repos/{REPO}/actions/runs", params)
+    expected = int(first.get("total_count") or 0)
+    rows = list(first.get("workflow_runs", []))
+    pages = min(10, max(1, (expected + 99) // 100))
+    for page in range(2, pages + 1):
+        if not gh.ok(8):
+            break
+        params["page"] = page
+        payload = gh.get(f"/repos/{REPO}/actions/runs", params)
+        rows.extend(payload.get("workflow_runs", []))
+    dedup = {int(r["id"]): r for r in rows if r.get("id")}
+    return [r for r in dedup.values() if is_e2e_pr_run(r) and r.get("status") == "completed"]
+
+
+def list_jobs(gh: GH, run_id: int) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    for page in range(1, 10):
+        if not gh.ok(8):
+            break
+        payload = gh.get(
+            f"/repos/{REPO}/actions/runs/{run_id}/jobs",
+            {"filter": "latest", "per_page": 100, "page": page},
+        )
+        part = payload.get("jobs", [])
+        out.extend(part)
+        total = int(payload.get("total_count") or len(out))
+        if not part or len(out) >= total:
+            break
+    return out
+
+
+def job_key(name: str) -> str:
+    return f"job::E2E::{name}"
+
+
+def observations_mixed_for_sha(tests: dict[str, Any], name: str, sha: str | None) -> bool:
+    if not sha:
+        return False
+    item = tests.get("tests", {}).get(job_key(name), {})
+    outcomes: set[str] = set()
+    for obs in item.get("observations", []):
+        if obs.get("head_sha") != sha:
+            continue
+        conclusion = (obs.get("conclusion") or "").lower()
+        if conclusion == "success":
+            outcomes.add("success")
+        elif conclusion in {"failure", "timed_out", "startup_failure"}:
+            outcomes.add("failure")
+    return len(outcomes) > 1
+
+
+def direct_gate_job(name: str) -> bool:
+    lower = (name or "").lower()
+    return any(
+        lower == prefix or lower.startswith(prefix + " ") or lower.startswith(prefix + " (")
+        for prefix in DIRECT_GATE_PREFIXES
+    )
+
+
+def annotations(gh: GH, job_id: int) -> str:
+    if not gh.ok(6):
+        return ""
+    try:
+        payload = gh.get(f"/repos/{REPO}/check-runs/{job_id}/annotations", {"per_page": 100})
+    except Exception:
+        return ""
+    pieces: list[str] = []
+    for item in payload if isinstance(payload, list) else []:
+        for key in ("title", "message", "raw_details"):
+            value = str(item.get(key) or "").strip()
+            if value and value not in pieces:
+                pieces.append(value)
+    return "\n".join(pieces)[:250000]
+
+
+class LogReader:
+    def __init__(self, token: str) -> None:
+        self.token = token
+        self.used = 0
+
+    def read(self, job_id: int) -> str:
+        if self.used >= LOG_CAP or not self.token:
+            return ""
+        self.used += 1
+        headers = {
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+            "User-Agent": "vllm-ascend-ci-monitor-merge-gate/1",
+            "Authorization": "Bearer " + self.token,
+        }
+        req = urllib.request.Request(
+            f"https://api.github.com/repos/{REPO}/actions/jobs/{job_id}/logs",
+            headers=headers,
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=LOG_TIMEOUT) as response:
+                return response.read().decode("utf-8", errors="replace")[-500000:]
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError):
+            return ""
+
+
+def failed_step_text(job: dict[str, Any]) -> str:
+    return " | ".join(x for x in failed_step_names(job) if x)
+
+
+def classify_leaf(
+    gh: GH,
+    logs: LogReader,
+    tests: dict[str, Any],
+    job: dict[str, Any],
+    sha: str | None,
+) -> tuple[str, str, str | None]:
+    """Return (kind, reason, evidence), where kind is ci/code/unknown."""
+    name = job.get("name") or "Unnamed job"
+    conclusion = (job.get("conclusion") or "").lower()
+    steps = failed_step_text(job)
+
+    if observations_mixed_for_sha(tests, name, sha):
+        return "ci", "SAME_SHA_MIXED_OUTCOME", f"{name} failed and passed on the same commit"
+
+    if conclusion == "startup_failure":
+        return "ci", "STARTUP_FAILURE", "GitHub Actions startup_failure"
+
+    text = annotations(gh, int(job.get("id") or 0))
+    if text:
+        why, infra, evidence = diagnose_log(text)
+        if why:
+            return ("ci" if infra else "code"), why, evidence
+
+    # Only read the heavy log for merge-path failures that remain ambiguous.
+    text = logs.read(int(job.get("id") or 0))
+    if text:
+        why, infra, evidence = diagnose_log(text)
+        if why:
+            return ("ci" if infra else "code"), why, evidence
+
+    # Strong deterministic verdict steps are valid CI outcomes even without raw logs.
+    if CODE_STEP.search(steps):
+        return "code", "DETERMINISTIC_CHECK_OR_TEST_FAILURE", steps[:400]
+
+    if conclusion == "timed_out":
+        if SETUP_OR_INFRA_STEP.search(steps):
+            return "ci", "MERGE_PATH_INFRA_TIMEOUT", steps[:400]
+        return "unknown", "MERGE_PATH_TIMEOUT_UNKNOWN", steps[:400] or None
+
+    if SETUP_OR_INFRA_STEP.search(steps):
+        return "unknown", "MERGE_PATH_SETUP_FAILURE_UNKNOWN", steps[:400]
+
+    return "unknown", "MERGE_PATH_FAILURE_UNKNOWN", steps[:400] or None
+
+
+def ensure_fields(row: dict[str, Any]) -> None:
+    row.setdefault("merge_gate_runs", 0)
+    row.setdefault("merge_gate_code_failures", 0)
+    row.setdefault("merge_blocking_ci_failures", 0)
+    row.setdefault("merge_gate_unknown_failures", 0)
+    row.setdefault("nonblocking_ci_failures", 0)
+    row.setdefault("merge_gate_evidence", [])
+
+
+def decide(row: dict[str, Any]) -> str:
+    ensure_fields(row)
+    if int(row.get("merge_blocking_ci_failures") or 0) > 0:
+        return "down"
+    if row.get("coverage") == "partial":
+        return "unknown"
+    if int(row.get("merge_gate_unknown_failures") or 0) > 0:
+        return "unknown"
+    if int(row.get("infra_failures") or 0) > 0:
+        return "degraded"
+    if int(row.get("runs") or 0) > 0:
+        return "healthy"
+    return "unknown"
+
+
+def main() -> int:
+    now = utcnow()
+    history = load(HISTORY, {"hours": []})
+    tests = load(TESTS, {"tests": {}})
+    rows = history.get("hours", [])
+    by_hour = {row.get("hour"): row for row in rows if row.get("hour")}
+
+    start = now - timedelta(hours=LOOKBACK)
+    floor = start.replace(minute=0, second=0, microsecond=0)
+    for key, row in by_hour.items():
+        dt = parse_dt(key)
+        if dt and dt >= floor:
+            for field in (
+                "merge_gate_runs",
+                "merge_gate_code_failures",
+                "merge_blocking_ci_failures",
+                "merge_gate_unknown_failures",
+                "nonblocking_ci_failures",
+            ):
+                row[field] = 0
+            row["merge_gate_evidence"] = []
+
+    gh = GH()
+    token = os.getenv("UPSTREAM_GITHUB_TOKEN") or os.getenv("GITHUB_TOKEN") or ""
+    logs = LogReader(token)
+    stats = Counter()
+
+    try:
+        runs = list_pr_runs(gh, start - timedelta(hours=6), now)
+    except Exception as exc:
+        print(f"warning: merge-gate run scan failed: {type(exc).__name__}: {exc}")
+        return 0
+
+    for run in runs:
+        run_id = int(run.get("id") or 0)
+        sha = run.get("head_sha")
+        try:
+            jobs = list_jobs(gh, run_id)
+        except Exception:
+            continue
+
+        gate_jobs = [job for job in jobs if (job.get("name") or "").lower() == GATE]
+        if not gate_jobs:
+            continue
+        gate = gate_jobs[-1]
+        gate_conclusion = (gate.get("conclusion") or "").lower()
+        gate_time = (
+            parse_dt(gate.get("completed_at"))
+            or parse_dt(gate.get("started_at"))
+            or parse_dt(run.get("updated_at"))
+            or parse_dt(run.get("created_at"))
+        )
+        if not gate_time:
+            continue
+        key = iso_hour(gate_time)
+        row = by_hour.get(key)
+        if not row:
+            continue
+        ensure_fields(row)
+        row["merge_gate_runs"] += 1
+
+        if gate_conclusion == "success":
+            stats["gate_success"] += 1
+            continue
+        if gate_conclusion not in {"failure", "timed_out", "startup_failure"}:
+            continue
+
+        stats["gate_failure"] += 1
+
+        if observations_mixed_for_sha(tests, gate.get("name") or GATE, sha):
+            kind, reason, evidence = (
+                "ci",
+                "CI_GATE_SAME_SHA_MIXED_OUTCOME",
+                "ci-gate failed and passed on the same commit",
+            )
+        else:
+            leaf_failures = [
+                job
+                for job in jobs
+                if (job.get("conclusion") or "").lower() in {"failure", "timed_out", "startup_failure"}
+                and (job.get("name") or "").lower() != GATE
+                and direct_gate_job(job.get("name") or "")
+            ]
+            results = [classify_leaf(gh, logs, tests, job, sha) for job in leaf_failures]
+            if any(item[0] == "ci" for item in results):
+                kind = "ci"
+                first = next(item for item in results if item[0] == "ci")
+                reason, evidence = first[1], first[2]
+            elif results and all(item[0] == "code" for item in results):
+                kind = "code"
+                reason, evidence = results[0][1], results[0][2]
+            elif not leaf_failures:
+                kind, reason, evidence = (
+                    "ci",
+                    "CI_GATE_FAILURE_WITHOUT_FAILED_DEPENDENCY",
+                    failed_step_text(gate)[:400] or None,
+                )
+            else:
+                kind = "unknown"
+                first = next(
+                    (item for item in results if item[0] == "unknown"),
+                    ("unknown", "MERGE_PATH_FAILURE_UNKNOWN", None),
+                )
+                reason, evidence = first[1], first[2]
+
+        item = {
+            "run_id": run_id,
+            "sha": sha,
+            "reason": reason,
+            "evidence": evidence,
+            "url": gate.get("html_url") or run.get("html_url"),
+        }
+        if kind == "ci":
+            row["merge_blocking_ci_failures"] += 1
+            stats["merge_blocking_ci"] += 1
+        elif kind == "code":
+            row["merge_gate_code_failures"] += 1
+            stats["code_verdict"] += 1
+        else:
+            row["merge_gate_unknown_failures"] += 1
+            stats["unknown_gate"] += 1
+        if len(row["merge_gate_evidence"]) < 12:
+            item["kind"] = kind
+            row["merge_gate_evidence"].append(item)
+
+    # Status is merge-gate centric. Non-gating proven infra is yellow rather
+    # than red; unresolved unrelated failures no longer erase a valid green.
+    for row in rows:
+        dt = parse_dt(row.get("hour"))
+        if dt and dt >= floor:
+            row["status"] = decide(row)
+
+    history["schema_version"] = max(11, int(history.get("schema_version") or 0))
+    history["merge_availability_policy"] = {
+        "required_ci_check": "ci-gate",
+        "required_status_checks_source": "public repository ruleset main",
+        "down": "at least one PR ci-gate failure proven to be caused by CI/reliability rather than PR code",
+        "degraded": "proven CI infrastructure issue outside the merge-blocking path",
+        "unknown": "merge-gate failure exists but evidence cannot distinguish CI from PR code",
+        "healthy": "CI produced valid merge-gate verdicts and no merge-blocking CI fault was proven",
+    }
+    history["merge_availability_updated_at"] = iso_ts(now)
+    save(HISTORY, history)
+    print(
+        "merge-gate "
+        + " ".join(f"{k}={v}" for k, v in sorted(stats.items()))
+        + f" log_reads={logs.used} api_requests={gh.requests}/{gh.budget}"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
