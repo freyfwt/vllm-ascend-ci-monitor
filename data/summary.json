@@ -2,114 +2,65 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-09-04T14:24:36Z",
+  "updated_at": "2026-09-04T18:26:59Z",
   "latest_hour": {
-    "hour": "2026-09-04T13:00:00Z",
-    "status": "degraded",
+    "hour": "2026-09-04T17:00:00Z",
+    "status": "healthy",
     "coverage": "complete",
-    "runs": 16,
-    "jobs": 88,
-    "workflow_failures": 3,
+    "runs": 2,
+    "jobs": 26,
+    "workflow_failures": 1,
     "infra_failures": 0,
-    "code_failures": 3,
-    "ignored_nonverdicts": 21,
-    "unresolved_failures": 4,
-    "probabilistic_jobs": 25,
-    "active_runs": 10,
+    "code_failures": 0,
+    "ignored_nonverdicts": 0,
+    "unresolved_failures": 1,
+    "probabilistic_jobs": 2,
+    "active_runs": 3,
     "reasons": {},
     "failures": [],
     "probabilistic": [
+      {
+        "key": "job::Main2Main::resolve-source",
+        "kind": "job",
+        "workflow": "Main2Main",
+        "job": "resolve-source",
+        "pass_rate_30d": 0.875,
+        "reason": "same_commit_mixed_outcomes"
+      },
       {
         "key": "job::E2E::ci-gate",
         "kind": "job",
         "workflow": "E2E",
         "job": "ci-gate",
-        "pass_rate_30d": 0.2625,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::pre-commit",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "pre-commit",
-        "pass_rate_30d": 0.6667,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::select-tests",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "select-tests",
-        "pass_rate_30d": 0.8625,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::Recommend tests from coverage",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "Recommend tests from coverage",
-        "pass_rate_30d": 0.9792,
+        "pass_rate_30d": 0.2875,
         "reason": "same_commit_mixed_outcomes"
       }
     ],
     "merge_gate_analyzed": true,
-    "merge_gate_runs": 4,
-    "merge_gate_code_failures": 2,
+    "merge_gate_runs": 0,
+    "merge_gate_code_failures": 0,
     "merge_gate_policy_failures": 0,
     "merge_blocking_ci_failures": 0,
-    "merge_gate_unknown_failures": 2,
+    "merge_gate_unknown_failures": 0,
     "nonblocking_ci_failures": 0,
-    "merge_gate_evidence": [
-      {
-        "run_id": 33876307719,
-        "sha": "b0811356c189a3c0cd066378d4750d40f9c5a123",
-        "reason": "PR_TITLE_POLICY_FAILURE",
-        "evidence": "PR title must contain one of the following prefixes: [BugFix], [Performance], [Test], [CI], [Feature], [Doc], [Misc], [Community], [Refactor]",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33876307719/job/101034514207",
-        "kind": "code"
-      },
-      {
-        "run_id": 33878285734,
-        "sha": "f3493b003a73d6d4a06f9fe1fbca673d25735163",
-        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
-        "evidence": "Run pre-commit",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33878285734/job/101041394015",
-        "kind": "code"
-      },
-      {
-        "run_id": 33850802211,
-        "sha": "0c541998bb8b43974a154c851faef57ca6d0eb3a",
-        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
-        "evidence": "Run selected tests with device",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33850802211/job/101046876479",
-        "kind": "unknown"
-      },
-      {
-        "run_id": 33866985315,
-        "sha": "464e79dcdb8eea8e481302a332970e4c0b11514d",
-        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
-        "evidence": "Run selected tests with device",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33866985315/job/101047160769",
-        "kind": "unknown"
-      }
-    ]
+    "merge_gate_evidence": []
   },
   "days_tracked": 35,
   "overall": {
-    "availability": 0.886364,
-    "availability_floor": 0.140964,
-    "coverage": 0.159036,
-    "observed_hours": 132,
-    "healthy_hours": 27,
-    "degraded_hours": 90,
+    "availability": 0.888889,
+    "availability_floor": 0.143885,
+    "coverage": 0.161871,
+    "observed_hours": 135,
+    "healthy_hours": 29,
+    "degraded_hours": 91,
     "down_hours": 15,
-    "unknown_hours": 698,
-    "merge_gate_runs": 1784,
+    "unknown_hours": 699,
+    "merge_gate_runs": 1791,
     "merge_blocking_ci_failures": 19,
-    "merge_gate_unknown_failures": 1192,
+    "merge_gate_unknown_failures": 1198,
     "infra_failures": 0,
-    "code_failures": 2290,
-    "unresolved_failures": 6091,
-    "probabilistic_jobs": 5106
+    "code_failures": 2291,
+    "unresolved_failures": 6100,
+    "probabilistic_jobs": 5162
   }
 }
