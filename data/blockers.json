@@ -1,6 +1,6 @@
 {
   "schema_version": 5,
-  "updated_at": "2026-09-05T10:53:12Z",
+  "updated_at": "2026-09-05T13:59:01Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "scope": {
     "branch": "main",
@@ -13,12 +13,12 @@
   },
   "analysis": {
     "complete": true,
-    "window_start": "2026-09-05T00:53:12Z",
-    "window_end": "2026-09-05T10:53:12Z",
-    "runs": 14,
-    "jobs": 87,
-    "new_failures": 27,
-    "api_requests": 19,
+    "window_start": "2026-09-05T03:59:01Z",
+    "window_end": "2026-09-05T13:59:01Z",
+    "runs": 15,
+    "jobs": 42,
+    "new_failures": 3,
+    "api_requests": 20,
     "request_budget": 2600,
     "evidence_requests": {
       "evidence_attempted": 0,
@@ -32,8 +32,8 @@
     },
     "coverage": {
       "push": {
-        "expected": 5,
-        "fetched": 5,
+        "expected": 12,
+        "fetched": 12,
         "complete": true,
         "slices": 1
       },
@@ -44,14 +44,14 @@
         "slices": 1
       },
       "workflow_dispatch": {
-        "expected": 14,
-        "fetched": 14,
+        "expected": 15,
+        "fetched": 15,
         "complete": true,
         "slices": 1
       },
       "repository_dispatch": {
-        "expected": 33,
-        "fetched": 33,
+        "expected": 24,
+        "fetched": 24,
         "complete": true,
         "slices": 1
       },
@@ -65,9 +65,9 @@
     "errors": []
   },
   "stats": {
-    "active": 34,
+    "active": 33,
     "watch": 107,
-    "stale": 25,
+    "stale": 26,
     "open": 166,
     "resolved": 25,
     "attributed": 0,
@@ -258,9 +258,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 557.5,
+      "priority_score": 554.4,
       "blast_radius": 80,
-      "age_hours": 2.5
+      "age_hours": 5.6
     },
     {
       "id": "48ddeca073fb90ca",
@@ -271,11 +271,11 @@
       "log_excerpt": "run-all-tests (v0.27.1) | Run selected tests with device | failure",
       "evidence_source": "step_summary",
       "first_seen": "2026-08-28T08:37:11Z",
-      "last_seen": "2026-09-05T08:45:49Z",
-      "occurrences": 33,
+      "last_seen": "2026-09-05T12:43:45Z",
+      "occurrences": 35,
       "pass_streak": 1,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336/job/101274756030",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336",
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33964803460/job/101303348185",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33964803460",
       "affected_commits": [
         "f78c00976ffc362c3b4d80f961d93315371d631f",
         "5c59cfba98045f49645284745be035346a4d82d8",
@@ -294,7 +294,8 @@
         "93c3fd643747468efa276b6c15c8b9c5df0f1a3b",
         "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8",
         "8d838ee86935e872806a4c491d33782e69c59538",
-        "0c25d45949607ddcbbd349402c0bf017b30f5a63"
+        "0c25d45949607ddcbbd349402c0bf017b30f5a63",
+        "5a8e3200f7d9592a694ca14734d59344df8f4cc9"
       ],
       "affected_runs": [
         33153646770,
@@ -317,7 +318,8 @@
         33870574038,
         33931486885,
         33943361230,
-        33954053336
+        33954053336,
+        33964803460
       ],
       "affected_workflows": [
         "Schedule All E2E Tests"
@@ -344,9 +346,81 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 227.9,
+      "priority_score": 228.7,
       "blast_radius": 14,
-      "age_hours": 2.1
+      "age_hours": 1.3
+    },
+    {
+      "id": "75d70c19ee147515",
+      "status": "active",
+      "category": "flaky",
+      "classification": "FLAKY",
+      "signature": "run-all-tests (v0.27.1) | Run selected tests without device | failure",
+      "log_excerpt": "run-all-tests (v0.27.1) | Run selected tests without device | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-08-29T04:09:14Z",
+      "last_seen": "2026-09-05T12:10:24Z",
+      "occurrences": 21,
+      "pass_streak": 1,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33964803460/job/101303348178",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33964803460",
+      "affected_commits": [
+        "5c59cfba98045f49645284745be035346a4d82d8",
+        "f1ab204e5b357c65a474cf9faef59f39bccf6092",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea",
+        "4e6fb74b23d3f66a5dc1b20219dce04aa66e6941",
+        "ff02be1e1ffc87d4b8135bca99a93f7d283067c9",
+        "2825e368b0ee0cd5ecfddc075cee92be658508f9",
+        "69efc63d57762244c1e7ef5bb16a0c83adf982e5",
+        "b1c539250d505d223dfb90a3c96f699f0deab364",
+        "95f111a25f68c06f574b364689b8480d1cf83f75",
+        "222677fc719c7014879b161ed1dd3ed3276d7a5d",
+        "f4df057dfbe8b6517ee8f23d01da89e8beb1b964",
+        "0b012f1be6f1f13e191eea3d5d57003886271ae5",
+        "93c3fd643747468efa276b6c15c8b9c5df0f1a3b",
+        "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8",
+        "8d838ee86935e872806a4c491d33782e69c59538",
+        "0c25d45949607ddcbbd349402c0bf017b30f5a63",
+        "5a8e3200f7d9592a694ca14734d59344df8f4cc9"
+      ],
+      "affected_runs": [
+        33232738948,
+        33242105495,
+        33282259957,
+        33291497626,
+        33300495948,
+        33310312095,
+        33343256664,
+        33606388898,
+        33627526010,
+        33697570337,
+        33713404519,
+        33730989828,
+        33752741153,
+        33819945223,
+        33835189118,
+        33851299436,
+        33870574038,
+        33931486885,
+        33943361230,
+        33954053336,
+        33964803460
+      ],
+      "affected_workflows": [
+        "Schedule All E2E Tests"
+      ],
+      "affected_jobs": [
+        "run-all-tests (v0.27.1) / cpu-0 card-(part 1-1)"
+      ],
+      "affected_job_families": [
+        "run-all-tests (v0.27.1)"
+      ],
+      "signals": [
+        "same_commit_mixed_outcomes"
+      ],
+      "priority_score": 163.2,
+      "blast_radius": 1,
+      "age_hours": 1.8
     },
     {
       "id": "e774fd6aa0a6ec1f",
@@ -359,7 +433,7 @@
       "first_seen": "2026-08-30T00:13:43Z",
       "last_seen": "2026-09-05T08:21:01Z",
       "occurrences": 9,
-      "pass_streak": 1,
+      "pass_streak": 2,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336/job/101274755987",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336",
       "affected_commits": [
@@ -396,79 +470,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 165.5,
+      "priority_score": 162.4,
       "blast_radius": 6,
-      "age_hours": 2.5
-    },
-    {
-      "id": "75d70c19ee147515",
-      "status": "active",
-      "category": "flaky",
-      "classification": "FLAKY",
-      "signature": "run-all-tests (v0.27.1) | Run selected tests without device | failure",
-      "log_excerpt": "run-all-tests (v0.27.1) | Run selected tests without device | failure",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-08-29T04:09:14Z",
-      "last_seen": "2026-09-05T08:12:00Z",
-      "occurrences": 20,
-      "pass_streak": 1,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336/job/101274755967",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336",
-      "affected_commits": [
-        "5c59cfba98045f49645284745be035346a4d82d8",
-        "f1ab204e5b357c65a474cf9faef59f39bccf6092",
-        "e6a133f710c54e84cefcd29be46678c50008e8ea",
-        "4e6fb74b23d3f66a5dc1b20219dce04aa66e6941",
-        "ff02be1e1ffc87d4b8135bca99a93f7d283067c9",
-        "2825e368b0ee0cd5ecfddc075cee92be658508f9",
-        "69efc63d57762244c1e7ef5bb16a0c83adf982e5",
-        "b1c539250d505d223dfb90a3c96f699f0deab364",
-        "95f111a25f68c06f574b364689b8480d1cf83f75",
-        "222677fc719c7014879b161ed1dd3ed3276d7a5d",
-        "f4df057dfbe8b6517ee8f23d01da89e8beb1b964",
-        "0b012f1be6f1f13e191eea3d5d57003886271ae5",
-        "93c3fd643747468efa276b6c15c8b9c5df0f1a3b",
-        "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8",
-        "8d838ee86935e872806a4c491d33782e69c59538",
-        "0c25d45949607ddcbbd349402c0bf017b30f5a63"
-      ],
-      "affected_runs": [
-        33232738948,
-        33242105495,
-        33282259957,
-        33291497626,
-        33300495948,
-        33310312095,
-        33343256664,
-        33606388898,
-        33627526010,
-        33697570337,
-        33713404519,
-        33730989828,
-        33752741153,
-        33819945223,
-        33835189118,
-        33851299436,
-        33870574038,
-        33931486885,
-        33943361230,
-        33954053336
-      ],
-      "affected_workflows": [
-        "Schedule All E2E Tests"
-      ],
-      "affected_jobs": [
-        "run-all-tests (v0.27.1) / cpu-0 card-(part 1-1)"
-      ],
-      "affected_job_families": [
-        "run-all-tests (v0.27.1)"
-      ],
-      "signals": [
-        "same_commit_mixed_outcomes"
-      ],
-      "priority_score": 162.3,
-      "blast_radius": 1,
-      "age_hours": 2.7
+      "age_hours": 5.6
     },
     {
       "id": "da4cb05d45184124",
@@ -538,9 +542,9 @@
         "multi-node (main, multi-node-qwen3-235b-dp, Qwen3-235B-A22B-A2.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 161.1,
+      "priority_score": 158.0,
       "blast_radius": 1,
-      "age_hours": 3.9
+      "age_hours": 7.0
     },
     {
       "id": "d7bd7e59e9c5cc8f",
@@ -599,9 +603,9 @@
         "double-node (main, multi-node-qwen-disagg-pd, Qwen3-235B-disagg-pd.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 152.3,
+      "priority_score": 149.2,
       "blast_radius": 1,
-      "age_hours": 4.7
+      "age_hours": 7.8
     },
     {
       "id": "6252e0a48d08d810",
@@ -642,9 +646,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 133.9,
+      "priority_score": 130.8,
       "blast_radius": 1,
-      "age_hours": 3.1
+      "age_hours": 6.2
     },
     {
       "id": "f6ac7e0a679c99a5",
@@ -680,9 +684,9 @@
         "single-node (main, DeepSeek_V31_Terminus_w4a8_w8a8_A5, linux-aarch64-a5-8, DeepSeek_V31_Terminus_..."
       ],
       "signals": [],
-      "priority_score": 128.7,
+      "priority_score": 125.6,
       "blast_radius": 1,
-      "age_hours": 2.3
+      "age_hours": 5.4
     },
     {
       "id": "659741c50fdf6452",
@@ -720,9 +724,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 127.9,
+      "priority_score": 124.8,
       "blast_radius": 1,
-      "age_hours": 3.1
+      "age_hours": 6.2
     },
     {
       "id": "235ad44d36d71946",
@@ -758,9 +762,9 @@
         "single-node (main, Qwen3_5_397B_A17B_w8a8_mxfp8_A5, linux-aarch64-a5-8, Qwen3_5_397B_A17B_w8a8_mx..."
       ],
       "signals": [],
-      "priority_score": 127.8,
+      "priority_score": 124.7,
       "blast_radius": 1,
-      "age_hours": 3.2
+      "age_hours": 6.3
     },
     {
       "id": "fda2514fcc87e5f3",
@@ -805,9 +809,9 @@
         "single-node (main, MiniMax-M2.5-w8a8-QuaRot-A2, linux-aarch64-a2b3-8, MiniMax-M2.5-w8a8-QuaRot-A2..."
       ],
       "signals": [],
-      "priority_score": 126.6,
+      "priority_score": 123.5,
       "blast_radius": 1,
-      "age_hours": 16.4
+      "age_hours": 19.5
     },
     {
       "id": "5ebdfc100f3beb78",
@@ -841,9 +845,9 @@
         "double-node (main, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml, tests/e..."
       ],
       "signals": [],
-      "priority_score": 123.4,
+      "priority_score": 120.3,
       "blast_radius": 1,
-      "age_hours": 5.6
+      "age_hours": 8.7
     },
     {
       "id": "80e92947978752db",
@@ -879,9 +883,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 123.3,
+      "priority_score": 120.2,
       "blast_radius": 1,
-      "age_hours": 5.7
+      "age_hours": 8.8
     },
     {
       "id": "4087c33dbcfad1b4",
@@ -917,9 +921,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 123.3,
+      "priority_score": 120.2,
       "blast_radius": 1,
-      "age_hours": 5.7
+      "age_hours": 8.8
     },
     {
       "id": "17a7b4119bfab795",
@@ -953,9 +957,9 @@
         "multi-node (main, DeepSeek_V3.2T_MTP3_PD, DeepSeek_V3.2T_MTP3_PD.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 122.1,
+      "priority_score": 119.0,
       "blast_radius": 1,
-      "age_hours": 6.9
+      "age_hours": 10.0
     },
     {
       "id": "71bdf7164615464f",
@@ -1007,9 +1011,9 @@
         "multi-node (main, multi-node-deepseek-v3.2-W8A8-EP, DeepSeek-V3_2-W8A8-EP.yaml, tests/e2e/nightly..."
       ],
       "signals": [],
-      "priority_score": 116.4,
+      "priority_score": 113.3,
       "blast_radius": 1,
-      "age_hours": 30.6
+      "age_hours": 33.7
     },
     {
       "id": "e88e93a72fdcf8c2",
@@ -1055,9 +1059,9 @@
         "multi-node (main, multi-node-deepseek-v3.2-W8A8-EP, DeepSeek-V3_2-W8A8-EP.yaml, tests/e2e/nightly..."
       ],
       "signals": [],
-      "priority_score": 115.8,
+      "priority_score": 112.7,
       "blast_radius": 1,
-      "age_hours": 25.2
+      "age_hours": 28.3
     },
     {
       "id": "2b594ec30bb7632c",
@@ -1103,9 +1107,9 @@
         "double-node (main, multi-node-GLM-5.1-W8A8C8-A3_128k_90_50, GLM-5.1-W8A8C8-A3_128k_90_50.yaml, te..."
       ],
       "signals": [],
-      "priority_score": 110.8,
+      "priority_score": 107.7,
       "blast_radius": 1,
-      "age_hours": 30.2
+      "age_hours": 33.3
     },
     {
       "id": "88625e99fda0948b",
@@ -1145,9 +1149,9 @@
         "single-node (main, Qwen3.5-397B-A17B-w8a8-mtp, linux-aarch64-a3-16-cn12-001, Qwen3.5-397B-A17B-W8..."
       ],
       "signals": [],
-      "priority_score": 110.1,
+      "priority_score": 107.0,
       "blast_radius": 1,
-      "age_hours": 24.9
+      "age_hours": 28.0
     },
     {
       "id": "371b6d209c9c8b99",
@@ -1183,9 +1187,9 @@
         "single-node (main, Qwen3.5-122B-A10B-W8A8-A3, linux-aarch64-a3-16-cn12-001, Qwen3.5-122B-A10B-W8A..."
       ],
       "signals": [],
-      "priority_score": 106.1,
+      "priority_score": 103.0,
       "blast_radius": 1,
-      "age_hours": 24.9
+      "age_hours": 28.0
     },
     {
       "id": "7d613a4af97c8da0",
@@ -1220,9 +1224,9 @@
         "single-node (main, qwen3-vl-235b-a22b-instruct-w8a8, linux-aarch64-a3-16-cn12-001, Qwen3-VL-235B-..."
       ],
       "signals": [],
-      "priority_score": 106.1,
+      "priority_score": 103.0,
       "blast_radius": 1,
-      "age_hours": 24.9
+      "age_hours": 28.0
     },
     {
       "id": "c6e82ba22836960b",
@@ -1260,9 +1264,9 @@
         "multi-node (main, multi-node-qwen3-235b-dp, Qwen3-235B-A22B-A2.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 105.8,
+      "priority_score": 102.7,
       "blast_radius": 1,
-      "age_hours": 27.2
+      "age_hours": 30.3
     },
     {
       "id": "1e50d3af8122b342",
@@ -1302,9 +1306,9 @@
         "single-node (main, Qwen3.6-35B-A3B-w8a8-310p-MTP, linux-aarch64-310p-4, Qwen3.6-35B-A3B-w8a8-310p..."
       ],
       "signals": [],
-      "priority_score": 105.4,
+      "priority_score": 102.3,
       "blast_radius": 3,
-      "age_hours": 39.6
+      "age_hours": 42.7
     },
     {
       "id": "de71ed65c6cb84ee",
@@ -1340,9 +1344,9 @@
         "single-node (main, deepseek-r1-0528-w8a8-prefix-cache, linux-aarch64-a3-16-cn12-001, Prefix-Cache..."
       ],
       "signals": [],
-      "priority_score": 104.3,
+      "priority_score": 101.2,
       "blast_radius": 1,
-      "age_hours": 26.7
+      "age_hours": 29.8
     },
     {
       "id": "6c62ce0f3cef88a1",
@@ -1376,9 +1380,9 @@
         "single-node (main, qwen3-32b-int8-prefix-cache, linux-aarch64-a3-4-cn12-001, Prefix-Cache-Qwen3-3..."
       ],
       "signals": [],
-      "priority_score": 103.9,
+      "priority_score": 100.8,
       "blast_radius": 1,
-      "age_hours": 25.1
+      "age_hours": 28.2
     },
     {
       "id": "297ced311844a636",
@@ -1412,45 +1416,9 @@
         "single-node (main, DeepSeek-V4-Flash-W8A8-A3, linux-aarch64-a3-16-cn12-001, DeepSeek-V4-Flash-W8A..."
       ],
       "signals": [],
-      "priority_score": 103.0,
+      "priority_score": 99.9,
       "blast_radius": 1,
-      "age_hours": 26.0
-    },
-    {
-      "id": "be81e242becd371a",
-      "status": "active",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "signature": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... | Run Pytest (YAML-driven) | failure",
-      "log_excerpt": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... | Run Pytest (YAML-driven) | failure",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-09-03T11:51:28Z",
-      "last_seen": "2026-09-04T01:36:05Z",
-      "occurrences": 2,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33824480350/job/100875006076",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33824480350",
-      "affected_commits": [
-        "0ba11235fda3bace1557abbc68cfbe1f9f0e10e6",
-        "7b717fefb3f6a47c374585e7ba2da176a045707a"
-      ],
-      "affected_runs": [
-        33748308699,
-        33824480350
-      ],
-      "affected_workflows": [
-        "Nightly-A3-560T"
-      ],
-      "affected_jobs": [
-        "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... / glm-5.1-w8a8-prefill-mc2"
-      ],
-      "affected_job_families": [
-        "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC..."
-      ],
-      "signals": [],
-      "priority_score": 95.7,
-      "blast_radius": 1,
-      "age_hours": 33.3
+      "age_hours": 29.1
     },
     {
       "id": "135db4f47e4462bc",
@@ -1484,9 +1452,9 @@
         "double-node (main, Kimi-K2.7-W4A8-128k-1k-TPOT50-PD, Kimi-K2.7-W4A8-128k-1k-TPOT50-PD.yaml, tests..."
       ],
       "signals": [],
-      "priority_score": 84.4,
+      "priority_score": 81.3,
       "blast_radius": 1,
-      "age_hours": 44.6
+      "age_hours": 47.7
     },
     {
       "id": "42cb56dd66773ae5",
@@ -1520,9 +1488,9 @@
         "double-node (main, Kimi-K2.6-W4A8-128k-1k-TPOT50-PD, Kimi-K2.6-W4A8-128k-1k-TPOT50-PD.yaml, tests..."
       ],
       "signals": [],
-      "priority_score": 84.2,
+      "priority_score": 81.1,
       "blast_radius": 1,
-      "age_hours": 44.8
+      "age_hours": 47.9
     },
     {
       "id": "303921095190723c",
@@ -1556,9 +1524,9 @@
         "double-node (main, Kimi-K2.6-W4A8-3.5k-1.5k-TPOT50-PD, Kimi-K2.6-W4A8-3.5k-1.5k-TPOT50-PD.yaml, t..."
       ],
       "signals": [],
-      "priority_score": 84.1,
+      "priority_score": 81.0,
       "blast_radius": 1,
-      "age_hours": 44.9
+      "age_hours": 48.0
     },
     {
       "id": "2a8fdd6f6a45f591",
@@ -1592,9 +1560,9 @@
         "double-node (main, multi-node-GLM-5.2-W8A8C8-MTP-A3_64k, GLM-5.2-W8A8C8-A3_64k_90_50.yaml, tests/..."
       ],
       "signals": [],
-      "priority_score": 50.6,
+      "priority_score": 47.5,
       "blast_radius": 1,
-      "age_hours": 78.4
+      "age_hours": 81.5
     },
     {
       "id": "af40d0ddae97b9e5",
@@ -1636,7 +1604,7 @@
       "signals": [],
       "priority_score": 45,
       "blast_radius": 3,
-      "age_hours": 113.4
+      "age_hours": 116.5
     },
     {
       "id": "a7a5602edf33d85e",
@@ -1674,7 +1642,7 @@
       "signals": [],
       "priority_score": 31,
       "blast_radius": 1,
-      "age_hours": 149.4
+      "age_hours": 152.5
     },
     {
       "id": "2eea48bddd84509d",
@@ -1710,7 +1678,7 @@
       "signals": [],
       "priority_score": 29,
       "blast_radius": 1,
-      "age_hours": 150.8
+      "age_hours": 153.9
     }
   ],
   "watch": [
@@ -1758,9 +1726,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 95.0,
+      "priority_score": 91.9,
       "blast_radius": 5,
-      "age_hours": 12.0
+      "age_hours": 15.1
     },
     {
       "id": "5f68ee541022df6e",
@@ -1801,9 +1769,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 72.3,
+      "priority_score": 69.2,
       "blast_radius": 1,
-      "age_hours": 12.7
+      "age_hours": 15.8
     },
     {
       "id": "25554e2a9ed0d5db",
@@ -1837,43 +1805,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 64.2,
+      "priority_score": 61.1,
       "blast_radius": 1,
-      "age_hours": 12.8
-    },
-    {
-      "id": "059da4828838b94e",
-      "status": "watch",
-      "category": "unresolved",
-      "classification": "UNRESOLVED_SETUP_FAILURE",
-      "signature": "main2main | Install opencode + main2main-flow | failure",
-      "log_excerpt": "main2main | Install opencode + main2main-flow | failure",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-09-04T17:38:57Z",
-      "last_seen": "2026-09-04T17:38:57Z",
-      "occurrences": 1,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33900763001/job/101115419935",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33900763001",
-      "affected_commits": [
-        "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8"
-      ],
-      "affected_runs": [
-        33900763001
-      ],
-      "affected_workflows": [
-        "Main2Main"
-      ],
-      "affected_jobs": [
-        "main2main"
-      ],
-      "affected_job_families": [
-        "main2main"
-      ],
-      "signals": [],
-      "priority_score": 59.8,
-      "blast_radius": 1,
-      "age_hours": 17.2
+      "age_hours": 15.9
     },
     {
       "id": "6397c4cf5da17511",
@@ -1905,9 +1839,9 @@
         "single-node (main, acceptace_rate_deepseekv4-flash-w8a8-mtp, linux-aarch64-nightly-a3-8, acceptac..."
       ],
       "signals": [],
-      "priority_score": 52.9,
+      "priority_score": 49.8,
       "blast_radius": 1,
-      "age_hours": 24.1
+      "age_hours": 27.2
     },
     {
       "id": "15403416c9f49348",
@@ -1939,9 +1873,9 @@
         "single-node (main, kimi-k2.6_max_model_len, linux-aarch64-nightly-a3-16, kimi-k2.6_max_model_len...."
       ],
       "signals": [],
-      "priority_score": 52.9,
+      "priority_score": 49.8,
       "blast_radius": 1,
-      "age_hours": 24.1
+      "age_hours": 27.2
     },
     {
       "id": "2bf52b2b7243db20",
@@ -1973,9 +1907,9 @@
         "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-nightly-a3-2, Qwen3.6_35B_27..."
       ],
       "signals": [],
-      "priority_score": 52.9,
+      "priority_score": 49.8,
       "blast_radius": 1,
-      "age_hours": 24.1
+      "age_hours": 27.2
     },
     {
       "id": "254810ccb98538e8",
@@ -2007,9 +1941,9 @@
         "double-node (main, DeepSeek-V4-Flash-Memcache-PD-perf, DeepSeek-V4-Flash-Memcache-PD-perf.yaml, t..."
       ],
       "signals": [],
-      "priority_score": 50.5,
+      "priority_score": 47.4,
       "blast_radius": 1,
-      "age_hours": 26.5
+      "age_hours": 29.6
     },
     {
       "id": "046fa2116f9d7f2b",
@@ -2041,9 +1975,9 @@
         "double-node (main, multi-node-GLM-5.2-W8A8C8-MTP-A3_64k, GLM-5.2-W8A8C8-A3_64k_90_50.yaml, tests/..."
       ],
       "signals": [],
-      "priority_score": 50.4,
+      "priority_score": 47.3,
       "blast_radius": 1,
-      "age_hours": 26.6
+      "age_hours": 29.7
     },
     {
       "id": "753d5d6be567898c",
@@ -2075,9 +2009,9 @@
         "double-node (main, MiniMax-M2.5-w8a8-QuaRot-step, MiniMax-M2.5-w8a8-QuaRot-step.yaml, tests/e2e/w..."
       ],
       "signals": [],
-      "priority_score": 50.4,
+      "priority_score": 47.3,
       "blast_radius": 1,
-      "age_hours": 26.6
+      "age_hours": 29.7
     },
     {
       "id": "12e5e664f81cab47",
@@ -2109,9 +2043,9 @@
         "single-node (main, Deepseek_R1_W8A8_Reasoning_output_A3, linux-aarch64-a3-16-cn12-001, Deepseek_R..."
       ],
       "signals": [],
-      "priority_score": 50.0,
+      "priority_score": 46.9,
       "blast_radius": 1,
-      "age_hours": 27.0
+      "age_hours": 30.1
     },
     {
       "id": "7c775abb3cf919f4",
@@ -2143,9 +2077,9 @@
         "multi-node (main, GLM_5_1_PD_in32k_bs16-0, GLM_5_1_PD_in32k_bs16-0.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 46.4,
+      "priority_score": 43.3,
       "blast_radius": 1,
-      "age_hours": 30.6
+      "age_hours": 33.7
     },
     {
       "id": "1e94091cef55fca6",
@@ -2177,9 +2111,45 @@
         "multi-node (main, GLM_5_1_PD_in32k_bs20-90, GLM_5_1_PD_in32k_bs20-90.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 46.4,
+      "priority_score": 43.3,
       "blast_radius": 1,
-      "age_hours": 30.6
+      "age_hours": 33.7
+    },
+    {
+      "id": "be81e242becd371a",
+      "status": "watch",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "signature": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... | Run Pytest (YAML-driven) | failure",
+      "log_excerpt": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... | Run Pytest (YAML-driven) | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-09-03T11:51:28Z",
+      "last_seen": "2026-09-04T01:36:05Z",
+      "occurrences": 2,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33824480350/job/100875006076",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33824480350",
+      "affected_commits": [
+        "0ba11235fda3bace1557abbc68cfbe1f9f0e10e6",
+        "7b717fefb3f6a47c374585e7ba2da176a045707a"
+      ],
+      "affected_runs": [
+        33748308699,
+        33824480350
+      ],
+      "affected_workflows": [
+        "Nightly-A3-560T"
+      ],
+      "affected_jobs": [
+        "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... / glm-5.1-w8a8-prefill-mc2"
+      ],
+      "affected_job_families": [
+        "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC..."
+      ],
+      "signals": [],
+      "priority_score": 42.6,
+      "blast_radius": 1,
+      "age_hours": 36.4
     },
     {
       "id": "6e0df56a42a23913",
@@ -2223,9 +2193,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 41.3,
+      "priority_score": 38.2,
       "blast_radius": 1,
-      "age_hours": 45.7
+      "age_hours": 48.8
     },
     {
       "id": "a1b4f91795fd80cc",
@@ -2282,9 +2252,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 41.1,
+      "priority_score": 38.0,
       "blast_radius": 1,
-      "age_hours": 65.9
+      "age_hours": 69.0
     },
     {
       "id": "fce28c23b25c1596",
@@ -2316,9 +2286,9 @@
         "single-node (main, qwen3-vl-32b-instruct-w8a8, linux-aarch64-a2b3-4, Qwen3-VL-32B-Instruct-W8A8.y..."
       ],
       "signals": [],
-      "priority_score": 35.9,
+      "priority_score": 32.8,
       "blast_radius": 1,
-      "age_hours": 41.1
+      "age_hours": 44.2
     },
     {
       "id": "3a476153cf0c1774",
@@ -2352,9 +2322,9 @@
         "single-node (main, mtpx-deepseek-r1-0528-w8a8, linux-aarch64-a3-16-cn12-001, MTPX-DeepSeek-R1-052..."
       ],
       "signals": [],
-      "priority_score": 32.8,
+      "priority_score": 29.7,
       "blast_radius": 1,
-      "age_hours": 46.2
+      "age_hours": 49.3
     },
     {
       "id": "6d16fe73e27e0d1d",
@@ -2386,9 +2356,9 @@
         "single-node (main, Qwen3-30B-A3B-W8A8-offload-test-acc, linux-aarch64-a3-16, Qwen3-30B-A3B-W8A8-o..."
       ],
       "signals": [],
-      "priority_score": 23.9,
+      "priority_score": 20.8,
       "blast_radius": 1,
-      "age_hours": 53.1
+      "age_hours": 56.2
     },
     {
       "id": "7a09a8d383d1fa01",
@@ -2420,9 +2390,9 @@
         "single-node (releases-v0.23.0, Qwen3_5_397B_A17B_w8a8_mxfp8_A5, linux-aarch64-a5-8, Qwen3_5_397B_..."
       ],
       "signals": [],
-      "priority_score": 22.3,
+      "priority_score": 19.2,
       "blast_radius": 1,
-      "age_hours": 54.7
+      "age_hours": 57.8
     },
     {
       "id": "a2575e5ba5e66a60",
@@ -2468,9 +2438,9 @@
         "single-node (main, Qwen3.5-397B-A17B-w8a8-mtp, linux-aarch64-nightly-a3-16, Qwen3.5-397B-A17B-W8A..."
       ],
       "signals": [],
-      "priority_score": 20.3,
+      "priority_score": 17.2,
       "blast_radius": 1,
-      "age_hours": 70.7
+      "age_hours": 73.8
     },
     {
       "id": "2a7b154aa0c7f5c0",
@@ -2502,9 +2472,9 @@
         "double-node (releases-v0.26.0rc, multi-node-qwen-disagg-pd, Qwen3-235B-disagg-pd.yaml, tests/e2e/..."
       ],
       "signals": [],
-      "priority_score": 20.3,
+      "priority_score": 17.2,
       "blast_radius": 1,
-      "age_hours": 56.7
+      "age_hours": 59.8
     },
     {
       "id": "cce43afd092cf95e",
@@ -2536,9 +2506,9 @@
         "multi-node (releases-v0.23.0, GLM51_w4a4c8_A5, 2, QGLM51_w4a4c8_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 19.5,
+      "priority_score": 16.4,
       "blast_radius": 1,
-      "age_hours": 57.5
+      "age_hours": 60.6
     },
     {
       "id": "6a3d7577a40a5385",
@@ -2570,9 +2540,9 @@
         "multi-node (releases-v0.23.0, cpp_acc_001_A5, 2, cpp_acc_001_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 19.4,
+      "priority_score": 16.3,
       "blast_radius": 1,
-      "age_hours": 57.6
+      "age_hours": 60.7
     },
     {
       "id": "4c8496fa88540b54",
@@ -2612,9 +2582,9 @@
         "multi-node (main, multi-node-Kimi-K2.5-W4A8-A2, Kimi-K2_5-W4A8-A2-dual-nodes.yaml, tests/e2e/nigh..."
       ],
       "signals": [],
-      "priority_score": 19.1,
+      "priority_score": 16.0,
       "blast_radius": 1,
-      "age_hours": 65.9
+      "age_hours": 69.0
     },
     {
       "id": "e066e3b9b7560eac",
@@ -2646,9 +2616,9 @@
         "multi-node (releases-v0.23.0, GLM51_w8a8c8_PD_2k2k_A5, 2, GLM51_w8a8c8_PD_2k2k_A5.yaml, tests/e2e..."
       ],
       "signals": [],
-      "priority_score": 19.1,
+      "priority_score": 16.0,
       "blast_radius": 1,
-      "age_hours": 57.9
+      "age_hours": 61.0
     },
     {
       "id": "3610677badf3ceed",
@@ -2686,9 +2656,9 @@
         "single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL..."
       ],
       "signals": [],
-      "priority_score": 17.8,
+      "priority_score": 14.7,
       "blast_radius": 1,
-      "age_hours": 65.2
+      "age_hours": 68.3
     },
     {
       "id": "273ff0726c4d674e",
@@ -2726,9 +2696,9 @@
         "single-node (main, Qwen3.5-397B-A17B-w4a8-mtp, linux-aarch64-a2b3-8, Qwen3.5-397B-A17B-w4a8-mtp-A..."
       ],
       "signals": [],
-      "priority_score": 17.7,
+      "priority_score": 14.6,
       "blast_radius": 1,
-      "age_hours": 65.3
+      "age_hours": 68.4
     },
     {
       "id": "b6a08d9c3aa92670",
@@ -2766,9 +2736,9 @@
         "single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst..."
       ],
       "signals": [],
-      "priority_score": 17.6,
+      "priority_score": 14.5,
       "blast_radius": 1,
-      "age_hours": 65.4
+      "age_hours": 68.5
     },
     {
       "id": "45eac380f1b80094",
@@ -2803,9 +2773,9 @@
         "single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8..."
       ],
       "signals": [],
-      "priority_score": 15.9,
+      "priority_score": 12.8,
       "blast_radius": 1,
-      "age_hours": 65.1
+      "age_hours": 68.2
     },
     {
       "id": "51776c860ea66f0a",
@@ -2837,9 +2807,9 @@
         "single-node (main, rejection-sample, linux-aarch64-a2b3-1, tests<path> / rejection-sample"
       ],
       "signals": [],
-      "priority_score": 11.8,
+      "priority_score": 8.7,
       "blast_radius": 1,
-      "age_hours": 65.2
+      "age_hours": 68.3
     },
     {
       "id": "2f1d8bf2f9eae2c1",
@@ -2871,9 +2841,9 @@
         "single-node (main, qwen3-vl-32b-instruct-w8a8, linux-aarch64-a2b3-4, Qwen3-VL-32B-Instruct-W8A8.y..."
       ],
       "signals": [],
-      "priority_score": 11.6,
+      "priority_score": 8.5,
       "blast_radius": 1,
-      "age_hours": 65.4
+      "age_hours": 68.5
     },
     {
       "id": "13834599896c69c3",
@@ -2907,9 +2877,9 @@
         "double-node (main, multi-node-GLM-5.1-W8A8C8-A3_128k_90_50, GLM-5.1-W8A8C8-A3_128k_90_50.yaml, te..."
       ],
       "signals": [],
-      "priority_score": 5.9,
+      "priority_score": 2.8,
       "blast_radius": 1,
-      "age_hours": 73.1
+      "age_hours": 76.2
     },
     {
       "id": "84f8741b7da7f4f2",
@@ -2941,9 +2911,9 @@
         "single-node (main, qwen3-32b-w8a8-aime2024-acc, linux-aarch64-a3-4-cn12-001, tests<path>"
       ],
       "signals": [],
-      "priority_score": 4.6,
+      "priority_score": 1.5,
       "blast_radius": 1,
-      "age_hours": 72.4
+      "age_hours": 75.5
     },
     {
       "id": "7d66398c9b8764a3",
@@ -2992,7 +2962,7 @@
       ],
       "priority_score": -5,
       "blast_radius": 1,
-      "age_hours": 132.3
+      "age_hours": 135.4
     },
     {
       "id": "02ca9e5b2f76135f",
@@ -3032,9 +3002,9 @@
         "single-node (releases-v0.23.0, DeepSeek_V31_Terminus_w4a8_w8a8_A5, linux-aarch64-a5-8, DeepSeek_V..."
       ],
       "signals": [],
-      "priority_score": -7.8,
+      "priority_score": -10.9,
       "blast_radius": 1,
-      "age_hours": 92.8
+      "age_hours": 95.9
     },
     {
       "id": "df3d1e55d43765ad",
@@ -3072,9 +3042,9 @@
         "single-node (releases-v0.23.0, DeepSeek_V31_W4A4C8_A5, linux-aarch64-a5-8, DeepSeek_V31_W4A4C8_A5..."
       ],
       "signals": [],
-      "priority_score": -11.3,
+      "priority_score": -14.4,
       "blast_radius": 1,
-      "age_hours": 94.3
+      "age_hours": 97.4
     },
     {
       "id": "96e5e5e166e48590",
@@ -3114,49 +3084,9 @@
         "multi-node (main, multi-node-GLM-5.1-w8a8-A2, GLM5_1-W8A8-A2-dual-nodes.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -11.7,
+      "priority_score": -14.8,
       "blast_radius": 1,
-      "age_hours": 96.7
-    },
-    {
-      "id": "76cfc1672fc4a687",
-      "status": "watch",
-      "category": "unresolved",
-      "classification": "CODE_OR_UNKNOWN_FAILURE",
-      "signature": "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path> | root cause unavailable",
-      "log_excerpt": "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path> | root cause unavailable",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-08-25T20:04:51Z",
-      "last_seen": "2026-09-01T10:42:34Z",
-      "occurrences": 4,
-      "pass_streak": 1,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33484583910/job/99783222651",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33484583910",
-      "affected_commits": [
-        "6fd6ea161b904ee4b379f6a18bc29d3e076cf25a",
-        "e8d9c1ac39ef1b09f1502a62eab7bc9d31fccc42",
-        "218644dc9b2158c1518cfd899c1860e1c2d8146e",
-        "d4ebe8a0e0fdf56135507259f90f80a45f736cab"
-      ],
-      "affected_runs": [
-        32867727754,
-        32986043913,
-        33410221539,
-        33484583910
-      ],
-      "affected_workflows": [
-        "Nightly-A3"
-      ],
-      "affected_jobs": [
-        "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests/e2e/nightly/... / GLM5_2-W8A8-A3-dual-nodes.yaml"
-      ],
-      "affected_job_families": [
-        "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path>"
-      ],
-      "signals": [],
-      "priority_score": -13.2,
-      "blast_radius": 1,
-      "age_hours": 96.2
+      "age_hours": 99.8
     },
     {
       "id": "ef70eb922bc7ddd0",
@@ -3198,41 +3128,47 @@
       "signals": [],
       "priority_score": -15,
       "blast_radius": 1,
-      "age_hours": 108.5
+      "age_hours": 111.6
     },
     {
-      "id": "c2c26d55b5b915ea",
+      "id": "76cfc1672fc4a687",
       "status": "watch",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "signature": "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path> | Wait for pods ready | failure",
-      "log_excerpt": "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path> | Wait for pods ready | failure",
+      "category": "unresolved",
+      "classification": "CODE_OR_UNKNOWN_FAILURE",
+      "signature": "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path> | root cause unavailable",
+      "log_excerpt": "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path> | root cause unavailable",
       "evidence_source": "step_summary",
-      "first_seen": "2026-09-01T13:22:01Z",
-      "last_seen": "2026-09-01T13:22:01Z",
-      "occurrences": 1,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33509977114/job/99864568670",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33509977114",
+      "first_seen": "2026-08-25T20:04:51Z",
+      "last_seen": "2026-09-01T10:42:34Z",
+      "occurrences": 4,
+      "pass_streak": 1,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33484583910/job/99783222651",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33484583910",
       "affected_commits": [
-        "8b72fdb97b2b0d8eccaf6ac7ac414a151e09810e"
+        "6fd6ea161b904ee4b379f6a18bc29d3e076cf25a",
+        "e8d9c1ac39ef1b09f1502a62eab7bc9d31fccc42",
+        "218644dc9b2158c1518cfd899c1860e1c2d8146e",
+        "d4ebe8a0e0fdf56135507259f90f80a45f736cab"
       ],
       "affected_runs": [
-        33509977114
+        32867727754,
+        32986043913,
+        33410221539,
+        33484583910
       ],
       "affected_workflows": [
-        "Weekly-A3"
+        "Nightly-A3"
       ],
       "affected_jobs": [
-        "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests/e2e/weekly/multi... / GLM-5.2-W4A8C8-1M-PD-DCP.yaml"
+        "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests/e2e/nightly/... / GLM5_2-W8A8-A3-dual-nodes.yaml"
       ],
       "affected_job_families": [
-        "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path>"
+        "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -16.5,
+      "priority_score": -16.3,
       "blast_radius": 1,
-      "age_hours": 93.5
+      "age_hours": 99.3
     },
     {
       "id": "3adaae076e1793b8",
@@ -3272,7 +3208,7 @@
       "signals": [],
       "priority_score": -17,
       "blast_radius": 1,
-      "age_hours": 134.5
+      "age_hours": 137.6
     },
     {
       "id": "3fcabc7d62832337",
@@ -3314,41 +3250,7 @@
       ],
       "priority_score": -17,
       "blast_radius": 1,
-      "age_hours": 110.3
-    },
-    {
-      "id": "d05d573db198df6a",
-      "status": "watch",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "signature": "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... | Run Pytest (YAML-driven) | failure",
-      "log_excerpt": "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... | Run Pytest (YAML-driven) | failure",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-09-01T11:48:21Z",
-      "last_seen": "2026-09-01T11:48:21Z",
-      "occurrences": 1,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33501132799/job/99836311420",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33501132799",
-      "affected_commits": [
-        "72a988f9d33f392abf85e6059e2e37dc2d48c482"
-      ],
-      "affected_runs": [
-        33501132799
-      ],
-      "affected_workflows": [
-        "Weekly-A3"
-      ],
-      "affected_jobs": [
-        "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... / Qwen3.6_35B_27B_A3_acceptance_rate"
-      ],
-      "affected_job_families": [
-        "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc..."
-      ],
-      "signals": [],
-      "priority_score": -18.1,
-      "blast_radius": 1,
-      "age_hours": 95.1
+      "age_hours": 113.4
     },
     {
       "id": "3ed6dfe8a908b9de",
@@ -3386,7 +3288,7 @@
       "signals": [],
       "priority_score": -19,
       "blast_radius": 1,
-      "age_hours": 195.5
+      "age_hours": 198.6
     },
     {
       "id": "bac7289caf37ad07",
@@ -3424,7 +3326,7 @@
       "signals": [],
       "priority_score": -19,
       "blast_radius": 1,
-      "age_hours": 116.7
+      "age_hours": 119.8
     },
     {
       "id": "a0e990891558669c",
@@ -3462,7 +3364,41 @@
       "signals": [],
       "priority_score": -19,
       "blast_radius": 1,
-      "age_hours": 111.8
+      "age_hours": 114.9
+    },
+    {
+      "id": "c2c26d55b5b915ea",
+      "status": "watch",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "signature": "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path> | Wait for pods ready | failure",
+      "log_excerpt": "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path> | Wait for pods ready | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-09-01T13:22:01Z",
+      "last_seen": "2026-09-01T13:22:01Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33509977114/job/99864568670",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33509977114",
+      "affected_commits": [
+        "8b72fdb97b2b0d8eccaf6ac7ac414a151e09810e"
+      ],
+      "affected_runs": [
+        33509977114
+      ],
+      "affected_workflows": [
+        "Weekly-A3"
+      ],
+      "affected_jobs": [
+        "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests/e2e/weekly/multi... / GLM-5.2-W4A8C8-1M-PD-DCP.yaml"
+      ],
+      "affected_job_families": [
+        "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path>"
+      ],
+      "signals": [],
+      "priority_score": -19.6,
+      "blast_radius": 1,
+      "age_hours": 96.6
     },
     {
       "id": "9ef996d0b8d14a05",
@@ -3498,7 +3434,7 @@
       "signals": [],
       "priority_score": -21,
       "blast_radius": 1,
-      "age_hours": 193.9
+      "age_hours": 197.0
     },
     {
       "id": "08b09f0f01fec690",
@@ -3534,7 +3470,41 @@
       "signals": [],
       "priority_score": -21,
       "blast_radius": 1,
-      "age_hours": 193.9
+      "age_hours": 197.0
+    },
+    {
+      "id": "d05d573db198df6a",
+      "status": "watch",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "signature": "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... | Run Pytest (YAML-driven) | failure",
+      "log_excerpt": "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... | Run Pytest (YAML-driven) | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-09-01T11:48:21Z",
+      "last_seen": "2026-09-01T11:48:21Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33501132799/job/99836311420",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33501132799",
+      "affected_commits": [
+        "72a988f9d33f392abf85e6059e2e37dc2d48c482"
+      ],
+      "affected_runs": [
+        33501132799
+      ],
+      "affected_workflows": [
+        "Weekly-A3"
+      ],
+      "affected_jobs": [
+        "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... / Qwen3.6_35B_27B_A3_acceptance_rate"
+      ],
+      "affected_job_families": [
+        "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc..."
+      ],
+      "signals": [],
+      "priority_score": -21.2,
+      "blast_radius": 1,
+      "age_hours": 98.2
     },
     {
       "id": "4a2105f79080a3e2",
@@ -3568,7 +3538,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.9
+      "age_hours": 252.0
     },
     {
       "id": "ea540dd0d63603e7",
@@ -3602,7 +3572,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.8
+      "age_hours": 251.9
     },
     {
       "id": "99dd1eadf06cbe21",
@@ -3636,7 +3606,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.8
+      "age_hours": 251.9
     },
     {
       "id": "67dd0c6ad6f8696c",
@@ -3670,7 +3640,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.7
+      "age_hours": 251.8
     },
     {
       "id": "e0b98a27a168827e",
@@ -3704,7 +3674,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.7
+      "age_hours": 251.8
     },
     {
       "id": "8d27b786c71a9553",
@@ -3738,7 +3708,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.7
+      "age_hours": 251.8
     },
     {
       "id": "350cb658592b10be",
@@ -3772,7 +3742,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 227.8
+      "age_hours": 230.9
     },
     {
       "id": "758a1066da75da37",
@@ -3806,7 +3776,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 218.8
+      "age_hours": 221.9
     },
     {
       "id": "6bb287dcad641d1a",
@@ -3840,7 +3810,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 200.3
+      "age_hours": 203.4
     },
     {
       "id": "a7eb1cbd88d63268",
@@ -3874,7 +3844,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 200.3
+      "age_hours": 203.4
     },
     {
       "id": "fb9ac6bee2d419e6",
@@ -3908,7 +3878,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 199.9
+      "age_hours": 203.0
     },
     {
       "id": "3476beccff55d504",
@@ -3942,7 +3912,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 199.9
+      "age_hours": 203.0
     },
     {
       "id": "8d90eefbf94c8327",
@@ -3976,7 +3946,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 199.9
+      "age_hours": 203.0
     },
     {
       "id": "3115a3b2bdfc1cfb",
@@ -4010,7 +3980,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 162.8
+      "age_hours": 165.9
     },
     {
       "id": "6882ed756b22c84f",
@@ -4044,7 +4014,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 161.7
+      "age_hours": 164.8
     },
     {
       "id": "3af46f539663fa7a",
@@ -4078,7 +4048,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 161.2
+      "age_hours": 164.3
     },
     {
       "id": "0809343505b2c4f4",
@@ -4112,7 +4082,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 161.0
+      "age_hours": 164.1
     },
     {
       "id": "9599ead53ca86156",
@@ -4146,7 +4116,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 159.9
+      "age_hours": 163.0
     },
     {
       "id": "ba4b7bb7fdc31157",
@@ -4180,7 +4150,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 159.5
+      "age_hours": 162.6
     },
     {
       "id": "71aab713ed79e1d1",
@@ -4214,7 +4184,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 159.3
+      "age_hours": 162.4
     },
     {
       "id": "5d74068e58a87a24",
@@ -4248,7 +4218,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 159.1
+      "age_hours": 162.2
     },
     {
       "id": "928137c1e79dd86c",
@@ -4282,7 +4252,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 158.8
+      "age_hours": 161.9
     },
     {
       "id": "b433d0be3acfb7f8",
@@ -4316,7 +4286,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 158.8
+      "age_hours": 161.9
     },
     {
       "id": "174e63bc01956547",
@@ -4350,7 +4320,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 157.8
+      "age_hours": 160.9
     },
     {
       "id": "dc16bacc14a05452",
@@ -4384,7 +4354,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 157.6
+      "age_hours": 160.7
     },
     {
       "id": "cdd9c451e83d8631",
@@ -4418,7 +4388,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 157.3
+      "age_hours": 160.4
     },
     {
       "id": "68f72c81a9d522a8",
@@ -4452,7 +4422,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 157.0
+      "age_hours": 160.1
     },
     {
       "id": "0262d1c2a740ad3a",
@@ -4486,7 +4456,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 156.9
+      "age_hours": 160.0
     },
     {
       "id": "d49967d122fb97e5",
@@ -4520,7 +4490,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 156.8
+      "age_hours": 159.9
     },
     {
       "id": "280df987fa88bf61",
@@ -4554,7 +4524,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 156.2
+      "age_hours": 159.3
     },
     {
       "id": "3e11f38f545a2ef7",
@@ -4588,7 +4558,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 156.2
+      "age_hours": 159.3
     },
     {
       "id": "dbe91151e29550ca",
@@ -4622,7 +4592,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 155.5
+      "age_hours": 158.6
     },
     {
       "id": "1062f8b0896ecd32",
@@ -4656,7 +4626,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 155.2
+      "age_hours": 158.3
     },
     {
       "id": "5eb9dd8592230098",
@@ -4690,7 +4660,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 154.9
+      "age_hours": 158.0
     },
     {
       "id": "24714d129d5d499b",
@@ -4724,7 +4694,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 154.9
+      "age_hours": 158.0
     },
     {
       "id": "c103970806e2d3c1",
@@ -4758,7 +4728,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 154.0
+      "age_hours": 157.1
     },
     {
       "id": "376933d298d6bca9",
@@ -4792,7 +4762,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.9
+      "age_hours": 157.0
     },
     {
       "id": "3a00bf61106aaace",
@@ -4826,7 +4796,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.7
+      "age_hours": 156.8
     },
     {
       "id": "c675f08ef16ecd66",
@@ -4860,7 +4830,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.4
+      "age_hours": 156.5
     },
     {
       "id": "9fdc64f404a2a401",
@@ -4894,7 +4864,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.4
+      "age_hours": 156.5
     },
     {
       "id": "22496a00cb40a8e0",
@@ -4928,7 +4898,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.1
+      "age_hours": 156.2
     },
     {
       "id": "c6aac3366de9d069",
@@ -4962,7 +4932,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.0
+      "age_hours": 156.1
     },
     {
       "id": "5cd00e87361306c8",
@@ -4996,7 +4966,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.9
+      "age_hours": 156.0
     },
     {
       "id": "e9704b3ff1ead755",
@@ -5030,7 +5000,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.9
+      "age_hours": 156.0
     },
     {
       "id": "5a40dc6ad3e161c9",
@@ -5064,7 +5034,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.9
+      "age_hours": 156.0
     },
     {
       "id": "0ac9dfa6a9247209",
@@ -5098,7 +5068,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.8
+      "age_hours": 155.9
     },
     {
       "id": "8648fb85994a97ff",
@@ -5132,7 +5102,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.8
+      "age_hours": 155.9
     },
     {
       "id": "513e24cb28621f07",
@@ -5166,7 +5136,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.5
+      "age_hours": 155.6
     },
     {
       "id": "6498ea83d7c0e06f",
@@ -5200,7 +5170,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.5
+      "age_hours": 155.6
     },
     {
       "id": "44d8bd9bc4c54b18",
@@ -5234,7 +5204,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.3
+      "age_hours": 155.4
     },
     {
       "id": "6db6f656dd518003",
@@ -5268,7 +5238,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 151.2
+      "age_hours": 154.3
     },
     {
       "id": "f948ea8d25774167",
@@ -5302,7 +5272,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 149.8
+      "age_hours": 152.9
     },
     {
       "id": "14e9a07bc57d514a",
@@ -5336,7 +5306,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 149.8
+      "age_hours": 152.9
     },
     {
       "id": "aa2d81ec8084d0f2",
@@ -5370,7 +5340,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 149.5
+      "age_hours": 152.6
     },
     {
       "id": "54c62ea602bb4f99",
@@ -5404,7 +5374,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 149.0
+      "age_hours": 152.1
     },
     {
       "id": "8bae5465fc8bb692",
@@ -5438,7 +5408,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 148.9
+      "age_hours": 152.0
     },
     {
       "id": "e15c31e9d809d887",
@@ -5472,7 +5442,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 148.4
+      "age_hours": 151.5
     },
     {
       "id": "fbf3145984f6a84c",
@@ -5506,7 +5476,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 147.1
+      "age_hours": 150.2
     },
     {
       "id": "f2cfb9e8c74a1dd6",
@@ -5540,10 +5510,44 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 142.5
+      "age_hours": 145.6
     }
   ],
   "stale": [
+    {
+      "id": "059da4828838b94e",
+      "status": "stale",
+      "category": "unresolved",
+      "classification": "UNRESOLVED_SETUP_FAILURE",
+      "signature": "main2main | Install opencode + main2main-flow | failure",
+      "log_excerpt": "main2main | Install opencode + main2main-flow | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-09-04T17:38:57Z",
+      "last_seen": "2026-09-04T17:38:57Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33900763001/job/101115419935",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33900763001",
+      "affected_commits": [
+        "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8"
+      ],
+      "affected_runs": [
+        33900763001
+      ],
+      "affected_workflows": [
+        "Main2Main"
+      ],
+      "affected_jobs": [
+        "main2main"
+      ],
+      "affected_job_families": [
+        "main2main"
+      ],
+      "signals": [],
+      "priority_score": 6.7,
+      "blast_radius": 1,
+      "age_hours": 20.3
+    },
     {
       "id": "dc4cf613cb5f1800",
       "status": "stale",
@@ -5586,9 +5590,9 @@
         "build and release wheel (A5)"
       ],
       "signals": [],
-      "priority_score": -47.2,
+      "priority_score": -48,
       "blast_radius": 4,
-      "age_hours": 99.2
+      "age_hours": 102.3
     },
     {
       "id": "edfba1143e7c844c",
@@ -5620,9 +5624,9 @@
         "multi-node (main, GLM51_w4a4c8_A5, 2, QGLM51_w4a4c8_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -48.4,
+      "priority_score": -51.5,
       "blast_radius": 1,
-      "age_hours": 75.4
+      "age_hours": 78.5
     },
     {
       "id": "6d1b6f17e3afcf18",
@@ -5654,9 +5658,9 @@
         "multi-node (main, GLM51_w8a8c8_PD_2k2k_A5, 2, GLM51_w8a8c8_PD_2k2k_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -48.8,
+      "priority_score": -51.9,
       "blast_radius": 1,
-      "age_hours": 75.8
+      "age_hours": 78.9
     },
     {
       "id": "48ef91801a171832",
@@ -5688,9 +5692,9 @@
         "multi-node (main, cpp_acc_001_A5, 2, cpp_acc_001_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -48.8,
+      "priority_score": -51.9,
       "blast_radius": 1,
-      "age_hours": 75.8
+      "age_hours": 78.9
     },
     {
       "id": "0771074ef5b5ee96",
@@ -5727,7 +5731,7 @@
       "signals": [],
       "priority_score": -52,
       "blast_radius": 4,
-      "age_hours": 136.6
+      "age_hours": 139.7
     },
     {
       "id": "077f204cf793a205",
@@ -5779,7 +5783,7 @@
       ],
       "priority_score": -55,
       "blast_radius": 1,
-      "age_hours": 100.0
+      "age_hours": 103.1
     },
     {
       "id": "1cfc7462f4281c08",
@@ -5821,7 +5825,7 @@
       "signals": [],
       "priority_score": -65,
       "blast_radius": 1,
-      "age_hours": 113.1
+      "age_hours": 116.2
     },
     {
       "id": "a94d44381b4bcaed",
@@ -5860,7 +5864,7 @@
       ],
       "priority_score": -66,
       "blast_radius": 2,
-      "age_hours": 223.2
+      "age_hours": 226.3
     },
     {
       "id": "59772dbcadeb4905",
@@ -5899,7 +5903,7 @@
       ],
       "priority_score": -66,
       "blast_radius": 2,
-      "age_hours": 221.8
+      "age_hours": 224.9
     },
     {
       "id": "805399b8858882d1",
@@ -5939,7 +5943,7 @@
       "signals": [],
       "priority_score": -67,
       "blast_radius": 1,
-      "age_hours": 146.3
+      "age_hours": 149.4
     },
     {
       "id": "c12535f5374f601f",
@@ -5973,7 +5977,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 257.8
+      "age_hours": 260.9
     },
     {
       "id": "0ff968417d886f1b",
@@ -6007,7 +6011,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 242.3
+      "age_hours": 245.4
     },
     {
       "id": "8ba2fde37c4f9968",
@@ -6041,7 +6045,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 238.9
+      "age_hours": 242.0
     },
     {
       "id": "2763167542cbc713",
@@ -6075,7 +6079,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 200.0
+      "age_hours": 203.1
     },
     {
       "id": "dac54e3979e50fa6",
@@ -6109,7 +6113,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 195.7
+      "age_hours": 198.8
     },
     {
       "id": "a7484b04d7aef16f",
@@ -6143,7 +6147,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 195.3
+      "age_hours": 198.4
     },
     {
       "id": "16867dc71a69b857",
@@ -6177,7 +6181,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 194.6
+      "age_hours": 197.7
     },
     {
       "id": "b73782242eae98ef",
@@ -6211,7 +6215,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 190.9
+      "age_hours": 194.0
     },
     {
       "id": "67aa7ec4a11207bc",
@@ -6245,7 +6249,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 189.4
+      "age_hours": 192.5
     },
     {
       "id": "d8823937a19e4937",
@@ -6279,7 +6283,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 140.6
+      "age_hours": 143.7
     },
     {
       "id": "81f13b6b893e10de",
@@ -6315,7 +6319,7 @@
       ],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 140.4
+      "age_hours": 143.5
     },
     {
       "id": "82d8f9246496c152",
@@ -6349,7 +6353,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 139.0
+      "age_hours": 142.1
     },
     {
       "id": "9c2dbc2d686bfc66",
@@ -6383,7 +6387,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 119.3
+      "age_hours": 122.4
     },
     {
       "id": "94b0d6ef7509e712",
@@ -6417,7 +6421,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 103.9
+      "age_hours": 107.0
     },
     {
       "id": "ee651fffa41a8a37",
@@ -6451,7 +6455,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 103.9
+      "age_hours": 107.0
     }
   ],
   "open": [
@@ -6638,9 +6642,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 557.5,
+      "priority_score": 554.4,
       "blast_radius": 80,
-      "age_hours": 2.5
+      "age_hours": 5.6
     },
     {
       "id": "48ddeca073fb90ca",
@@ -6651,11 +6655,11 @@
       "log_excerpt": "run-all-tests (v0.27.1) | Run selected tests with device | failure",
       "evidence_source": "step_summary",
       "first_seen": "2026-08-28T08:37:11Z",
-      "last_seen": "2026-09-05T08:45:49Z",
-      "occurrences": 33,
+      "last_seen": "2026-09-05T12:43:45Z",
+      "occurrences": 35,
       "pass_streak": 1,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336/job/101274756030",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336",
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33964803460/job/101303348185",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33964803460",
       "affected_commits": [
         "f78c00976ffc362c3b4d80f961d93315371d631f",
         "5c59cfba98045f49645284745be035346a4d82d8",
@@ -6674,7 +6678,8 @@
         "93c3fd643747468efa276b6c15c8b9c5df0f1a3b",
         "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8",
         "8d838ee86935e872806a4c491d33782e69c59538",
-        "0c25d45949607ddcbbd349402c0bf017b30f5a63"
+        "0c25d45949607ddcbbd349402c0bf017b30f5a63",
+        "5a8e3200f7d9592a694ca14734d59344df8f4cc9"
       ],
       "affected_runs": [
         33153646770,
@@ -6697,7 +6702,8 @@
         33870574038,
         33931486885,
         33943361230,
-        33954053336
+        33954053336,
+        33964803460
       ],
       "affected_workflows": [
         "Schedule All E2E Tests"
@@ -6724,9 +6730,81 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 227.9,
+      "priority_score": 228.7,
       "blast_radius": 14,
-      "age_hours": 2.1
+      "age_hours": 1.3
+    },
+    {
+      "id": "75d70c19ee147515",
+      "status": "active",
+      "category": "flaky",
+      "classification": "FLAKY",
+      "signature": "run-all-tests (v0.27.1) | Run selected tests without device | failure",
+      "log_excerpt": "run-all-tests (v0.27.1) | Run selected tests without device | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-08-29T04:09:14Z",
+      "last_seen": "2026-09-05T12:10:24Z",
+      "occurrences": 21,
+      "pass_streak": 1,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33964803460/job/101303348178",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33964803460",
+      "affected_commits": [
+        "5c59cfba98045f49645284745be035346a4d82d8",
+        "f1ab204e5b357c65a474cf9faef59f39bccf6092",
+        "e6a133f710c54e84cefcd29be46678c50008e8ea",
+        "4e6fb74b23d3f66a5dc1b20219dce04aa66e6941",
+        "ff02be1e1ffc87d4b8135bca99a93f7d283067c9",
+        "2825e368b0ee0cd5ecfddc075cee92be658508f9",
+        "69efc63d57762244c1e7ef5bb16a0c83adf982e5",
+        "b1c539250d505d223dfb90a3c96f699f0deab364",
+        "95f111a25f68c06f574b364689b8480d1cf83f75",
+        "222677fc719c7014879b161ed1dd3ed3276d7a5d",
+        "f4df057dfbe8b6517ee8f23d01da89e8beb1b964",
+        "0b012f1be6f1f13e191eea3d5d57003886271ae5",
+        "93c3fd643747468efa276b6c15c8b9c5df0f1a3b",
+        "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8",
+        "8d838ee86935e872806a4c491d33782e69c59538",
+        "0c25d45949607ddcbbd349402c0bf017b30f5a63",
+        "5a8e3200f7d9592a694ca14734d59344df8f4cc9"
+      ],
+      "affected_runs": [
+        33232738948,
+        33242105495,
+        33282259957,
+        33291497626,
+        33300495948,
+        33310312095,
+        33343256664,
+        33606388898,
+        33627526010,
+        33697570337,
+        33713404519,
+        33730989828,
+        33752741153,
+        33819945223,
+        33835189118,
+        33851299436,
+        33870574038,
+        33931486885,
+        33943361230,
+        33954053336,
+        33964803460
+      ],
+      "affected_workflows": [
+        "Schedule All E2E Tests"
+      ],
+      "affected_jobs": [
+        "run-all-tests (v0.27.1) / cpu-0 card-(part 1-1)"
+      ],
+      "affected_job_families": [
+        "run-all-tests (v0.27.1)"
+      ],
+      "signals": [
+        "same_commit_mixed_outcomes"
+      ],
+      "priority_score": 163.2,
+      "blast_radius": 1,
+      "age_hours": 1.8
     },
     {
       "id": "e774fd6aa0a6ec1f",
@@ -6739,7 +6817,7 @@
       "first_seen": "2026-08-30T00:13:43Z",
       "last_seen": "2026-09-05T08:21:01Z",
       "occurrences": 9,
-      "pass_streak": 1,
+      "pass_streak": 2,
       "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336/job/101274755987",
       "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336",
       "affected_commits": [
@@ -6776,79 +6854,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 165.5,
+      "priority_score": 162.4,
       "blast_radius": 6,
-      "age_hours": 2.5
-    },
-    {
-      "id": "75d70c19ee147515",
-      "status": "active",
-      "category": "flaky",
-      "classification": "FLAKY",
-      "signature": "run-all-tests (v0.27.1) | Run selected tests without device | failure",
-      "log_excerpt": "run-all-tests (v0.27.1) | Run selected tests without device | failure",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-08-29T04:09:14Z",
-      "last_seen": "2026-09-05T08:12:00Z",
-      "occurrences": 20,
-      "pass_streak": 1,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336/job/101274755967",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33954053336",
-      "affected_commits": [
-        "5c59cfba98045f49645284745be035346a4d82d8",
-        "f1ab204e5b357c65a474cf9faef59f39bccf6092",
-        "e6a133f710c54e84cefcd29be46678c50008e8ea",
-        "4e6fb74b23d3f66a5dc1b20219dce04aa66e6941",
-        "ff02be1e1ffc87d4b8135bca99a93f7d283067c9",
-        "2825e368b0ee0cd5ecfddc075cee92be658508f9",
-        "69efc63d57762244c1e7ef5bb16a0c83adf982e5",
-        "b1c539250d505d223dfb90a3c96f699f0deab364",
-        "95f111a25f68c06f574b364689b8480d1cf83f75",
-        "222677fc719c7014879b161ed1dd3ed3276d7a5d",
-        "f4df057dfbe8b6517ee8f23d01da89e8beb1b964",
-        "0b012f1be6f1f13e191eea3d5d57003886271ae5",
-        "93c3fd643747468efa276b6c15c8b9c5df0f1a3b",
-        "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8",
-        "8d838ee86935e872806a4c491d33782e69c59538",
-        "0c25d45949607ddcbbd349402c0bf017b30f5a63"
-      ],
-      "affected_runs": [
-        33232738948,
-        33242105495,
-        33282259957,
-        33291497626,
-        33300495948,
-        33310312095,
-        33343256664,
-        33606388898,
-        33627526010,
-        33697570337,
-        33713404519,
-        33730989828,
-        33752741153,
-        33819945223,
-        33835189118,
-        33851299436,
-        33870574038,
-        33931486885,
-        33943361230,
-        33954053336
-      ],
-      "affected_workflows": [
-        "Schedule All E2E Tests"
-      ],
-      "affected_jobs": [
-        "run-all-tests (v0.27.1) / cpu-0 card-(part 1-1)"
-      ],
-      "affected_job_families": [
-        "run-all-tests (v0.27.1)"
-      ],
-      "signals": [
-        "same_commit_mixed_outcomes"
-      ],
-      "priority_score": 162.3,
-      "blast_radius": 1,
-      "age_hours": 2.7
+      "age_hours": 5.6
     },
     {
       "id": "da4cb05d45184124",
@@ -6918,9 +6926,9 @@
         "multi-node (main, multi-node-qwen3-235b-dp, Qwen3-235B-A22B-A2.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 161.1,
+      "priority_score": 158.0,
       "blast_radius": 1,
-      "age_hours": 3.9
+      "age_hours": 7.0
     },
     {
       "id": "d7bd7e59e9c5cc8f",
@@ -6979,9 +6987,9 @@
         "double-node (main, multi-node-qwen-disagg-pd, Qwen3-235B-disagg-pd.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 152.3,
+      "priority_score": 149.2,
       "blast_radius": 1,
-      "age_hours": 4.7
+      "age_hours": 7.8
     },
     {
       "id": "6252e0a48d08d810",
@@ -7022,9 +7030,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 133.9,
+      "priority_score": 130.8,
       "blast_radius": 1,
-      "age_hours": 3.1
+      "age_hours": 6.2
     },
     {
       "id": "f6ac7e0a679c99a5",
@@ -7060,9 +7068,9 @@
         "single-node (main, DeepSeek_V31_Terminus_w4a8_w8a8_A5, linux-aarch64-a5-8, DeepSeek_V31_Terminus_..."
       ],
       "signals": [],
-      "priority_score": 128.7,
+      "priority_score": 125.6,
       "blast_radius": 1,
-      "age_hours": 2.3
+      "age_hours": 5.4
     },
     {
       "id": "659741c50fdf6452",
@@ -7100,9 +7108,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 127.9,
+      "priority_score": 124.8,
       "blast_radius": 1,
-      "age_hours": 3.1
+      "age_hours": 6.2
     },
     {
       "id": "235ad44d36d71946",
@@ -7138,9 +7146,9 @@
         "single-node (main, Qwen3_5_397B_A17B_w8a8_mxfp8_A5, linux-aarch64-a5-8, Qwen3_5_397B_A17B_w8a8_mx..."
       ],
       "signals": [],
-      "priority_score": 127.8,
+      "priority_score": 124.7,
       "blast_radius": 1,
-      "age_hours": 3.2
+      "age_hours": 6.3
     },
     {
       "id": "fda2514fcc87e5f3",
@@ -7185,9 +7193,9 @@
         "single-node (main, MiniMax-M2.5-w8a8-QuaRot-A2, linux-aarch64-a2b3-8, MiniMax-M2.5-w8a8-QuaRot-A2..."
       ],
       "signals": [],
-      "priority_score": 126.6,
+      "priority_score": 123.5,
       "blast_radius": 1,
-      "age_hours": 16.4
+      "age_hours": 19.5
     },
     {
       "id": "5ebdfc100f3beb78",
@@ -7221,9 +7229,9 @@
         "double-node (main, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD, Kimi-K2.6-W4A8-64k-1k-TPOT50-PD.yaml, tests/e..."
       ],
       "signals": [],
-      "priority_score": 123.4,
+      "priority_score": 120.3,
       "blast_radius": 1,
-      "age_hours": 5.6
+      "age_hours": 8.7
     },
     {
       "id": "80e92947978752db",
@@ -7259,9 +7267,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 123.3,
+      "priority_score": 120.2,
       "blast_radius": 1,
-      "age_hours": 5.7
+      "age_hours": 8.8
     },
     {
       "id": "4087c33dbcfad1b4",
@@ -7297,9 +7305,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 123.3,
+      "priority_score": 120.2,
       "blast_radius": 1,
-      "age_hours": 5.7
+      "age_hours": 8.8
     },
     {
       "id": "17a7b4119bfab795",
@@ -7333,9 +7341,9 @@
         "multi-node (main, DeepSeek_V3.2T_MTP3_PD, DeepSeek_V3.2T_MTP3_PD.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 122.1,
+      "priority_score": 119.0,
       "blast_radius": 1,
-      "age_hours": 6.9
+      "age_hours": 10.0
     },
     {
       "id": "71bdf7164615464f",
@@ -7387,9 +7395,9 @@
         "multi-node (main, multi-node-deepseek-v3.2-W8A8-EP, DeepSeek-V3_2-W8A8-EP.yaml, tests/e2e/nightly..."
       ],
       "signals": [],
-      "priority_score": 116.4,
+      "priority_score": 113.3,
       "blast_radius": 1,
-      "age_hours": 30.6
+      "age_hours": 33.7
     },
     {
       "id": "e88e93a72fdcf8c2",
@@ -7435,9 +7443,9 @@
         "multi-node (main, multi-node-deepseek-v3.2-W8A8-EP, DeepSeek-V3_2-W8A8-EP.yaml, tests/e2e/nightly..."
       ],
       "signals": [],
-      "priority_score": 115.8,
+      "priority_score": 112.7,
       "blast_radius": 1,
-      "age_hours": 25.2
+      "age_hours": 28.3
     },
     {
       "id": "2b594ec30bb7632c",
@@ -7483,9 +7491,9 @@
         "double-node (main, multi-node-GLM-5.1-W8A8C8-A3_128k_90_50, GLM-5.1-W8A8C8-A3_128k_90_50.yaml, te..."
       ],
       "signals": [],
-      "priority_score": 110.8,
+      "priority_score": 107.7,
       "blast_radius": 1,
-      "age_hours": 30.2
+      "age_hours": 33.3
     },
     {
       "id": "88625e99fda0948b",
@@ -7525,9 +7533,9 @@
         "single-node (main, Qwen3.5-397B-A17B-w8a8-mtp, linux-aarch64-a3-16-cn12-001, Qwen3.5-397B-A17B-W8..."
       ],
       "signals": [],
-      "priority_score": 110.1,
+      "priority_score": 107.0,
       "blast_radius": 1,
-      "age_hours": 24.9
+      "age_hours": 28.0
     },
     {
       "id": "371b6d209c9c8b99",
@@ -7563,9 +7571,9 @@
         "single-node (main, Qwen3.5-122B-A10B-W8A8-A3, linux-aarch64-a3-16-cn12-001, Qwen3.5-122B-A10B-W8A..."
       ],
       "signals": [],
-      "priority_score": 106.1,
+      "priority_score": 103.0,
       "blast_radius": 1,
-      "age_hours": 24.9
+      "age_hours": 28.0
     },
     {
       "id": "7d613a4af97c8da0",
@@ -7600,9 +7608,9 @@
         "single-node (main, qwen3-vl-235b-a22b-instruct-w8a8, linux-aarch64-a3-16-cn12-001, Qwen3-VL-235B-..."
       ],
       "signals": [],
-      "priority_score": 106.1,
+      "priority_score": 103.0,
       "blast_radius": 1,
-      "age_hours": 24.9
+      "age_hours": 28.0
     },
     {
       "id": "c6e82ba22836960b",
@@ -7640,9 +7648,9 @@
         "multi-node (main, multi-node-qwen3-235b-dp, Qwen3-235B-A22B-A2.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 105.8,
+      "priority_score": 102.7,
       "blast_radius": 1,
-      "age_hours": 27.2
+      "age_hours": 30.3
     },
     {
       "id": "1e50d3af8122b342",
@@ -7682,9 +7690,9 @@
         "single-node (main, Qwen3.6-35B-A3B-w8a8-310p-MTP, linux-aarch64-310p-4, Qwen3.6-35B-A3B-w8a8-310p..."
       ],
       "signals": [],
-      "priority_score": 105.4,
+      "priority_score": 102.3,
       "blast_radius": 3,
-      "age_hours": 39.6
+      "age_hours": 42.7
     },
     {
       "id": "de71ed65c6cb84ee",
@@ -7720,9 +7728,9 @@
         "single-node (main, deepseek-r1-0528-w8a8-prefix-cache, linux-aarch64-a3-16-cn12-001, Prefix-Cache..."
       ],
       "signals": [],
-      "priority_score": 104.3,
+      "priority_score": 101.2,
       "blast_radius": 1,
-      "age_hours": 26.7
+      "age_hours": 29.8
     },
     {
       "id": "6c62ce0f3cef88a1",
@@ -7756,9 +7764,9 @@
         "single-node (main, qwen3-32b-int8-prefix-cache, linux-aarch64-a3-4-cn12-001, Prefix-Cache-Qwen3-3..."
       ],
       "signals": [],
-      "priority_score": 103.9,
+      "priority_score": 100.8,
       "blast_radius": 1,
-      "age_hours": 25.1
+      "age_hours": 28.2
     },
     {
       "id": "297ced311844a636",
@@ -7792,45 +7800,9 @@
         "single-node (main, DeepSeek-V4-Flash-W8A8-A3, linux-aarch64-a3-16-cn12-001, DeepSeek-V4-Flash-W8A..."
       ],
       "signals": [],
-      "priority_score": 103.0,
+      "priority_score": 99.9,
       "blast_radius": 1,
-      "age_hours": 26.0
-    },
-    {
-      "id": "be81e242becd371a",
-      "status": "active",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "signature": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... | Run Pytest (YAML-driven) | failure",
-      "log_excerpt": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... | Run Pytest (YAML-driven) | failure",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-09-03T11:51:28Z",
-      "last_seen": "2026-09-04T01:36:05Z",
-      "occurrences": 2,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33824480350/job/100875006076",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33824480350",
-      "affected_commits": [
-        "0ba11235fda3bace1557abbc68cfbe1f9f0e10e6",
-        "7b717fefb3f6a47c374585e7ba2da176a045707a"
-      ],
-      "affected_runs": [
-        33748308699,
-        33824480350
-      ],
-      "affected_workflows": [
-        "Nightly-A3-560T"
-      ],
-      "affected_jobs": [
-        "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... / glm-5.1-w8a8-prefill-mc2"
-      ],
-      "affected_job_families": [
-        "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC..."
-      ],
-      "signals": [],
-      "priority_score": 95.7,
-      "blast_radius": 1,
-      "age_hours": 33.3
+      "age_hours": 29.1
     },
     {
       "id": "135db4f47e4462bc",
@@ -7864,9 +7836,9 @@
         "double-node (main, Kimi-K2.7-W4A8-128k-1k-TPOT50-PD, Kimi-K2.7-W4A8-128k-1k-TPOT50-PD.yaml, tests..."
       ],
       "signals": [],
-      "priority_score": 84.4,
+      "priority_score": 81.3,
       "blast_radius": 1,
-      "age_hours": 44.6
+      "age_hours": 47.7
     },
     {
       "id": "42cb56dd66773ae5",
@@ -7900,9 +7872,9 @@
         "double-node (main, Kimi-K2.6-W4A8-128k-1k-TPOT50-PD, Kimi-K2.6-W4A8-128k-1k-TPOT50-PD.yaml, tests..."
       ],
       "signals": [],
-      "priority_score": 84.2,
+      "priority_score": 81.1,
       "blast_radius": 1,
-      "age_hours": 44.8
+      "age_hours": 47.9
     },
     {
       "id": "303921095190723c",
@@ -7936,9 +7908,9 @@
         "double-node (main, Kimi-K2.6-W4A8-3.5k-1.5k-TPOT50-PD, Kimi-K2.6-W4A8-3.5k-1.5k-TPOT50-PD.yaml, t..."
       ],
       "signals": [],
-      "priority_score": 84.1,
+      "priority_score": 81.0,
       "blast_radius": 1,
-      "age_hours": 44.9
+      "age_hours": 48.0
     },
     {
       "id": "2a8fdd6f6a45f591",
@@ -7972,9 +7944,9 @@
         "double-node (main, multi-node-GLM-5.2-W8A8C8-MTP-A3_64k, GLM-5.2-W8A8C8-A3_64k_90_50.yaml, tests/..."
       ],
       "signals": [],
-      "priority_score": 50.6,
+      "priority_score": 47.5,
       "blast_radius": 1,
-      "age_hours": 78.4
+      "age_hours": 81.5
     },
     {
       "id": "af40d0ddae97b9e5",
@@ -8016,7 +7988,7 @@
       "signals": [],
       "priority_score": 45,
       "blast_radius": 3,
-      "age_hours": 113.4
+      "age_hours": 116.5
     },
     {
       "id": "a7a5602edf33d85e",
@@ -8054,7 +8026,7 @@
       "signals": [],
       "priority_score": 31,
       "blast_radius": 1,
-      "age_hours": 149.4
+      "age_hours": 152.5
     },
     {
       "id": "2eea48bddd84509d",
@@ -8090,7 +8062,7 @@
       "signals": [],
       "priority_score": 29,
       "blast_radius": 1,
-      "age_hours": 150.8
+      "age_hours": 153.9
     },
     {
       "id": "1a0a3bd273b8a853",
@@ -8136,9 +8108,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 95.0,
+      "priority_score": 91.9,
       "blast_radius": 5,
-      "age_hours": 12.0
+      "age_hours": 15.1
     },
     {
       "id": "5f68ee541022df6e",
@@ -8179,9 +8151,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 72.3,
+      "priority_score": 69.2,
       "blast_radius": 1,
-      "age_hours": 12.7
+      "age_hours": 15.8
     },
     {
       "id": "25554e2a9ed0d5db",
@@ -8215,43 +8187,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 64.2,
+      "priority_score": 61.1,
       "blast_radius": 1,
-      "age_hours": 12.8
-    },
-    {
-      "id": "059da4828838b94e",
-      "status": "watch",
-      "category": "unresolved",
-      "classification": "UNRESOLVED_SETUP_FAILURE",
-      "signature": "main2main | Install opencode + main2main-flow | failure",
-      "log_excerpt": "main2main | Install opencode + main2main-flow | failure",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-09-04T17:38:57Z",
-      "last_seen": "2026-09-04T17:38:57Z",
-      "occurrences": 1,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33900763001/job/101115419935",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33900763001",
-      "affected_commits": [
-        "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8"
-      ],
-      "affected_runs": [
-        33900763001
-      ],
-      "affected_workflows": [
-        "Main2Main"
-      ],
-      "affected_jobs": [
-        "main2main"
-      ],
-      "affected_job_families": [
-        "main2main"
-      ],
-      "signals": [],
-      "priority_score": 59.8,
-      "blast_radius": 1,
-      "age_hours": 17.2
+      "age_hours": 15.9
     },
     {
       "id": "6397c4cf5da17511",
@@ -8283,9 +8221,9 @@
         "single-node (main, acceptace_rate_deepseekv4-flash-w8a8-mtp, linux-aarch64-nightly-a3-8, acceptac..."
       ],
       "signals": [],
-      "priority_score": 52.9,
+      "priority_score": 49.8,
       "blast_radius": 1,
-      "age_hours": 24.1
+      "age_hours": 27.2
     },
     {
       "id": "15403416c9f49348",
@@ -8317,9 +8255,9 @@
         "single-node (main, kimi-k2.6_max_model_len, linux-aarch64-nightly-a3-16, kimi-k2.6_max_model_len...."
       ],
       "signals": [],
-      "priority_score": 52.9,
+      "priority_score": 49.8,
       "blast_radius": 1,
-      "age_hours": 24.1
+      "age_hours": 27.2
     },
     {
       "id": "2bf52b2b7243db20",
@@ -8351,9 +8289,9 @@
         "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-nightly-a3-2, Qwen3.6_35B_27..."
       ],
       "signals": [],
-      "priority_score": 52.9,
+      "priority_score": 49.8,
       "blast_radius": 1,
-      "age_hours": 24.1
+      "age_hours": 27.2
     },
     {
       "id": "254810ccb98538e8",
@@ -8385,9 +8323,9 @@
         "double-node (main, DeepSeek-V4-Flash-Memcache-PD-perf, DeepSeek-V4-Flash-Memcache-PD-perf.yaml, t..."
       ],
       "signals": [],
-      "priority_score": 50.5,
+      "priority_score": 47.4,
       "blast_radius": 1,
-      "age_hours": 26.5
+      "age_hours": 29.6
     },
     {
       "id": "046fa2116f9d7f2b",
@@ -8419,9 +8357,9 @@
         "double-node (main, multi-node-GLM-5.2-W8A8C8-MTP-A3_64k, GLM-5.2-W8A8C8-A3_64k_90_50.yaml, tests/..."
       ],
       "signals": [],
-      "priority_score": 50.4,
+      "priority_score": 47.3,
       "blast_radius": 1,
-      "age_hours": 26.6
+      "age_hours": 29.7
     },
     {
       "id": "753d5d6be567898c",
@@ -8453,9 +8391,9 @@
         "double-node (main, MiniMax-M2.5-w8a8-QuaRot-step, MiniMax-M2.5-w8a8-QuaRot-step.yaml, tests/e2e/w..."
       ],
       "signals": [],
-      "priority_score": 50.4,
+      "priority_score": 47.3,
       "blast_radius": 1,
-      "age_hours": 26.6
+      "age_hours": 29.7
     },
     {
       "id": "12e5e664f81cab47",
@@ -8487,9 +8425,9 @@
         "single-node (main, Deepseek_R1_W8A8_Reasoning_output_A3, linux-aarch64-a3-16-cn12-001, Deepseek_R..."
       ],
       "signals": [],
-      "priority_score": 50.0,
+      "priority_score": 46.9,
       "blast_radius": 1,
-      "age_hours": 27.0
+      "age_hours": 30.1
     },
     {
       "id": "7c775abb3cf919f4",
@@ -8521,9 +8459,9 @@
         "multi-node (main, GLM_5_1_PD_in32k_bs16-0, GLM_5_1_PD_in32k_bs16-0.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 46.4,
+      "priority_score": 43.3,
       "blast_radius": 1,
-      "age_hours": 30.6
+      "age_hours": 33.7
     },
     {
       "id": "1e94091cef55fca6",
@@ -8555,9 +8493,45 @@
         "multi-node (main, GLM_5_1_PD_in32k_bs20-90, GLM_5_1_PD_in32k_bs20-90.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 46.4,
+      "priority_score": 43.3,
       "blast_radius": 1,
-      "age_hours": 30.6
+      "age_hours": 33.7
+    },
+    {
+      "id": "be81e242becd371a",
+      "status": "watch",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "signature": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... | Run Pytest (YAML-driven) | failure",
+      "log_excerpt": "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... | Run Pytest (YAML-driven) | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-09-03T11:51:28Z",
+      "last_seen": "2026-09-04T01:36:05Z",
+      "occurrences": 2,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33824480350/job/100875006076",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33824480350",
+      "affected_commits": [
+        "0ba11235fda3bace1557abbc68cfbe1f9f0e10e6",
+        "7b717fefb3f6a47c374585e7ba2da176a045707a"
+      ],
+      "affected_runs": [
+        33748308699,
+        33824480350
+      ],
+      "affected_workflows": [
+        "Nightly-A3-560T"
+      ],
+      "affected_jobs": [
+        "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC... / glm-5.1-w8a8-prefill-mc2"
+      ],
+      "affected_job_families": [
+        "single-node (main, glm-5.1-w8a8-prefill-mc2, linux-aarch64-a3-16-cn12-001, GLM-5.1-W8A8-PrefillMC..."
+      ],
+      "signals": [],
+      "priority_score": 42.6,
+      "blast_radius": 1,
+      "age_hours": 36.4
     },
     {
       "id": "6e0df56a42a23913",
@@ -8601,9 +8575,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 41.3,
+      "priority_score": 38.2,
       "blast_radius": 1,
-      "age_hours": 45.7
+      "age_hours": 48.8
     },
     {
       "id": "a1b4f91795fd80cc",
@@ -8660,9 +8634,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 41.1,
+      "priority_score": 38.0,
       "blast_radius": 1,
-      "age_hours": 65.9
+      "age_hours": 69.0
     },
     {
       "id": "fce28c23b25c1596",
@@ -8694,9 +8668,9 @@
         "single-node (main, qwen3-vl-32b-instruct-w8a8, linux-aarch64-a2b3-4, Qwen3-VL-32B-Instruct-W8A8.y..."
       ],
       "signals": [],
-      "priority_score": 35.9,
+      "priority_score": 32.8,
       "blast_radius": 1,
-      "age_hours": 41.1
+      "age_hours": 44.2
     },
     {
       "id": "3a476153cf0c1774",
@@ -8730,9 +8704,9 @@
         "single-node (main, mtpx-deepseek-r1-0528-w8a8, linux-aarch64-a3-16-cn12-001, MTPX-DeepSeek-R1-052..."
       ],
       "signals": [],
-      "priority_score": 32.8,
+      "priority_score": 29.7,
       "blast_radius": 1,
-      "age_hours": 46.2
+      "age_hours": 49.3
     },
     {
       "id": "6d16fe73e27e0d1d",
@@ -8764,9 +8738,9 @@
         "single-node (main, Qwen3-30B-A3B-W8A8-offload-test-acc, linux-aarch64-a3-16, Qwen3-30B-A3B-W8A8-o..."
       ],
       "signals": [],
-      "priority_score": 23.9,
+      "priority_score": 20.8,
       "blast_radius": 1,
-      "age_hours": 53.1
+      "age_hours": 56.2
     },
     {
       "id": "7a09a8d383d1fa01",
@@ -8798,9 +8772,9 @@
         "single-node (releases-v0.23.0, Qwen3_5_397B_A17B_w8a8_mxfp8_A5, linux-aarch64-a5-8, Qwen3_5_397B_..."
       ],
       "signals": [],
-      "priority_score": 22.3,
+      "priority_score": 19.2,
       "blast_radius": 1,
-      "age_hours": 54.7
+      "age_hours": 57.8
     },
     {
       "id": "a2575e5ba5e66a60",
@@ -8846,9 +8820,9 @@
         "single-node (main, Qwen3.5-397B-A17B-w8a8-mtp, linux-aarch64-nightly-a3-16, Qwen3.5-397B-A17B-W8A..."
       ],
       "signals": [],
-      "priority_score": 20.3,
+      "priority_score": 17.2,
       "blast_radius": 1,
-      "age_hours": 70.7
+      "age_hours": 73.8
     },
     {
       "id": "2a7b154aa0c7f5c0",
@@ -8880,9 +8854,9 @@
         "double-node (releases-v0.26.0rc, multi-node-qwen-disagg-pd, Qwen3-235B-disagg-pd.yaml, tests/e2e/..."
       ],
       "signals": [],
-      "priority_score": 20.3,
+      "priority_score": 17.2,
       "blast_radius": 1,
-      "age_hours": 56.7
+      "age_hours": 59.8
     },
     {
       "id": "cce43afd092cf95e",
@@ -8914,9 +8888,9 @@
         "multi-node (releases-v0.23.0, GLM51_w4a4c8_A5, 2, QGLM51_w4a4c8_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 19.5,
+      "priority_score": 16.4,
       "blast_radius": 1,
-      "age_hours": 57.5
+      "age_hours": 60.6
     },
     {
       "id": "6a3d7577a40a5385",
@@ -8948,9 +8922,9 @@
         "multi-node (releases-v0.23.0, cpp_acc_001_A5, 2, cpp_acc_001_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": 19.4,
+      "priority_score": 16.3,
       "blast_radius": 1,
-      "age_hours": 57.6
+      "age_hours": 60.7
     },
     {
       "id": "4c8496fa88540b54",
@@ -8990,9 +8964,9 @@
         "multi-node (main, multi-node-Kimi-K2.5-W4A8-A2, Kimi-K2_5-W4A8-A2-dual-nodes.yaml, tests/e2e/nigh..."
       ],
       "signals": [],
-      "priority_score": 19.1,
+      "priority_score": 16.0,
       "blast_radius": 1,
-      "age_hours": 65.9
+      "age_hours": 69.0
     },
     {
       "id": "e066e3b9b7560eac",
@@ -9024,9 +8998,9 @@
         "multi-node (releases-v0.23.0, GLM51_w8a8c8_PD_2k2k_A5, 2, GLM51_w8a8c8_PD_2k2k_A5.yaml, tests/e2e..."
       ],
       "signals": [],
-      "priority_score": 19.1,
+      "priority_score": 16.0,
       "blast_radius": 1,
-      "age_hours": 57.9
+      "age_hours": 61.0
     },
     {
       "id": "3610677badf3ceed",
@@ -9064,9 +9038,9 @@
         "single-node-accuracy-tests (main, accuracy-group-3, linux-aarch64-a2b3-2, Qwen3-30B-A3B, Qwen3-VL..."
       ],
       "signals": [],
-      "priority_score": 17.8,
+      "priority_score": 14.7,
       "blast_radius": 1,
-      "age_hours": 65.2
+      "age_hours": 68.3
     },
     {
       "id": "273ff0726c4d674e",
@@ -9104,9 +9078,9 @@
         "single-node (main, Qwen3.5-397B-A17B-w4a8-mtp, linux-aarch64-a2b3-8, Qwen3.5-397B-A17B-w4a8-mtp-A..."
       ],
       "signals": [],
-      "priority_score": 17.7,
+      "priority_score": 14.6,
       "blast_radius": 1,
-      "age_hours": 65.3
+      "age_hours": 68.4
     },
     {
       "id": "b6a08d9c3aa92670",
@@ -9144,9 +9118,9 @@
         "single-node-accuracy-tests (main, accuracy-group-4, linux-aarch64-a2b3-4, Qwen3-Next-80B-A3B-Inst..."
       ],
       "signals": [],
-      "priority_score": 17.6,
+      "priority_score": 14.5,
       "blast_radius": 1,
-      "age_hours": 65.4
+      "age_hours": 68.5
     },
     {
       "id": "45eac380f1b80094",
@@ -9181,9 +9155,9 @@
         "single-node-accuracy-tests (main, accuracy-group-1, linux-aarch64-a2b3-1, Qwen3-VL-8B-Instruct-W8..."
       ],
       "signals": [],
-      "priority_score": 15.9,
+      "priority_score": 12.8,
       "blast_radius": 1,
-      "age_hours": 65.1
+      "age_hours": 68.2
     },
     {
       "id": "51776c860ea66f0a",
@@ -9215,9 +9189,9 @@
         "single-node (main, rejection-sample, linux-aarch64-a2b3-1, tests<path> / rejection-sample"
       ],
       "signals": [],
-      "priority_score": 11.8,
+      "priority_score": 8.7,
       "blast_radius": 1,
-      "age_hours": 65.2
+      "age_hours": 68.3
     },
     {
       "id": "2f1d8bf2f9eae2c1",
@@ -9249,9 +9223,9 @@
         "single-node (main, qwen3-vl-32b-instruct-w8a8, linux-aarch64-a2b3-4, Qwen3-VL-32B-Instruct-W8A8.y..."
       ],
       "signals": [],
-      "priority_score": 11.6,
+      "priority_score": 8.5,
       "blast_radius": 1,
-      "age_hours": 65.4
+      "age_hours": 68.5
     },
     {
       "id": "13834599896c69c3",
@@ -9285,9 +9259,9 @@
         "double-node (main, multi-node-GLM-5.1-W8A8C8-A3_128k_90_50, GLM-5.1-W8A8C8-A3_128k_90_50.yaml, te..."
       ],
       "signals": [],
-      "priority_score": 5.9,
+      "priority_score": 2.8,
       "blast_radius": 1,
-      "age_hours": 73.1
+      "age_hours": 76.2
     },
     {
       "id": "84f8741b7da7f4f2",
@@ -9319,9 +9293,9 @@
         "single-node (main, qwen3-32b-w8a8-aime2024-acc, linux-aarch64-a3-4-cn12-001, tests<path>"
       ],
       "signals": [],
-      "priority_score": 4.6,
+      "priority_score": 1.5,
       "blast_radius": 1,
-      "age_hours": 72.4
+      "age_hours": 75.5
     },
     {
       "id": "7d66398c9b8764a3",
@@ -9370,7 +9344,7 @@
       ],
       "priority_score": -5,
       "blast_radius": 1,
-      "age_hours": 132.3
+      "age_hours": 135.4
     },
     {
       "id": "02ca9e5b2f76135f",
@@ -9410,9 +9384,9 @@
         "single-node (releases-v0.23.0, DeepSeek_V31_Terminus_w4a8_w8a8_A5, linux-aarch64-a5-8, DeepSeek_V..."
       ],
       "signals": [],
-      "priority_score": -7.8,
+      "priority_score": -10.9,
       "blast_radius": 1,
-      "age_hours": 92.8
+      "age_hours": 95.9
     },
     {
       "id": "df3d1e55d43765ad",
@@ -9450,9 +9424,9 @@
         "single-node (releases-v0.23.0, DeepSeek_V31_W4A4C8_A5, linux-aarch64-a5-8, DeepSeek_V31_W4A4C8_A5..."
       ],
       "signals": [],
-      "priority_score": -11.3,
+      "priority_score": -14.4,
       "blast_radius": 1,
-      "age_hours": 94.3
+      "age_hours": 97.4
     },
     {
       "id": "96e5e5e166e48590",
@@ -9492,49 +9466,9 @@
         "multi-node (main, multi-node-GLM-5.1-w8a8-A2, GLM5_1-W8A8-A2-dual-nodes.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -11.7,
+      "priority_score": -14.8,
       "blast_radius": 1,
-      "age_hours": 96.7
-    },
-    {
-      "id": "76cfc1672fc4a687",
-      "status": "watch",
-      "category": "unresolved",
-      "classification": "CODE_OR_UNKNOWN_FAILURE",
-      "signature": "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path> | root cause unavailable",
-      "log_excerpt": "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path> | root cause unavailable",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-08-25T20:04:51Z",
-      "last_seen": "2026-09-01T10:42:34Z",
-      "occurrences": 4,
-      "pass_streak": 1,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33484583910/job/99783222651",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33484583910",
-      "affected_commits": [
-        "6fd6ea161b904ee4b379f6a18bc29d3e076cf25a",
-        "e8d9c1ac39ef1b09f1502a62eab7bc9d31fccc42",
-        "218644dc9b2158c1518cfd899c1860e1c2d8146e",
-        "d4ebe8a0e0fdf56135507259f90f80a45f736cab"
-      ],
-      "affected_runs": [
-        32867727754,
-        32986043913,
-        33410221539,
-        33484583910
-      ],
-      "affected_workflows": [
-        "Nightly-A3"
-      ],
-      "affected_jobs": [
-        "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests/e2e/nightly/... / GLM5_2-W8A8-A3-dual-nodes.yaml"
-      ],
-      "affected_job_families": [
-        "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path>"
-      ],
-      "signals": [],
-      "priority_score": -13.2,
-      "blast_radius": 1,
-      "age_hours": 96.2
+      "age_hours": 99.8
     },
     {
       "id": "ef70eb922bc7ddd0",
@@ -9576,41 +9510,47 @@
       "signals": [],
       "priority_score": -15,
       "blast_radius": 1,
-      "age_hours": 108.5
+      "age_hours": 111.6
     },
     {
-      "id": "c2c26d55b5b915ea",
+      "id": "76cfc1672fc4a687",
       "status": "watch",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "signature": "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path> | Wait for pods ready | failure",
-      "log_excerpt": "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path> | Wait for pods ready | failure",
+      "category": "unresolved",
+      "classification": "CODE_OR_UNKNOWN_FAILURE",
+      "signature": "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path> | root cause unavailable",
+      "log_excerpt": "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path> | root cause unavailable",
       "evidence_source": "step_summary",
-      "first_seen": "2026-09-01T13:22:01Z",
-      "last_seen": "2026-09-01T13:22:01Z",
-      "occurrences": 1,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33509977114/job/99864568670",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33509977114",
+      "first_seen": "2026-08-25T20:04:51Z",
+      "last_seen": "2026-09-01T10:42:34Z",
+      "occurrences": 4,
+      "pass_streak": 1,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33484583910/job/99783222651",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33484583910",
       "affected_commits": [
-        "8b72fdb97b2b0d8eccaf6ac7ac414a151e09810e"
+        "6fd6ea161b904ee4b379f6a18bc29d3e076cf25a",
+        "e8d9c1ac39ef1b09f1502a62eab7bc9d31fccc42",
+        "218644dc9b2158c1518cfd899c1860e1c2d8146e",
+        "d4ebe8a0e0fdf56135507259f90f80a45f736cab"
       ],
       "affected_runs": [
-        33509977114
+        32867727754,
+        32986043913,
+        33410221539,
+        33484583910
       ],
       "affected_workflows": [
-        "Weekly-A3"
+        "Nightly-A3"
       ],
       "affected_jobs": [
-        "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests/e2e/weekly/multi... / GLM-5.2-W4A8C8-1M-PD-DCP.yaml"
+        "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests/e2e/nightly/... / GLM5_2-W8A8-A3-dual-nodes.yaml"
       ],
       "affected_job_families": [
-        "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path>"
+        "double-node (main, multi-node-GLM-5.2-w8a8-A3, GLM5_2-W8A8-A3-dual-nodes.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -16.5,
+      "priority_score": -16.3,
       "blast_radius": 1,
-      "age_hours": 93.5
+      "age_hours": 99.3
     },
     {
       "id": "3adaae076e1793b8",
@@ -9650,7 +9590,7 @@
       "signals": [],
       "priority_score": -17,
       "blast_radius": 1,
-      "age_hours": 134.5
+      "age_hours": 137.6
     },
     {
       "id": "3fcabc7d62832337",
@@ -9692,41 +9632,7 @@
       ],
       "priority_score": -17,
       "blast_radius": 1,
-      "age_hours": 110.3
-    },
-    {
-      "id": "d05d573db198df6a",
-      "status": "watch",
-      "category": "code",
-      "classification": "TEST_FAILURE",
-      "signature": "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... | Run Pytest (YAML-driven) | failure",
-      "log_excerpt": "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... | Run Pytest (YAML-driven) | failure",
-      "evidence_source": "step_summary",
-      "first_seen": "2026-09-01T11:48:21Z",
-      "last_seen": "2026-09-01T11:48:21Z",
-      "occurrences": 1,
-      "pass_streak": 0,
-      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33501132799/job/99836311420",
-      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33501132799",
-      "affected_commits": [
-        "72a988f9d33f392abf85e6059e2e37dc2d48c482"
-      ],
-      "affected_runs": [
-        33501132799
-      ],
-      "affected_workflows": [
-        "Weekly-A3"
-      ],
-      "affected_jobs": [
-        "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... / Qwen3.6_35B_27B_A3_acceptance_rate"
-      ],
-      "affected_job_families": [
-        "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc..."
-      ],
-      "signals": [],
-      "priority_score": -18.1,
-      "blast_radius": 1,
-      "age_hours": 95.1
+      "age_hours": 113.4
     },
     {
       "id": "3ed6dfe8a908b9de",
@@ -9764,7 +9670,7 @@
       "signals": [],
       "priority_score": -19,
       "blast_radius": 1,
-      "age_hours": 195.5
+      "age_hours": 198.6
     },
     {
       "id": "bac7289caf37ad07",
@@ -9802,7 +9708,7 @@
       "signals": [],
       "priority_score": -19,
       "blast_radius": 1,
-      "age_hours": 116.7
+      "age_hours": 119.8
     },
     {
       "id": "a0e990891558669c",
@@ -9840,7 +9746,41 @@
       "signals": [],
       "priority_score": -19,
       "blast_radius": 1,
-      "age_hours": 111.8
+      "age_hours": 114.9
+    },
+    {
+      "id": "c2c26d55b5b915ea",
+      "status": "watch",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "signature": "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path> | Wait for pods ready | failure",
+      "log_excerpt": "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path> | Wait for pods ready | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-09-01T13:22:01Z",
+      "last_seen": "2026-09-01T13:22:01Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33509977114/job/99864568670",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33509977114",
+      "affected_commits": [
+        "8b72fdb97b2b0d8eccaf6ac7ac414a151e09810e"
+      ],
+      "affected_runs": [
+        33509977114
+      ],
+      "affected_workflows": [
+        "Weekly-A3"
+      ],
+      "affected_jobs": [
+        "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests/e2e/weekly/multi... / GLM-5.2-W4A8C8-1M-PD-DCP.yaml"
+      ],
+      "affected_job_families": [
+        "multi-node (main, GLM-5.2-W4A8C8-1M-PD-DCP, GLM-5.2-W4A8C8-1M-PD-DCP.yaml, tests<path>"
+      ],
+      "signals": [],
+      "priority_score": -19.6,
+      "blast_radius": 1,
+      "age_hours": 96.6
     },
     {
       "id": "9ef996d0b8d14a05",
@@ -9876,7 +9816,7 @@
       "signals": [],
       "priority_score": -21,
       "blast_radius": 1,
-      "age_hours": 193.9
+      "age_hours": 197.0
     },
     {
       "id": "08b09f0f01fec690",
@@ -9912,7 +9852,41 @@
       "signals": [],
       "priority_score": -21,
       "blast_radius": 1,
-      "age_hours": 193.9
+      "age_hours": 197.0
+    },
+    {
+      "id": "d05d573db198df6a",
+      "status": "watch",
+      "category": "code",
+      "classification": "TEST_FAILURE",
+      "signature": "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... | Run Pytest (YAML-driven) | failure",
+      "log_excerpt": "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... | Run Pytest (YAML-driven) | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-09-01T11:48:21Z",
+      "last_seen": "2026-09-01T11:48:21Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33501132799/job/99836311420",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33501132799",
+      "affected_commits": [
+        "72a988f9d33f392abf85e6059e2e37dc2d48c482"
+      ],
+      "affected_runs": [
+        33501132799
+      ],
+      "affected_workflows": [
+        "Weekly-A3"
+      ],
+      "affected_jobs": [
+        "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc... / Qwen3.6_35B_27B_A3_acceptance_rate"
+      ],
+      "affected_job_families": [
+        "single-node (main, Qwen3.6_35B_27B_A3_acceptance_rate, linux-aarch64-a3-2, Qwen3.6_35B_27B_A3_acc..."
+      ],
+      "signals": [],
+      "priority_score": -21.2,
+      "blast_radius": 1,
+      "age_hours": 98.2
     },
     {
       "id": "4a2105f79080a3e2",
@@ -9946,7 +9920,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.9
+      "age_hours": 252.0
     },
     {
       "id": "ea540dd0d63603e7",
@@ -9980,7 +9954,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.8
+      "age_hours": 251.9
     },
     {
       "id": "99dd1eadf06cbe21",
@@ -10014,7 +9988,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.8
+      "age_hours": 251.9
     },
     {
       "id": "67dd0c6ad6f8696c",
@@ -10048,7 +10022,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.7
+      "age_hours": 251.8
     },
     {
       "id": "e0b98a27a168827e",
@@ -10082,7 +10056,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.7
+      "age_hours": 251.8
     },
     {
       "id": "8d27b786c71a9553",
@@ -10116,7 +10090,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 248.7
+      "age_hours": 251.8
     },
     {
       "id": "350cb658592b10be",
@@ -10150,7 +10124,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 227.8
+      "age_hours": 230.9
     },
     {
       "id": "758a1066da75da37",
@@ -10184,7 +10158,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 218.8
+      "age_hours": 221.9
     },
     {
       "id": "6bb287dcad641d1a",
@@ -10218,7 +10192,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 200.3
+      "age_hours": 203.4
     },
     {
       "id": "a7eb1cbd88d63268",
@@ -10252,7 +10226,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 200.3
+      "age_hours": 203.4
     },
     {
       "id": "fb9ac6bee2d419e6",
@@ -10286,7 +10260,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 199.9
+      "age_hours": 203.0
     },
     {
       "id": "3476beccff55d504",
@@ -10320,7 +10294,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 199.9
+      "age_hours": 203.0
     },
     {
       "id": "8d90eefbf94c8327",
@@ -10354,7 +10328,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 199.9
+      "age_hours": 203.0
     },
     {
       "id": "3115a3b2bdfc1cfb",
@@ -10388,7 +10362,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 162.8
+      "age_hours": 165.9
     },
     {
       "id": "6882ed756b22c84f",
@@ -10422,7 +10396,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 161.7
+      "age_hours": 164.8
     },
     {
       "id": "3af46f539663fa7a",
@@ -10456,7 +10430,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 161.2
+      "age_hours": 164.3
     },
     {
       "id": "0809343505b2c4f4",
@@ -10490,7 +10464,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 161.0
+      "age_hours": 164.1
     },
     {
       "id": "9599ead53ca86156",
@@ -10524,7 +10498,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 159.9
+      "age_hours": 163.0
     },
     {
       "id": "ba4b7bb7fdc31157",
@@ -10558,7 +10532,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 159.5
+      "age_hours": 162.6
     },
     {
       "id": "71aab713ed79e1d1",
@@ -10592,7 +10566,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 159.3
+      "age_hours": 162.4
     },
     {
       "id": "5d74068e58a87a24",
@@ -10626,7 +10600,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 159.1
+      "age_hours": 162.2
     },
     {
       "id": "928137c1e79dd86c",
@@ -10660,7 +10634,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 158.8
+      "age_hours": 161.9
     },
     {
       "id": "b433d0be3acfb7f8",
@@ -10694,7 +10668,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 158.8
+      "age_hours": 161.9
     },
     {
       "id": "174e63bc01956547",
@@ -10728,7 +10702,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 157.8
+      "age_hours": 160.9
     },
     {
       "id": "dc16bacc14a05452",
@@ -10762,7 +10736,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 157.6
+      "age_hours": 160.7
     },
     {
       "id": "cdd9c451e83d8631",
@@ -10796,7 +10770,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 157.3
+      "age_hours": 160.4
     },
     {
       "id": "68f72c81a9d522a8",
@@ -10830,7 +10804,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 157.0
+      "age_hours": 160.1
     },
     {
       "id": "0262d1c2a740ad3a",
@@ -10864,7 +10838,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 156.9
+      "age_hours": 160.0
     },
     {
       "id": "d49967d122fb97e5",
@@ -10898,7 +10872,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 156.8
+      "age_hours": 159.9
     },
     {
       "id": "280df987fa88bf61",
@@ -10932,7 +10906,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 156.2
+      "age_hours": 159.3
     },
     {
       "id": "3e11f38f545a2ef7",
@@ -10966,7 +10940,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 156.2
+      "age_hours": 159.3
     },
     {
       "id": "dbe91151e29550ca",
@@ -11000,7 +10974,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 155.5
+      "age_hours": 158.6
     },
     {
       "id": "1062f8b0896ecd32",
@@ -11034,7 +11008,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 155.2
+      "age_hours": 158.3
     },
     {
       "id": "5eb9dd8592230098",
@@ -11068,7 +11042,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 154.9
+      "age_hours": 158.0
     },
     {
       "id": "24714d129d5d499b",
@@ -11102,7 +11076,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 154.9
+      "age_hours": 158.0
     },
     {
       "id": "c103970806e2d3c1",
@@ -11136,7 +11110,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 154.0
+      "age_hours": 157.1
     },
     {
       "id": "376933d298d6bca9",
@@ -11170,7 +11144,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.9
+      "age_hours": 157.0
     },
     {
       "id": "3a00bf61106aaace",
@@ -11204,7 +11178,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.7
+      "age_hours": 156.8
     },
     {
       "id": "c675f08ef16ecd66",
@@ -11238,7 +11212,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.4
+      "age_hours": 156.5
     },
     {
       "id": "9fdc64f404a2a401",
@@ -11272,7 +11246,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.4
+      "age_hours": 156.5
     },
     {
       "id": "22496a00cb40a8e0",
@@ -11306,7 +11280,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.1
+      "age_hours": 156.2
     },
     {
       "id": "c6aac3366de9d069",
@@ -11340,7 +11314,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 153.0
+      "age_hours": 156.1
     },
     {
       "id": "5cd00e87361306c8",
@@ -11374,7 +11348,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.9
+      "age_hours": 156.0
     },
     {
       "id": "e9704b3ff1ead755",
@@ -11408,7 +11382,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.9
+      "age_hours": 156.0
     },
     {
       "id": "5a40dc6ad3e161c9",
@@ -11442,7 +11416,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.9
+      "age_hours": 156.0
     },
     {
       "id": "0ac9dfa6a9247209",
@@ -11476,7 +11450,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.8
+      "age_hours": 155.9
     },
     {
       "id": "8648fb85994a97ff",
@@ -11510,7 +11484,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.8
+      "age_hours": 155.9
     },
     {
       "id": "513e24cb28621f07",
@@ -11544,7 +11518,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.5
+      "age_hours": 155.6
     },
     {
       "id": "6498ea83d7c0e06f",
@@ -11578,7 +11552,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.5
+      "age_hours": 155.6
     },
     {
       "id": "44d8bd9bc4c54b18",
@@ -11612,7 +11586,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 152.3
+      "age_hours": 155.4
     },
     {
       "id": "6db6f656dd518003",
@@ -11646,7 +11620,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 151.2
+      "age_hours": 154.3
     },
     {
       "id": "f948ea8d25774167",
@@ -11680,7 +11654,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 149.8
+      "age_hours": 152.9
     },
     {
       "id": "14e9a07bc57d514a",
@@ -11714,7 +11688,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 149.8
+      "age_hours": 152.9
     },
     {
       "id": "aa2d81ec8084d0f2",
@@ -11748,7 +11722,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 149.5
+      "age_hours": 152.6
     },
     {
       "id": "54c62ea602bb4f99",
@@ -11782,7 +11756,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 149.0
+      "age_hours": 152.1
     },
     {
       "id": "8bae5465fc8bb692",
@@ -11816,7 +11790,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 148.9
+      "age_hours": 152.0
     },
     {
       "id": "e15c31e9d809d887",
@@ -11850,7 +11824,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 148.4
+      "age_hours": 151.5
     },
     {
       "id": "fbf3145984f6a84c",
@@ -11884,7 +11858,7 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 147.1
+      "age_hours": 150.2
     },
     {
       "id": "f2cfb9e8c74a1dd6",
@@ -11918,7 +11892,41 @@
       "signals": [],
       "priority_score": -23,
       "blast_radius": 1,
-      "age_hours": 142.5
+      "age_hours": 145.6
+    },
+    {
+      "id": "059da4828838b94e",
+      "status": "stale",
+      "category": "unresolved",
+      "classification": "UNRESOLVED_SETUP_FAILURE",
+      "signature": "main2main | Install opencode + main2main-flow | failure",
+      "log_excerpt": "main2main | Install opencode + main2main-flow | failure",
+      "evidence_source": "step_summary",
+      "first_seen": "2026-09-04T17:38:57Z",
+      "last_seen": "2026-09-04T17:38:57Z",
+      "occurrences": 1,
+      "pass_streak": 0,
+      "latest_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33900763001/job/101115419935",
+      "latest_run_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33900763001",
+      "affected_commits": [
+        "ba7bfa3f8ae1ac9b9e2555b9265134b4d0dd05a8"
+      ],
+      "affected_runs": [
+        33900763001
+      ],
+      "affected_workflows": [
+        "Main2Main"
+      ],
+      "affected_jobs": [
+        "main2main"
+      ],
+      "affected_job_families": [
+        "main2main"
+      ],
+      "signals": [],
+      "priority_score": 6.7,
+      "blast_radius": 1,
+      "age_hours": 20.3
     },
     {
       "id": "dc4cf613cb5f1800",
@@ -11962,9 +11970,9 @@
         "build and release wheel (A5)"
       ],
       "signals": [],
-      "priority_score": -47.2,
+      "priority_score": -48,
       "blast_radius": 4,
-      "age_hours": 99.2
+      "age_hours": 102.3
     },
     {
       "id": "edfba1143e7c844c",
@@ -11996,9 +12004,9 @@
         "multi-node (main, GLM51_w4a4c8_A5, 2, QGLM51_w4a4c8_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -48.4,
+      "priority_score": -51.5,
       "blast_radius": 1,
-      "age_hours": 75.4
+      "age_hours": 78.5
     },
     {
       "id": "6d1b6f17e3afcf18",
@@ -12030,9 +12038,9 @@
         "multi-node (main, GLM51_w8a8c8_PD_2k2k_A5, 2, GLM51_w8a8c8_PD_2k2k_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -48.8,
+      "priority_score": -51.9,
       "blast_radius": 1,
-      "age_hours": 75.8
+      "age_hours": 78.9
     },
     {
       "id": "48ef91801a171832",
@@ -12064,9 +12072,9 @@
         "multi-node (main, cpp_acc_001_A5, 2, cpp_acc_001_A5.yaml, tests<path>"
       ],
       "signals": [],
-      "priority_score": -48.8,
+      "priority_score": -51.9,
       "blast_radius": 1,
-      "age_hours": 75.8
+      "age_hours": 78.9
     },
     {
       "id": "0771074ef5b5ee96",
@@ -12103,7 +12111,7 @@
       "signals": [],
       "priority_score": -52,
       "blast_radius": 4,
-      "age_hours": 136.6
+      "age_hours": 139.7
     },
     {
       "id": "077f204cf793a205",
@@ -12155,7 +12163,7 @@
       ],
       "priority_score": -55,
       "blast_radius": 1,
-      "age_hours": 100.0
+      "age_hours": 103.1
     },
     {
       "id": "1cfc7462f4281c08",
@@ -12197,7 +12205,7 @@
       "signals": [],
       "priority_score": -65,
       "blast_radius": 1,
-      "age_hours": 113.1
+      "age_hours": 116.2
     },
     {
       "id": "a94d44381b4bcaed",
@@ -12236,7 +12244,7 @@
       ],
       "priority_score": -66,
       "blast_radius": 2,
-      "age_hours": 223.2
+      "age_hours": 226.3
     },
     {
       "id": "59772dbcadeb4905",
@@ -12275,7 +12283,7 @@
       ],
       "priority_score": -66,
       "blast_radius": 2,
-      "age_hours": 221.8
+      "age_hours": 224.9
     },
     {
       "id": "805399b8858882d1",
@@ -12315,7 +12323,7 @@
       "signals": [],
       "priority_score": -67,
       "blast_radius": 1,
-      "age_hours": 146.3
+      "age_hours": 149.4
     },
     {
       "id": "c12535f5374f601f",
@@ -12349,7 +12357,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 257.8
+      "age_hours": 260.9
     },
     {
       "id": "0ff968417d886f1b",
@@ -12383,7 +12391,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 242.3
+      "age_hours": 245.4
     },
     {
       "id": "8ba2fde37c4f9968",
@@ -12417,7 +12425,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 238.9
+      "age_hours": 242.0
     },
     {
       "id": "2763167542cbc713",
@@ -12451,7 +12459,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 200.0
+      "age_hours": 203.1
     },
     {
       "id": "dac54e3979e50fa6",
@@ -12485,7 +12493,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 195.7
+      "age_hours": 198.8
     },
     {
       "id": "a7484b04d7aef16f",
@@ -12519,7 +12527,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 195.3
+      "age_hours": 198.4
     },
     {
       "id": "16867dc71a69b857",
@@ -12553,7 +12561,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 194.6
+      "age_hours": 197.7
     },
     {
       "id": "b73782242eae98ef",
@@ -12587,7 +12595,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 190.9
+      "age_hours": 194.0
     },
     {
       "id": "67aa7ec4a11207bc",
@@ -12621,7 +12629,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 189.4
+      "age_hours": 192.5
     },
     {
       "id": "d8823937a19e4937",
@@ -12655,7 +12663,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 140.6
+      "age_hours": 143.7
     },
     {
       "id": "81f13b6b893e10de",
@@ -12691,7 +12699,7 @@
       ],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 140.4
+      "age_hours": 143.5
     },
     {
       "id": "82d8f9246496c152",
@@ -12725,7 +12733,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 139.0
+      "age_hours": 142.1
     },
     {
       "id": "9c2dbc2d686bfc66",
@@ -12759,7 +12767,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 119.3
+      "age_hours": 122.4
     },
     {
       "id": "94b0d6ef7509e712",
@@ -12793,7 +12801,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 103.9
+      "age_hours": 107.0
     },
     {
       "id": "ee651fffa41a8a37",
@@ -12827,7 +12835,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 103.9
+      "age_hours": 107.0
     }
   ],
   "resolved": [
@@ -12863,9 +12871,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": -0.4,
+      "priority_score": -3.5,
       "blast_radius": 1,
-      "age_hours": 27.4
+      "age_hours": 30.5
     },
     {
       "id": "82f370f4fffb3632",
@@ -12899,9 +12907,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": -4.3,
+      "priority_score": -7.4,
       "blast_radius": 1,
-      "age_hours": 31.3
+      "age_hours": 34.4
     },
     {
       "id": "0c2632bfd83b41b1",
@@ -12935,9 +12943,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": -5.0,
+      "priority_score": -8.1,
       "blast_radius": 1,
-      "age_hours": 32.0
+      "age_hours": 35.1
     },
     {
       "id": "ffdf023790695656",
@@ -12975,9 +12983,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 6.4,
+      "priority_score": 3.3,
       "blast_radius": 3,
-      "age_hours": 34.6
+      "age_hours": 37.7
     },
     {
       "id": "c9b43f382844e7b4",
@@ -13013,9 +13021,9 @@
         "single-node"
       ],
       "signals": [],
-      "priority_score": -2.6,
+      "priority_score": -5.7,
       "blast_radius": 4,
-      "age_hours": 46.6
+      "age_hours": 49.7
     },
     {
       "id": "e621b4ece23ef6a5",
@@ -13047,9 +13055,9 @@
         "run-all-tests (v0.27.1)"
       ],
       "signals": [],
-      "priority_score": -19.8,
+      "priority_score": -22.9,
       "blast_radius": 1,
-      "age_hours": 46.8
+      "age_hours": 49.9
     },
     {
       "id": "93b2e88629c71955",
@@ -13092,9 +13100,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 31.3,
+      "priority_score": 28.2,
       "blast_radius": 10,
-      "age_hours": 58.7
+      "age_hours": 61.8
     },
     {
       "id": "39c3d177eed7e763",
@@ -13136,9 +13144,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": 24.3,
+      "priority_score": 21.2,
       "blast_radius": 9,
-      "age_hours": 58.7
+      "age_hours": 61.8
     },
     {
       "id": "7791c6e6e59c973a",
@@ -13175,9 +13183,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": -12.8,
+      "priority_score": -15.9,
       "blast_radius": 4,
-      "age_hours": 60.8
+      "age_hours": 63.9
     },
     {
       "id": "ae6191921ff7d3cd",
@@ -13211,9 +13219,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": -45.5,
+      "priority_score": -48.6,
       "blast_radius": 1,
-      "age_hours": 72.5
+      "age_hours": 75.6
     },
     {
       "id": "6b1e99a0cfb513d9",
@@ -13257,9 +13265,9 @@
       "signals": [
         "same_commit_mixed_outcomes"
       ],
-      "priority_score": -33.7,
+      "priority_score": -36.8,
       "blast_radius": 1,
-      "age_hours": 74.7
+      "age_hours": 77.8
     },
     {
       "id": "f7bed3bdf4163a45",
@@ -13299,9 +13307,9 @@
         "multi-node (main, multi-node-Kimi-K2.5-W4A8-A2, Kimi-K2_5-W4A8-A2-dual-nodes.yaml, tests/e2e/nigh..."
       ],
       "signals": [],
-      "priority_score": -55.7,
+      "priority_score": -58.8,
       "blast_radius": 1,
-      "age_hours": 90.7
+      "age_hours": 93.8
     },
     {
       "id": "87c8626c70f4bf3e",
@@ -13337,7 +13345,7 @@
       ],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 115.8
+      "age_hours": 118.9
     },
     {
       "id": "a0a9cc3f2aac27bb",
@@ -13373,7 +13381,7 @@
       ],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 126.8
+      "age_hours": 129.9
     },
     {
       "id": "5bb5297d7852eb73",
@@ -13409,7 +13417,7 @@
       ],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 139.3
+      "age_hours": 142.4
     },
     {
       "id": "efb6f47e63210136",
@@ -13448,7 +13456,7 @@
       ],
       "priority_score": -66,
       "blast_radius": 2,
-      "age_hours": 139.3
+      "age_hours": 142.4
     },
     {
       "id": "d429816538c8c56e",
@@ -13488,7 +13496,7 @@
       ],
       "priority_score": -69,
       "blast_radius": 1,
-      "age_hours": 139.3
+      "age_hours": 142.4
     },
     {
       "id": "f640d038bf6c32fb",
@@ -13524,7 +13532,7 @@
       ],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 140.5
+      "age_hours": 143.6
     },
     {
       "id": "fa595661c4a1e765",
@@ -13560,7 +13568,7 @@
       ],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 140.9
+      "age_hours": 144.0
     },
     {
       "id": "eb459415b1ecc7ba",
@@ -13594,7 +13602,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 197.7
+      "age_hours": 200.8
     },
     {
       "id": "7aa469440ebb8438",
@@ -13631,7 +13639,7 @@
       ],
       "priority_score": -66,
       "blast_radius": 2,
-      "age_hours": 228.1
+      "age_hours": 231.2
     },
     {
       "id": "1b259641dca86a66",
@@ -13665,7 +13673,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 228.1
+      "age_hours": 231.2
     },
     {
       "id": "2a64fd0d5fbab4f1",
@@ -13699,7 +13707,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 228.2
+      "age_hours": 231.3
     },
     {
       "id": "00d625db03ff57da",
@@ -13735,7 +13743,7 @@
       "signals": [],
       "priority_score": -71,
       "blast_radius": 1,
-      "age_hours": 233.7
+      "age_hours": 236.8
     },
     {
       "id": "eb986e7400e5b89c",
@@ -13769,7 +13777,7 @@
       "signals": [],
       "priority_score": -73,
       "blast_radius": 1,
-      "age_hours": 240.8
+      "age_hours": 243.8
     }
   ]
 }
