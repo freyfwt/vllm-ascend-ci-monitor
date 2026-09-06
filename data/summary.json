@@ -2,61 +2,29 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-09-06T14:09:56Z",
+  "updated_at": "2026-09-06T17:02:26Z",
   "latest_hour": {
-    "hour": "2026-09-06T13:00:00Z",
+    "hour": "2026-09-06T16:00:00Z",
     "status": "healthy",
     "coverage": "complete",
-    "runs": 12,
-    "jobs": 93,
-    "workflow_failures": 7,
+    "runs": 1,
+    "jobs": 12,
+    "workflow_failures": 0,
     "infra_failures": 0,
-    "code_failures": 5,
-    "ignored_nonverdicts": 8,
-    "unresolved_failures": 7,
-    "probabilistic_jobs": 28,
-    "active_runs": 3,
+    "code_failures": 1,
+    "ignored_nonverdicts": 0,
+    "unresolved_failures": 0,
+    "probabilistic_jobs": 3,
+    "active_runs": 5,
     "reasons": {},
     "failures": [],
     "probabilistic": [
-      {
-        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a2-1 card-(part 1-5)",
-        "kind": "job",
-        "workflow": "Schedule All E2E Tests",
-        "job": "run-all-tests (v0.27.1) / a2-1 card-(part 1-5)",
-        "pass_rate_30d": 0.8889,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a3-2 card-(part 1-2)",
-        "kind": "job",
-        "workflow": "Schedule All E2E Tests",
-        "job": "run-all-tests (v0.27.1) / a3-2 card-(part 1-2)",
-        "pass_rate_30d": 0.9615,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::Schedule All E2E Tests::run-all-tests (v0.27.1) / a3-4 card-(part 2-2)",
-        "kind": "job",
-        "workflow": "Schedule All E2E Tests",
-        "job": "run-all-tests (v0.27.1) / a3-4 card-(part 2-2)",
-        "pass_rate_30d": 0.8077,
-        "reason": "same_commit_mixed_outcomes"
-      },
       {
         "key": "job::E2E::pre-commit",
         "kind": "job",
         "workflow": "E2E",
         "job": "pre-commit",
         "pass_rate_30d": 0.7042,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::ci-gate",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "ci-gate",
-        "pass_rate_30d": 0.175,
         "reason": "same_commit_mixed_outcomes"
       },
       {
@@ -68,88 +36,39 @@
         "reason": "same_commit_mixed_outcomes"
       },
       {
-        "key": "job::E2E::Recommend tests from coverage",
+        "key": "job::E2E::ci-gate",
         "kind": "job",
         "workflow": "E2E",
-        "job": "Recommend tests from coverage",
-        "pass_rate_30d": 0.9792,
+        "job": "ci-gate",
+        "pass_rate_30d": 0.1792,
         "reason": "same_commit_mixed_outcomes"
       }
     ],
     "merge_gate_analyzed": true,
-    "merge_gate_runs": 6,
-    "merge_gate_code_failures": 5,
-    "merge_gate_policy_failures": 1,
+    "merge_gate_runs": 0,
+    "merge_gate_code_failures": 0,
+    "merge_gate_policy_failures": 0,
     "merge_blocking_ci_failures": 0,
     "merge_gate_unknown_failures": 0,
     "nonblocking_ci_failures": 0,
-    "merge_gate_evidence": [
-      {
-        "run_id": 34034900526,
-        "sha": "35b4eb3e18a0432a7cd030313198f75e368f4927",
-        "reason": "PR_TITLE_POLICY_FAILURE",
-        "evidence": "PR title must contain one of the following prefixes: [BugFix], [Performance], [Test], [CI], [Feature], [Doc], [Misc], [Community], [Refactor]",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34034900526/job/101491179162",
-        "kind": "code"
-      },
-      {
-        "run_id": 34034808006,
-        "sha": "aeea673ab3e322e446028b2d31140054f21e876b",
-        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
-        "evidence": "Run pre-commit",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34034808006/job/101491200390",
-        "kind": "code"
-      },
-      {
-        "run_id": 34035406383,
-        "sha": "e63235ec52287e03a5adc0548a74e3f379899035",
-        "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
-        "evidence": "Selected tests are required; add the ready-precise or ready-all label",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34035406383/job/101493572380",
-        "kind": "policy"
-      },
-      {
-        "run_id": 34036655031,
-        "sha": "54bcdab72447837ac996c0d9f4144219c4347f05",
-        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
-        "evidence": "Run pre-commit",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34036655031/job/101496194917",
-        "kind": "code"
-      },
-      {
-        "run_id": 34036939297,
-        "sha": "933e8dcc2435cde4e8835d6218bb9a85b4d29e08",
-        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
-        "evidence": "Run pre-commit",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34036939297/job/101496955979",
-        "kind": "code"
-      },
-      {
-        "run_id": 34037095940,
-        "sha": "20579e96756a1c659c7c5760e4bbc8dc14274c8d",
-        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
-        "evidence": "Run pre-commit",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34037095940/job/101497635363",
-        "kind": "code"
-      }
-    ]
+    "merge_gate_evidence": []
   },
   "days_tracked": 37,
   "overall": {
-    "availability": 0.909639,
-    "availability_floor": 0.171982,
-    "coverage": 0.189066,
-    "observed_hours": 166,
-    "healthy_hours": 38,
-    "degraded_hours": 113,
+    "availability": 0.911243,
+    "availability_floor": 0.174801,
+    "coverage": 0.191827,
+    "observed_hours": 169,
+    "healthy_hours": 39,
+    "degraded_hours": 115,
     "down_hours": 15,
     "unknown_hours": 712,
-    "merge_gate_runs": 1945,
+    "merge_gate_runs": 1952,
     "merge_blocking_ci_failures": 19,
-    "merge_gate_unknown_failures": 1286,
+    "merge_gate_unknown_failures": 1289,
     "infra_failures": 0,
-    "code_failures": 2441,
-    "unresolved_failures": 6263,
-    "probabilistic_jobs": 5845
+    "code_failures": 2446,
+    "unresolved_failures": 6271,
+    "probabilistic_jobs": 5872
   }
 }
