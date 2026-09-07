@@ -2,45 +2,37 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-09-07T20:00:40Z",
+  "updated_at": "2026-09-07T22:52:12Z",
   "latest_hour": {
-    "hour": "2026-09-07T18:00:00Z",
+    "hour": "2026-09-07T21:00:00Z",
     "status": "degraded",
     "coverage": "complete",
-    "runs": 5,
-    "jobs": 98,
-    "workflow_failures": 3,
+    "runs": 7,
+    "jobs": 72,
+    "workflow_failures": 2,
     "infra_failures": 0,
-    "code_failures": 1,
-    "ignored_nonverdicts": 1,
-    "unresolved_failures": 4,
-    "probabilistic_jobs": 16,
-    "active_runs": 2,
+    "code_failures": 8,
+    "ignored_nonverdicts": 0,
+    "unresolved_failures": 3,
+    "probabilistic_jobs": 24,
+    "active_runs": 1,
     "reasons": {},
     "failures": [],
     "probabilistic": [
+      {
+        "key": "job::E2E::pre-commit",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "pre-commit",
+        "pass_rate_30d": 0.7083,
+        "reason": "same_commit_mixed_outcomes"
+      },
       {
         "key": "job::E2E::Recommend tests from coverage",
         "kind": "job",
         "workflow": "E2E",
         "job": "Recommend tests from coverage",
         "pass_rate_30d": 0.975,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::pre-commit",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "pre-commit",
-        "pass_rate_30d": 0.7167,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::ci-gate",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "ci-gate",
-        "pass_rate_30d": 0.2292,
         "reason": "same_commit_mixed_outcomes"
       },
       {
@@ -52,80 +44,64 @@
         "reason": "same_commit_mixed_outcomes"
       },
       {
-        "key": "job::Nightly-A3::Export global env vars as job outputs",
-        "kind": "job",
-        "workflow": "Nightly-A3",
-        "job": "Export global env vars as job outputs",
-        "pass_rate_30d": 0.9918,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::run-selected-tests (vllm@e6bfe03) / a3-4 card-(part 1-2)",
+        "key": "job::E2E::ci-gate",
         "kind": "job",
         "workflow": "E2E",
-        "job": "run-selected-tests (vllm@e6bfe03) / a3-4 card-(part 1-2)",
-        "pass_rate_30d": 0.9615,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::cpu-ut / cpu-ut card-",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "cpu-ut / cpu-ut card-",
-        "pass_rate_30d": 0.7625,
+        "job": "ci-gate",
+        "pass_rate_30d": 0.2333,
         "reason": "same_commit_mixed_outcomes"
       }
     ],
     "merge_gate_analyzed": true,
     "merge_gate_runs": 3,
     "merge_gate_code_failures": 1,
-    "merge_gate_policy_failures": 1,
+    "merge_gate_policy_failures": 0,
     "merge_blocking_ci_failures": 0,
-    "merge_gate_unknown_failures": 1,
+    "merge_gate_unknown_failures": 2,
     "nonblocking_ci_failures": 0,
     "merge_gate_evidence": [
       {
-        "run_id": 34141072640,
-        "sha": "ec00247670e4ca38602ded8070fe78d77aae2e99",
+        "run_id": 34162909469,
+        "sha": "0dce585f3c7cca4e52ac17cd467f88ead640dd91",
         "reason": "MERGE_PATH_FAILURE_UNKNOWN",
-        "evidence": "Run selected tests with device",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34141072640/job/101832761258",
+        "evidence": "Decide test selection mode",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34162909469/job/101868768665",
         "kind": "unknown"
       },
       {
-        "run_id": 34150529053,
-        "sha": "d4e948f209d7543ef184dc084dda6d59f139b467",
-        "reason": "MERGE_POLICY_REQUIRES_READY_LABEL",
-        "evidence": "Selected tests are required; add the ready-precise or ready-all label",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34150529053/job/101832928009",
-        "kind": "policy"
+        "run_id": 34163383469,
+        "sha": "a1f5d0f8ebb6b28276c3421ef9e8a6d263a0a58e",
+        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+        "evidence": "Decide test selection mode",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34163383469/job/101871102433",
+        "kind": "unknown"
       },
       {
-        "run_id": 34153621391,
-        "sha": "7c3753d22d9e9be187f82924350643f585d9d9fc",
-        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
-        "evidence": "Run mypy",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34153621391/job/101841280587",
+        "run_id": 34162927496,
+        "sha": "5b1753ed6774ae52d7dbfb2a95db758ba73e6e4e",
+        "reason": "TEST_FAILURE",
+        "evidence": "\u001b[31mFAILED\u001b[0m tests/ut/test_platform.py::\u001b[1mTestNPUPlatform::test_get_attn_backend_cls_selects_cp_backend\u001b[0m - TypeError: AttentionSelectorConfig.__new__() got an unexpected keyword argument 'use_dcp'",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34162927496/job/101871261159",
         "kind": "code"
       }
     ]
   },
   "days_tracked": 38,
   "overall": {
-    "availability": 0.912568,
-    "availability_floor": 0.183921,
-    "coverage": 0.201542,
-    "observed_hours": 183,
-    "healthy_hours": 40,
-    "degraded_hours": 127,
+    "availability": 0.913978,
+    "availability_floor": 0.186813,
+    "coverage": 0.204396,
+    "observed_hours": 186,
+    "healthy_hours": 42,
+    "degraded_hours": 128,
     "down_hours": 16,
-    "unknown_hours": 725,
-    "merge_gate_runs": 2159,
+    "unknown_hours": 724,
+    "merge_gate_runs": 2163,
     "merge_blocking_ci_failures": 20,
-    "merge_gate_unknown_failures": 1397,
+    "merge_gate_unknown_failures": 1399,
     "infra_failures": 0,
-    "code_failures": 2765,
-    "unresolved_failures": 6504,
-    "probabilistic_jobs": 7103
+    "code_failures": 2774,
+    "unresolved_failures": 6508,
+    "probabilistic_jobs": 7132
   }
 }
