@@ -2,28 +2,28 @@
   "schema_version": 2,
   "date": "2026-09-25",
   "timezone": "UTC",
-  "updated_at": "2026-09-25T01:29:48Z",
-  "status": "healthy",
+  "updated_at": "2026-09-25T07:45:47Z",
+  "status": "degraded",
   "metrics": {
     "availability": 1.0,
-    "availability_floor": 1.0,
-    "coverage": 1.0,
-    "expected_hours": 1,
-    "observed_hours": 1,
-    "healthy_hours": 1,
-    "degraded_hours": 0,
+    "availability_floor": 0.571429,
+    "coverage": 0.571429,
+    "expected_hours": 7,
+    "observed_hours": 4,
+    "healthy_hours": 2,
+    "degraded_hours": 2,
     "down_hours": 0,
-    "unknown_hours": 0,
-    "runs": 1,
-    "jobs": 88,
-    "merge_gate_runs": 0,
-    "merge_gate_code_failures": 0,
+    "unknown_hours": 3,
+    "runs": 16,
+    "jobs": 373,
+    "merge_gate_runs": 6,
+    "merge_gate_code_failures": 3,
     "merge_blocking_ci_failures": 0,
-    "merge_gate_unknown_failures": 0,
+    "merge_gate_unknown_failures": 3,
     "infra_failures": 0,
-    "code_failures": 2,
-    "unresolved_failures": 0,
-    "probabilistic_jobs": 4
+    "code_failures": 7,
+    "unresolved_failures": 7,
+    "probabilistic_jobs": 36
   },
   "hours": [
     {
@@ -136,69 +136,259 @@
     },
     {
       "hour": "2026-09-25T04:00:00Z",
-      "status": "unknown",
+      "status": "healthy",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
+      "runs": 2,
+      "jobs": 133,
       "workflow_failures": 0,
       "infra_failures": 0,
       "code_failures": 0,
       "ignored_nonverdicts": 0,
       "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
+      "probabilistic_jobs": 6,
       "active_runs": 0,
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
-      "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
       "reasons": {},
       "failures": [],
-      "probabilistic": [],
+      "probabilistic": [
+        {
+          "key": "job::E2E::Recommend tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "Recommend tests",
+          "pass_rate_30d": 0.9375,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::select-tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "select-tests",
+          "pass_rate_30d": 0.9292,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::A3 openEuler / build (linux-aarch64-cpu-4, arm64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "A3 openEuler / build (linux-aarch64-cpu-4, arm64)",
+          "pass_rate_30d": 0.4737,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::310P openEuler / build (linux-amd64-cpu-4, amd64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "310P openEuler / build (linux-amd64-cpu-4, amd64)",
+          "pass_rate_30d": 0.5775,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::310P Ubuntu / build (linux-amd64-cpu-4, amd64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "310P Ubuntu / build (linux-amd64-cpu-4, amd64)",
+          "pass_rate_30d": 0.7027,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2167,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 0,
+      "merge_gate_code_failures": 0,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 0,
+      "nonblocking_ci_failures": 0,
       "merge_gate_evidence": []
     },
     {
       "hour": "2026-09-25T05:00:00Z",
-      "status": "unknown",
+      "status": "degraded",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 12,
+      "jobs": 119,
+      "workflow_failures": 7,
       "infra_failures": 0,
-      "code_failures": 0,
+      "code_failures": 4,
       "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
+      "unresolved_failures": 6,
+      "probabilistic_jobs": 20,
       "active_runs": 0,
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
-      "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
       "reasons": {},
       "failures": [],
-      "probabilistic": [],
-      "merge_gate_evidence": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2167,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::select-tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "select-tests",
+          "pass_rate_30d": 0.9292,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::Recommend tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "Recommend tests",
+          "pass_rate_30d": 0.9375,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::Recommend tests from coverage",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "Recommend tests from coverage",
+          "pass_rate_30d": 0.9458,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 5,
+      "merge_gate_code_failures": 3,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 2,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": [
+        {
+          "run_id": 36098074242,
+          "sha": "fe791547167648ac4fbe63ec3b737c0ee49ddd2c",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run mypy",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36098074242/job/107955158592",
+          "kind": "code"
+        },
+        {
+          "run_id": 36098082735,
+          "sha": "4b1b6b679f923be75606fd70061bb294d1a5cf58",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run mypy",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36098082735/job/107955194274",
+          "kind": "code"
+        },
+        {
+          "run_id": 36093078973,
+          "sha": "7593fb0a1327a47e48bfeac7bb353c5a00060c04",
+          "reason": "TEST_FAILURE",
+          "evidence": "test_spec_decode_heavy.py::\u001b[1mtest_qwen36_35b_dspark_spec_decoding[full_decode_only-False-1024-RedHatAI/Qwen3.6-35B-A3B-speculator.dspark-Qwen/Qwen3.6-35B-A3B]\u001b[0m - AssertionError: acceptance_per_pos [0.7713950762016413, 0.5685814771395076, 0.38335287221570924, 0.2696365767878077, 0.1910902696365768, 0.15826494724501758, 0.1336459554513482] below golden [0.78, 0.61, 0.49, 0.39, 0.33, 0.29, 0.25]",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36093078973/job/107959230870",
+          "kind": "code"
+        },
+        {
+          "run_id": 36100076635,
+          "sha": "e43fe6a0d2450e96881810fffc21738df50b58e3",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36100076635/job/107962699190",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36100072076,
+          "sha": "e48f5918a3df901188bac406b17ce566a095dbfa",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36100072076/job/107962811206",
+          "kind": "unknown"
+        }
+      ]
     },
     {
       "hour": "2026-09-25T06:00:00Z",
-      "status": "unknown",
+      "status": "degraded",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 1,
+      "jobs": 33,
+      "workflow_failures": 1,
       "infra_failures": 0,
-      "code_failures": 0,
+      "code_failures": 1,
       "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
+      "unresolved_failures": 1,
+      "probabilistic_jobs": 6,
       "active_runs": 0,
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
-      "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
       "reasons": {},
       "failures": [],
-      "probabilistic": [],
-      "merge_gate_evidence": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2167,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::Recommend tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "Recommend tests",
+          "pass_rate_30d": 0.9375,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::select-tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "select-tests",
+          "pass_rate_30d": 0.9292,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::310P openEuler / build (linux-amd64-cpu-4, amd64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "310P openEuler / build (linux-amd64-cpu-4, amd64)",
+          "pass_rate_30d": 0.5775,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::310P Ubuntu / build (linux-amd64-cpu-4, amd64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "310P Ubuntu / build (linux-amd64-cpu-4, amd64)",
+          "pass_rate_30d": 0.7027,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::A3 openEuler / build (linux-aarch64-cpu-4, arm64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "A3 openEuler / build (linux-aarch64-cpu-4, arm64)",
+          "pass_rate_30d": 0.4737,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 1,
+      "merge_gate_code_failures": 0,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 1,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": [
+        {
+          "run_id": 36100257396,
+          "sha": "b86e99f5ebe61a6f1831893394c0ae4c60ac9015",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36100257396/job/107963440224",
+          "kind": "unknown"
+        }
+      ]
     },
     {
       "hour": "2026-09-25T07:00:00Z",
