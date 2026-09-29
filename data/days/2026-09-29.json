@@ -2,28 +2,28 @@
   "schema_version": 2,
   "date": "2026-09-29",
   "timezone": "UTC",
-  "updated_at": "2026-09-29T08:32:27Z",
+  "updated_at": "2026-09-29T15:57:29Z",
   "status": "degraded",
   "metrics": {
     "availability": 1.0,
-    "availability_floor": 0.5,
-    "coverage": 0.5,
-    "expected_hours": 8,
-    "observed_hours": 4,
+    "availability_floor": 0.466667,
+    "coverage": 0.466667,
+    "expected_hours": 15,
+    "observed_hours": 7,
     "healthy_hours": 0,
-    "degraded_hours": 4,
+    "degraded_hours": 7,
     "down_hours": 0,
-    "unknown_hours": 4,
-    "runs": 196,
-    "jobs": 2281,
-    "merge_gate_runs": 87,
-    "merge_gate_code_failures": 48,
+    "unknown_hours": 8,
+    "runs": 308,
+    "jobs": 3783,
+    "merge_gate_runs": 137,
+    "merge_gate_code_failures": 75,
     "merge_blocking_ci_failures": 0,
-    "merge_gate_unknown_failures": 39,
+    "merge_gate_unknown_failures": 62,
     "infra_failures": 0,
-    "code_failures": 91,
-    "unresolved_failures": 116,
-    "probabilistic_jobs": 262
+    "code_failures": 148,
+    "unresolved_failures": 184,
+    "probabilistic_jobs": 410
   },
   "hours": [
     {
@@ -223,8 +223,8 @@
         }
       ],
       "merge_gate_analyzed": true,
-      "merge_gate_runs": 7,
-      "merge_gate_code_failures": 4,
+      "merge_gate_runs": 6,
+      "merge_gate_code_failures": 3,
       "merge_gate_policy_failures": 0,
       "merge_blocking_ci_failures": 0,
       "merge_gate_unknown_failures": 3,
@@ -253,14 +253,6 @@
           "evidence": "Check all required jobs",
           "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36524452534/job/109267227247",
           "kind": "unknown"
-        },
-        {
-          "run_id": 36521478118,
-          "sha": "faaa46690d751b22ce5ddd8673ca56a5fabcf776",
-          "reason": "TEST_FAILURE",
-          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
-          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36521478118/job/109267519580",
-          "kind": "code"
         },
         {
           "run_id": 36524799331,
@@ -680,69 +672,444 @@
     },
     {
       "hour": "2026-09-29T12:00:00Z",
-      "status": "unknown",
+      "status": "degraded",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 48,
+      "jobs": 708,
+      "workflow_failures": 25,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
+      "code_failures": 17,
+      "ignored_nonverdicts": 26,
+      "unresolved_failures": 27,
+      "probabilistic_jobs": 68,
       "active_runs": 0,
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
-      "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
       "reasons": {},
       "failures": [],
-      "probabilistic": [],
-      "merge_gate_evidence": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::select-tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "select-tests",
+          "pass_rate_30d": 0.925,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Weekly-A3::Export global env vars as job outputs",
+          "kind": "job",
+          "workflow": "Weekly-A3",
+          "job": "Export global env vars as job outputs",
+          "pass_rate_30d": 0.9944,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2208,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 21,
+      "merge_gate_code_failures": 14,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 7,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": [
+        {
+          "run_id": 36564015147,
+          "sha": "1245bab8d7dae32a1c8a449360e8a9141f36584f",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36564015147/job/109395412376",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36564937822,
+          "sha": "504fc344b917938934ee31fb6ebd0545d937c0c2",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run mypy",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36564937822/job/109395432855",
+          "kind": "code"
+        },
+        {
+          "run_id": 36556292872,
+          "sha": "e75c438602e2d1f483e32f854a8495efa75e38e2",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36556292872/job/109395446346",
+          "kind": "code"
+        },
+        {
+          "run_id": 36565221274,
+          "sha": "822bee5fac6585acc2c6236204366450fb86ddfd",
+          "reason": "PR_TITLE_POLICY_FAILURE",
+          "evidence": "PR title must contain one of the following prefixes: [BugFix], [Performance], [Test], [CI], [Feature], [Doc], [Misc], [Community], [Refactor]",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36565221274/job/109395755296",
+          "kind": "code"
+        },
+        {
+          "run_id": 36565624359,
+          "sha": "8791d461619c08a4988cad3d3bb9d29d0f0d90e7",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36565624359/job/109397657382",
+          "kind": "code"
+        },
+        {
+          "run_id": 36565889126,
+          "sha": "259494cb20d34a2ab285e31846b2813cf18be631",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36565889126/job/109398317823",
+          "kind": "code"
+        },
+        {
+          "run_id": 36566066846,
+          "sha": "36230fe33a0030f5d7b5464a16c38a206cbdf127",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run mypy",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36566066846/job/109399311493",
+          "kind": "code"
+        },
+        {
+          "run_id": 36565133972,
+          "sha": "f45e2b17e794078561364b8abb8c81c8297c9ea8",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36565133972/job/109399526661",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36558273236,
+          "sha": "995977208dc47edc4c9b6e575d1535b191de8bfa",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36558273236/job/109400783738",
+          "kind": "code"
+        },
+        {
+          "run_id": 36565637210,
+          "sha": "065172940cdbeffd5564c554d07d1ea8c9646077",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36565637210/job/109400979971",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36565623583,
+          "sha": "f60f2336b170b52fec02a662d6cf11ba419154f2",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36565623583/job/109401118595",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36566468676,
+          "sha": "feee92eb532e429b231cbc4ede5e089b4ffb70d5",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36566468676/job/109402554721",
+          "kind": "unknown"
+        }
+      ]
     },
     {
       "hour": "2026-09-29T13:00:00Z",
-      "status": "unknown",
+      "status": "degraded",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 35,
+      "jobs": 455,
+      "workflow_failures": 22,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
-      "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "code_failures": 20,
+      "ignored_nonverdicts": 30,
+      "unresolved_failures": 26,
+      "probabilistic_jobs": 44,
+      "active_runs": 2,
       "reasons": {},
       "failures": [],
-      "probabilistic": [],
-      "merge_gate_evidence": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::select-tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "select-tests",
+          "pass_rate_30d": 0.925,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::310P Ubuntu / build (linux-amd64-cpu-4, amd64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "310P Ubuntu / build (linux-amd64-cpu-4, amd64)",
+          "pass_rate_30d": 0.7143,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::310P openEuler / build (linux-amd64-cpu-4, amd64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "310P openEuler / build (linux-amd64-cpu-4, amd64)",
+          "pass_rate_30d": 0.6098,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2208,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 20,
+      "merge_gate_code_failures": 12,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 8,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": [
+        {
+          "run_id": 36571121558,
+          "sha": "a2b2ede1e0b10650d5f68dec2c3f05aded491691",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36571121558/job/109418012868",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36570698131,
+          "sha": "aec68a3986a960dae5383e63ad575b5a5d0b6b44",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36570698131/job/109418337426",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36564414338,
+          "sha": "f151b94fb8026ee0796872157da6116337764c7b",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36564414338/job/109418460048",
+          "kind": "code"
+        },
+        {
+          "run_id": 36570875447,
+          "sha": "2ebc389f1cbe211e56ce642a07ef42dc335c76f8",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36570875447/job/109419222304",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36571787490,
+          "sha": "0797a3e025ab3e73339859f691e4c83cdca210b0",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36571787490/job/109422235027",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36573164729,
+          "sha": "e0b44606e6db58723dcfa4ed1afbb482df995ccc",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36573164729/job/109424985960",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36556871229,
+          "sha": "d1e00b950fe322eb3e001a6228e90ce27fa80707",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36556871229/job/109425108162",
+          "kind": "code"
+        },
+        {
+          "run_id": 36557529847,
+          "sha": "3353430ce312c03c92661e2260d5193363e0eebc",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36557529847/job/109425174408",
+          "kind": "code"
+        },
+        {
+          "run_id": 36518529170,
+          "sha": "f8bd0d93870dde9b10bd9172559e207c80d4bf40",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36518529170/job/109425311509",
+          "kind": "code"
+        },
+        {
+          "run_id": 36546167213,
+          "sha": "c9b2b24c304527a6e3296abdce299e2e3dc5e903",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36546167213/job/109426435833",
+          "kind": "code"
+        },
+        {
+          "run_id": 36574345090,
+          "sha": "7399a70d8d46b30dd537294ab359b0e29d6b7cf8",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36574345090/job/109426997047",
+          "kind": "code"
+        },
+        {
+          "run_id": 36556639284,
+          "sha": "295fe23582348c8c26a5f84fd6262a11387a3b96",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36556639284/job/109428658501",
+          "kind": "code"
+        }
+      ]
     },
     {
       "hour": "2026-09-29T14:00:00Z",
-      "status": "unknown",
+      "status": "degraded",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 29,
+      "jobs": 339,
+      "workflow_failures": 14,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
-      "active_runs": 0,
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
-      "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
+      "code_failures": 20,
+      "ignored_nonverdicts": 48,
+      "unresolved_failures": 15,
+      "probabilistic_jobs": 36,
+      "active_runs": 11,
       "reasons": {},
       "failures": [],
-      "probabilistic": [],
-      "merge_gate_evidence": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2208,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::select-tests",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "select-tests",
+          "pass_rate_30d": 0.925,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::A3 openEuler / build (linux-aarch64-cpu-4, arm64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "A3 openEuler / build (linux-aarch64-cpu-4, arm64)",
+          "pass_rate_30d": 0.5974,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Image Build and Push::A5 openEuler / build (linux-aarch64-cpu-4, arm64)",
+          "kind": "job",
+          "workflow": "Image Build and Push",
+          "job": "A5 openEuler / build (linux-aarch64-cpu-4, arm64)",
+          "pass_rate_30d": 0.6957,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 10,
+      "merge_gate_code_failures": 2,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 8,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": [
+        {
+          "run_id": 36578700505,
+          "sha": "246a6ed0230c7ecc101ff0a6993806fb367b59f1",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36578700505/job/109444498629",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36569802263,
+          "sha": "f45e2b17e794078561364b8abb8c81c8297c9ea8",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Run selected tests with device",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36569802263/job/109445871954",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36579633910,
+          "sha": "d1e2d27f258a514e430f8ccbeee44612cdc64f19",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36579633910/job/109449925241",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36570487273,
+          "sha": "1dbd0d53563aba8904b609a7dbabb2a14e1d2033",
+          "reason": "TEST_FAILURE",
+          "evidence": "\u001b[31mFAILED\u001b[0m tests/e2e/pull_request/four_card/test_kimi_k3.py::\u001b[1mtest_k3_mla_block5_tp4\u001b[0m - AssertionError: Request did not create an aligned hybrid-cache page",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36570487273/job/109454262252",
+          "kind": "code"
+        },
+        {
+          "run_id": 36582460671,
+          "sha": "36cff07887bd67eca3ff2d688d22dcf7997b4447",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36582460671/job/109457279071",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36581813829,
+          "sha": "a47a326dee09b20cb4c420a3d8bdba6f08118b85",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36581813829/job/109457346880",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36582127953,
+          "sha": "c14cd33e5f569042e696ef96c123bda8d00cbbc4",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36582127953/job/109458620312",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36584596050,
+          "sha": "3629380b0e00ff26493bddc73dcb6d1a4763bb0d",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36584596050/job/109462423090",
+          "kind": "code"
+        },
+        {
+          "run_id": 36583600212,
+          "sha": "d8f74133ec473044296f587c8049161ff289c069",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Decide test selection mode",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36583600212/job/109465137667",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 36584676328,
+          "sha": "a12c6e1a8c8ad877abfe9752311127827d357650",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/36584676328/job/109467408537",
+          "kind": "unknown"
+        }
+      ]
     },
     {
       "hour": "2026-09-29T15:00:00Z",
