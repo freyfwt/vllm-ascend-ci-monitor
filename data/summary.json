@@ -2,29 +2,37 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-10-18T04:28:33Z",
+  "updated_at": "2026-10-18T09:35:16Z",
   "latest_hour": {
-    "hour": "2026-10-18T03:00:00Z",
+    "hour": "2026-10-18T08:00:00Z",
     "status": "degraded",
     "coverage": "complete",
     "runs": 12,
-    "jobs": 123,
-    "workflow_failures": 5,
+    "jobs": 204,
+    "workflow_failures": 2,
     "infra_failures": 0,
-    "code_failures": 6,
-    "ignored_nonverdicts": 21,
-    "unresolved_failures": 3,
-    "probabilistic_jobs": 12,
-    "active_runs": 8,
+    "code_failures": 1,
+    "ignored_nonverdicts": 9,
+    "unresolved_failures": 2,
+    "probabilistic_jobs": 29,
+    "active_runs": 3,
     "reasons": {},
     "failures": [],
     "probabilistic": [
+      {
+        "key": "job::E2E::cpu-ut (vllm@v0.31.0) / cpu-ut card-",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "cpu-ut (vllm@v0.31.0) / cpu-ut card-",
+        "pass_rate_30d": 0.8292,
+        "reason": "same_commit_mixed_outcomes"
+      },
       {
         "key": "job::E2E::ci-gate",
         "kind": "job",
         "workflow": "E2E",
         "job": "ci-gate",
-        "pass_rate_30d": 0.3458,
+        "pass_rate_30d": 0.3375,
         "reason": "same_commit_mixed_outcomes"
       },
       {
@@ -32,7 +40,7 @@
         "kind": "job",
         "workflow": "E2E",
         "job": "cpu-ut (vllm@v0.30.0) / cpu-ut card-",
-        "pass_rate_30d": 0.7917,
+        "pass_rate_30d": 0.8042,
         "reason": "same_commit_mixed_outcomes"
       },
       {
@@ -44,64 +52,168 @@
         "reason": "same_commit_mixed_outcomes"
       },
       {
-        "key": "job::E2E::cpu-ut (vllm@v0.31.0) / cpu-ut card-",
+        "key": "job::E2E::run-selected-tests (vllm@ced6857afa0ea7b2e3f0846a62e1394e90f15607) / a3-4 card-(part 2-5)",
         "kind": "job",
         "workflow": "E2E",
-        "job": "cpu-ut (vllm@v0.31.0) / cpu-ut card-",
-        "pass_rate_30d": 0.8208,
+        "job": "run-selected-tests (vllm@ced6857afa0ea7b2e3f0846a62e1394e90f15607) / a3-4 card-(part 2-5)",
+        "pass_rate_30d": 0.9417,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::run-selected-tests (vllm@c4df37dfcc7f72ca41cd43801a468526ecf99a2b) / a3-4 card-(part 2-5)",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "run-selected-tests (vllm@c4df37dfcc7f72ca41cd43801a468526ecf99a2b) / a3-4 card-(part 2-5)",
+        "pass_rate_30d": 0.8318,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::run-selected-tests (vllm@c4df37dfcc7f72ca41cd43801a468526ecf99a2b) / a3-4 card-(part 4-5)",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "run-selected-tests (vllm@c4df37dfcc7f72ca41cd43801a468526ecf99a2b) / a3-4 card-(part 4-5)",
+        "pass_rate_30d": 0.9612,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::310P Ubuntu / build (linux-amd64-cpu-4, amd64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "310P Ubuntu / build (linux-amd64-cpu-4, amd64)",
+        "pass_rate_30d": 0.7852,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A2 Ubuntu / build (linux-aarch64-cpu-4, arm64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A2 Ubuntu / build (linux-aarch64-cpu-4, arm64)",
+        "pass_rate_30d": 0.8296,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A5 Ubuntu / build (linux-amd64-cpu-4, amd64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A5 Ubuntu / build (linux-amd64-cpu-4, amd64)",
+        "pass_rate_30d": 0.7222,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A3 Ubuntu / build (linux-aarch64-cpu-4, arm64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A3 Ubuntu / build (linux-aarch64-cpu-4, arm64)",
+        "pass_rate_30d": 0.7969,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A2 openeuler / build (linux-aarch64-cpu-4, arm64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A2 openeuler / build (linux-aarch64-cpu-4, arm64)",
+        "pass_rate_30d": 0.8182,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A2 openeuler / build (linux-amd64-cpu-4, amd64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A2 openeuler / build (linux-amd64-cpu-4, amd64)",
+        "pass_rate_30d": 0.7817,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A3 openEuler / build (linux-amd64-cpu-4, amd64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A3 openEuler / build (linux-amd64-cpu-4, amd64)",
+        "pass_rate_30d": 0.8308,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A5 Ubuntu / build (linux-aarch64-cpu-4, arm64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A5 Ubuntu / build (linux-aarch64-cpu-4, arm64)",
+        "pass_rate_30d": 0.8525,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A5 openEuler / build (linux-aarch64-cpu-4, arm64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A5 openEuler / build (linux-aarch64-cpu-4, arm64)",
+        "pass_rate_30d": 0.8189,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::310P openEuler / build (linux-amd64-cpu-4, amd64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "310P openEuler / build (linux-amd64-cpu-4, amd64)",
+        "pass_rate_30d": 0.7786,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::A3 openEuler / build (linux-aarch64-cpu-4, arm64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "A3 openEuler / build (linux-aarch64-cpu-4, arm64)",
+        "pass_rate_30d": 0.7826,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Image Build and Push::310P openEuler / build (linux-aarch64-cpu-4, arm64)",
+        "kind": "job",
+        "workflow": "Image Build and Push",
+        "job": "310P openEuler / build (linux-aarch64-cpu-4, arm64)",
+        "pass_rate_30d": 0.877,
         "reason": "same_commit_mixed_outcomes"
       }
     ],
     "merge_gate_analyzed": true,
-    "merge_gate_runs": 3,
-    "merge_gate_code_failures": 2,
+    "merge_gate_runs": 2,
+    "merge_gate_code_failures": 1,
     "merge_gate_policy_failures": 0,
     "merge_blocking_ci_failures": 0,
     "merge_gate_unknown_failures": 1,
     "nonblocking_ci_failures": 0,
     "merge_gate_evidence": [
       {
-        "run_id": 39091120608,
-        "sha": "312eaf43d99b2b94a936e2c22cf082bcbf59ad52",
-        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
-        "evidence": "Validate test coverage config",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39091120608/job/117570903227",
+        "run_id": 39110438915,
+        "sha": "e95e46ed491d47fdc89b79115f8c0e69b7f4e54f",
+        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+        "evidence": "Run mypy",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39110438915/job/117625773797",
+        "kind": "code"
+      },
+      {
+        "run_id": 39110405025,
+        "sha": "5b0577035b9799002a07c3c88c629daa83c1d6e1",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39110405025/job/117627768861",
         "kind": "unknown"
-      },
-      {
-        "run_id": 39095037821,
-        "sha": "e44cff76dae8d17f8a999966aa397220f6783166",
-        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
-        "evidence": "Run mypy",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39095037821/job/117579995068",
-        "kind": "code"
-      },
-      {
-        "run_id": 39095043622,
-        "sha": "b1c3efdf15cca0387fde56f7ea2b8e8def957067",
-        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
-        "evidence": "Run mypy",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39095043622/job/117580027076",
-        "kind": "code"
       }
     ]
   },
   "days_tracked": 79,
   "overall": {
-    "availability": 0.942359,
-    "availability_floor": 0.374733,
-    "coverage": 0.397655,
-    "observed_hours": 746,
+    "availability": 0.94259,
+    "availability_floor": 0.375332,
+    "coverage": 0.398192,
+    "observed_hours": 749,
     "healthy_hours": 186,
-    "degraded_hours": 517,
+    "degraded_hours": 520,
     "down_hours": 43,
-    "unknown_hours": 1130,
-    "merge_gate_runs": 7251,
+    "unknown_hours": 1132,
+    "merge_gate_runs": 7259,
     "merge_blocking_ci_failures": 58,
-    "merge_gate_unknown_failures": 4129,
+    "merge_gate_unknown_failures": 4133,
     "infra_failures": 0,
-    "code_failures": 9416,
-    "unresolved_failures": 12333,
-    "probabilistic_jobs": 25659
+    "code_failures": 9422,
+    "unresolved_failures": 12342,
+    "probabilistic_jobs": 25713
   }
 }
