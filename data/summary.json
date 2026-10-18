@@ -2,23 +2,40 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-10-17T22:18:34Z",
+  "updated_at": "2026-10-18T00:05:25Z",
   "latest_hour": {
-    "hour": "2026-10-17T21:00:00Z",
+    "hour": "2026-10-17T23:00:00Z",
     "status": "healthy",
     "coverage": "complete",
-    "runs": 1,
-    "jobs": 2,
-    "workflow_failures": 0,
+    "runs": 4,
+    "jobs": 19,
+    "workflow_failures": 2,
     "infra_failures": 0,
-    "code_failures": 0,
+    "code_failures": 1,
     "ignored_nonverdicts": 0,
     "unresolved_failures": 0,
-    "probabilistic_jobs": 0,
-    "active_runs": 6,
+    "probabilistic_jobs": 2,
+    "active_runs": 1,
     "reasons": {},
     "failures": [],
-    "probabilistic": [],
+    "probabilistic": [
+      {
+        "key": "job::E2E::run-selected-tests (vllm@ced6857afa0ea7b2e3f0846a62e1394e90f15607) / a3-4 card-(part 4-5)",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "run-selected-tests (vllm@ced6857afa0ea7b2e3f0846a62e1394e90f15607) / a3-4 card-(part 4-5)",
+        "pass_rate_30d": 0.9125,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::ci-gate",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "ci-gate",
+        "pass_rate_30d": 0.3333,
+        "reason": "same_commit_mixed_outcomes"
+      }
+    ],
     "merge_gate_analyzed": true,
     "merge_gate_runs": 0,
     "merge_gate_code_failures": 0,
@@ -28,13 +45,13 @@
     "nonblocking_ci_failures": 0,
     "merge_gate_evidence": []
   },
-  "days_tracked": 78,
+  "days_tracked": 79,
   "overall": {
-    "availability": 0.94197,
-    "availability_floor": 0.373262,
-    "coverage": 0.396257,
-    "observed_hours": 741,
-    "healthy_hours": 184,
+    "availability": 0.942127,
+    "availability_floor": 0.373932,
+    "coverage": 0.396902,
+    "observed_hours": 743,
+    "healthy_hours": 186,
     "degraded_hours": 514,
     "down_hours": 43,
     "unknown_hours": 1129,
@@ -42,8 +59,8 @@
     "merge_blocking_ci_failures": 58,
     "merge_gate_unknown_failures": 4125,
     "infra_failures": 0,
-    "code_failures": 9398,
+    "code_failures": 9402,
     "unresolved_failures": 12326,
-    "probabilistic_jobs": 25626
+    "probabilistic_jobs": 25629
   }
 }
