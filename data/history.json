@@ -1,6 +1,6 @@
 {
   "schema_version": 14,
-  "updated_at": "2026-10-21T17:08:09Z",
+  "updated_at": "2026-10-21T20:36:46Z",
   "upstream_repo": "vllm-project/vllm-ascend",
   "hours": [
     {
@@ -116730,6 +116730,205 @@
           "kind": "code"
         }
       ]
+    },
+    {
+      "hour": "2026-10-21T17:00:00Z",
+      "status": "degraded",
+      "coverage": "complete",
+      "runs": 6,
+      "jobs": 98,
+      "workflow_failures": 4,
+      "infra_failures": 0,
+      "code_failures": 4,
+      "ignored_nonverdicts": 0,
+      "unresolved_failures": 4,
+      "probabilistic_jobs": 10,
+      "active_runs": 0,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": [
+        {
+          "key": "job::Nightly-A2 (scheduled)::multi-node (main, multi-node-GLM-5.1-w8a8-A2, GLM5_1-W8A8-A2-dual-nodes.yaml, tests/e2e/cases/mod... / GLM5_1-W8A8-A2-dual-nodes.yaml",
+          "kind": "job",
+          "workflow": "Nightly-A2 (scheduled)",
+          "job": "multi-node (main, multi-node-GLM-5.1-w8a8-A2, GLM5_1-W8A8-A2-dual-nodes.yaml, tests/e2e/cases/mod... / GLM5_1-W8A8-A2-dual-nodes.yaml",
+          "pass_rate_30d": 0.7222,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2167,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::cpu-ut (vllm@v0.30.0) / cpu-ut card-",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "cpu-ut (vllm@v0.30.0) / cpu-ut card-",
+          "pass_rate_30d": 0.8125,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::cpu-ut (vllm@ced6857afa0ea7b2e3f0846a62e1394e90f15607) / cpu-ut card-",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "cpu-ut (vllm@ced6857afa0ea7b2e3f0846a62e1394e90f15607) / cpu-ut card-",
+          "pass_rate_30d": 0.8042,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-310P::single-node (main, Qwen3-14B-w8a8sc-310p, linux-aarch64-310p-8, Qwen3-14B-w8a8sc-310p.yaml, tests... / Qwen3-14B-w8a8sc-310p",
+          "kind": "job",
+          "workflow": "Nightly-310P",
+          "job": "single-node (main, Qwen3-14B-w8a8sc-310p, linux-aarch64-310p-8, Qwen3-14B-w8a8sc-310p.yaml, tests... / Qwen3-14B-w8a8sc-310p",
+          "pass_rate_30d": 0.875,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-310P::single-node (main, Qwen3-8B-w8a8sc-310p, linux-aarch64-310p-8, Qwen3-8B-w8a8sc-310p.yaml, tests/e... / Qwen3-8B-w8a8sc-310p",
+          "kind": "job",
+          "workflow": "Nightly-310P",
+          "job": "single-node (main, Qwen3-8B-w8a8sc-310p, linux-aarch64-310p-8, Qwen3-8B-w8a8sc-310p.yaml, tests/e... / Qwen3-8B-w8a8sc-310p",
+          "pass_rate_30d": 0.7778,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::Nightly-310P::single-node (main, Qwen3.6-27B-W8A8, linux-aarch64-310p-8, Qwen3.6-27B-W8A8-310P-300I-DUO.yaml, t... / Qwen3.6-27B-W8A8",
+          "kind": "job",
+          "workflow": "Nightly-310P",
+          "job": "single-node (main, Qwen3.6-27B-W8A8, linux-aarch64-310p-8, Qwen3.6-27B-W8A8-310P-300I-DUO.yaml, t... / Qwen3.6-27B-W8A8",
+          "pass_rate_30d": 0.7,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 5,
+      "merge_gate_code_failures": 2,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 3,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": [
+        {
+          "run_id": 39588241186,
+          "sha": "a2dcee5ea9b6648e3bde63ce76a682445fa16ca1",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Run selected tests with device",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39588241186/job/119360268312",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 39638219588,
+          "sha": "3e4ab7cf2f294b877b112bd6be7d075a5b492492",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39638219588/job/119361869096",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 39640978818,
+          "sha": "d8f1c2438d23ba4120646afd156388a66d823f89",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "pre-commit hook(s) made changes.",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39640978818/job/119365528123",
+          "kind": "code"
+        },
+        {
+          "run_id": 39641418661,
+          "sha": "922f1cf2d87897444e53c0988d70a22e1bddf0c8",
+          "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+          "evidence": "Run pre-commit",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39641418661/job/119366716873",
+          "kind": "code"
+        },
+        {
+          "run_id": 39629459368,
+          "sha": "ddc57584d2c30a5d3ac04aeb7651702b4dfdda23",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Run selected tests with device",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39629459368/job/119388958640",
+          "kind": "unknown"
+        }
+      ]
+    },
+    {
+      "hour": "2026-10-21T18:00:00Z",
+      "status": "degraded",
+      "coverage": "complete",
+      "runs": 3,
+      "jobs": 89,
+      "workflow_failures": 1,
+      "infra_failures": 0,
+      "code_failures": 3,
+      "ignored_nonverdicts": 0,
+      "unresolved_failures": 1,
+      "probabilistic_jobs": 1,
+      "active_runs": 1,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": [
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.2167,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 2,
+      "merge_gate_code_failures": 0,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 2,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": [
+        {
+          "run_id": 39635053068,
+          "sha": "d5387e0f6b302cabacc0ee691c62a55d208270e7",
+          "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+          "evidence": "Run selected tests with device",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39635053068/job/119393639308",
+          "kind": "unknown"
+        },
+        {
+          "run_id": 39611630603,
+          "sha": "2e445b1dcc1929b9f8fe2b5090981da12da4ae3e",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39611630603/job/119394386235",
+          "kind": "unknown"
+        }
+      ]
+    },
+    {
+      "hour": "2026-10-21T19:00:00Z",
+      "status": "healthy",
+      "coverage": "complete",
+      "runs": 1,
+      "jobs": 19,
+      "workflow_failures": 0,
+      "infra_failures": 0,
+      "code_failures": 2,
+      "ignored_nonverdicts": 0,
+      "unresolved_failures": 2,
+      "probabilistic_jobs": 0,
+      "active_runs": 1,
+      "reasons": {},
+      "failures": [],
+      "probabilistic": [],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 0,
+      "merge_gate_code_failures": 0,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 0,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": []
     }
   ],
   "policy": {
@@ -116745,43 +116944,43 @@
   "collector": {
     "authenticated": true,
     "auth_fallbacks": 0,
-    "api_requests": 147,
+    "api_requests": 44,
     "request_budget": 1200,
     "run_listing_complete": true,
     "event_coverage": {
       "pull_request": {
-        "expected": 121,
-        "fetched": 121,
+        "expected": 25,
+        "fetched": 25,
         "complete": true,
         "slices": 1
       },
       "pull_request_target": {
-        "expected": 162,
-        "fetched": 162,
+        "expected": 36,
+        "fetched": 36,
         "complete": true,
         "slices": 1
       },
       "push": {
-        "expected": 4,
-        "fetched": 4,
+        "expected": 2,
+        "fetched": 2,
         "complete": true,
         "slices": 1
       },
       "schedule": {
-        "expected": 0,
-        "fetched": 0,
+        "expected": 2,
+        "fetched": 2,
         "complete": true,
         "slices": 1
       },
       "workflow_dispatch": {
-        "expected": 12,
-        "fetched": 12,
+        "expected": 11,
+        "fetched": 11,
         "complete": true,
         "slices": 1
       },
       "repository_dispatch": {
-        "expected": 8,
-        "fetched": 8,
+        "expected": 3,
+        "fetched": 3,
         "complete": true,
         "slices": 1
       },
@@ -116804,11 +117003,8 @@
         "slices": 1
       }
     },
-    "detail_runs": 114,
-    "errors": [
-      "jobs:39617319938: HTTPError: HTTP Error 502: Bad Gateway",
-      "jobs:39613889003: HTTPError: HTTP Error 502: Bad Gateway"
-    ]
+    "detail_runs": 28,
+    "errors": []
   },
   "merge_availability_policy": {
     "required_ci_check": "ci-gate",
@@ -116818,7 +117014,7 @@
     "unknown": "merge-gate failure exists but evidence cannot distinguish CI/reliability from PR code/policy",
     "healthy": "no proven merge-blocking CI fault; code and ready-label policy failures are valid CI verdicts"
   },
-  "merge_availability_updated_at": "2026-10-21T17:10:36Z",
+  "merge_availability_updated_at": "2026-10-21T20:37:27Z",
   "merge_gate_backfill": {
     "schema_version": 6,
     "updated_at": "2026-09-01T14:48:17Z",
