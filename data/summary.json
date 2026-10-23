@@ -2,66 +2,170 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-10-23T01:30:53Z",
+  "updated_at": "2026-10-23T07:31:18Z",
   "latest_hour": {
-    "hour": "2026-10-23T00:00:00Z",
-    "status": "healthy",
+    "hour": "2026-10-23T06:00:00Z",
+    "status": "degraded",
     "coverage": "complete",
-    "runs": 3,
-    "jobs": 30,
-    "workflow_failures": 2,
+    "runs": 51,
+    "jobs": 487,
+    "workflow_failures": 15,
     "infra_failures": 0,
-    "code_failures": 1,
-    "ignored_nonverdicts": 0,
-    "unresolved_failures": 1,
-    "probabilistic_jobs": 1,
-    "active_runs": 3,
+    "code_failures": 22,
+    "ignored_nonverdicts": 68,
+    "unresolved_failures": 20,
+    "probabilistic_jobs": 45,
+    "active_runs": 8,
     "reasons": {},
     "failures": [],
     "probabilistic": [
+      {
+        "key": "job::E2E::cpu-ut (vllm@a98247ab4db686ee03c66d5feb3c761e52a2f8ab) / cpu-ut card-",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "cpu-ut (vllm@a98247ab4db686ee03c66d5feb3c761e52a2f8ab) / cpu-ut card-",
+        "pass_rate_30d": 0.75,
+        "reason": "same_commit_mixed_outcomes"
+      },
       {
         "key": "job::E2E::ci-gate",
         "kind": "job",
         "workflow": "E2E",
         "job": "ci-gate",
-        "pass_rate_30d": 0.3833,
+        "pass_rate_30d": 0.3083,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::cpu-ut (vllm@ced6857afa0ea7b2e3f0846a62e1394e90f15607) / cpu-ut card-",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "cpu-ut (vllm@ced6857afa0ea7b2e3f0846a62e1394e90f15607) / cpu-ut card-",
+        "pass_rate_30d": 0.8375,
         "reason": "same_commit_mixed_outcomes"
       }
     ],
     "merge_gate_analyzed": true,
-    "merge_gate_runs": 1,
-    "merge_gate_code_failures": 1,
+    "merge_gate_runs": 15,
+    "merge_gate_code_failures": 4,
     "merge_gate_policy_failures": 0,
     "merge_blocking_ci_failures": 0,
-    "merge_gate_unknown_failures": 0,
+    "merge_gate_unknown_failures": 11,
     "nonblocking_ci_failures": 0,
     "merge_gate_evidence": [
       {
-        "run_id": 39879655899,
-        "sha": "ccc39c1e60625f32da0cd78620587048572b78e1",
+        "run_id": 39896180974,
+        "sha": "474507721e94547611a31da3588e0d6ecea74138",
+        "reason": "MERGE_PATH_SETUP_FAILURE_UNKNOWN",
+        "evidence": "Install vllm-project/vllm-ascend with device",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39896180974/job/120269336033",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 39910135820,
+        "sha": "b1c36a62f1c0161ba571ce8ac477561f0bad57c8",
+        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+        "evidence": "pre-commit hook(s) made changes.",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39910135820/job/120271703858",
+        "kind": "code"
+      },
+      {
+        "run_id": 39909543876,
+        "sha": "c7e6487c290d784d8b5c27881e781e59fa02e071",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39909543876/job/120271995667",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 39909472305,
+        "sha": "c3ee6961f571c55ea9c335647b9617867efa5df1",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39909472305/job/120273179088",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 39911979166,
+        "sha": "8a565e9e39c5d9aba162042ede500266736813db",
         "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
         "evidence": "Run mypy",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39879655899/job/120174540567",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39911979166/job/120278523322",
+        "kind": "code"
+      },
+      {
+        "run_id": 39902370797,
+        "sha": "be92cecbdf323664b64c6a59bc9de27e7d945d08",
+        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+        "evidence": "Run selected tests with device",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39902370797/job/120278711732",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 39910994521,
+        "sha": "6c46cffb9790b80c8bd279f652db025878608989",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39910994521/job/120279029875",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 39911096292,
+        "sha": "37469133d62643cf727edcbc1b9c2231790d4a88",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39911096292/job/120281242559",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 39908904193,
+        "sha": "902eb33a2f89bd940996ebe5b52731530b14d886",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39908904193/job/120281471575",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 39911899041,
+        "sha": "5355f070d4ee32eedf83ac410f14f5c034786b06",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39911899041/job/120281692894",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 39913404291,
+        "sha": "4b83b906cf0f46a5a68af5bcc8694a8cbbd71e66",
+        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+        "evidence": "pre-commit hook(s) made changes.",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39913404291/job/120282497095",
+        "kind": "code"
+      },
+      {
+        "run_id": 39913361177,
+        "sha": "396a842c30617cffe0ba0674bdb43dd0dec1b620",
+        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+        "evidence": "Run mypy",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/39913361177/job/120282678781",
         "kind": "code"
       }
     ]
   },
   "days_tracked": 84,
   "overall": {
-    "availability": 0.942472,
-    "availability_floor": 0.386352,
-    "coverage": 0.409935,
-    "observed_hours": 817,
+    "availability": 0.941463,
+    "availability_floor": 0.386193,
+    "coverage": 0.410205,
+    "observed_hours": 820,
     "healthy_hours": 205,
-    "degraded_hours": 565,
-    "down_hours": 47,
-    "unknown_hours": 1176,
-    "merge_gate_runs": 7839,
-    "merge_blocking_ci_failures": 63,
-    "merge_gate_unknown_failures": 4437,
+    "degraded_hours": 567,
+    "down_hours": 48,
+    "unknown_hours": 1179,
+    "merge_gate_runs": 7883,
+    "merge_blocking_ci_failures": 64,
+    "merge_gate_unknown_failures": 4468,
     "infra_failures": 0,
-    "code_failures": 10015,
-    "unresolved_failures": 13069,
-    "probabilistic_jobs": 27729
+    "code_failures": 10060,
+    "unresolved_failures": 13127,
+    "probabilistic_jobs": 27856
   }
 }
