@@ -2,48 +2,154 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-10-26T00:20:28Z",
+  "updated_at": "2026-10-26T06:14:09Z",
   "latest_hour": {
-    "hour": "2026-10-25T23:00:00Z",
-    "status": "healthy",
+    "hour": "2026-10-26T05:00:00Z",
+    "status": "degraded",
     "coverage": "complete",
-    "runs": 2,
-    "jobs": 25,
-    "workflow_failures": 1,
+    "runs": 19,
+    "jobs": 210,
+    "workflow_failures": 11,
     "infra_failures": 0,
-    "code_failures": 2,
-    "ignored_nonverdicts": 0,
-    "unresolved_failures": 0,
-    "probabilistic_jobs": 0,
-    "active_runs": 0,
+    "code_failures": 6,
+    "ignored_nonverdicts": 7,
+    "unresolved_failures": 14,
+    "probabilistic_jobs": 16,
+    "active_runs": 4,
     "reasons": {},
     "failures": [],
-    "probabilistic": [],
+    "probabilistic": [
+      {
+        "key": "job::E2E::ci-gate",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "ci-gate",
+        "pass_rate_30d": 0.2792,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Nightly-A3-560T (Daily)::single-node (main, DeepSeek-V4-Flash-W8A8-A3, linux-aarch64-a3-800i-16, DeepSeek-V4-Flash-W8A8-A3... / DeepSeek-V4-Flash-W8A8-A3",
+        "kind": "job",
+        "workflow": "Nightly-A3-560T (Daily)",
+        "job": "single-node (main, DeepSeek-V4-Flash-W8A8-A3, linux-aarch64-a3-800i-16, DeepSeek-V4-Flash-W8A8-A3... / DeepSeek-V4-Flash-W8A8-A3",
+        "pass_rate_30d": 0.873,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::Nightly-A3-560T (Daily)::single-node (main, glm-5.2-w4a8-dspark, linux-aarch64-a3-800i-16, GLM-5.2-W4A8-DSpark-A3.yaml, te... / glm-5.2-w4a8-dspark",
+        "kind": "job",
+        "workflow": "Nightly-A3-560T (Daily)",
+        "job": "single-node (main, glm-5.2-w4a8-dspark, linux-aarch64-a3-800i-16, GLM-5.2-W4A8-DSpark-A3.yaml, te... / glm-5.2-w4a8-dspark",
+        "pass_rate_30d": 0.8621,
+        "reason": "same_commit_mixed_outcomes"
+      }
+    ],
     "merge_gate_analyzed": true,
-    "merge_gate_runs": 0,
-    "merge_gate_code_failures": 0,
+    "merge_gate_runs": 10,
+    "merge_gate_code_failures": 2,
     "merge_gate_policy_failures": 0,
     "merge_blocking_ci_failures": 0,
-    "merge_gate_unknown_failures": 0,
+    "merge_gate_unknown_failures": 8,
     "nonblocking_ci_failures": 0,
-    "merge_gate_evidence": []
+    "merge_gate_evidence": [
+      {
+        "run_id": 40271099282,
+        "sha": "bb488d49ea87aafbd022fd8129d92dc0c1cf7bec",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40271099282/job/121407431034",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 40271868538,
+        "sha": "24a12be6671b0c24701c4a0cbddde39dd317d73a",
+        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+        "evidence": "Run mypy",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40271868538/job/121407865058",
+        "kind": "code"
+      },
+      {
+        "run_id": 40272298414,
+        "sha": "e8ed19d6b8c6f9b51971bbbbe33ef6d78572121b",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40272298414/job/121409687049",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 40271103882,
+        "sha": "25bfa36fb16e440068b5d82db8740d60f57f9f15",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40271103882/job/121410157477",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 40271096021,
+        "sha": "a5c2c53b0256e6cf3fc50494586d218dc391f70c",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40271096021/job/121410391472",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 40264500733,
+        "sha": "fce4f2f3efd3b5b9b6edbf87b336adb5ab7cd4c8",
+        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+        "evidence": "Run selected tests with device",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40264500733/job/121410958407",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 40266512941,
+        "sha": "8b41d745f9b0b21884f4ae713b1620b7b039d801",
+        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+        "evidence": "Run selected tests with device",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40266512941/job/121415970606",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 40276138586,
+        "sha": "c0c2211271afb463746f8386da99d75f147d6292",
+        "reason": "PR_TITLE_POLICY_FAILURE",
+        "evidence": "PR title must contain one of the following prefixes: [BugFix], [Performance], [Test], [CI], [Feature], [Doc], [Misc], [Community], [Refactor]",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40276138586/job/121420718925",
+        "kind": "code"
+      },
+      {
+        "run_id": 40268114182,
+        "sha": "ae6868a0447993192a7268a31962816741da7b9d",
+        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
+        "evidence": "Run selected tests with device",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40268114182/job/121421125173",
+        "kind": "unknown"
+      },
+      {
+        "run_id": 40275975702,
+        "sha": "ebcbbfd722ce62d4d85f6c74d226bd48e46fcca5",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/40275975702/job/121422123808",
+        "kind": "unknown"
+      }
+    ]
   },
   "days_tracked": 87,
   "overall": {
-    "availability": 0.944509,
-    "availability_floor": 0.395833,
-    "coverage": 0.419089,
-    "observed_hours": 865,
+    "availability": 0.9447,
+    "availability_floor": 0.396135,
+    "coverage": 0.419324,
+    "observed_hours": 868,
     "healthy_hours": 224,
-    "degraded_hours": 593,
+    "degraded_hours": 596,
     "down_hours": 48,
-    "unknown_hours": 1199,
-    "merge_gate_runs": 8040,
+    "unknown_hours": 1202,
+    "merge_gate_runs": 8112,
     "merge_blocking_ci_failures": 64,
-    "merge_gate_unknown_failures": 4571,
+    "merge_gate_unknown_failures": 4609,
     "infra_failures": 0,
-    "code_failures": 10197,
-    "unresolved_failures": 13317,
-    "probabilistic_jobs": 28575
+    "code_failures": 10248,
+    "unresolved_failures": 13404,
+    "probabilistic_jobs": 28730
   }
 }
