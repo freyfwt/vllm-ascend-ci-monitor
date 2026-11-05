@@ -2,28 +2,28 @@
   "schema_version": 2,
   "date": "2026-11-04",
   "timezone": "UTC",
-  "updated_at": "2026-11-04T21:22:14Z",
+  "updated_at": "2026-11-05T02:27:05Z",
   "status": "degraded",
   "metrics": {
     "availability": 1.0,
-    "availability_floor": 0.428571,
-    "coverage": 0.428571,
-    "expected_hours": 21,
-    "observed_hours": 9,
+    "availability_floor": 0.416667,
+    "coverage": 0.416667,
+    "expected_hours": 24,
+    "observed_hours": 10,
     "healthy_hours": 0,
-    "degraded_hours": 9,
+    "degraded_hours": 10,
     "down_hours": 0,
-    "unknown_hours": 12,
-    "runs": 763,
-    "jobs": 4743,
-    "merge_gate_runs": 177,
+    "unknown_hours": 14,
+    "runs": 767,
+    "jobs": 4802,
+    "merge_gate_runs": 178,
     "merge_gate_code_failures": 111,
     "merge_blocking_ci_failures": 0,
-    "merge_gate_unknown_failures": 66,
+    "merge_gate_unknown_failures": 67,
     "infra_failures": 0,
-    "code_failures": 241,
-    "unresolved_failures": 197,
-    "probabilistic_jobs": 531
+    "code_failures": 243,
+    "unresolved_failures": 198,
+    "probabilistic_jobs": 535
   },
   "hours": [
     {
@@ -1739,25 +1739,62 @@
     },
     {
       "hour": "2026-11-04T23:00:00Z",
-      "status": "unknown",
+      "status": "degraded",
       "coverage": "complete",
-      "runs": 0,
-      "jobs": 0,
-      "workflow_failures": 0,
+      "runs": 4,
+      "jobs": 59,
+      "workflow_failures": 1,
       "infra_failures": 0,
-      "code_failures": 0,
-      "ignored_nonverdicts": 0,
-      "unresolved_failures": 0,
-      "probabilistic_jobs": 0,
+      "code_failures": 2,
+      "ignored_nonverdicts": 7,
+      "unresolved_failures": 1,
+      "probabilistic_jobs": 4,
       "active_runs": 0,
-      "merge_gate_runs": 0,
-      "merge_gate_code_failures": 0,
-      "merge_blocking_ci_failures": 0,
-      "merge_gate_unknown_failures": 0,
       "reasons": {},
       "failures": [],
-      "probabilistic": [],
-      "merge_gate_evidence": []
+      "probabilistic": [
+        {
+          "key": "job::E2E::cpu-ut (vllm@v0.32.0) / cpu-ut card-",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "cpu-ut (vllm@v0.32.0) / cpu-ut card-",
+          "pass_rate_30d": 0.7,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::cpu-ut (vllm@24420b7a341af37a9bc3186e6fc6062512e0aa58) / cpu-ut card-",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "cpu-ut (vllm@24420b7a341af37a9bc3186e6fc6062512e0aa58) / cpu-ut card-",
+          "pass_rate_30d": 0.6792,
+          "reason": "same_commit_mixed_outcomes"
+        },
+        {
+          "key": "job::E2E::ci-gate",
+          "kind": "job",
+          "workflow": "E2E",
+          "job": "ci-gate",
+          "pass_rate_30d": 0.1667,
+          "reason": "same_commit_mixed_outcomes"
+        }
+      ],
+      "merge_gate_analyzed": true,
+      "merge_gate_runs": 1,
+      "merge_gate_code_failures": 0,
+      "merge_gate_policy_failures": 0,
+      "merge_blocking_ci_failures": 0,
+      "merge_gate_unknown_failures": 1,
+      "nonblocking_ci_failures": 0,
+      "merge_gate_evidence": [
+        {
+          "run_id": 41930861786,
+          "sha": "954eb4d8268774fcddb1e98203ec1772ff7ecc11",
+          "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+          "evidence": "Check all required jobs",
+          "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/41930861786/job/126934003101",
+          "kind": "unknown"
+        }
+      ]
     }
   ]
 }
