@@ -2,53 +2,29 @@
   "schema_version": 2,
   "tracking_start": "2026-08-01",
   "timezone": "UTC",
-  "updated_at": "2026-11-07T07:06:54Z",
+  "updated_at": "2026-11-07T13:59:39Z",
   "latest_hour": {
-    "hour": "2026-11-07T06:00:00Z",
+    "hour": "2026-11-07T12:00:00Z",
     "status": "degraded",
     "coverage": "complete",
-    "runs": 20,
-    "jobs": 64,
-    "workflow_failures": 2,
+    "runs": 23,
+    "jobs": 110,
+    "workflow_failures": 6,
     "infra_failures": 0,
-    "code_failures": 0,
-    "ignored_nonverdicts": 1,
-    "unresolved_failures": 1,
-    "probabilistic_jobs": 6,
-    "active_runs": 1,
+    "code_failures": 2,
+    "ignored_nonverdicts": 18,
+    "unresolved_failures": 7,
+    "probabilistic_jobs": 25,
+    "active_runs": 2,
     "reasons": {},
     "failures": [],
     "probabilistic": [
       {
-        "key": "job::E2E::run-selected-tests (vllm@544f182d9f0c9bfe8bd7645525951d5e3692a542) / a2-1 card-(part 5-7)",
+        "key": "job::E2E::pre-commit",
         "kind": "job",
         "workflow": "E2E",
-        "job": "run-selected-tests (vllm@544f182d9f0c9bfe8bd7645525951d5e3692a542) / a2-1 card-(part 5-7)",
-        "pass_rate_30d": 0.9802,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::run-selected-tests (vllm@544f182d9f0c9bfe8bd7645525951d5e3692a542) / a2-1 card-(part 1-7)",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "run-selected-tests (vllm@544f182d9f0c9bfe8bd7645525951d5e3692a542) / a2-1 card-(part 1-7)",
-        "pass_rate_30d": 0.9625,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::run-selected-tests (vllm@544f182d9f0c9bfe8bd7645525951d5e3692a542) / a2-1 card-(part 6-7)",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "run-selected-tests (vllm@544f182d9f0c9bfe8bd7645525951d5e3692a542) / a2-1 card-(part 6-7)",
-        "pass_rate_30d": 0.9442,
-        "reason": "same_commit_mixed_outcomes"
-      },
-      {
-        "key": "job::E2E::run-selected-tests (vllm@544f182d9f0c9bfe8bd7645525951d5e3692a542) / a3-2 card-(part 4-5)",
-        "kind": "job",
-        "workflow": "E2E",
-        "job": "run-selected-tests (vllm@544f182d9f0c9bfe8bd7645525951d5e3692a542) / a3-2 card-(part 4-5)",
-        "pass_rate_30d": 0.9245,
+        "job": "pre-commit",
+        "pass_rate_30d": 0.6583,
         "reason": "same_commit_mixed_outcomes"
       },
       {
@@ -56,52 +32,92 @@
         "kind": "job",
         "workflow": "E2E",
         "job": "ci-gate",
-        "pass_rate_30d": 0.1708,
+        "pass_rate_30d": 0.1375,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::cpu-ut (vllm@v0.32.0) / cpu-ut card-",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "cpu-ut (vllm@v0.32.0) / cpu-ut card-",
+        "pass_rate_30d": 0.6083,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::cpu-ut (vllm@24420b7a341af37a9bc3186e6fc6062512e0aa58) / cpu-ut card-",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "cpu-ut (vllm@24420b7a341af37a9bc3186e6fc6062512e0aa58) / cpu-ut card-",
+        "pass_rate_30d": 0.6833,
+        "reason": "same_commit_mixed_outcomes"
+      },
+      {
+        "key": "job::E2E::prepare-csrc-cache / Prepare csrc cache checks",
+        "kind": "job",
+        "workflow": "E2E",
+        "job": "prepare-csrc-cache / Prepare csrc cache checks",
+        "pass_rate_30d": 0.9667,
         "reason": "same_commit_mixed_outcomes"
       }
     ],
     "merge_gate_analyzed": true,
-    "merge_gate_runs": 2,
-    "merge_gate_code_failures": 0,
+    "merge_gate_runs": 4,
+    "merge_gate_code_failures": 2,
     "merge_gate_policy_failures": 0,
     "merge_blocking_ci_failures": 0,
     "merge_gate_unknown_failures": 2,
     "nonblocking_ci_failures": 0,
     "merge_gate_evidence": [
       {
-        "run_id": 42342110378,
-        "sha": "d703dea2b68d1543b53773c07d136f724767f67b",
-        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
-        "evidence": "Run selected tests with device",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/42342110378/job/128330635371",
+        "run_id": 42369988070,
+        "sha": "cc55b43a6e61235e800a38c8681d2151bbedd17b",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/42369988070/job/128399332369",
         "kind": "unknown"
       },
       {
-        "run_id": 42250192243,
-        "sha": "154b87f358286db47be8b19fc15e5ff13fce4d79",
-        "reason": "MERGE_PATH_FAILURE_UNKNOWN",
-        "evidence": "Run selected tests with device",
-        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/42250192243/job/128331678836",
+        "run_id": 42371482560,
+        "sha": "b538ec8a829037ef0f676ca9ee517248f453a939",
+        "reason": "CI_GATE_FAILURE_UNEXPLAINED",
+        "evidence": "Check all required jobs",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/42371482560/job/128403734758",
         "kind": "unknown"
+      },
+      {
+        "run_id": 42373073378,
+        "sha": "ab339442ad90b37f99b10c13b73d9ed013982171",
+        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+        "evidence": "Run mypy for Python 3.10, 3.11 and 3.12 in parallel",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/42373073378/job/128406109622",
+        "kind": "code"
+      },
+      {
+        "run_id": 42373327621,
+        "sha": "4d603dae65fd1b81330f0024bd315edd530368b6",
+        "reason": "DETERMINISTIC_CHECK_OR_TEST_FAILURE",
+        "evidence": "::group::mypy Python 3.12 (failed)",
+        "url": "https://github.com/vllm-project/vllm-ascend/actions/runs/42373327621/job/128406240530",
+        "kind": "code"
       }
     ]
   },
   "days_tracked": 99,
   "overall": {
-    "availability": 0.942289,
-    "availability_floor": 0.401441,
-    "coverage": 0.426028,
-    "observed_hours": 1005,
-    "healthy_hours": 254,
-    "degraded_hours": 693,
-    "down_hours": 58,
-    "unknown_hours": 1354,
-    "merge_gate_runs": 9294,
-    "merge_blocking_ci_failures": 79,
-    "merge_gate_unknown_failures": 5313,
+    "availability": 0.941468,
+    "availability_floor": 0.401268,
+    "coverage": 0.426216,
+    "observed_hours": 1008,
+    "healthy_hours": 255,
+    "degraded_hours": 694,
+    "down_hours": 59,
+    "unknown_hours": 1357,
+    "merge_gate_runs": 9305,
+    "merge_blocking_ci_failures": 80,
+    "merge_gate_unknown_failures": 5318,
     "infra_failures": 0,
-    "code_failures": 11566,
-    "unresolved_failures": 13639,
-    "probabilistic_jobs": 33790
+    "code_failures": 11579,
+    "unresolved_failures": 13649,
+    "probabilistic_jobs": 33901
   }
 }
